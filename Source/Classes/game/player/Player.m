@@ -36,7 +36,7 @@
 	} else {
 		_velocity.y -= 0.1 * dt_scale_get();
 	}
-	[self setPosition:CGPointAdd(_velocity, self.position)];
+	[self setPosition:ccp(self.position.x+_velocity.x*dt_scale_get(),self.position.y+_velocity.y*dt_scale_get())];
 }
 
 -(BOOL)is_underwater {
