@@ -24,16 +24,19 @@
 
 -(void)accel_report_x:(float)x y:(float)y z:(float)z {
 	
-	float filter = 0.7;
+	float filter = 0.65;
 	float ratio = 75;
 	
-    if(ABS(x) < 0.032) {
-		UIAccelerationValue rollingX = 0;
-		rollingX = (x * filter) + (rollingX * (1.0 - filter));
-		float accelX = x - rollingX;
-		float pointsPerSec = ratio * accelX;
+    if(x > 0.032 || x < -0.032)
+    {
+        UIAccelerationValue rollingX = 0;
+        rollingX = (x * filter) + (rollingX * (1.0 - filter));
+        float accelX = x - rollingX; // want this axis
+        float pointsPerSec = ratio * accelX;
 		_val = pointsPerSec;
-    } else {
+    }
+    else 
+    {
         _val = 0;
     }
 }
