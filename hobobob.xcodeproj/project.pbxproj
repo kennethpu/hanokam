@@ -47,6 +47,10 @@
 		7E1B806E1A189C330055E654 /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1B806D1A189C330055E654 /* MainMenuScene.m */; };
 		7E1B80711A189F450055E654 /* TouchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1B80701A189F450055E654 /* TouchButton.m */; };
 		7E1B80741A18B5FB0055E654 /* CCNode+SFGestureRecognizers.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1B80731A18B5FB0055E654 /* CCNode+SFGestureRecognizers.m */; };
+		7E26759F1AB69451002EF2EC /* Bird.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE870681AB67082004679E8 /* Bird.m */; };
+		7E2675A11AB69451002EF2EC /* Bird.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE870681AB67082004679E8 /* Bird.m */; };
+		7E2675A21AB69452002EF2EC /* Bird.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE870681AB67082004679E8 /* Bird.m */; };
+		7E2675A31AB69453002EF2EC /* Bird.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE870681AB67082004679E8 /* Bird.m */; };
 		7E3B0C0A1A131E8E0057869B /* GameEngineScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B0BCA1A131E8E0057869B /* GameEngineScene.m */; };
 		7E3B0C0B1A131E8E0057869B /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B0BCC1A131E8E0057869B /* GameObject.m */; };
 		7E3B0C0F1A131E8E0057869B /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B0BD51A131E8E0057869B /* Player.m */; };
@@ -94,8 +98,9 @@
 		7EADAC6D1AB655D8004902A9 /* bg_test_obj_cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EADAC601AB655D7004902A9 /* bg_test_obj_cloud.png */; };
 		7EADAC6E1AB655D8004902A9 /* bg_test_obj_cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EADAC601AB655D7004902A9 /* bg_test_obj_cloud.png */; };
 		7EADAC6F1AB655D8004902A9 /* bg_test_obj_cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EADAC601AB655D7004902A9 /* bg_test_obj_cloud.png */; };
+		7EADAC791AB67506004902A9 /* AccelerometerSimulation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EADAC781AB67506004902A9 /* AccelerometerSimulation.m */; };
+		7EADAC7D1AB67B6E004902A9 /* AccelerometerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EADAC7C1AB67B6E004902A9 /* AccelerometerManager.m */; };
 		7EE870661AB66291004679E8 /* BGFog.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE870651AB66291004679E8 /* BGFog.m */; };
-		7EE870691AB67082004679E8 /* Bird.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE870681AB67082004679E8 /* Bird.m */; };
 		8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8392007918EE8E3300B6C429 /* GLKit.framework */; };
 		927F61A5196C771E000F43EF /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3517B978D7009739AE /* OpenAL.framework */; };
 		927F61A9196C771E000F43EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3D17B978D7009739AE /* Foundation.framework */; };
@@ -288,6 +293,10 @@
 		7EADAC5E1AB655D7004902A9 /* bg_test_fog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_test_fog.png; sourceTree = "<group>"; };
 		7EADAC5F1AB655D7004902A9 /* bg_test_obj_bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_test_obj_bird.png; sourceTree = "<group>"; };
 		7EADAC601AB655D7004902A9 /* bg_test_obj_cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_test_obj_cloud.png; sourceTree = "<group>"; };
+		7EADAC771AB67506004902A9 /* AccelerometerSimulation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccelerometerSimulation.h; sourceTree = "<group>"; };
+		7EADAC781AB67506004902A9 /* AccelerometerSimulation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerometerSimulation.m; sourceTree = "<group>"; };
+		7EADAC7B1AB67B6E004902A9 /* AccelerometerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccelerometerManager.h; sourceTree = "<group>"; };
+		7EADAC7C1AB67B6E004902A9 /* AccelerometerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerometerManager.m; sourceTree = "<group>"; };
 		7EE870641AB66291004679E8 /* BGFog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGFog.h; sourceTree = "<group>"; };
 		7EE870651AB66291004679E8 /* BGFog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGFog.m; sourceTree = "<group>"; };
 		7EE870671AB67082004679E8 /* Bird.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bird.h; sourceTree = "<group>"; };
@@ -623,6 +632,10 @@
 				7E3B0C091A131E8E0057869B /* WebRequest.m */,
 				7E1B80721A18B5FB0055E654 /* CCNode+SFGestureRecognizers.h */,
 				7E1B80731A18B5FB0055E654 /* CCNode+SFGestureRecognizers.m */,
+				7EADAC771AB67506004902A9 /* AccelerometerSimulation.h */,
+				7EADAC781AB67506004902A9 /* AccelerometerSimulation.m */,
+				7EADAC7B1AB67B6E004902A9 /* AccelerometerManager.h */,
+				7EADAC7C1AB67B6E004902A9 /* AccelerometerManager.m */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -1099,6 +1112,7 @@
 			files = (
 				7E90D18E1AB63DB700E06F92 /* BGSky.m in Sources */,
 				5B12102A197484DD004C1E1D /* hobobobActivity.java in Sources */,
+				7E2675A31AB69453002EF2EC /* Bird.m in Sources */,
 				7E90D1941AB63DD800E06F92 /* BGWater.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1107,6 +1121,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E2675A21AB69452002EF2EC /* Bird.m in Sources */,
 				7E90D1951AB63DD800E06F92 /* BGWater.m in Sources */,
 				7A40360419DDEE84007B6E8F /* main.m in Sources */,
 				7E90D18F1AB63DB700E06F92 /* BGSky.m in Sources */,
@@ -1120,6 +1135,7 @@
 			files = (
 				7E90D18D1AB63DB700E06F92 /* BGSky.m in Sources */,
 				5B121030197484FA004C1E1D /* hobobobActivity.m in Sources */,
+				7E2675A11AB69451002EF2EC /* Bird.m in Sources */,
 				7E90D1931AB63DD800E06F92 /* BGWater.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1128,6 +1144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E26759F1AB69451002EF2EC /* Bird.m in Sources */,
 				7E3B0C271A131E8E0057869B /* Vec3D.m in Sources */,
 				7E3B0C0B1A131E8E0057869B /* GameObject.m in Sources */,
 				7E1B80741A18B5FB0055E654 /* CCNode+SFGestureRecognizers.m in Sources */,
@@ -1143,12 +1160,13 @@
 				7E3B0C1E1A131E8E0057869B /* GameMain.m in Sources */,
 				7E3B0C221A131E8E0057869B /* FileCache.m in Sources */,
 				7E3B0C211A131E8E0057869B /* DataStore.m in Sources */,
-				7EE870691AB67082004679E8 /* Bird.m in Sources */,
+				7EADAC7D1AB67B6E004902A9 /* AccelerometerManager.m in Sources */,
 				7E3B0C0F1A131E8E0057869B /* Player.m in Sources */,
 				7E3B0C251A131E8E0057869B /* PolyLib.m in Sources */,
 				7E3B0C241A131E8E0057869B /* iRate.m in Sources */,
 				7E90D18C1AB63DB700E06F92 /* BGSky.m in Sources */,
 				7EE870661AB66291004679E8 /* BGFog.m in Sources */,
+				7EADAC791AB67506004902A9 /* AccelerometerSimulation.m in Sources */,
 				7E3B0C1F1A131E8E0057869B /* BatchDraw.m in Sources */,
 				7E3B0C281A131E8E0057869B /* WebRequest.m in Sources */,
 			);

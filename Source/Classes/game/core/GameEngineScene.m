@@ -5,6 +5,9 @@
 #import "BGWater.h"
 #import "BGFog.h"
 
+#import "AccelerometerManager.h"
+//#import "AccelerometerSimulation.h" 
+
 #import "Resource.h"
 #import "CCTexture_Private.h"
 
@@ -22,7 +25,10 @@
 	BGWater *_bg_water;
 	BGFog *_bg_fog;
 	NSArray *_bg_elements;
+	
+	AccelerometerManager *_accel;
 }
+-(Player*)player { return _player; }
 
 +(GameEngineScene*)cons {
 	return [[GameEngineScene node] cons];
@@ -30,6 +36,7 @@
 
 -(id)cons {
 	self.userInteractionEnabled = YES;
+	_accel = [AccelerometerManager cons];
 	dt_unset();
 	_current_camera = camerazoom_cons(0, 0, 0.1);
 	
@@ -42,12 +49,21 @@
 	_bg_fog = (BGFog*)[[BGFog cons] add_to:_game_anchor z:2];
 	_bg_elements = @[_bg_sky,_bg_water];
 	
+	UIAccelerometer *accel = [UIAccelerometer sharedAccelerometer];
+	accel.delegate = self;
+	accel.updateInterval = 1.0f/60.0f;
+	
 	return self;
+}
+
+-(void)accelerometer:(UIAccelerometer *)acel didAccelerate:(UIAcceleration *)aceler {
+	[_accel accel_report_x:aceler.x y:aceler.y z:aceler.z];
 }
 
 -(void)update:(CCTime)delta {
 	dt_set(delta);
 	
+	[_accel i_update:self];
 	[_player update_game:self];
 	[self center_camera_hei:_player.position.y];
 	
