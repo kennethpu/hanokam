@@ -7,7 +7,8 @@
 //
 
 #import "cocos2d.h"
+#import "GameEngineScene.h"
 
-@interface BGWater : CCSprite
+@interface BGWater : BGElement
 +(BGWater*)cons;
 @end

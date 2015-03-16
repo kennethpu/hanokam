@@ -46,7 +46,15 @@ static NSSet* dont_load;
 		TEX_BLANK: @"blank.png",
 		TEX_TEST_BG_TILE_SKY: @"bg_test_tile_sky.png",
 		TEX_TEST_BG_TILE_WATER: @"bg_test_tile_water.png",
-		TEX_TEST_CHAR_HANOKA: @"char_test_hanoka.png"
+		TEX_TEST_CHAR_HANOKA: @"char_test_hanoka.png",
+		TEX_TEST_BG_TILE_SKY: @"bg_test_tile_sky.png",
+		TEX_TEST_BG_TILE_WATER: @"bg_test_tile_water.png",
+		TEX_TEST_BG_BLDG1: @"bg_test_bldg1.png",
+		TEX_TEST_BG_BLDG2: @"bg_test_bldg2.png",
+		TEX_TEST_BG_FOG: @"bg_test_fog.png",
+		TEX_TEST_BG_OBJ_BIRD: @"bg_test_obj_bird.png",
+		TEX_TEST_BG_OBJ_CLOUD: @"bg_test_obj_cloud.png"
+		
 	};
 	
 	

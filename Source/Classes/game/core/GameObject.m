@@ -3,7 +3,7 @@
 
 @implementation GameObject
 
--(void)update_game:(GameEngineScene*)g {}
+-(void)i_update:(GameEngineScene*)g {}
 
 -(void)check_should_render:(GameEngineScene *)g {
     if (hitrect_touch([g get_viewbox], [self get_hit_rect])) {

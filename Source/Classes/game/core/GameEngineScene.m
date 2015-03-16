@@ -15,10 +15,11 @@
 	
 	CCNode *_game_anchor;
 	
-	CGPoint _last_follow_pt;
+	CGPoint _camera_center_point;
 	
 	BGSky *_bg_sky;
 	BGWater *_bg_water;
+	NSArray *_bg_elements;
 }
 
 +(GameEngineScene*)cons {
@@ -36,22 +37,8 @@
 	CCNode *bg_anchor = [[CCNode node] add_to:_game_anchor z:0];
 	_bg_sky = (BGSky*)[[BGSky cons] add_to:bg_anchor];
 	_bg_water = (BGWater*)[[BGWater cons] add_to:bg_anchor];
-	/*
-	CCSprite *bgsky = (CCSprite*)[[[CCSprite spriteWithTexture:[Resource get_tex:TEX_BACKGROUND_SKY]] set_anchor_pt:ccp(0,0)] add_to:self z:-1];
-	scale_to_fit_screen_x(bgsky);
-	scale_to_fit_screen_y(bgsky);
+	_bg_elements = @[_bg_sky,_bg_water];
 	
-	CCSprite *bgbldgs = (CCSprite*)[[[CCSprite spriteWithTexture:[Resource get_tex:TEX_BACKGROUND_BUILDINGS]] set_anchor_pt:ccp(0,0)] add_to:self z:-1];
-	scale_to_fit_screen_x(bgbldgs);
-	scale_to_fit_screen_y(bgbldgs);
-	bgbldgs.scaleY = bgbldgs.scaleY*0.75;
-	
-	_bgwindow = (CCSprite*)[[[CCSprite spriteWithTexture:[Resource get_tex:TEX_BACKGROUND_WINDOW]] set_anchor_pt:ccp(0,0)] add_to:self z:-1];
-	ccTexParams par = {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT};
-	[_bgwindow.texture setTexParameters:&par];
-	[_bgwindow setTextureRect:CGRectMake(0, 0, game_screen().width, game_screen().height)];
-	*/
-	//_player = (Player*)[[[Player cons] add_to:_game_anchor] set_pos:_player_start_pt];
 	return self;
 }
 
@@ -59,8 +46,24 @@
 	dt_set(delta);
 	
 	[_player update_game:self];
+	[self center_camera_hei:_player.position.y];
 	
-	//[_bgwindow setTextureRect:CGRectMake([self get_follow_point].x*0.25, - [self get_follow_point].y*0.25, game_screen().width, game_screen().height)];
+	for (BGElement *itr in _bg_elements) {
+		[itr i_update:self];
+	}
+}
+
+-(void)center_camera_hei:(float)hei {
+	CGPoint pt = ccp(game_screen().width/2,hei);
+	_camera_center_point = pt;
+	CGSize s = [CCDirector sharedDirector].viewSize;
+	CGPoint halfScreenSize = ccp(s.width/2,s.height/2);
+	[_game_anchor setScale:1];
+	[_game_anchor setPosition:CGPointAdd(
+	 ccp(
+		 clampf(halfScreenSize.x-pt.x,-999999,999999) * [self scale],
+		 clampf(halfScreenSize.y-pt.y,-999999,999999) * [self scale]),
+	 ccp(_current_camera.x,_current_camera.y))];
 }
 
 -(void)touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event {}
@@ -75,6 +78,10 @@
 -(void)set_target_camera:(CameraZoom)tar{}
 -(void)shake_for:(float)ct intensity:(float)intensity{}
 -(void)freeze_frame:(int)ct{}
--(HitRect)get_viewbox{ return hitrect_cons_xy_widhei(_player.position.x-3000, _player.position.y-3000, 6000, 6000); }
+-(HitRect)get_viewbox{ return hitrect_cons_xy_widhei(_camera_center_point.x-game_screen().width/2,_camera_center_point.y-game_screen().height/2,game_screen().width,game_screen().height); }
 
+@end
+
+@implementation BGElement
+-(void)i_update:(GameEngineScene*)game{}
 @end

@@ -7,7 +7,8 @@
 //
 
 #import "cocos2d.h"
+#import "GameEngineScene.h"
 
-@interface BGSky : CCSprite
+@interface BGSky : BGElement
 +(BGSky*)cons;
 @end

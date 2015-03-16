@@ -13,5 +13,8 @@
 -(void)shake_for:(float)ct intensity:(float)intensity;
 -(void)freeze_frame:(int)ct;
 -(HitRect)get_viewbox;
+@end
 
+@interface BGElement : CCNode
+-(void)i_update:(GameEngineScene*)game;
 @end

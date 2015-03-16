@@ -6,7 +6,7 @@
 
 @interface GameObject : CCSprite
 
--(void)update_game:(GameEngineScene *)g;
+-(void)i_update:(GameEngineScene *)g;
 -(HitRect)get_hit_rect;
 -(int)get_render_ord;
 -(void)check_should_render:(GameEngineScene*)g;
