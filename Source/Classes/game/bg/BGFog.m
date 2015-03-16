@@ -18,7 +18,7 @@
 	return [[BGFog node] cons];
 }
 
--(id)cons {
+-(BGFog*)cons {
 	_bg_fog = (CCSprite*)[[CCSprite spriteWithTexture:[Resource get_tex:TEX_TEST_BG_FOG]] add_to:self z:3];
 	[_bg_fog set_anchor_pt:ccp(0,0)];
 	[_bg_fog set_scale:0.5];

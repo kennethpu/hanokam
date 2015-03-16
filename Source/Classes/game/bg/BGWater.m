@@ -17,7 +17,7 @@
 +(BGWater*)cons {
 	return [[BGWater node] cons];
 }
--(id)cons {
+-(BGWater*)cons {
 	_water_bg = (CCSprite*)[[CCSprite node] add_to:self];
 	[_water_bg setTexture:[Resource get_tex:TEX_TEST_BG_TILE_WATER]];
 	[_water_bg set_anchor_pt:ccp(0,0)];

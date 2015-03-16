@@ -95,6 +95,7 @@
 		7EADAC6E1AB655D8004902A9 /* bg_test_obj_cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EADAC601AB655D7004902A9 /* bg_test_obj_cloud.png */; };
 		7EADAC6F1AB655D8004902A9 /* bg_test_obj_cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EADAC601AB655D7004902A9 /* bg_test_obj_cloud.png */; };
 		7EE870661AB66291004679E8 /* BGFog.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE870651AB66291004679E8 /* BGFog.m */; };
+		7EE870691AB67082004679E8 /* Bird.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE870681AB67082004679E8 /* Bird.m */; };
 		8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8392007918EE8E3300B6C429 /* GLKit.framework */; };
 		927F61A5196C771E000F43EF /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3517B978D7009739AE /* OpenAL.framework */; };
 		927F61A9196C771E000F43EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3D17B978D7009739AE /* Foundation.framework */; };
@@ -289,6 +290,8 @@
 		7EADAC601AB655D7004902A9 /* bg_test_obj_cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_test_obj_cloud.png; sourceTree = "<group>"; };
 		7EE870641AB66291004679E8 /* BGFog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGFog.h; sourceTree = "<group>"; };
 		7EE870651AB66291004679E8 /* BGFog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGFog.m; sourceTree = "<group>"; };
+		7EE870671AB67082004679E8 /* Bird.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bird.h; sourceTree = "<group>"; };
+		7EE870681AB67082004679E8 /* Bird.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bird.m; sourceTree = "<group>"; };
 		8392007918EE8E3300B6C429 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		927F61BF196C771E000F43EF /* hobobob Android.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hobobob Android.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B71F5907188484E7003F4D28 /* iPad-old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad-old.png"; path = "Icons/iPad-old.png"; sourceTree = "<group>"; };
@@ -673,6 +676,8 @@
 				7E90D1911AB63DD800E06F92 /* BGWater.m */,
 				7EE870641AB66291004679E8 /* BGFog.h */,
 				7EE870651AB66291004679E8 /* BGFog.m */,
+				7EE870671AB67082004679E8 /* Bird.h */,
+				7EE870681AB67082004679E8 /* Bird.m */,
 			);
 			name = bg;
 			path = game/bg;
@@ -1138,6 +1143,7 @@
 				7E3B0C1E1A131E8E0057869B /* GameMain.m in Sources */,
 				7E3B0C221A131E8E0057869B /* FileCache.m in Sources */,
 				7E3B0C211A131E8E0057869B /* DataStore.m in Sources */,
+				7EE870691AB67082004679E8 /* Bird.m in Sources */,
 				7E3B0C0F1A131E8E0057869B /* Player.m in Sources */,
 				7E3B0C251A131E8E0057869B /* PolyLib.m in Sources */,
 				7E3B0C241A131E8E0057869B /* iRate.m in Sources */,
