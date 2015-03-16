@@ -3,6 +3,7 @@
 #import "Common.h"
 #import "BGSky.h" 
 #import "BGWater.h"
+#import "BGFog.h"
 
 #import "Resource.h"
 #import "CCTexture_Private.h"
@@ -19,6 +20,7 @@
 	
 	BGSky *_bg_sky;
 	BGWater *_bg_water;
+	BGFog *_bg_fog;
 	NSArray *_bg_elements;
 }
 
@@ -35,8 +37,9 @@
 	_player = (Player*)[[Player cons] add_to:_game_anchor z:1];
 	
 	CCNode *bg_anchor = [[CCNode node] add_to:_game_anchor z:0];
-	_bg_sky = (BGSky*)[[BGSky cons] add_to:bg_anchor];
-	_bg_water = (BGWater*)[[BGWater cons] add_to:bg_anchor];
+	_bg_sky = (BGSky*)[[BGSky cons] add_to:bg_anchor z:0];
+	_bg_water = (BGWater*)[[BGWater cons] add_to:bg_anchor z:0];
+	_bg_fog = (BGFog*)[[BGFog cons] add_to:_game_anchor z:2];
 	_bg_elements = @[_bg_sky,_bg_water];
 	
 	return self;

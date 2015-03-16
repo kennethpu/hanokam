@@ -14,7 +14,7 @@
 @implementation BGSky {
 	CCSprite *_sky_bg;
 	
-	CCSprite *_bldg_1, *_bldg_2, *_bg_fog;
+	CCSprite *_bldg_1, *_bldg_2;
 	
 	int _test;
 }
@@ -38,16 +38,14 @@
 	[_bldg_1 set_scale:0.5];
 	[_bldg_1 set_anchor_pt:ccp(0,0)];
 	
-	_bg_fog = (CCSprite*)[[CCSprite spriteWithTexture:[Resource get_tex:TEX_TEST_BG_FOG]] add_to:self z:3];
-	[_bg_fog set_anchor_pt:ccp(0,0)];
-	[_bg_fog set_scale:0.5];
-	scale_to_fit_screen_x(_bg_fog);
-	
 	return self;
 }
 
 -(void)i_update:(GameEngineScene*)game {
 	[_sky_bg setTextureRect:CGRectMake(0,MAX(0, [game get_viewbox].y1),game_screen().width,MAX(0, [game get_viewbox].y2))];
+	HitRect _viewBox = [game get_viewbox];
+	_bldg_1.position = ccp(_bldg_1.position.x,((_viewBox.y1 + _viewBox.y2) / 2) * .1);
+	_bldg_2.position = ccp(_bldg_2.position.x,((_viewBox.y1 + _viewBox.y2) / 2) * .2);
 }
 
 @end
