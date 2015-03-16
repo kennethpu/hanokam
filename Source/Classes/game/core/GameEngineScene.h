@@ -2,9 +2,12 @@
 #import "Common.h"
 @class GameObject;
 @class Particle;
+@class Player;
 
-@interface GameEngineScene : CCScene
+@interface GameEngineScene : CCScene <UIAccelerometerDelegate>
 +(GameEngineScene*)cons;
+
+-(Player*)player;
 
 -(void)add_particle:(Particle*)p;
 -(void)add_gameobject:(GameObject*)o;

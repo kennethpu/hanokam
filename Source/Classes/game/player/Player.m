@@ -10,9 +10,8 @@
 	CCAction *_anim_stand;
 	CCAction *_current_anim;
 	CCSprite *_img;
-	
-	CGPoint _velocity;
 }
+@synthesize _vx,_vy;
 
 +(Player*)cons {
 	return [Player node];
@@ -30,13 +29,16 @@
 }
 
 -(void)update_game:(GameEngineScene*)g {
-	[self set_rotation:self.rotation + 5 * dt_scale_get()];
 	if ([self is_underwater]) {
-		_velocity.y += 0.1 * dt_scale_get();
+		_vy += 0.1 * dt_scale_get();
 	} else {
-		_velocity.y -= 0.1 * dt_scale_get();
+		_vy -= 0.1 * dt_scale_get();
+		[self set_rotation:self.rotation + 5 * dt_scale_get()];
 	}
-	[self setPosition:ccp(self.position.x+_velocity.x*dt_scale_get(),self.position.y+_velocity.y*dt_scale_get())];
+	[self setPosition:ccp(
+		clampf(self.position.x+_vx*dt_scale_get(), 0, game_screen().width),
+		self.position.y+_vy*dt_scale_get()
+	)];
 }
 
 -(BOOL)is_underwater {
