@@ -30,6 +30,10 @@
 	-(id)add:(id)i;
 @end
 
+@interface NSDictionary (KeySet)
+	-(NSSet*)keySet;
+@end
+
 @interface CallBack : NSObject
 	@property(readwrite,assign) SEL selector;
 	@property(readwrite,strong) NSObject *target;

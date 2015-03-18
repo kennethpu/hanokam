@@ -103,6 +103,16 @@
 }
 @end
 
+@implementation NSDictionary (KeySet)
+-(NSSet*)keySet {
+	NSMutableArray *rtv = [NSMutableArray array];
+	for (id obj in [self keyEnumerator]) {
+		[rtv addObject:obj];
+	}
+	return [NSSet setWithArray:rtv];
+}
+@end
+
 float drp(float a, float b, float div) {
 	return a + (b - a) / div;
 }

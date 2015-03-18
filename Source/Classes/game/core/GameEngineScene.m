@@ -4,6 +4,8 @@
 #import "BGSky.h" 
 #import "BGWater.h"
 #import "BGFog.h"
+#import "SpriterNode.h"
+#import "SpriterData.h"
 
 #import "AccelerometerManager.h"
 //#import "AccelerometerSimulation.h" 
@@ -53,6 +55,12 @@
 	accel.delegate = self;
 	accel.updateInterval = 1.0f/60.0f;
 	
+	SpriterData *spriter_data = [SpriterData dataFromSpriteSheet:[Resource get_tex:TEX_SPRITER_CHAR_HANOKATEST] json:@"hanoka v0.01.json" scml:@"hanoka v0.01.scml"];
+	SpriterNode *spriter_node = [SpriterNode nodeFromData:spriter_data];
+	[spriter_node playAnim:@"in air"];
+	[spriter_node setPosition:ccp(200,200)];
+	[_game_anchor addChild:spriter_node z:50];
+	
 	return self;
 }
 
@@ -63,8 +71,8 @@
 -(void)update:(CCTime)delta {
 	dt_set(delta);
 	
-	[_accel i_update:self];
-	[_player update_game:self];
+	//[_accel i_update:self];
+	//[_player update_game:self];
 	[self center_camera_hei:_player.position.y];
 	
 	for (BGElement *itr in _bg_elements) {

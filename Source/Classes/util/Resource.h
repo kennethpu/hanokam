@@ -16,5 +16,6 @@
 #define TEX_TEST_BG_OBJ_CLOUD @"bg_test_obj_cloud"
 
 #define TEX_TEST_CHAR_HANOKA @"bg_test_hanoka"
+#define TEX_SPRITER_CHAR_HANOKATEST @"hanoka v0.01"
 
 @end
