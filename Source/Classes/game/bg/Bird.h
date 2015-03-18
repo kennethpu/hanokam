@@ -7,7 +7,7 @@
 //
 
 #import "cocos2d.h"
-
-@interface Bird : CCSprite
+#import "GameEngineScene.h" 
+@interface Bird : BGElement
 +(Bird*)cons;
 @end

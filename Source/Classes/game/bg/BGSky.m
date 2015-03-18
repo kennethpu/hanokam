@@ -68,22 +68,18 @@
 	_bldg_2.position = ccp(_bldg_2.position.x,((_viewBox.y1 + _viewBox.y2) / 2) * .2);
 	
 	// birds!
-	if(_birds.count < 6 && _tick / 100 > _birds.count) [self spawnBird];
+	if(int_random(0, 50) == 0) [self spawnBird];
 	
-	for (Bird *_bird in _birds) {
-		_bird.position = ccp(_bird.position.x + 3, _bird.position.y);
-		
-		if(_bird.position.x > game_screen().width + 20) {
-			_bird.position = ccp(-20, _bird.position.y);
+	NSMutableArray *birds_to_remove = [NSMutableArray array];
+	for (Bird *bird in _birds) {
+		[bird i_update:game];
+		if (bird.position.x > game_screen().width + 100) {
+			[birds_to_remove addObject:bird];
+			[bird removeFromParent];
 		}
-		
-		if(_bird.position.x < -20) {
-			_bird.position = ccp(game_screen().width + 20, _bird.position.y);
-		}
-		
-		
-		
 	}
+	[_birds removeObjectsInArray:birds_to_remove];
+	[birds_to_remove removeAllObjects];
 }
 
 @end

@@ -44,6 +44,31 @@
 		7A97910819E62F84001FFC4D /* libcocos2dAndroid.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A97910019E62E40001FFC4D /* libcocos2dAndroid.a */; };
 		7A97911719E631C6001FFC4D /* libcocos2d-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A97910419E62E40001FFC4D /* libcocos2d-mac.a */; };
 		7A97911819E631CD001FFC4D /* libcocos2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A9790FE19E62E40001FFC4D /* libcocos2d.a */; };
+		7E1779501AB8152600E3986C /* SpriterData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E17794F1AB8152600E3986C /* SpriterData.m */; };
+		7E1779511AB8152600E3986C /* SpriterData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E17794F1AB8152600E3986C /* SpriterData.m */; };
+		7E1779521AB8152600E3986C /* SpriterData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E17794F1AB8152600E3986C /* SpriterData.m */; };
+		7E1779531AB8152600E3986C /* SpriterData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E17794F1AB8152600E3986C /* SpriterData.m */; };
+		7E1779671AB81AF600E3986C /* SpriterXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1779661AB81AF600E3986C /* SpriterXMLParser.m */; };
+		7E1779681AB81AF600E3986C /* SpriterXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1779661AB81AF600E3986C /* SpriterXMLParser.m */; };
+		7E1779691AB81AF600E3986C /* SpriterXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1779661AB81AF600E3986C /* SpriterXMLParser.m */; };
+		7E17796C1AB81EC300E3986C /* SpriterJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E17796B1AB81EC300E3986C /* SpriterJSONParser.m */; };
+		7E17796D1AB81EC300E3986C /* SpriterJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E17796B1AB81EC300E3986C /* SpriterJSONParser.m */; };
+		7E17796E1AB81EC300E3986C /* SpriterJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E17796B1AB81EC300E3986C /* SpriterJSONParser.m */; };
+		7E1779711AB8289A00E3986C /* SpriterTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1779701AB8289A00E3986C /* SpriterTypes.m */; };
+		7E1779721AB8289A00E3986C /* SpriterTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1779701AB8289A00E3986C /* SpriterTypes.m */; };
+		7E1779731AB8289A00E3986C /* SpriterTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1779701AB8289A00E3986C /* SpriterTypes.m */; };
+		7E1779761AB8C88B00E3986C /* SpriterNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1779751AB8C88B00E3986C /* SpriterNode.m */; };
+		7E1779771AB8C88B00E3986C /* SpriterNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1779751AB8C88B00E3986C /* SpriterNode.m */; };
+		7E1779781AB8C88B00E3986C /* SpriterNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1779751AB8C88B00E3986C /* SpriterNode.m */; };
+		7E17797C1AB8F7A400E3986C /* hanoka v0.01.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E1779791AB8F7A400E3986C /* hanoka v0.01.json */; };
+		7E17797D1AB8F7A400E3986C /* hanoka v0.01.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E1779791AB8F7A400E3986C /* hanoka v0.01.json */; };
+		7E17797E1AB8F7A400E3986C /* hanoka v0.01.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E1779791AB8F7A400E3986C /* hanoka v0.01.json */; };
+		7E17797F1AB8F7A400E3986C /* hanoka v0.01.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E17797A1AB8F7A400E3986C /* hanoka v0.01.png */; };
+		7E1779801AB8F7A400E3986C /* hanoka v0.01.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E17797A1AB8F7A400E3986C /* hanoka v0.01.png */; };
+		7E1779811AB8F7A400E3986C /* hanoka v0.01.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E17797A1AB8F7A400E3986C /* hanoka v0.01.png */; };
+		7E1779821AB8F7A400E3986C /* hanoka v0.01.scml in Resources */ = {isa = PBXBuildFile; fileRef = 7E17797B1AB8F7A400E3986C /* hanoka v0.01.scml */; };
+		7E1779831AB8F7A400E3986C /* hanoka v0.01.scml in Resources */ = {isa = PBXBuildFile; fileRef = 7E17797B1AB8F7A400E3986C /* hanoka v0.01.scml */; };
+		7E1779841AB8F7A400E3986C /* hanoka v0.01.scml in Resources */ = {isa = PBXBuildFile; fileRef = 7E17797B1AB8F7A400E3986C /* hanoka v0.01.scml */; };
 		7E1B806E1A189C330055E654 /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1B806D1A189C330055E654 /* MainMenuScene.m */; };
 		7E1B80711A189F450055E654 /* TouchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1B80701A189F450055E654 /* TouchButton.m */; };
 		7E1B80741A18B5FB0055E654 /* CCNode+SFGestureRecognizers.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1B80731A18B5FB0055E654 /* CCNode+SFGestureRecognizers.m */; };
@@ -52,13 +77,9 @@
 		7E2675A21AB69452002EF2EC /* Bird.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE870681AB67082004679E8 /* Bird.m */; };
 		7E2675A31AB69453002EF2EC /* Bird.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE870681AB67082004679E8 /* Bird.m */; };
 		7E31E4BF1AB8BD13004DAC8E /* ShopScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4BE1AB8BD13004DAC8E /* ShopScene.m */; };
-		7E31E4C41AB8C341004DAC8E /* SHBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4C31AB8C341004DAC8E /* SHBackground.m */; };
-		7E31E4C71AB8C356004DAC8E /* SHItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4C61AB8C356004DAC8E /* SHItem.m */; };
-		7E31E4CA1AB8C38C004DAC8E /* SHButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4C91AB8C38C004DAC8E /* SHButton.m */; };
 		7E31E4CF1AB8C844004DAC8E /* sh_button_side.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E4CD1AB8C844004DAC8E /* sh_button_side.png */; };
 		7E31E4D01AB8C844004DAC8E /* sh_button_middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E4CE1AB8C844004DAC8E /* sh_button_middle.png */; };
 		7E31E4D21AB8F7AB004DAC8E /* sh_test_item.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E31E4D11AB8F7AB004DAC8E /* sh_test_item.png */; };
-		7E31E4D51AB8FA10004DAC8E /* SHItemRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4D41AB8FA10004DAC8E /* SHItemRow.m */; };
 		7E3B0C0A1A131E8E0057869B /* GameEngineScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B0BCA1A131E8E0057869B /* GameEngineScene.m */; };
 		7E3B0C0B1A131E8E0057869B /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B0BCC1A131E8E0057869B /* GameObject.m */; };
 		7E3B0C0F1A131E8E0057869B /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B0BD51A131E8E0057869B /* Player.m */; };
@@ -68,12 +89,27 @@
 		7E3B0C211A131E8E0057869B /* DataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B0BFB1A131E8E0057869B /* DataStore.m */; };
 		7E3B0C221A131E8E0057869B /* FileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B0BFD1A131E8E0057869B /* FileCache.m */; };
 		7E3B0C231A131E8E0057869B /* GEventDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B0BFF1A131E8E0057869B /* GEventDispatcher.m */; };
-		7E3B0C241A131E8E0057869B /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B0C011A131E8E0057869B /* iRate.m */; };
 		7E3B0C251A131E8E0057869B /* PolyLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B0C031A131E8E0057869B /* PolyLib.m */; };
 		7E3B0C261A131E8E0057869B /* Resource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B0C051A131E8E0057869B /* Resource.m */; };
 		7E3B0C271A131E8E0057869B /* Vec3D.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B0C071A131E8E0057869B /* Vec3D.m */; };
 		7E3B0C281A131E8E0057869B /* WebRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B0C091A131E8E0057869B /* WebRequest.m */; };
 		7E3B0C331A131F400057869B /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3B0C2A1A131F400057869B /* blank.png */; };
+		7E535C1F1AB914FC00EF6B6E /* SHBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4C31AB8C341004DAC8E /* SHBackground.m */; };
+		7E535C201AB914FC00EF6B6E /* SHItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4C61AB8C356004DAC8E /* SHItem.m */; };
+		7E535C211AB914FC00EF6B6E /* SHButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4C91AB8C38C004DAC8E /* SHButton.m */; };
+		7E535C221AB914FC00EF6B6E /* SHItemRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4D41AB8FA10004DAC8E /* SHItemRow.m */; };
+		7E535C231AB914FD00EF6B6E /* SHBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4C31AB8C341004DAC8E /* SHBackground.m */; };
+		7E535C241AB914FD00EF6B6E /* SHItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4C61AB8C356004DAC8E /* SHItem.m */; };
+		7E535C251AB914FD00EF6B6E /* SHButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4C91AB8C38C004DAC8E /* SHButton.m */; };
+		7E535C261AB914FD00EF6B6E /* SHItemRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4D41AB8FA10004DAC8E /* SHItemRow.m */; };
+		7E535C271AB914FD00EF6B6E /* SHBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4C31AB8C341004DAC8E /* SHBackground.m */; };
+		7E535C281AB914FD00EF6B6E /* SHItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4C61AB8C356004DAC8E /* SHItem.m */; };
+		7E535C291AB914FD00EF6B6E /* SHButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4C91AB8C38C004DAC8E /* SHButton.m */; };
+		7E535C2A1AB914FD00EF6B6E /* SHItemRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4D41AB8FA10004DAC8E /* SHItemRow.m */; };
+		7E535C2B1AB914FE00EF6B6E /* SHBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4C31AB8C341004DAC8E /* SHBackground.m */; };
+		7E535C2C1AB914FE00EF6B6E /* SHItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4C61AB8C356004DAC8E /* SHItem.m */; };
+		7E535C2D1AB914FE00EF6B6E /* SHButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4C91AB8C38C004DAC8E /* SHButton.m */; };
+		7E535C2E1AB914FE00EF6B6E /* SHItemRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4D41AB8FA10004DAC8E /* SHItemRow.m */; };
 		7E90D1781AB635A200E06F92 /* bg_test_tile_sky.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E90D1761AB635A200E06F92 /* bg_test_tile_sky.png */; };
 		7E90D1791AB635A200E06F92 /* bg_test_tile_sky.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E90D1761AB635A200E06F92 /* bg_test_tile_sky.png */; };
 		7E90D17A1AB635A200E06F92 /* bg_test_tile_sky.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E90D1761AB635A200E06F92 /* bg_test_tile_sky.png */; };
@@ -254,6 +290,19 @@
 		7A59498A19E38E4A00F65F90 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = Platforms/Mac/MainMenu.xib; sourceTree = "<group>"; };
 		7AFCD5DB19E9BD9F00BCCCDA /* cocos2d.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cocos2d.h; path = "Source/libs/cocos2d-iphone/cocos2d/cocos2d.h"; sourceTree = "<group>"; };
 		7AFCD5DD19E9BDC200BCCCDA /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "Source/Bridging-Header.h"; sourceTree = "<group>"; };
+		7E17794E1AB8152600E3986C /* SpriterData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriterData.h; sourceTree = "<group>"; };
+		7E17794F1AB8152600E3986C /* SpriterData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriterData.m; sourceTree = "<group>"; };
+		7E1779651AB81AF600E3986C /* SpriterXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriterXMLParser.h; sourceTree = "<group>"; };
+		7E1779661AB81AF600E3986C /* SpriterXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriterXMLParser.m; sourceTree = "<group>"; };
+		7E17796A1AB81EC300E3986C /* SpriterJSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriterJSONParser.h; sourceTree = "<group>"; };
+		7E17796B1AB81EC300E3986C /* SpriterJSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriterJSONParser.m; sourceTree = "<group>"; };
+		7E17796F1AB8289A00E3986C /* SpriterTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriterTypes.h; sourceTree = "<group>"; };
+		7E1779701AB8289A00E3986C /* SpriterTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriterTypes.m; sourceTree = "<group>"; };
+		7E1779741AB8C88B00E3986C /* SpriterNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriterNode.h; sourceTree = "<group>"; };
+		7E1779751AB8C88B00E3986C /* SpriterNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriterNode.m; sourceTree = "<group>"; };
+		7E1779791AB8F7A400E3986C /* hanoka v0.01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "hanoka v0.01.json"; sourceTree = "<group>"; };
+		7E17797A1AB8F7A400E3986C /* hanoka v0.01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hanoka v0.01.png"; sourceTree = "<group>"; };
+		7E17797B1AB8F7A400E3986C /* hanoka v0.01.scml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "hanoka v0.01.scml"; sourceTree = "<group>"; };
 		7E1B806C1A189C330055E654 /* MainMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuScene.h; sourceTree = "<group>"; };
 		7E1B806D1A189C330055E654 /* MainMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuScene.m; sourceTree = "<group>"; };
 		7E1B806F1A189F450055E654 /* TouchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchButton.h; sourceTree = "<group>"; };
@@ -291,8 +340,6 @@
 		7E3B0BFD1A131E8E0057869B /* FileCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileCache.m; sourceTree = "<group>"; };
 		7E3B0BFE1A131E8E0057869B /* GEventDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEventDispatcher.h; sourceTree = "<group>"; };
 		7E3B0BFF1A131E8E0057869B /* GEventDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEventDispatcher.m; sourceTree = "<group>"; };
-		7E3B0C001A131E8E0057869B /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
-		7E3B0C011A131E8E0057869B /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iRate.m; sourceTree = "<group>"; };
 		7E3B0C021A131E8E0057869B /* PolyLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PolyLib.h; sourceTree = "<group>"; };
 		7E3B0C031A131E8E0057869B /* PolyLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PolyLib.m; sourceTree = "<group>"; };
 		7E3B0C041A131E8E0057869B /* Resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resource.h; sourceTree = "<group>"; };
@@ -677,8 +724,6 @@
 				7E3B0BFD1A131E8E0057869B /* FileCache.m */,
 				7E3B0BFE1A131E8E0057869B /* GEventDispatcher.h */,
 				7E3B0BFF1A131E8E0057869B /* GEventDispatcher.m */,
-				7E3B0C001A131E8E0057869B /* iRate.h */,
-				7E3B0C011A131E8E0057869B /* iRate.m */,
 				7E3B0C021A131E8E0057869B /* PolyLib.h */,
 				7E3B0C031A131E8E0057869B /* PolyLib.m */,
 				7E3B0C041A131E8E0057869B /* Resource.h */,
@@ -693,6 +738,16 @@
 				7EADAC781AB67506004902A9 /* AccelerometerSimulation.m */,
 				7EADAC7B1AB67B6E004902A9 /* AccelerometerManager.h */,
 				7EADAC7C1AB67B6E004902A9 /* AccelerometerManager.m */,
+				7E17794E1AB8152600E3986C /* SpriterData.h */,
+				7E17794F1AB8152600E3986C /* SpriterData.m */,
+				7E17796F1AB8289A00E3986C /* SpriterTypes.h */,
+				7E1779701AB8289A00E3986C /* SpriterTypes.m */,
+				7E1779651AB81AF600E3986C /* SpriterXMLParser.h */,
+				7E1779661AB81AF600E3986C /* SpriterXMLParser.m */,
+				7E17796A1AB81EC300E3986C /* SpriterJSONParser.h */,
+				7E17796B1AB81EC300E3986C /* SpriterJSONParser.m */,
+				7E1779741AB8C88B00E3986C /* SpriterNode.h */,
+				7E1779751AB8C88B00E3986C /* SpriterNode.m */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -701,6 +756,9 @@
 			isa = PBXGroup;
 			children = (
 				7E31E4CB1AB8C7F9004DAC8E /* GUI */,
+				7E1779791AB8F7A400E3986C /* hanoka v0.01.json */,
+				7E17797A1AB8F7A400E3986C /* hanoka v0.01.png */,
+				7E17797B1AB8F7A400E3986C /* hanoka v0.01.scml */,
 				7E3B0C4F1A134D3D0057869B /* background */,
 				7E3B0C2A1A131F400057869B /* blank.png */,
 				7E3B0C2B1A131F400057869B /* character */,
@@ -1033,10 +1091,13 @@
 				7E90D17A1AB635A200E06F92 /* bg_test_tile_sky.png in Resources */,
 				7E90D17D1AB635A200E06F92 /* bg_test_tile_water.png in Resources */,
 				7A4036F819DE401F007B6E8F /* iPad-old@2x.png in Resources */,
+				7E1779841AB8F7A400E3986C /* hanoka v0.01.scml in Resources */,
+				7E17797E1AB8F7A400E3986C /* hanoka v0.01.json in Resources */,
 				7A4036F919DE401F007B6E8F /* iPad.png in Resources */,
 				7A4036FA19DE401F007B6E8F /* iPad@2x.png in Resources */,
 				7EADAC6C1AB655D7004902A9 /* bg_test_obj_bird.png in Resources */,
 				7A4036FB19DE401F007B6E8F /* iPhone-old.png in Resources */,
+				7E1779811AB8F7A400E3986C /* hanoka v0.01.png in Resources */,
 				7A4036FC19DE401F007B6E8F /* iPhone-old@2x.png in Resources */,
 				7EADAC661AB655D7004902A9 /* bg_test_bldg2.png in Resources */,
 				7A4036FD19DE401F007B6E8F /* iPhone.png in Resources */,
@@ -1060,6 +1121,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				927F61AD196C771E000F43EF /* Settings.png in Resources */,
+				7E1779801AB8F7A400E3986C /* hanoka v0.01.png in Resources */,
 				927F61AE196C771E000F43EF /* Default@2x.png in Resources */,
 				7E90D17C1AB635A200E06F92 /* bg_test_tile_water.png in Resources */,
 				7E90D1791AB635A200E06F92 /* bg_test_tile_sky.png in Resources */,
@@ -1067,11 +1129,13 @@
 				927F61B0196C771E000F43EF /* iPad.png in Resources */,
 				7EADAC651AB655D7004902A9 /* bg_test_bldg2.png in Resources */,
 				7EADAC6B1AB655D7004902A9 /* bg_test_obj_bird.png in Resources */,
+				7E17797D1AB8F7A400E3986C /* hanoka v0.01.json in Resources */,
 				7EADAC6E1AB655D8004902A9 /* bg_test_obj_cloud.png in Resources */,
 				927F61B1196C771E000F43EF /* iPad-old@2x.png in Resources */,
 				7EADAC621AB655D7004902A9 /* bg_test_bldg1.png in Resources */,
 				7E90D1811AB635B000E06F92 /* char_test_hanoka.png in Resources */,
 				927F61B2196C771E000F43EF /* iPhone-old@2x.png in Resources */,
+				7E1779831AB8F7A400E3986C /* hanoka v0.01.scml in Resources */,
 				927F61B4196C771E000F43EF /* Settings@2x.png in Resources */,
 				927F61B5196C771E000F43EF /* Default-Landscape~ipad.png in Resources */,
 				B78A0B10198AF87200C63841 /* Published-Android in Resources */,
@@ -1094,11 +1158,14 @@
 				7E90D17B1AB635A200E06F92 /* bg_test_tile_water.png in Resources */,
 				B7378978180762440076A88C /* Default@2x.png in Resources */,
 				B71F5914188484E7003F4D28 /* iPad@2x.png in Resources */,
+				7E1779821AB8F7A400E3986C /* hanoka v0.01.scml in Resources */,
+				7E17797C1AB8F7A400E3986C /* hanoka v0.01.json in Resources */,
 				B71F5913188484E7003F4D28 /* iPad.png in Resources */,
 				7E31E4CF1AB8C844004DAC8E /* sh_button_side.png in Resources */,
 				7E3B0C331A131F400057869B /* blank.png in Resources */,
 				7EADAC6A1AB655D7004902A9 /* bg_test_obj_bird.png in Resources */,
 				B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */,
+				7E17797F1AB8F7A400E3986C /* hanoka v0.01.png in Resources */,
 				B71F5916188484E7003F4D28 /* iPhone-old@2x.png in Resources */,
 				7EADAC641AB655D7004902A9 /* bg_test_bldg2.png in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
@@ -1171,8 +1238,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E535C241AB914FD00EF6B6E /* SHItem.m in Sources */,
 				7E90D18E1AB63DB700E06F92 /* BGSky.m in Sources */,
+				7E535C261AB914FD00EF6B6E /* SHItemRow.m in Sources */,
 				5B12102A197484DD004C1E1D /* hobobobActivity.java in Sources */,
+				7E535C231AB914FD00EF6B6E /* SHBackground.m in Sources */,
+				7E535C251AB914FD00EF6B6E /* SHButton.m in Sources */,
+				7E1779521AB8152600E3986C /* SpriterData.m in Sources */,
 				7E2675A31AB69453002EF2EC /* Bird.m in Sources */,
 				7E90D1941AB63DD800E06F92 /* BGWater.m in Sources */,
 			);
@@ -1183,10 +1255,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E2675A21AB69452002EF2EC /* Bird.m in Sources */,
+				7E535C271AB914FD00EF6B6E /* SHBackground.m in Sources */,
+				7E17796E1AB81EC300E3986C /* SpriterJSONParser.m in Sources */,
+				7E535C291AB914FD00EF6B6E /* SHButton.m in Sources */,
+				7E535C2A1AB914FD00EF6B6E /* SHItemRow.m in Sources */,
 				7E90D1951AB63DD800E06F92 /* BGWater.m in Sources */,
 				7A40360419DDEE84007B6E8F /* main.m in Sources */,
+				7E1779691AB81AF600E3986C /* SpriterXMLParser.m in Sources */,
 				7E90D18F1AB63DB700E06F92 /* BGSky.m in Sources */,
 				7A59498E19E3941300F65F90 /* AppDelegate.m in Sources */,
+				7E1779731AB8289A00E3986C /* SpriterTypes.m in Sources */,
+				7E535C281AB914FD00EF6B6E /* SHItem.m in Sources */,
+				7E1779531AB8152600E3986C /* SpriterData.m in Sources */,
+				7E1779781AB8C88B00E3986C /* SpriterNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1194,9 +1275,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E535C2D1AB914FE00EF6B6E /* SHButton.m in Sources */,
+				7E1779681AB81AF600E3986C /* SpriterXMLParser.m in Sources */,
 				7E90D18D1AB63DB700E06F92 /* BGSky.m in Sources */,
 				5B121030197484FA004C1E1D /* hobobobActivity.m in Sources */,
+				7E1779771AB8C88B00E3986C /* SpriterNode.m in Sources */,
+				7E1779511AB8152600E3986C /* SpriterData.m in Sources */,
 				7E2675A11AB69451002EF2EC /* Bird.m in Sources */,
+				7E535C2B1AB914FE00EF6B6E /* SHBackground.m in Sources */,
+				7E1779721AB8289A00E3986C /* SpriterTypes.m in Sources */,
+				7E17796D1AB81EC300E3986C /* SpriterJSONParser.m in Sources */,
+				7E535C2C1AB914FE00EF6B6E /* SHItem.m in Sources */,
+				7E535C2E1AB914FE00EF6B6E /* SHItemRow.m in Sources */,
 				7E90D1931AB63DD800E06F92 /* BGWater.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1205,35 +1295,39 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E1779671AB81AF600E3986C /* SpriterXMLParser.m in Sources */,
 				7E26759F1AB69451002EF2EC /* Bird.m in Sources */,
 				7E3B0C271A131E8E0057869B /* Vec3D.m in Sources */,
 				7E3B0C0B1A131E8E0057869B /* GameObject.m in Sources */,
+				7E1779501AB8152600E3986C /* SpriterData.m in Sources */,
 				7E1B80741A18B5FB0055E654 /* CCNode+SFGestureRecognizers.m in Sources */,
 				7E1B80711A189F450055E654 /* TouchButton.m in Sources */,
 				7E1B806E1A189C330055E654 /* MainMenuScene.m in Sources */,
+				7E1779711AB8289A00E3986C /* SpriterTypes.m in Sources */,
+				7E1779761AB8C88B00E3986C /* SpriterNode.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
 				7E3B0C0A1A131E8E0057869B /* GameEngineScene.m in Sources */,
+				7E535C221AB914FC00EF6B6E /* SHItemRow.m in Sources */,
+				7E535C211AB914FC00EF6B6E /* SHButton.m in Sources */,
 				7E3B0C201A131E8E0057869B /* Common.m in Sources */,
+				7E535C201AB914FC00EF6B6E /* SHItem.m in Sources */,
 				7E3B0C231A131E8E0057869B /* GEventDispatcher.m in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
 				7E3B0C261A131E8E0057869B /* Resource.m in Sources */,
 				7E31E4BF1AB8BD13004DAC8E /* ShopScene.m in Sources */,
 				7E90D1921AB63DD800E06F92 /* BGWater.m in Sources */,
+				7E17796C1AB81EC300E3986C /* SpriterJSONParser.m in Sources */,
 				7E3B0C1E1A131E8E0057869B /* GameMain.m in Sources */,
 				7E3B0C221A131E8E0057869B /* FileCache.m in Sources */,
 				7E3B0C211A131E8E0057869B /* DataStore.m in Sources */,
-				7E31E4C41AB8C341004DAC8E /* SHBackground.m in Sources */,
 				7EADAC7D1AB67B6E004902A9 /* AccelerometerManager.m in Sources */,
 				7E3B0C0F1A131E8E0057869B /* Player.m in Sources */,
-				7E31E4D51AB8FA10004DAC8E /* SHItemRow.m in Sources */,
 				7E3B0C251A131E8E0057869B /* PolyLib.m in Sources */,
-				7E31E4C71AB8C356004DAC8E /* SHItem.m in Sources */,
-				7E3B0C241A131E8E0057869B /* iRate.m in Sources */,
 				7E90D18C1AB63DB700E06F92 /* BGSky.m in Sources */,
 				7EE870661AB66291004679E8 /* BGFog.m in Sources */,
-				7E31E4CA1AB8C38C004DAC8E /* SHButton.m in Sources */,
 				7EADAC791AB67506004902A9 /* AccelerometerSimulation.m in Sources */,
 				7E3B0C1F1A131E8E0057869B /* BatchDraw.m in Sources */,
+				7E535C1F1AB914FC00EF6B6E /* SHBackground.m in Sources */,
 				7E3B0C281A131E8E0057869B /* WebRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

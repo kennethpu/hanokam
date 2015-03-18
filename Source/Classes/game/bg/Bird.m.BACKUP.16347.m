@@ -12,7 +12,10 @@
 
 @implementation Bird {
 	CCSprite *_obj_bird;
+<<<<<<< HEAD
+=======
 	float _ct;
+>>>>>>> c7116cf3ceeec6d359fa3d8fd40e224a92e514d5
 }
 
 +(Bird*)cons {

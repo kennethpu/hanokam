@@ -30,6 +30,10 @@
 	-(id)add:(id)i;
 @end
 
+@interface NSDictionary (KeySet)
+	-(NSSet*)keySet;
+@end
+
 @interface CallBack : NSObject
 	@property(readwrite,assign) SEL selector;
 	@property(readwrite,strong) NSObject *target;
@@ -92,6 +96,7 @@ typedef struct CGRange {
 #define DO_FOR(cts,a) for(int i = 0; i < cts; i++) { a; }
 float drp(float a, float b, float div);
 float lerp(float a, float b, float t);
+CGPoint lerp_point(CGPoint a, CGPoint b, float t);
 long sys_time();
 
 NSString* strf (char* format, ... );
@@ -143,4 +148,7 @@ CCAction* animaction_nonrepeating_cons(NSArray *a, float speed, NSString *tex_ke
 NSString* platform();
 NSString* unique_id();
 CCLabelTTF* label_cons(CGPoint pos, ccColor3B color, int fontSize, NSString* str);
+
+CGPoint bezier_point_for_t(CGPoint p0, CGPoint p1, CGPoint p2, CGPoint p3, float t);
+float cubic_interp(float a, float b, float c1, float c2, float t);
 #endif

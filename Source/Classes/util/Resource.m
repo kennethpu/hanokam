@@ -56,7 +56,10 @@ static NSSet* dont_load;
 		TEX_TEST_BG_OBJ_CLOUD: @"bg_test_obj_cloud.png",
 		TEX_SH_BUTTON_MIDDLE: @"sh_button_middle.png",
 		TEX_SH_BUTTON_SIDE: @"sh_button_side.png",
-		TEX_TEST_SH_ITEM: @"sh_test_item.png"
+		TEX_TEST_SH_ITEM: @"sh_test_item.png",
+		TEX_TEST_BG_OBJ_CLOUD: @"bg_test_obj_cloud.png",
+		TEX_SPRITER_CHAR_HANOKATEST: @"hanoka v0.01.png"
+		
 	};
 	
 	

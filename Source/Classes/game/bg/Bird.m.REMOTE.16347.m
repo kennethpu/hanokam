@@ -7,8 +7,6 @@
 //
 
 #import "Bird.h"
-#import "GameEngineScene.h"
-#import "Resource.h"
 
 @implementation Bird {
 	CCSprite *_obj_bird;

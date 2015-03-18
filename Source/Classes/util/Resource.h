@@ -19,5 +19,6 @@
 #define TEX_TEST_SH_ITEM @"sh_test_item"
 
 #define TEX_TEST_CHAR_HANOKA @"bg_test_hanoka"
+#define TEX_SPRITER_CHAR_HANOKATEST @"hanoka v0.01"
 
 @end
