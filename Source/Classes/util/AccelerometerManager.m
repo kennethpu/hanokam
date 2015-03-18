@@ -23,9 +23,9 @@
 }
 
 -(void)accel_report_x:(float)x y:(float)y z:(float)z {
-	
+	/*
 	float filter = 0.65;
-	float ratio = 75;
+	float ratio = 80;
 	
     if(x > 0.032 || x < -0.032)
     {
@@ -39,14 +39,25 @@
     {
         _val = 0;
     }
+	*/
+	_val = x;
+	NSLog(@"val %f", _val);
 }
 
 -(void)i_update:(GameEngineScene*)game {
+	/*
 	if (_val == 0) {
 		game.player._vx *= 0.9;
 	} else {
 		game.player._vx = _val;
 	}
+	*/
+	
+	float playerX = game.player.position.x;
+	playerX += ((160 + _val * 320) - playerX) * .1;
+	
+	game.player.position = ccp(playerX, game.player.position.y);
+	
 }
 
 @end

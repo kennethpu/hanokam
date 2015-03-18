@@ -53,8 +53,10 @@ static NSSet* dont_load;
 		TEX_TEST_BG_BLDG2: @"bg_test_bldg2.png",
 		TEX_TEST_BG_FOG: @"bg_test_fog.png",
 		TEX_TEST_BG_OBJ_BIRD: @"bg_test_obj_bird.png",
-		TEX_TEST_BG_OBJ_CLOUD: @"bg_test_obj_cloud.png"
-		
+		TEX_TEST_BG_OBJ_CLOUD: @"bg_test_obj_cloud.png",
+		TEX_SH_BUTTON_MIDDLE: @"sh_button_middle.png",
+		TEX_SH_BUTTON_SIDE: @"sh_button_side.png",
+		TEX_TEST_SH_ITEM: @"sh_test_item.png"
 	};
 	
 	

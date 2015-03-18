@@ -30,7 +30,6 @@
 	Bird * _new_bird;
 	_new_bird = (Bird*)[[Bird cons] add_to:self z:3];
 	[_birds addObject:_new_bird];
-	
 	_new_bird.position = ccp(-70, float_random(500,100));
 	return _new_bird;
 }
@@ -69,10 +68,21 @@
 	_bldg_2.position = ccp(_bldg_2.position.x,((_viewBox.y1 + _viewBox.y2) / 2) * .2);
 	
 	// birds!
-	if(_tick / 100 > _birds.count) [self spawnBird];
+	if(_birds.count < 6 && _tick / 100 > _birds.count) [self spawnBird];
 	
 	for (Bird *_bird in _birds) {
-		_bird.position = ccp(_bird.position.x + 3, _bird.position.y + sinf(_tick/5 + _bird.position.y / 3) * 2);
+		_bird.position = ccp(_bird.position.x + 3, _bird.position.y);
+		
+		if(_bird.position.x > game_screen().width + 20) {
+			_bird.position = ccp(-20, _bird.position.y);
+		}
+		
+		if(_bird.position.x < -20) {
+			_bird.position = ccp(game_screen().width + 20, _bird.position.y);
+		}
+		
+		
+		
 	}
 }
 

@@ -14,6 +14,9 @@
 #define TEX_TEST_BG_FOG @"bg_test_fog"
 #define TEX_TEST_BG_OBJ_BIRD @"bg_test_obj_bird"
 #define TEX_TEST_BG_OBJ_CLOUD @"bg_test_obj_cloud"
+#define TEX_SH_BUTTON_MIDDLE @"sh_button_middle"
+#define TEX_SH_BUTTON_SIDE @"sh_button_side"
+#define TEX_TEST_SH_ITEM @"sh_test_item"
 
 #define TEX_TEST_CHAR_HANOKA @"bg_test_hanoka"
 
