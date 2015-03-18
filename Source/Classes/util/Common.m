@@ -308,14 +308,14 @@ CGPoint line_seg_intersection_pts(CGPoint a1, CGPoint a2, CGPoint b1, CGPoint b2
 	return ccp(X,Y);
 }
 
-float shortest_dist_from_cur(float a1, float a2) {
-    a1 = deg_to_rad(a1);
-    a2 = deg_to_rad(a2);
-    float res = atan2f(cosf(a1)*sinf(a2)-sinf(a1)*cosf(a2),
-                       sinf(a1)*sinf(a2)+cosf(a1)*cosf(a2));
-    
-    res = rad_to_deg(res);
-    return res;
+float shortest_angle(float src, float dest) {
+	float shortest_angle=fmod((fmod((dest - src) , 360) + 540), 360) - 180;
+	return shortest_angle;
+}
+
+float cubic_angular_interp(float src, float dest, float c1, float c2, float t) {
+	t = cubic_interp(0, 1, c1, c2, t);
+	return src + shortest_angle(src, dest) * t;
 }
 
 CGPoint line_seg_intersection(line_seg a, line_seg b) {

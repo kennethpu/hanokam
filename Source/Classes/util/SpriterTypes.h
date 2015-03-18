@@ -48,7 +48,7 @@
 @end
 
 @interface TGSpriterTimeline : NSObject {
-    NSMutableArray * keys_;
+    NSMutableArray * keys_; 
 }
 @property (nonatomic, readonly) NSMutableArray * keys;
 @property(readwrite,strong) NSString *_name;

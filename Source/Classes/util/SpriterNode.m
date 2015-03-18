@@ -1,21 +1,20 @@
 #import "SpriterNode.h"
 #import "SpriterData.h"
 #import "SpriterTypes.h"
-#import "Common.h"
-#import "Resource.h"
+#import "SpriterUtil.h"
 
 @interface CCNode_Bone : CCNode
-@property(readwrite,assign) int _timeline_id, _i_timeline_key;
+@property(readwrite,assign) int _timeline_id;
 @end
 @implementation CCNode_Bone
-@synthesize _timeline_id, _i_timeline_key;
+@synthesize _timeline_id;
 @end
 
 @interface CCSprite_Object : CCSprite
-@property(readwrite,assign) int _timeline_id, _zindex, _i_timeline_key;
+@property(readwrite,assign) int _timeline_id, _zindex;
 @end
 @implementation CCSprite_Object
-@synthesize _timeline_id, _zindex, _i_timeline_key;
+@synthesize _timeline_id, _zindex;
 @end
 
 @implementation SpriterNode {
@@ -84,7 +83,7 @@
 		TGSpriterTimeline *timeline = [[_data anim_of_name:_current_anim_name] timeline_key_of_id:itr_bone._timeline_id];
 		TGSpriterTimelineKey *keyframe_current = [timeline keyForTime:_current_anim_time];
 		TGSpriterTimelineKey *keyframe_next = [timeline nextKeyForTime:_current_anim_time];
-		float t = (_current_anim_time-keyframe_current.startsAt)/(keyframe_next.startsAt-keyframe_current.startsAt);
+		float t = clampf((_current_anim_time-keyframe_current.startsAt)/(keyframe_next.startsAt-keyframe_current.startsAt),0,1);
 		[self interpolate:itr_bone from:keyframe_current to:keyframe_next t:t cp1:ccp(0.25,0) cp2:ccp(0.75, 1)];
 	}
 	for (NSNumber *itr in _objs) {
@@ -92,7 +91,7 @@
 		TGSpriterTimeline *timeline = [[_data anim_of_name:_current_anim_name] timeline_key_of_id:itr_obj._timeline_id];
 		TGSpriterTimelineKey *keyframe_current = [timeline keyForTime:_current_anim_time];
 		TGSpriterTimelineKey *keyframe_next = [timeline nextKeyForTime:_current_anim_time];
-		float t = (_current_anim_time-keyframe_current.startsAt)/(keyframe_current.startsAt-keyframe_next.startsAt);
+		float t = clampf((_current_anim_time-keyframe_current.startsAt)/(keyframe_next.startsAt-keyframe_current.startsAt),0,1);
 		[self interpolate:itr_obj from:keyframe_current to:keyframe_next t:t cp1:ccp(0.25,0) cp2:ccp(0.75, 1)];
 		
 		TGSpriterFile *file = [_data file_for_folderid:keyframe_current.folder fileid:keyframe_current.file];
@@ -106,11 +105,11 @@
 	float cubic_c1 = 0;
 	float cubic_c2 = 1;
 
-	node.position = ccp(cubic_interp(from.position.x, to.position.x, cubic_c1, cubic_c2, t),cubic_interp(from.position.y, to.position.y, cubic_c1, cubic_c2, t));
-	node.rotation = cubic_interp(from.rotation, to.rotation, cubic_c1, cubic_c2, t);
-	node.scaleX = cubic_interp(from.scaleX, to.scaleX, cubic_c1, cubic_c2, t);
-	node.scaleY = cubic_interp(from.scaleY, to.scaleY, cubic_c1, cubic_c2, t);
-	node.anchorPoint = ccp(cubic_interp(from.anchorPoint.x, to.anchorPoint.x, cubic_c1, cubic_c2, t),cubic_interp(from.anchorPoint.y, to.anchorPoint.y, cubic_c1, cubic_c2, t));
+	node.position = ccp(scubic_interp(from.position.x, to.position.x, cubic_c1, cubic_c2, t),scubic_interp(from.position.y, to.position.y, cubic_c1, cubic_c2, t));
+	node.rotation = scubic_angular_interp(from.rotation, to.rotation, cubic_c1, cubic_c2, t);
+	node.scaleX = scubic_interp(from.scaleX, to.scaleX, cubic_c1, cubic_c2, t);
+	node.scaleY = scubic_interp(from.scaleY, to.scaleY, cubic_c1, cubic_c2, t);
+	node.anchorPoint = ccp(scubic_interp(from.anchorPoint.x, to.anchorPoint.x, cubic_c1, cubic_c2, t),scubic_interp(from.anchorPoint.y, to.anchorPoint.y, cubic_c1, cubic_c2, t));
 }
 
 -(void)update_mainline_keyframes {
@@ -149,7 +148,6 @@
 			[unadded_bones removeObject:bone_ref_id];
 		}
 		CCNode_Bone *itr_bone = _bones[bone_ref_id];
-		itr_bone._i_timeline_key = 0;
 		itr_bone._timeline_id = bone_ref._timeline_id;
 	}
 	
@@ -187,7 +185,6 @@
 			[unadded_objects removeObject:obj_ref_id];
 		}
 		CCSprite_Object *itr_obj = _objs[obj_ref_id];
-		itr_obj._i_timeline_key = 0;
 		[itr_obj removeFromParent];
 		itr_obj._timeline_id = obj_ref._timeline_id;
 		itr_obj._zindex = obj_ref._zindex;

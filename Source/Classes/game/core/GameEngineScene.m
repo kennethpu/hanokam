@@ -85,7 +85,9 @@
 	 ccp(_current_camera.x,_current_camera.y))];
 }
 
--(void)touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event {}
+-(void)touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
+	[_player test];
+}
 -(void)touchMoved:(CCTouch *)touch withEvent:(CCTouchEvent *)event {}
 -(void)touchEnded:(CCTouch *)touch withEvent:(CCTouchEvent *)event {}
 

@@ -69,6 +69,7 @@
 		7E1779821AB8F7A400E3986C /* hanoka v0.01.scml in Resources */ = {isa = PBXBuildFile; fileRef = 7E17797B1AB8F7A400E3986C /* hanoka v0.01.scml */; };
 		7E1779831AB8F7A400E3986C /* hanoka v0.01.scml in Resources */ = {isa = PBXBuildFile; fileRef = 7E17797B1AB8F7A400E3986C /* hanoka v0.01.scml */; };
 		7E1779841AB8F7A400E3986C /* hanoka v0.01.scml in Resources */ = {isa = PBXBuildFile; fileRef = 7E17797B1AB8F7A400E3986C /* hanoka v0.01.scml */; };
+		7E17798D1AB9316500E3986C /* SpriterUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E17798C1AB9316500E3986C /* SpriterUtil.m */; };
 		7E1B806E1A189C330055E654 /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1B806D1A189C330055E654 /* MainMenuScene.m */; };
 		7E1B80711A189F450055E654 /* TouchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1B80701A189F450055E654 /* TouchButton.m */; };
 		7E1B80741A18B5FB0055E654 /* CCNode+SFGestureRecognizers.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1B80731A18B5FB0055E654 /* CCNode+SFGestureRecognizers.m */; };
@@ -303,6 +304,8 @@
 		7E1779791AB8F7A400E3986C /* hanoka v0.01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "hanoka v0.01.json"; sourceTree = "<group>"; };
 		7E17797A1AB8F7A400E3986C /* hanoka v0.01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hanoka v0.01.png"; sourceTree = "<group>"; };
 		7E17797B1AB8F7A400E3986C /* hanoka v0.01.scml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "hanoka v0.01.scml"; sourceTree = "<group>"; };
+		7E17798B1AB9316500E3986C /* SpriterUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriterUtil.h; sourceTree = "<group>"; };
+		7E17798C1AB9316500E3986C /* SpriterUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriterUtil.m; sourceTree = "<group>"; };
 		7E1B806C1A189C330055E654 /* MainMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuScene.h; sourceTree = "<group>"; };
 		7E1B806D1A189C330055E654 /* MainMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuScene.m; sourceTree = "<group>"; };
 		7E1B806F1A189F450055E654 /* TouchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchButton.h; sourceTree = "<group>"; };
@@ -748,6 +751,8 @@
 				7E17796B1AB81EC300E3986C /* SpriterJSONParser.m */,
 				7E1779741AB8C88B00E3986C /* SpriterNode.h */,
 				7E1779751AB8C88B00E3986C /* SpriterNode.m */,
+				7E17798B1AB9316500E3986C /* SpriterUtil.h */,
+				7E17798C1AB9316500E3986C /* SpriterUtil.m */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -1313,6 +1318,7 @@
 				7E535C201AB914FC00EF6B6E /* SHItem.m in Sources */,
 				7E3B0C231A131E8E0057869B /* GEventDispatcher.m in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
+				7E17798D1AB9316500E3986C /* SpriterUtil.m in Sources */,
 				7E3B0C261A131E8E0057869B /* Resource.m in Sources */,
 				7E31E4BF1AB8BD13004DAC8E /* ShopScene.m in Sources */,
 				7E90D1921AB63DD800E06F92 /* BGWater.m in Sources */,

@@ -1,14 +1,6 @@
-//
-//  SpriterJSONParser.h
-//  hobobob
-//
-//  Created by spotco on 17/03/2015.
-//  Copyright (c) 2015 Apportable. All rights reserved.
-//
+#import "SpriterData.h"
 
-#import <Foundation/Foundation.h>
-
-@interface SpriterJSONParser : NSObject
+@interface SpriterJSONParser : NSObject <SpriteSheetReader>
 -(SpriterJSONParser*)parseFile:(NSString*)filepath;
 -(CGRect)cgRectForFrame:(NSString*)key;
 @end

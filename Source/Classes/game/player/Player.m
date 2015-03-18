@@ -3,7 +3,9 @@
 #import "Resource.h"
 #import "FileCache.h"
 #import "GameEngineScene.h"
+
 #import "SpriterNode.h"
+#import "SpriterJSONParser.h"
 #import "SpriterData.h"
 
 #import "CCTexture_Private.h"
@@ -21,15 +23,26 @@
 -(id)init {
 	self = [super init];
 	
-	SpriterData *spriter_data = [SpriterData dataFromSpriteSheet:[Resource get_tex:TEX_SPRITER_CHAR_HANOKATEST] json:@"hanoka v0.01.json" scml:@"hanoka v0.01.scml"];
+	SpriterJSONParser *frame_data = [[[SpriterJSONParser alloc] init] parseFile:@"hanoka v0.01.json"];
+	SpriterData *spriter_data = [SpriterData dataFromSpriteSheet:[Resource get_tex:TEX_SPRITER_CHAR_HANOKATEST] frames:frame_data scml:@"hanoka v0.01.scml"];
 	_img = [SpriterNode nodeFromData:spriter_data];
-	[_img playAnim:@"in air" repeat:YES];
+	[_img playAnim:@"test" repeat:YES];
 	[self addChild:_img z:1];
 	
 	[self set_pos:game_screen_pct(0.5, 0.5)];
 	[_img set_scale:0.5];
 	
 	return self;
+}
+
+static bool _test = YES;
+-(void)test {
+	if (_test) {
+		[_img playAnim:@"in air" repeat:YES];
+	} else {
+		[_img playAnim:@"test" repeat:YES];
+	}
+	_test = !_test;
 }
 
 -(void)update_game:(GameEngineScene*)g {

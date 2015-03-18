@@ -105,7 +105,8 @@ int SIG(float n);
 bool fuzzyeq(float a, float b, float delta);
 float deg_to_rad(float degrees);
 float rad_to_deg(float rad);
-float shortest_dist_from_cur(float a1, float a2);
+float shortest_angle(float a1, float a2);
+float cubic_angular_interp(float src, float dest, float c1, float c2, float t);
 
 CGPoint CGPointAdd(CGPoint a,CGPoint b);
 float CGPointDist(CGPoint a,CGPoint b);
