@@ -2,7 +2,7 @@
 
 @interface TGSpriterFolder : NSObject
 @property(readwrite,assign) int _id;
-@property(readwrite,assign) NSMutableDictionary *_files;
+@property(readwrite,strong) NSMutableDictionary *_files;
 @end
 
 @interface TGSpriterFile : NSObject
@@ -19,7 +19,7 @@
 
 @interface TGSpriterMainlineKey : NSObject
 @property(readwrite,assign) int _start_time;
-@property(readwrite,assign) NSMutableArray *_bone_refs, *_object_refs;
+@property(readwrite,strong) NSMutableArray *_bone_refs, *_object_refs;
 -(TGSpriterObjectRef*)nth_bone_ref:(int)i;
 -(TGSpriterObjectRef*)nth_object_ref:(int)i;
 @end
@@ -51,18 +51,19 @@
     NSMutableArray * keys_;
 }
 @property (nonatomic, readonly) NSMutableArray * keys;
-@property(readwrite,assign) NSString *_name;
+@property(readwrite,strong) NSString *_name;
 @property(readwrite,assign) int _id;
 +(id)spriterTimeline;
 -(void)addKeyFrame:(TGSpriterTimelineKey*)frame;
 -(TGSpriterTimelineKey*)keyForTime:(float)val;
 -(TGSpriterTimelineKey*)nextKeyForTime:(float)val;
+-(int)indexOfKeyForTime:(float)val;
 @end
 
 @interface TGSpriterAnimation : NSObject
 @property(readwrite,assign) NSString *_name;
-@property(readwrite,assign) NSMutableArray *_mainline_keys;
-@property(readwrite,assign) NSMutableDictionary *_timelines;
+@property(readwrite,strong) NSMutableArray *_mainline_keys;
+@property(readwrite,strong) NSMutableDictionary *_timelines;
 @property(readwrite,assign) long _duration;
 -(TGSpriterMainlineKey*)nth_mainline_key:(int)i;
 -(TGSpriterTimeline*)timeline_key_of_id:(int)i;

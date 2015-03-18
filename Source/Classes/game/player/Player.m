@@ -3,13 +3,15 @@
 #import "Resource.h"
 #import "FileCache.h"
 #import "GameEngineScene.h"
+#import "SpriterNode.h"
+#import "SpriterData.h"
 
 #import "CCTexture_Private.h"
 
 @implementation Player {
 	CCAction *_anim_stand;
 	CCAction *_current_anim;
-	CCSprite *_img;
+	SpriterNode *_img;
 }
 @synthesize _vx,_vy;
 
@@ -19,8 +21,10 @@
 -(id)init {
 	self = [super init];
 	
-	_img = (CCSprite*)[[[CCSprite spriteWithTexture:[Resource get_tex:TEX_TEST_CHAR_HANOKA]]
-					   set_anchor_pt:ccp(0.5,0.5)] add_to:self];
+	SpriterData *spriter_data = [SpriterData dataFromSpriteSheet:[Resource get_tex:TEX_SPRITER_CHAR_HANOKATEST] json:@"hanoka v0.01.json" scml:@"hanoka v0.01.scml"];
+	_img = [SpriterNode nodeFromData:spriter_data];
+	[_img playAnim:@"in air" repeat:YES];
+	[self addChild:_img z:1];
 	
 	[self set_pos:game_screen_pct(0.5, 0.5)];
 	[_img set_scale:0.5];

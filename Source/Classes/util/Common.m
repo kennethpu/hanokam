@@ -121,6 +121,10 @@ float lerp(float a, float b, float t) {
 	return a + (b - a) * t;
 }
 
+CGPoint lerp_point(CGPoint a, CGPoint b, float t) {
+	return ccp(lerp(a.x, b.x, t),lerp(a.y, b.y, t));
+}
+
 long sys_time() {
 	return CFAbsoluteTimeGetCurrent();
 }
@@ -429,3 +433,24 @@ CCLabelTTF* label_cons(CGPoint pos, ccColor3B color, int fontSize, NSString* str
 	[rtv setColor:_CCColor(color)];
 	return rtv;
 }
+
+float bezier_val_for_t(float p0, float p1, float p2, float p3, float t) {
+	float cp0 = (1 - t)*(1 - t)*(1 - t);
+	float cp1 = 3 * t * (1-t)*(1-t);
+	float cp2 = 3 * t * t * (1 - t);
+	float cp3 = t * t * t;
+	return cp0 * p0 + cp1 * p1 + cp2 * p2 + cp3 * p3;
+}
+
+CGPoint bezier_point_for_t(CGPoint p0, CGPoint p1, CGPoint p2, CGPoint p3, float t) {
+	return ccp(
+		bezier_val_for_t(p0.x, p1.x, p2.x, p3.x, t),
+		bezier_val_for_t(p0.y, p1.y, p2.y, p3.y, t)
+	);
+}
+
+float cubic_interp(float a, float b, float c1, float c2, float t) {
+	CGPoint bez = bezier_point_for_t(ccp(0,0), ccp(0.25,c1), ccp(0.75,c2), ccp(1,1), t);
+	return bez.y * (b-a) + a;
+}
+
