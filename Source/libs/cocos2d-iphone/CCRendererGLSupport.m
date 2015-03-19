@@ -347,7 +347,7 @@ BindVertexPage(CCGraphicsBufferBindingsGL *self, NSUInteger page)
 #endif
 		
 			// check if it worked (probably worth doing :) )
-			NSAssert( glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE, @"Could not attach texture to framebuffer");
+			//NSAssert( glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE, @"Could not attach texture to framebuffer");
 						
 			CCGL_DEBUG_POP_GROUP_MARKER();
 			CC_CHECK_GL_ERROR_DEBUG();

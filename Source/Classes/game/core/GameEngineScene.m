@@ -9,7 +9,6 @@
 //#import "AccelerometerSimulation.h" 
 
 #import "Resource.h"
-#import "CCTexture_Private.h"
 
 @implementation GameEngineScene {
 	Player *_player;
@@ -27,6 +26,8 @@
 	NSArray *_bg_elements;
 	
 	AccelerometerManager *_accel;
+	
+	CCRenderTexture *_reflection_texture;
 }
 -(Player*)player { return _player; }
 
@@ -49,11 +50,39 @@
 	_bg_fog = (BGFog*)[[BGFog cons] add_to:_game_anchor z:2];
 	_bg_elements = @[_bg_sky,_bg_water];
 	
+	//
+	
+	
+	[self center_camera_hei:0];
+	for (BGElement *itr in _bg_elements) {
+		[itr i_update:self];
+	}
+	
+	float reflection_height = 150;
+	_reflection_texture = [CCRenderTexture renderTextureWithWidth:game_screen().width height:reflection_height];
+	[self render_reflection_texture];
+	[_reflection_texture setPosition:ccp(game_screen().width/2,-(reflection_height)/2)];
+	_reflection_texture.scaleY = -1;
+	[_game_anchor addChild:_reflection_texture z:10];
+	
+	CCShader *shader = [CCShader shaderNamed:@"alpha_gradient_mask"];
+	_reflection_texture.sprite.blendMode = [CCBlendMode alphaMode];
+	_reflection_texture.sprite.shader = shader;
+	
 	UIAccelerometer *accel = [UIAccelerometer sharedAccelerometer];
 	accel.delegate = self;
 	accel.updateInterval = 1.0f/60.0f;
 	
 	return self;
+}
+
+-(void)render_reflection_texture {
+	[_reflection_texture clear:0 g:0 b:0 a:0];
+	[_reflection_texture begin];
+	[_bg_sky visit];
+	[_bg_fog visit];
+	[_player visit];
+	[_reflection_texture end];
 }
 
 -(void)accelerometer:(UIAccelerometer *)acel didAccelerate:(UIAcceleration *)aceler {
@@ -70,6 +99,8 @@
 	for (BGElement *itr in _bg_elements) {
 		[itr i_update:self];
 	}
+	
+	[self render_reflection_texture];
 }
 
 -(void)center_camera_hei:(float)hei {

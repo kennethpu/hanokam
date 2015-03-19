@@ -62,7 +62,7 @@
 	
 	//NSLog(@"tick %f", _tick);
 
-	[_sky_bg setTextureRect:CGRectMake(0,MAX(0, [game get_viewbox].y1),game_screen().width,MAX(0, [game get_viewbox].y2))];
+	[_sky_bg setTextureRect:CGRectMake(0,MAX(0, [game get_viewbox].y1),game_screen().width,MAX(0, [game get_viewbox].y2+game_screen().height))];
 	HitRect _viewBox = [game get_viewbox];
 	_bldg_1.position = ccp(_bldg_1.position.x,((_viewBox.y1 + _viewBox.y2) / 2) * .1);
 	_bldg_2.position = ccp(_bldg_2.position.x,((_viewBox.y1 + _viewBox.y2) / 2) * .2);
