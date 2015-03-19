@@ -80,7 +80,7 @@
 	
 }
 -(TGSpriterTimelineKey*)nextKeyForTime:(float)val {
-	return keys_[MIN([self indexOfKeyForTime:val]+1,keys_.count-1)];
+	return keys_[([self indexOfKeyForTime:val]+1)%keys_.count];
 }
 
 @end

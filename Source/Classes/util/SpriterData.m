@@ -1,6 +1,5 @@
 #import "SpriterData.h"
 #import "SpriterXMLParser.h"
-#import "SpriterJSONParser.h"
 #import "SpriterTypes.h"
 
 @implementation SpriterData {
@@ -21,16 +20,16 @@
 	return [folder._files objectForKey:[NSNumber numberWithInt:fileid]];
 }
 
-+(SpriterData*)dataFromSpriteSheet:(CCTexture*)spriteSheet json:(NSString*)json scml:(NSString*)scml {
-	return [[SpriterData alloc] initFromSpriteSheet:spriteSheet json:json scml:scml];
++(SpriterData*)dataFromSpriteSheet:(CCTexture*)spriteSheet frames:(id<SpriteSheetReader>)frames scml:(NSString*)scml {
+	return [[SpriterData alloc] initFromSpriteSheet:spriteSheet frames:frames scml:scml];
 }
 
--(id)initFromSpriteSheet:(CCTexture*)spriteSheet json:(NSString*)json scml:(NSString*)scml {
+-(id)initFromSpriteSheet:(CCTexture*)spriteSheet frames:(id<SpriteSheetReader>)frames scml:(NSString*)scml {
 	self = [super init];
 	if (!self) return self;
 	_texture = spriteSheet;
 	TGSpriterConfigNode *root = [[[SpriterXMLParser alloc] init] parseSCML:scml];
-	SpriterJSONParser *spritesheet_frames = [[[SpriterJSONParser alloc] init] parseFile:json];
+	id<SpriteSheetReader> spritesheet_frames = frames;
 	
 	_folders = [NSMutableDictionary dictionary];
 	_animations = [NSMutableDictionary dictionary];
@@ -53,7 +52,7 @@
 	return self;
 }
 
--(void)handle_folder:(TGSpriterConfigNode*)itr_base frames:(SpriterJSONParser*)spritesheet_frames {
+-(void)handle_folder:(TGSpriterConfigNode*)itr_base frames:(id<SpriteSheetReader>)spritesheet_frames {
 	TGSpriterFolder *neu_folder = [[TGSpriterFolder alloc] init];
 	neu_folder._id = [itr_base getId];
 	

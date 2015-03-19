@@ -10,8 +10,23 @@
 #import "GameEngineScene.h"
 #import "Resource.h"
 #import "SpiritManager.h"
+#import "Player.h" 
 
 @implementation SpiritBase {
+	float _vx, _vy;
+	float _aimDir;
+	float _wave;
+	int _follow_pos;
+	BOOL _following;
+}
+@synthesize _vx,_vy,_aimDir,_wave;
+@synthesize _follow_pos;
+@synthesize _following;
+
+-(SpiritBase*) cons_pos_x:(float)pos_x  {
+	_following = NO;
+	[self setPosition:ccp(pos_x, 0)];
+	return self;
 }
 
 -(void)i_update_game:(GameEngineScene*)g{}
@@ -26,7 +41,7 @@
 	
 	if(!_following) {
 		// DIVING WAITING FOR PLAYER
-		[self custom_water_behavior]
+		[self water_behavior:g];
 		if(g.player.position.y < _y) {
 			_following = true;
 			_follow_pos = [SpiritManager follow_pos];
@@ -38,7 +53,7 @@
 			if(g.touch_down){
 				float gotoY = g.player.position.y + _follow_pos * 20 + 100;
 				if(_y > gotoY) {
-					_aimDir = [self angle_towards_x:(g.player.position.x + sinf(_wave) * 30 + ((_follow_pos + 1) % 3 - 1) * 30) y:gotoY];
+					[self angle_towards_x:(g.player.position.x + sinf(_wave) * 30 + ((_follow_pos + 1) % 3 - 1) * 30) y:gotoY];
 					_vx += (sinf(_aimDir) * 10 - _vx) * .02 * dt_scale_get();
 					_vy += (cosf(_aimDir) * 15 - _vy) * .1 * dt_scale_get();
 				} else {
@@ -83,5 +98,11 @@
 
 -(void) water_behavior:(GameEngineScene*)g {
 }
+
+
+-(float)angle_towards_x:(float)x y:(float)y {
+	return atan2f(x - self.position.x, y - self.position.y);
+}
+
 
 @end
