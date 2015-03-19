@@ -10,8 +10,13 @@
 
 @interface SpiritManager : CCNode
 
-+(int)followPos;
-+(void)advanceFollowPos;
-+(void)resetFollowPos;
++(int)follow_pos;
++(void)advance_follow_pos;
++(void)reset_follow_pos;
+
++(float)dive_y;
++(void)set_dive_y:(float)y;
+
 +(void)init;
+
 @end

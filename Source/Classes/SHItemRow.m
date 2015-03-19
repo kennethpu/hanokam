@@ -12,23 +12,24 @@
 
 @implementation SHItemRow {
 	NSMutableArray *_items;
-	float _scrollX;
-	float _scrollVel;
-	float _scrollPrev;
-	int _itemDistance;
-	int _rowNum;
+	float _scroll_y;
+	float _scroll_vel;
+	float _scroll_y_prev;
+	int _item_distance_between;
+	int _row_num;
 	
 	BOOL _dragging;
-	float _startDrag;
+	float _dragging_start_x;
 }
 
-+(SHItemRow*)cons_rowNum:(int)rowNum {
-	return [[SHItemRow node] cons_rowNum:rowNum];
++(SHItemRow*)cons_row_num:(int)row_num {
+	return [[SHItemRow node] cons_row_num:row_num];
 }
--(SHItemRow*)cons_rowNum:(int)rowNum {
-	_rowNum = rowNum;
+-(SHItemRow*)cons_row_num:(int)row_num {
 	
-	_itemDistance = 60;
+	_row_num = row_num;
+	
+	_item_distance_between = 60;
 
 	_items = [NSMutableArray array];
 	for(int i = 0; i < 10; i++){
@@ -42,7 +43,7 @@
 
 -(SHItem*)create_item_pos:(int)pos{
 	SHItem * _new_item;
-	_new_item = (SHItem*)[[SHItem cons_itemID:1 pos:pos] add_to:self];
+	_new_item = (SHItem*)[[SHItem cons_item_id:1 pos:pos] add_to:self];
 	[_new_item set_scale:0.5];
 	[_new_item set_anchor_pt:ccp(1,0)];
 	
@@ -52,69 +53,70 @@
 }
 
 -(void)i_update:(ShopScene*)game {
-
-	if(game.touchTap) {
-		if(game.touchPosition.y < self.position.y + 20 && game.touchPosition.y > self.position.y - 20){
+	if(game.touch_tapped) {
+		if(game.touch_position.y < self.position.y + 20 && game.touch_position.y > self.position.y - 20){
 			_dragging = true;
-			_startDrag = (-game.touchPosition.x - _scrollX);
-			game.rowFocus = _rowNum;
+			_dragging_start_x = (-game.touch_position.x - _scroll_y);
+			game.row_focussing = _row_num;
 		}
 	}
 	
-	if(game.touchRelease) {
+	if(game.touch_released) {
 		_dragging = false;
 	}
 	
 	if(_dragging) {
-		_scrollPrev = _scrollX;
-		if(_scrollX < 0){
-			_scrollX = -(_startDrag + game.touchPosition.x) / 4;
-		} else if (_scrollX > (_items.count-1) * _itemDistance){
-			_scrollX = ((_items.count-1) * _itemDistance * 3 + -(_startDrag + game.touchPosition.x)) / 4;
+		_scroll_y_prev = _scroll_y;
+		if(_scroll_y < 0){
+			// Left bound reached.
+			_scroll_y = -(_dragging_start_x + game.touch_position.x) / 4;
+		} else if (_scroll_y > (_items.count-1) * _item_distance_between){
+			// Right bound reached.
+			_scroll_y = ((_items.count-1) * _item_distance_between * 3 + -(_dragging_start_x + game.touch_position.x)) / 4;
 		} else {
-			_scrollX = -(_startDrag + game.touchPosition.x);
+			_scroll_y = -(_dragging_start_x + game.touch_position.x);
 		}
-		_scrollVel = _scrollX - _scrollPrev;
-		_scrollVel = (_scrollVel < -20) ? -20 : (_scrollVel > 20) ? 20 : _scrollVel;
+		_scroll_vel = _scroll_y - _scroll_y_prev;
+		_scroll_vel = (_scroll_vel < -20) ? -20 : (_scroll_vel > 20) ? 20 : _scroll_vel;
 	} else {
-		_scrollVel *= 0.95;
-		if(_scrollX < 0){
-			_scrollVel = 0;
-			_scrollX += (-_scrollX) * .1 + 2;
-		} else if (_scrollX > (_items.count-1) * _itemDistance){
-			_scrollVel = 0;
-			_scrollX += ((_items.count-1) * _itemDistance -_scrollX) * .1 - 2;
+		_scroll_vel *= 0.95;
+		if(_scroll_y < 0){
+			// Left bound reached.
+			_scroll_vel = 0;
+			_scroll_y += (-_scroll_y) * .1 + 2;
+		} else if (_scroll_y > (_items.count-1) * _item_distance_between){
+			// Right bound reached.
+			_scroll_vel = 0;
+			_scroll_y += ((_items.count-1) * _item_distance_between -_scroll_y) * .1 - 2;
 		} else {
-			if(abs(_scrollVel) > 1) {
-				_scrollX += _scrollVel;
+			if(abs(_scroll_vel) > 1) {
+			// Scroll has velocity.
+				_scroll_y += _scroll_vel;
+				_scroll_y += ((roundf(_scroll_y / _item_distance_between) * _item_distance_between) - _scroll_y) * .1;
+			} else {
+				_scroll_y += ((roundf(_scroll_y / _item_distance_between) * _item_distance_between) - _scroll_y) * .2;
 			}
-			
-			_scrollX += ((roundf(_scrollX / _itemDistance) * _itemDistance) - _scrollX) * .2;
-			
 		}
 	}
 	
-	[self setPosition:ccp(self.position.x, 300 + ((_rowNum - 1) * 70))];
+	[self setPosition:ccp(self.position.x, 300 + ((_row_num - 1) * 70))];
 	
 	for (SHItem *item in _items) {
-	
-	
-		
-		if(game.rowFocus == _rowNum) {
-			[item setPosition:ccp((([item pos] * _itemDistance) - _scrollX), 0)];
-			
-			if(roundf(_scrollX / _itemDistance) == item.pos) {
-				[item setScale:item.scale + (1.2 - item.scale) * 0.6];
+		if(game.row_focussing == _row_num) {
+			[item setPosition:ccp((([item pos] * _item_distance_between) - _scroll_y), 0)];
+			[item set_darkness:0];
+			if(roundf(_scroll_y / _item_distance_between) == item.pos) {
+				[item setScale:item.scale + (1.2 - item.scale) * 0.5];
 			} else {
-				[item setScale:item.scale + (0.3 - item.scale) * 0.4];
+				[item setScale:item.scale + (0.3 - item.scale) * 0.3];
 			}
 		} else {
-			[item setPosition:ccp((([item pos] * _itemDistance) - (_scrollX)), 0)];
-		
-			if(roundf(_scrollX / _itemDistance) == item.pos) {
-				[item setScale:item.scale + (0.5 - item.scale) * 0.6];
+			[item setPosition:ccp((([item pos] * _item_distance_between) - (_scroll_y)), 0)];
+			[item set_darkness:1];
+			if(roundf(_scroll_y / _item_distance_between) == item.pos) {
+				[item setScale:item.scale + (0.5 - item.scale) * 0.5];
 			} else {
-				[item setScale:item.scale + (0.25 - item.scale) * 0.4];
+				[item setScale:item.scale + (0.25 - item.scale) * 0.3];
 			}
 		}
 	}

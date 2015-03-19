@@ -13,7 +13,7 @@ typedef enum _PlayerState {
 } PlayerState;
 
 @interface GameEngineScene : CCScene <UIAccelerometerDelegate>
-@property(readwrite,assign) int _playerState;
+@property(readwrite,assign) int _player_state;
 
 +(GameEngineScene*)cons;
 
@@ -27,10 +27,10 @@ typedef enum _PlayerState {
 -(void)freeze_frame:(int)ct;
 
 -(float) tick;
--(CGPoint)touchPosition;
--(BOOL)touchDown;
--(BOOL)touchTap;
--(BOOL)touchRelease;
+-(CGPoint)touch_position;
+-(BOOL)touch_down;
+-(BOOL)touch_tapped;
+-(BOOL)touch_released;
 
 -(PlayerState)get_player_state;
 

@@ -8,24 +8,34 @@
 
 #import "SpiritManager.h"
 
-static int _followPos;
+static int _follow_pos;
+static int _dive_y;
 
 @implementation SpiritManager
 
 
-+(int)followPos {
-	return _followPos;
++(int)follow_pos {
+	return _follow_pos;
 }
 
-+(void)advanceFollowPos {
-	_followPos ++;
++(float)dive_y {
+	return _dive_y;
 }
 
-+(void)resetFollowPos {
-	_followPos = 0;
++(void)set_dive_y:(float)y {
+	_dive_y = y;
+}
+
++(void)advance_follow_pos {
+	_follow_pos ++;
+}
+
++(void)reset_follow_pos {
+	_follow_pos = 0;
 }
 
 +(void)init {
-	_followPos = 0;
+	_follow_pos = 0;
 }
+
 @end

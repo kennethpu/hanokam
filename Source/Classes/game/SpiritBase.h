@@ -11,5 +11,6 @@
 #import "SpiritManager.h"
 
 @interface SpiritBase : CCSprite
--(void)i_update_game:(GameEngineScene*)g manager:(SpiritManager*)manager;
+-(void)i_update_game:(GameEngineScene*)g;
+-(void)water_behavior:(GameEngineScene*)g;
 @end

@@ -11,6 +11,6 @@
 
 @interface SpiritBasic : SpiritBase
 
-+(SpiritBasic*) cons_posX:(float)posX;
++(SpiritBasic*) cons_pos_x:(float)pos_x;
 
 @end

@@ -10,6 +10,6 @@
 #import "ShopScene.h"
 
 @interface SHItemRow : CCSprite
-+(SHItemRow*)cons_rowNum:(int)rowNum;
++(SHItemRow*)cons_row_num:(int)row_num;
 -(void)i_update:(ShopScene*)game;
 @end

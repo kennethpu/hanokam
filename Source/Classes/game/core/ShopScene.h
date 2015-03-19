@@ -5,12 +5,12 @@
 @class Player;
 
 @interface ShopScene : CCScene <UIAccelerometerDelegate>
-@property(readwrite,assign) int rowFocus;
+@property(readwrite,assign) int row_focussing;
 +(ShopScene*)cons;
 
--(CGPoint)touchPosition;
--(BOOL)touchDown;
--(BOOL)touchTap;
--(BOOL)touchRelease;
+-(CGPoint)touch_position;
+-(BOOL)touch_down;
+-(BOOL)touch_tapped;
+-(BOOL)touch_released;
 
 @end

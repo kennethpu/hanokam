@@ -24,10 +24,10 @@
 @end
 
 @implementation ShopScene {
-	CGPoint _touchPosition;
-	BOOL _touchDown;
-	BOOL _touchTap;
-	BOOL _touchRelease;
+	CGPoint _touch_position;
+	BOOL _touch_down;
+	BOOL _touch_tapped;
+	BOOL _touch_released;
 
 	CameraZoom _target_camera;
 	CameraZoom _current_camera;
@@ -49,26 +49,26 @@
 	AccelerometerManager *_accel;
 }
 
-@synthesize rowFocus;
+@synthesize row_focussing;
 
 +(GameEngineScene*)cons {
 	return [[ShopScene node] cons];
 }
 
--(CGPoint)touchPosition {
-	return _touchPosition;
+-(CGPoint)touch_position {
+	return _touch_position;
 }
 
--(BOOL)touchDown {
-	return _touchDown;
+-(BOOL)touch_down {
+	return _touch_down;
 }
 
--(BOOL)touchTap {
-	return _touchTap;
+-(BOOL)touch_tapped {
+	return _touch_tapped;
 }
 
--(BOOL)touchRelease {
-	return _touchRelease;
+-(BOOL)touch_released {
+	return _touch_released;
 }
 
 -(id)cons {
@@ -108,18 +108,18 @@
 	_but_play = (SHButton*)[[SHButton cons_width:(game_screen().width / 2 - 50)] add_to:_game_anchor z:0];
 	[_but_play setPosition:ccp(game_screen().width / 2 + 20, 10)];
 	
-	_row_melee = (SHItemRow*)[[SHItemRow cons_rowNum:0] add_to:_game_anchor];
+	_row_melee = (SHItemRow*)[[SHItemRow cons_row_num:0] add_to:_game_anchor];
 	[_row_melee setPosition:ccp(game_screen().width / 2, game_screen().height - 150)];
 	
-	_row_bow = (SHItemRow*)[[SHItemRow cons_rowNum:1] add_to:_game_anchor];
+	_row_bow = (SHItemRow*)[[SHItemRow cons_row_num:1] add_to:_game_anchor];
 	[_row_bow setPosition:ccp(game_screen().width / 2, game_screen().height - 250)];
 	
-	_row_armor = (SHItemRow*)[[SHItemRow cons_rowNum:2] add_to:_game_anchor];
+	_row_armor = (SHItemRow*)[[SHItemRow cons_row_num:2] add_to:_game_anchor];
 	[_row_armor setPosition:ccp(game_screen().width / 2, game_screen().height - 350)];
 	
-	_rows = @[_row_melee,_row_bow,_row_armor];
+	_rows = @[_row_melee, _row_bow, _row_armor];
 	
-	_touchPosition = ccp(0,0);
+	_touch_position = ccp(0,0);
 	
 	UIAccelerometer *accel = [UIAccelerometer sharedAccelerometer];
 	accel.delegate = self;
@@ -144,21 +144,21 @@
 	
 	_money_text.string = [NSString stringWithFormat:@"%i", _money];
 	
-	_touchTap = _touchRelease = false;
+	_touch_tapped = _touch_released = false;
 }
 
 
 -(void)touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
-	_touchTap = _touchDown = true;
-	_touchPosition = [touch locationInWorld];
+	_touch_tapped = _touch_down = true;
+	_touch_position = [touch locationInWorld];
 }
 -(void)touchMoved:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
-	_touchPosition = [touch locationInWorld];
+	_touch_position = [touch locationInWorld];
 }
 -(void)touchEnded:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
-	_touchRelease = true;
-	_touchDown = false;
-	_touchPosition = [touch locationInWorld];
+	_touch_released = true;
+	_touch_down = false;
+	_touch_position = [touch locationInWorld];
 }
 @end
 

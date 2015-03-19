@@ -16,7 +16,6 @@
 	
 	BOOL _state_waveEnd_jump_back;
 	
-	float _diveY;
 }
 @synthesize _vx,_vy;
 
@@ -48,42 +47,43 @@
 		case PlayerState_Dive:
 			if ([self is_underwater]) {
 				
-				if(g.touchDown) {
+				if(g.touch_down) {
 					_vy += (-7 -_vy) * 0.018 * dt_scale_get();
 				} else {
 					_vy += (13 -_vy) * 0.01 * dt_scale_get();
 				}
 				
-				if(_diveY > _y) {
-					_diveY = _y;
+				if([SpiritManager dive_y] > _y) {
+					[SpiritManager set_dive_y: _y];
 				}
 				
-				if(_y > _diveY + 100) {
-					g._playerState = PlayerState_Return;
+				if(_y > [SpiritManager dive_y] + 100) {
+					g._player_state = PlayerState_Return;
 				}
 				
 				_rotation = clampf(180 - _vy * 40, 0, 180);
 			} else {
-				g._playerState = PlayerState_Combat;
+				g._player_state = PlayerState_Combat;
 			}
 	
 		break;
 		case PlayerState_Return:
 			_vy += (17 -_vy) * 0.01 * dt_scale_get();
 			if (![self is_underwater]) {
-				g._playerState = PlayerState_Combat;
+				g._player_state = PlayerState_Combat;
 			}
 		break;
 		case PlayerState_Combat:
-			if(_vy < 5 && _vy > 0)
-				_vy -= 0.1 * dt_scale_get();
-			else
+			_y += 5;
+			if(_vy < 5 && _vy > 0) // hold at peek
 				_vy -= 0.2 * dt_scale_get();
+			else
+				_vy -= 0.3 * dt_scale_get();
 			
-			if (_y < 20) {
+			if (_vy < 0 && _y < 20) {
 				_y = 20;
 				_vy = 0;
-				g._playerState = PlayerState_WaveEnd;
+				g._player_state = PlayerState_WaveEnd;
 				_state_waveEnd_jump_back = false;
 			}
 		break;
@@ -92,17 +92,18 @@
 			if(!_state_waveEnd_jump_back) {
 				_y = 20;
 				_vy = 0;
-				if(g.touchTap) {
+				if(g.touch_tapped) {
 					_state_waveEnd_jump_back = true;
+					
 					_vy = 5;
 				}
 			} else {
 				_vy -= .5;
 				if(_y < 0) {
-					g._playerState = PlayerState_Dive;
-					_diveY = 0;
+					g._player_state = PlayerState_Dive;
+					[SpiritManager set_dive_y:0];
 					_vy = -10;
-					[SpiritManager resetFollowPos];
+					[SpiritManager reset_follow_pos];
 				}
 			}
 			

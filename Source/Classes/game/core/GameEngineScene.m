@@ -14,13 +14,15 @@
 #import "CCTexture_Private.h"
 
 @implementation GameEngineScene {
-	CGPoint _touchPosition;
-	BOOL _touchDown;
-	BOOL _touchTap;
-	BOOL _touchRelease;
+	CGPoint _touch_position;
+	BOOL _touch_down;
+	BOOL _touch_tapped;
+	BOOL _touch_released;
 	
 	float _tick;
-	float _camY;
+	float _cam_y;
+	float _cam_y_lirp;
+	float _player_combat_top_y;
 
 	Player *_player;
 	NSMutableArray *_spirits;
@@ -46,20 +48,20 @@
 	return _tick;
 }
 
--(CGPoint)touchPosition {
-	return _touchPosition;
+-(CGPoint)touch_position {
+	return _touch_position;
 }
 
--(BOOL)touchDown {
-	return _touchDown;
+-(BOOL)touch_down {
+	return _touch_down;
 }
 
--(BOOL)touchTap {
-	return _touchTap;
+-(BOOL)touch_tapped {
+	return _touch_tapped;
 }
 
--(BOOL)touchRelease {
-	return _touchRelease;
+-(BOOL)touch_released {
+	return _touch_released;
 }
 
 -(Player*)player { return _player; }
@@ -76,13 +78,14 @@
 	
 	_game_anchor = [[CCNode node] add_to:self];
 	_player = (Player*)[[Player cons] add_to:_game_anchor z:1];
+	_player_state = PlayerState_WaveEnd;
 	_spirits = [NSMutableArray array];
 	
 	CCNode *bg_anchor = [[CCNode node] add_to:_game_anchor z:0];
 	_bg_sky = (BGSky*)[[BGSky cons] add_to:bg_anchor z:0];
 	_bg_water = (BGWater*)[[BGWater cons] add_to:bg_anchor z:0];
 	_bg_fog = (BGFog*)[[BGFog cons] add_to:_game_anchor z:2];
-	_bg_elements = @[_bg_sky,_bg_water];
+	_bg_elements = @[_bg_sky, _bg_water];
 	
 	UIAccelerometer *accel = [UIAccelerometer sharedAccelerometer];
 	accel.delegate = self;
@@ -111,27 +114,48 @@
 	
 	[_accel i_update:self];
 	[_player update_game:self];
-	if(_player.position.y > 0) {
-		_camY += (_player.position.y - 40 - _camY) * .2;
-	} else {
-		_camY += (_player.position.y + _player._vy * 10 - _camY) * .3;
+	
+	switch(_player_state) {
+		case PlayerState_Dive:
+			_cam_y += (_player._vy * 20 - 50 - _cam_y) * _cam_y_lirp * dt_scale_get();
+			_cam_y_lirp += (.1 - _cam_y_lirp) * .1;
+		break;
+		case PlayerState_Return:
+			_cam_y += (150 - _cam_y) * _cam_y_lirp * dt_scale_get();
+			_cam_y_lirp += (.1 - _cam_y_lirp) * .1;
+		break;
+		case PlayerState_Combat:
+			_cam_y += (-100 + _player._vy * 10 - _cam_y) * _cam_y_lirp * dt_scale_get();
+			_cam_y_lirp += (.2 - _cam_y_lirp) * .1;
+			if(_player_combat_top_y < _player.position.y)
+				_player_combat_top_y = _player.position.y;
+		break;
+		case PlayerState_WaveEnd:
+			_player_combat_top_y = 0;
+			_cam_y += (150 - _cam_y) * _cam_y_lirp * dt_scale_get();
+			_cam_y_lirp += (.02 - _cam_y_lirp) * .5;
+		break;
 	}
-	[self center_camera_hei:_camY];
+	if(_player_state == PlayerState_Combat) {
+		[self center_camera_hei:_player_combat_top_y + _cam_y];
+	} else {
+		[self center_camera_hei:_player.position.y + _cam_y];
+	}
 	
 	for (BGElement *itr in _bg_elements) {
 		[itr i_update:self];
 	}
 	
 	for (SpiritBase *itr in _spirits) {
-		[itr i_update_game:self manager:nil];
+		[itr i_update_game:self];
 	}
 	
-	_touchTap = _touchRelease = false;
+	_touch_tapped = _touch_released = false;
 }
 
 -(void)spawn_spirit {
 	SpiritBasic *_new_spirit;
-	_new_spirit = (SpiritBasic*)[[SpiritBasic cons_posX:100] add_to:_game_anchor z:0];
+	_new_spirit = (SpiritBasic*)[[SpiritBasic cons_pos_x:100] add_to:_game_anchor z:0];
 	[_new_spirit setPosition:ccp(100, -100)];
 	[_spirits addObject:_new_spirit];
 }
@@ -150,21 +174,21 @@
 }
 
 -(void)touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
-	_touchTap = _touchDown = true;
-	_touchPosition = [touch locationInWorld];
+	_touch_tapped = _touch_down = true;
+	_touch_position = [touch locationInWorld];
 }
 -(void)touchMoved:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
-	_touchPosition = [touch locationInWorld];
+	_touch_position = [touch locationInWorld];
 }
 -(void)touchEnded:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
-	_touchRelease = true;
-	_touchDown = false;
-	_touchPosition = [touch locationInWorld];
+	_touch_released = true;
+	_touch_down = false;
+	_touch_position = [touch locationInWorld];
 }
 
-@synthesize _playerState;
+@synthesize _player_state;
 -(PlayerState)get_player_state {
-	return _playerState;
+	return _player_state;
 }
 
 -(BOOL)fullScreenTouch { return YES; }

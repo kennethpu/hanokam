@@ -30,7 +30,6 @@
 	_but_right = (CCSprite*)[[CCSprite spriteWithTexture:[Resource get_tex:TEX_SH_BUTTON_SIDE]] add_to:self z:0];
 	[_but_right set_anchor_pt:ccp(0,0)];
 	[_but_right setPosition:ccp((width - 50) + 50, 0)];
-	//_but_right.position = ccp(50, 0);
 	[_but_right set_scale_x:-1];
 	return self;
 }
