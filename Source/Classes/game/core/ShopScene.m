@@ -9,37 +9,125 @@
 #import "SHButton.h"
 #import "SHItemRow.h"
 
+@interface BaseShopItem : NSObject
+@property(readwrite,assign) int price;
+@property(readwrite,strong) NSString *name;
+@property(readwrite,strong) void (^onPurchase)();
+//image
+//info text
+@end
+
+@implementation BaseShopItem
+@synthesize price;
+@synthesize name;
+@synthesize onPurchase;
+@end
+
 @implementation ShopScene {
+	CGPoint _touchPosition;
+	BOOL _touchDown;
+	BOOL _touchTap;
+	BOOL _touchRelease;
+
 	CameraZoom _target_camera;
 	CameraZoom _current_camera;
 	
+	
+	int _money;
+	CCLabelTTF *_money_text;
+	
 	CCNode *_game_anchor;
 	
-	SHButton *_but_action;
-	SHItemRow *_meleeRow, *_bowRow, *_armorRow;
+	SHButton *_but_action, *_but_info, *_but_play;
+	SHItemRow *_row_melee, *_row_bow, *_row_armor;
+	
+	
 	
 	CGPoint _camera_center_point;
+	NSArray *_rows;
 	
 	AccelerometerManager *_accel;
 }
+
+@synthesize rowFocus;
 
 +(GameEngineScene*)cons {
 	return [[ShopScene node] cons];
 }
 
+-(CGPoint)touchPosition {
+	return _touchPosition;
+}
+
+-(BOOL)touchDown {
+	return _touchDown;
+}
+
+-(BOOL)touchTap {
+	return _touchTap;
+}
+
+-(BOOL)touchRelease {
+	return _touchRelease;
+}
+
 -(id)cons {
+	/*
+	BaseShopItem *item = [[BaseShopItem alloc] init];
+	item.price = 5;
+	item.name = @"test item";
+	item.onPurchase = ^void() {
+		NSLog(@"test");
+	};
+	
+	BaseShopItem *item2 = [[BaseShopItem alloc] init];
+	item2.price = 10;
+	item.name = @"test item2";
+	item.onPurchase = ^void() {
+		NSLog(@"test2");
+	};
+	
+	
+	_shop_items = @[item,item2];
+	*/
+
 	self.userInteractionEnabled = YES;
 	_accel = [AccelerometerManager cons];
 	
 	_game_anchor = [[CCNode node] add_to:self];
 	
+	_money_text = label_cons(ccp(100, game_screen().height - 50), ccc3(255, 255, 255), 25, @"");
+	[self addChild:_money_text z:99];
+	
 	_but_action = (SHButton*)[[SHButton cons_width:(game_screen().width - 50)] add_to:_game_anchor z:0];
-	_meleeRow = (SHItemRow*)[[SHItemRow cons] add_to:_game_anchor];
-	[_meleeRow setPosition:ccp(game_screen().width / 2, game_screen().height - 50)];
+	[_but_action setPosition:ccp(20, 90)];
+	
+	_but_info = (SHButton*)[[SHButton cons_width:(game_screen().width / 2 - 50)] add_to:_game_anchor z:0];
+	[_but_info setPosition:ccp(20, 10)];
+	
+	_but_play = (SHButton*)[[SHButton cons_width:(game_screen().width / 2 - 50)] add_to:_game_anchor z:0];
+	[_but_play setPosition:ccp(game_screen().width / 2 + 20, 10)];
+	
+	_row_melee = (SHItemRow*)[[SHItemRow cons_rowNum:0] add_to:_game_anchor];
+	[_row_melee setPosition:ccp(game_screen().width / 2, game_screen().height - 150)];
+	
+	_row_bow = (SHItemRow*)[[SHItemRow cons_rowNum:1] add_to:_game_anchor];
+	[_row_bow setPosition:ccp(game_screen().width / 2, game_screen().height - 250)];
+	
+	_row_armor = (SHItemRow*)[[SHItemRow cons_rowNum:2] add_to:_game_anchor];
+	[_row_armor setPosition:ccp(game_screen().width / 2, game_screen().height - 350)];
+	
+	_rows = @[_row_melee,_row_bow,_row_armor];
+	
+	_touchPosition = ccp(0,0);
 	
 	UIAccelerometer *accel = [UIAccelerometer sharedAccelerometer];
 	accel.delegate = self;
 	accel.updateInterval = 1.0f/60.0f;
+	
+	//
+	_money = 10000;
+	//
 	
 	return self;
 }
@@ -50,21 +138,27 @@
 
 -(void)update:(CCTime)delta {
 	dt_set(delta);
-	[_meleeRow i_update:self];
+	for (SHItemRow* itr in _rows) {
+		[itr i_update:self];
+	}
+	
+	_money_text.string = [NSString stringWithFormat:@"%i", _money];
+	
+	_touchTap = _touchRelease = false;
 }
 
--(void)touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event {}
--(void)touchMoved:(CCTouch *)touch withEvent:(CCTouchEvent *)event {}
--(void)touchEnded:(CCTouch *)touch withEvent:(CCTouchEvent *)event {}
 
--(BOOL)fullScreenTouch { return YES; }
-
--(void)add_particle:(Particle*)p{}
--(void)add_gameobject:(GameObject*)o{}
--(void)remove_gameobject:(GameObject*)o{}
--(void)set_target_camera:(CameraZoom)tar{}
--(void)shake_for:(float)ct intensity:(float)intensity{}
--(HitRect)get_viewbox{ return hitrect_cons_xy_widhei(_camera_center_point.x-game_screen().width/2,_camera_center_point.y-game_screen().height/2,game_screen().width,game_screen().height); }
-
+-(void)touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
+	_touchTap = _touchDown = true;
+	_touchPosition = [touch locationInWorld];
+}
+-(void)touchMoved:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
+	_touchPosition = [touch locationInWorld];
+}
+-(void)touchEnded:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
+	_touchRelease = true;
+	_touchDown = false;
+	_touchPosition = [touch locationInWorld];
+}
 @end
 

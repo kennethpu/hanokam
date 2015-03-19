@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SpiritManager : NSObject
+@interface SpiritManager : CCNode
 
++(int)followPos;
++(void)advanceFollowPos;
++(void)resetFollowPos;
++(void)init;
 @end

@@ -4,6 +4,8 @@
 #import "BGSky.h" 
 #import "BGWater.h"
 #import "BGFog.h"
+#import "SpiritBase.h"
+#import "SpiritBasic.h"
 
 #import "AccelerometerManager.h"
 //#import "AccelerometerSimulation.h" 
@@ -12,7 +14,16 @@
 #import "CCTexture_Private.h"
 
 @implementation GameEngineScene {
+	CGPoint _touchPosition;
+	BOOL _touchDown;
+	BOOL _touchTap;
+	BOOL _touchRelease;
+	
+	float _tick;
+	float _camY;
+
 	Player *_player;
+	NSMutableArray *_spirits;
 	
 	CameraZoom _target_camera;
 	CameraZoom _current_camera;
@@ -26,8 +37,31 @@
 	BGFog *_bg_fog;
 	NSArray *_bg_elements;
 	
+	CCDrawNode *_heightRefrence;
+	
 	AccelerometerManager *_accel;
 }
+
+-(float)tick {
+	return _tick;
+}
+
+-(CGPoint)touchPosition {
+	return _touchPosition;
+}
+
+-(BOOL)touchDown {
+	return _touchDown;
+}
+
+-(BOOL)touchTap {
+	return _touchTap;
+}
+
+-(BOOL)touchRelease {
+	return _touchRelease;
+}
+
 -(Player*)player { return _player; }
 
 +(GameEngineScene*)cons {
@@ -42,6 +76,7 @@
 	
 	_game_anchor = [[CCNode node] add_to:self];
 	_player = (Player*)[[Player cons] add_to:_game_anchor z:1];
+	_spirits = [NSMutableArray array];
 	
 	CCNode *bg_anchor = [[CCNode node] add_to:_game_anchor z:0];
 	_bg_sky = (BGSky*)[[BGSky cons] add_to:bg_anchor z:0];
@@ -53,6 +88,11 @@
 	accel.delegate = self;
 	accel.updateInterval = 1.0f/60.0f;
 	
+	_heightRefrence = [[CCDrawNode node] add_to:_game_anchor z:99];
+	for(int i = 0; i < 400; i++){
+		[_heightRefrence drawSegmentFrom:ccp(0, (i - 200) * 200) to: ccp(100, (i - 200) * 200) radius:1 color:[CCColor blackColor]];
+	}
+	
 	return self;
 }
 
@@ -63,13 +103,37 @@
 -(void)update:(CCTime)delta {
 	dt_set(delta);
 	
+	_tick ++;//= dt_scale_get();
+	
+	if(fmodf(_tick, 40) == 0) {
+		[self spawn_spirit];
+	}
+	
 	[_accel i_update:self];
 	[_player update_game:self];
-	[self center_camera_hei:_player.position.y];
+	if(_player.position.y > 0) {
+		_camY += (_player.position.y - 40 - _camY) * .2;
+	} else {
+		_camY += (_player.position.y + _player._vy * 10 - _camY) * .3;
+	}
+	[self center_camera_hei:_camY];
 	
 	for (BGElement *itr in _bg_elements) {
 		[itr i_update:self];
 	}
+	
+	for (SpiritBase *itr in _spirits) {
+		[itr i_update_game:self manager:nil];
+	}
+	
+	_touchTap = _touchRelease = false;
+}
+
+-(void)spawn_spirit {
+	SpiritBasic *_new_spirit;
+	_new_spirit = (SpiritBasic*)[[SpiritBasic cons_posX:100] add_to:_game_anchor z:0];
+	[_new_spirit setPosition:ccp(100, -100)];
+	[_spirits addObject:_new_spirit];
 }
 
 -(void)center_camera_hei:(float)hei {
@@ -85,9 +149,23 @@
 	 ccp(_current_camera.x,_current_camera.y))];
 }
 
--(void)touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event {}
--(void)touchMoved:(CCTouch *)touch withEvent:(CCTouchEvent *)event {}
--(void)touchEnded:(CCTouch *)touch withEvent:(CCTouchEvent *)event {}
+-(void)touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
+	_touchTap = _touchDown = true;
+	_touchPosition = [touch locationInWorld];
+}
+-(void)touchMoved:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
+	_touchPosition = [touch locationInWorld];
+}
+-(void)touchEnded:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
+	_touchRelease = true;
+	_touchDown = false;
+	_touchPosition = [touch locationInWorld];
+}
+
+@synthesize _playerState;
+-(PlayerState)get_player_state {
+	return _playerState;
+}
 
 -(BOOL)fullScreenTouch { return YES; }
 

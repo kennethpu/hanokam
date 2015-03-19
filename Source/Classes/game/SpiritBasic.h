@@ -6,8 +6,11 @@
 //  Copyright (c) 2015 Apportable. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "cocos2d.h"
+#import "SpiritBase.h"
 
-@interface EnemyBasic : NSObject
+@interface SpiritBasic : SpiritBase
+
++(SpiritBasic*) cons_posX:(float)posX;
 
 @end
