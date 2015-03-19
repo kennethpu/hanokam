@@ -18,6 +18,8 @@
 #define TEX_SH_BUTTON_SIDE @"sh_button_side"
 #define TEX_TEST_SH_ITEM @"sh_test_item"
 
+#define TEX_SPIRIT_FISH_1 @"spirit_fish_1"
+
 #define TEX_TEST_CHAR_HANOKA @"bg_test_hanoka"
 #define TEX_SPRITER_CHAR_HANOKATEST @"hanoka v0.01"
 

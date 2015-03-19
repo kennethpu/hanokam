@@ -4,7 +4,17 @@
 @class Particle;
 @class Player;
 
+typedef enum _PlayerState {
+	PlayerState_Dive = 0,
+	PlayerState_Return = 1,
+	PlayerState_Combat = 2,
+	PlayerState_WaveEnd = 3
+
+} PlayerState;
+
 @interface GameEngineScene : CCScene <UIAccelerometerDelegate>
+@property(readwrite,assign) int _player_state;
+
 +(GameEngineScene*)cons;
 
 -(Player*)player;
@@ -15,6 +25,15 @@
 -(void)set_target_camera:(CameraZoom)tar;
 -(void)shake_for:(float)ct intensity:(float)intensity;
 -(void)freeze_frame:(int)ct;
+
+-(float) tick;
+-(CGPoint)touch_position;
+-(BOOL)touch_down;
+-(BOOL)touch_tapped;
+-(BOOL)touch_released;
+
+-(PlayerState)get_player_state;
+
 -(HitRect)get_viewbox;
 @end
 

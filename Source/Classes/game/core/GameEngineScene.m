@@ -4,6 +4,8 @@
 #import "BGSky.h" 
 #import "BGWater.h"
 #import "BGFog.h"
+#import "SpiritBase.h"
+#import "SpiritBasic.h"
 
 #import "AccelerometerManager.h"
 //#import "AccelerometerSimulation.h" 
@@ -11,7 +13,18 @@
 #import "Resource.h"
 
 @implementation GameEngineScene {
+	CGPoint _touch_position;
+	BOOL _touch_down;
+	BOOL _touch_tapped;
+	BOOL _touch_released;
+	
+	float _tick;
+	float _cam_y;
+	float _cam_y_lirp;
+	float _player_combat_top_y;
+
 	Player *_player;
+	NSMutableArray *_spirits;
 	
 	CameraZoom _target_camera;
 	CameraZoom _current_camera;
@@ -25,10 +38,33 @@
 	BGFog *_bg_fog;
 	NSArray *_bg_elements;
 	
+	CCDrawNode *_heightRefrence;
+	
 	AccelerometerManager *_accel;
 	
 	CCRenderTexture *_reflection_texture;
 }
+
+-(float)tick {
+	return _tick;
+}
+
+-(CGPoint)touch_position {
+	return _touch_position;
+}
+
+-(BOOL)touch_down {
+	return _touch_down;
+}
+
+-(BOOL)touch_tapped {
+	return _touch_tapped;
+}
+
+-(BOOL)touch_released {
+	return _touch_released;
+}
+
 -(Player*)player { return _player; }
 
 +(GameEngineScene*)cons {
@@ -43,20 +79,23 @@
 	
 	_game_anchor = [[CCNode node] add_to:self];
 	_player = (Player*)[[Player cons] add_to:_game_anchor z:1];
+	_player_state = PlayerState_WaveEnd;
+	_spirits = [NSMutableArray array];
 	
 	CCNode *bg_anchor = [[CCNode node] add_to:_game_anchor z:0];
 	_bg_sky = (BGSky*)[[BGSky cons] add_to:bg_anchor z:0];
 	_bg_water = (BGWater*)[[BGWater cons] add_to:bg_anchor z:0];
 	_bg_fog = (BGFog*)[[BGFog cons] add_to:_game_anchor z:2];
-	_bg_elements = @[_bg_sky,_bg_water];
+	_bg_elements = @[_bg_sky, _bg_water];
 	
 	//
 	
-	
+	/*
 	[self center_camera_hei:0];
 	for (BGElement *itr in _bg_elements) {
 		[itr i_update:self];
 	}
+	*/
 	
 	float reflection_height = 150;
 	_reflection_texture = [CCRenderTexture renderTextureWithWidth:game_screen().width height:reflection_height];
@@ -72,6 +111,11 @@
 	UIAccelerometer *accel = [UIAccelerometer sharedAccelerometer];
 	accel.delegate = self;
 	accel.updateInterval = 1.0f/60.0f;
+	
+	_heightRefrence = [[CCDrawNode node] add_to:_game_anchor z:99];
+	for(int i = 0; i < 400; i++){
+		[_heightRefrence drawSegmentFrom:ccp(0, (i - 200) * 200) to: ccp(100, (i - 200) * 200) radius:1 color:[CCColor blackColor]];
+	}
 	
 	return self;
 }
@@ -92,15 +136,60 @@
 -(void)update:(CCTime)delta {
 	dt_set(delta);
 	
+	_tick ++;//= dt_scale_get();
+	
+	if(fmodf(_tick, 40) == 0) {
+		[self spawn_spirit];
+	}
+	
+	[self render_reflection_texture];
+	
 	[_accel i_update:self];
 	[_player update_game:self];
-	[self center_camera_hei:_player.position.y];
+	
+	switch(_player_state) {
+		case PlayerState_Dive:
+			_cam_y += (_player._vy * 20 - 50 - _cam_y) * _cam_y_lirp * dt_scale_get();
+			_cam_y_lirp += (.1 - _cam_y_lirp) * .1;
+		break;
+		case PlayerState_Return:
+			_cam_y += (150 - _cam_y) * _cam_y_lirp * dt_scale_get();
+			_cam_y_lirp += (.1 - _cam_y_lirp) * .1;
+		break;
+		case PlayerState_Combat:
+			_cam_y += (-100 + _player._vy * 10 - _cam_y) * _cam_y_lirp * dt_scale_get();
+			_cam_y_lirp += (.2 - _cam_y_lirp) * .1;
+			if(_player_combat_top_y < _player.position.y)
+				_player_combat_top_y = _player.position.y;
+		break;
+		case PlayerState_WaveEnd:
+			_player_combat_top_y = 0;
+			_cam_y += (150 - _cam_y) * _cam_y_lirp * dt_scale_get();
+			_cam_y_lirp += (.02 - _cam_y_lirp) * .5;
+		break;
+	}
+	if(_player_state == PlayerState_Combat) {
+		[self center_camera_hei:_player_combat_top_y + _cam_y];
+	} else {
+		[self center_camera_hei:_player.position.y + _cam_y];
+	}
 	
 	for (BGElement *itr in _bg_elements) {
 		[itr i_update:self];
 	}
 	
-	[self render_reflection_texture];
+	for (SpiritBase *itr in _spirits) {
+		[itr i_update_game:self];
+	}
+	
+	_touch_tapped = _touch_released = false;
+}
+
+-(void)spawn_spirit {
+	SpiritBasic *_new_spirit;
+	_new_spirit = (SpiritBasic*)[[SpiritBasic cons_pos_x:100] add_to:_game_anchor z:0];
+	[_new_spirit setPosition:ccp(100, -100)];
+	[_spirits addObject:_new_spirit];
 }
 
 -(void)center_camera_hei:(float)hei {
@@ -117,10 +206,22 @@
 }
 
 -(void)touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
-	[_player test];
+	_touch_tapped = _touch_down = true;
+	_touch_position = [touch locationInWorld];
 }
--(void)touchMoved:(CCTouch *)touch withEvent:(CCTouchEvent *)event {}
--(void)touchEnded:(CCTouch *)touch withEvent:(CCTouchEvent *)event {}
+-(void)touchMoved:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
+	_touch_position = [touch locationInWorld];
+}
+-(void)touchEnded:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
+	_touch_released = true;
+	_touch_down = false;
+	_touch_position = [touch locationInWorld];
+}
+
+@synthesize _player_state;
+-(PlayerState)get_player_state {
+	return _player_state;
+}
 
 -(BOOL)fullScreenTouch { return YES; }
 

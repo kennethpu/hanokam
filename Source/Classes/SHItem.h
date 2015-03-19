@@ -9,7 +9,7 @@
 #import "cocos2d.h"
 
 @interface SHItem : CCSprite
-	+(SHItem*)cons_itemID:(int)itemID pos:(int)pos;
-	-(int) unlocked_after_level;
+	+(SHItem*)cons_item_id:(int)item_id pos:(int)pos;
 	-(int) pos;
+	-(void)set_darkness:(int)darkness;
 @end

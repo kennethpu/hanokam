@@ -5,13 +5,12 @@
 @class Player;
 
 @interface ShopScene : CCScene <UIAccelerometerDelegate>
+@property(readwrite,assign) int row_focussing;
 +(ShopScene*)cons;
 
--(Player*)player;
+-(CGPoint)touch_position;
+-(BOOL)touch_down;
+-(BOOL)touch_tapped;
+-(BOOL)touch_released;
 
--(void)add_particle:(Particle*)p;
--(void)add_gameobject:(GameObject*)o;
--(void)remove_gameobject:(GameObject*)o;
--(void)shake_for:(float)ct intensity:(float)intensity;
--(HitRect)get_viewbox;
 @end
