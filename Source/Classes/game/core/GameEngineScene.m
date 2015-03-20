@@ -4,6 +4,7 @@
 #import "BGSky.h" 
 #import "BGWater.h"
 #import "BGFog.h"
+#import "BGReflection.h"
 #import "SpiritBase.h"
 #import "Spirit_Fish_1.h"
 
@@ -46,31 +47,18 @@
 	CCLabelTTF *_water_text;
 	
 	CCRenderTexture *_reflection_texture;
+	
+	SpiritManager *_spirit_manager;
 }
 
 -(Player*)player { return _player; }
-
 -(CCNode*)spirit_anchor { return _spirit_anchor; }
-
--(float)tick {
-	return _tick;
-}
-
--(CGPoint)touch_position {
-	return _touch_position;
-}
-
--(BOOL)touch_down {
-	return _touch_down;
-}
-
--(BOOL)touch_tapped {
-	return _touch_tapped;
-}
-
--(BOOL)touch_released {
-	return _touch_released;
-}
+-(float)tick {return _tick;}
+-(CGPoint)touch_position {return _touch_position;}
+-(BOOL)touch_down { return _touch_down;}
+-(BOOL)touch_tapped {return _touch_tapped;}
+-(BOOL)touch_released {return _touch_released;}
+-(SpiritManager*)get_spirit_manager{return _spirit_manager;}
 
 @synthesize _water_num;
 
@@ -83,6 +71,9 @@
 	return [[GameEngineScene node] cons];
 }
 
+-(float) REFLECTION_HEIGHT { return 250; }
+-(float) HORIZON_HEIGHT { return 100; }
+
 -(id)cons {
 	self.userInteractionEnabled = YES;
 	_accel = [AccelerometerManager cons];
@@ -92,36 +83,26 @@
 	_game_anchor = [[CCNode node] add_to:self];
 	_spirit_anchor = [[CCNode node] add_to:_game_anchor z:1];
 	
-	_player = (Player*)[[Player cons] add_to:_game_anchor z:1];
+	_player = (Player*)[[Player cons] add_to:_game_anchor z:5];
 	_player_state = PlayerState_WaveEnd;
 	
 	CCNode *bg_anchor = [[CCNode node] add_to:_game_anchor z:0];
-	_bg_sky = (BGSky*)[[BGSky cons] add_to:bg_anchor z:0];
-	_bg_water = (BGWater*)[[BGWater cons] add_to:bg_anchor z:0];
-	_bg_fog = (BGFog*)[[BGFog cons] add_to:_game_anchor z:2];
-	_bg_elements = @[_bg_sky, _bg_water];
+	_bg_sky = (BGSky*)[[BGSky cons:self] add_to:bg_anchor z:1];
+	_bg_water = (BGWater*)[[BGWater cons:self] add_to:bg_anchor z:-1];
+	_bg_fog = (BGFog*)[[BGFog cons] add_to:_game_anchor z:10];
+	_bg_elements = @[_bg_sky, _bg_water,_bg_fog];
 	
-	[SpiritManager cons:self];
+	_spirit_manager = [[[SpiritManager alloc] init] cons:self];
 	
 	_water_text = label_cons(ccp(100, 300), ccc3(255, 255, 255), 25, @"");
 	[_game_anchor addChild:_water_text z:99];
 	_water_text.string = [NSString stringWithFormat:@"water %i", _water_num];
 	
-	//
-	
-	/*
-	[self center_camera_hei:0];
-	for (BGElement *itr in _bg_elements) {
-		[itr i_update:self];
-	}
-	*/
-	
-	float reflection_height = 150;
-	_reflection_texture = [CCRenderTexture renderTextureWithWidth:game_screen().width height:reflection_height];
+	_reflection_texture = [CCRenderTexture renderTextureWithWidth:game_screen().width height:self.REFLECTION_HEIGHT];
 	[self render_reflection_texture];
-	[_reflection_texture setPosition:ccp(game_screen().width/2,-(reflection_height)/2)];
+	[_reflection_texture setPosition:ccp(game_screen().width/2,-(self.REFLECTION_HEIGHT)/2 + self.HORIZON_HEIGHT)];
 	_reflection_texture.scaleY = -1;
-	[_game_anchor addChild:_reflection_texture z:10];
+	[bg_anchor addChild:_reflection_texture z:0];
 	
 	CCShader *shader = [CCShader shaderNamed:@"alpha_gradient_mask"];
 	_reflection_texture.sprite.blendMode = [CCBlendMode alphaMode];
@@ -131,20 +112,25 @@
 	accel.delegate = self;
 	accel.updateInterval = 1.0f/60.0f;
 	
-	_heightRefrence = [[CCDrawNode node] add_to:_game_anchor z:99];
+	_heightRefrence = (CCDrawNode*)[[CCDrawNode node] add_to:_game_anchor z:99];
 	for(int i = 0; i < 400; i++){
 		[_heightRefrence drawSegmentFrom:ccp(0, (i - 200) * 200) to: ccp(100, (i - 200) * 200) radius:1 color:[CCColor blackColor]];
 	}
-	
 	return self;
 }
 
 -(void)render_reflection_texture {
 	[_reflection_texture clear:0 g:0 b:0 a:0];
 	[_reflection_texture begin];
-	[_bg_sky visit];
+	[_bg_sky render_reflection:self];
+	
+	if (_player.position.y > -10) {
+		CGPoint player_pos = _player.position;
+		_player.position = ccp(_player.position.x,self.HORIZON_HEIGHT + _player.position.y);
+		[_player visit];
+		_player.position = player_pos;
+	}
 	[_bg_fog visit];
-	[_player visit];
 	[_reflection_texture end];
 }
 
@@ -187,17 +173,17 @@
 			_cam_y_lirp += (.02 - _cam_y_lirp) * .5;
 		break;
 	}
+	
 	if(_player_state == PlayerState_Combat) {
 		[self center_camera_hei:_player_combat_top_y + _cam_y];
 	} else {
 		[self center_camera_hei:_player.position.y + _cam_y];
 	}
-	
 	for (BGElement *itr in _bg_elements) {
 		[itr i_update:self];
 	}
 	
-	[SpiritManager i_update];
+	[_spirit_manager i_update];
 	
 	_touch_tapped = _touch_released = false;
 }

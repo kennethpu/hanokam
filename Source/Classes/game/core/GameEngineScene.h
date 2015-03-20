@@ -3,6 +3,7 @@
 @class GameObject;
 @class Particle;
 @class Player;
+@class SpiritManager;
 
 typedef enum _PlayerState {
 	PlayerState_Dive = 0,
@@ -37,6 +38,11 @@ typedef enum _PlayerState {
 -(PlayerState)get_player_state;
 
 -(HitRect)get_viewbox;
+
+-(SpiritManager*)get_spirit_manager;
+
+-(float) REFLECTION_HEIGHT;
+-(float) HORIZON_HEIGHT;
 @end
 
 @interface BGElement : CCNode

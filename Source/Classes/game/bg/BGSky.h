@@ -10,5 +10,8 @@
 #import "GameEngineScene.h"
 
 @interface BGSky : BGElement
-+(BGSky*)cons;
++(BGSky*)cons:(GameEngineScene*)g;
+
+-(void)render_reflection:(GameEngineScene*)game;
+
 @end

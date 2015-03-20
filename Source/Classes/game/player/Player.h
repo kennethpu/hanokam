@@ -10,5 +10,5 @@
 -(HitRect)get_hit_rect;
 
 
--(void)test;
+-(void)render_reflection;
 @end

@@ -32,23 +32,12 @@
 	_img = [SpriterNode nodeFromData:spriter_data];
 	[_img playAnim:@"test" repeat:YES];
 	[self addChild:_img z:1];
-	
 	[self set_pos:game_screen_pct(0.5, 0.5)];
 	[_img set_scale:0.3];
 	
 	_state_waveEnd_jump_back = false;
 	
 	return self;
-}
-
-static bool _test = YES;
--(void)test {
-	if (_test) {
-		[_img playAnim:@"in air" repeat:YES];
-	} else {
-		[_img playAnim:@"test" repeat:YES];
-	}
-	_test = !_test;
 }
 
 -(void)update_game:(GameEngineScene*)g {
@@ -66,11 +55,11 @@ static bool _test = YES;
 					_vy += (13 -_vy) * 0.01 * dt_scale_get();
 				}
 				
-				if([SpiritManager dive_y] > _y) {
-					[SpiritManager set_dive_y: _y];
+				if([g.get_spirit_manager dive_y] > _y) {
+					[g.get_spirit_manager set_dive_y: _y];
 				}
 				
-				if(_y > [SpiritManager dive_y] + 100) {
+				if(_y > [g.get_spirit_manager dive_y] + 100) {
 					g._player_state = PlayerState_Return;
 				}
 				
@@ -114,9 +103,9 @@ static bool _test = YES;
 				_vy -= .5;
 				if(_y < 0) {
 					g._player_state = PlayerState_Dive;
-					[SpiritManager set_dive_y:0];
+					[g.get_spirit_manager set_dive_y:0];
 					_vy = -10;
-					[SpiritManager reset_follow_pos];
+					[g.get_spirit_manager reset_follow_pos];
 				}
 			}
 			

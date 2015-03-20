@@ -10,5 +10,5 @@
 #import "GameEngineScene.h"
 
 @interface BGWater : BGElement
-+(BGWater*)cons;
++(BGWater*)cons:(GameEngineScene*)g;
 @end

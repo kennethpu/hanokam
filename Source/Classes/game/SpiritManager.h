@@ -9,16 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "GameEngineScene.h"
 
-@interface SpiritManager : CCNode
+@interface SpiritManager : NSObject
 
-+(int)follow_pos;
-+(void)advance_follow_pos;
-+(void)reset_follow_pos;
+-(SpiritManager*)cons:(GameEngineScene*)g;
 
-+(float)dive_y;
-+(void)set_dive_y:(float)y;
+-(int)follow_pos;
+-(void)advance_follow_pos;
+-(void)reset_follow_pos;
 
-+(void)cons:(GameEngineScene*)g;
+-(float)dive_y;
+-(void)set_dive_y:(float)y;
 
-+(void)i_update;
+-(void)i_update;
 @end

@@ -47,7 +47,7 @@
 		if(g.player.position.y < _y) {
 			_following = true;
 			_follow_pos = 0;
-			[SpiritManager advance_follow_pos];
+			[g.get_spirit_manager advance_follow_pos];
 		}
 	} else {
 		if(_y < 0) {

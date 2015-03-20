@@ -186,6 +186,7 @@
 		7ED9B61E1ABAD9C20043567C /* alpha_gradient_mask.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9B61B1ABAD9C20043567C /* alpha_gradient_mask.fsh */; };
 		7ED9B6251ABAE2280043567C /* alpha_gradient_mask.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9B6231ABAE2280043567C /* alpha_gradient_mask.vsh */; };
 		7ED9B6261ABAE2280043567C /* alpha_gradient_mask.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9B6231ABAE2280043567C /* alpha_gradient_mask.vsh */; };
+		7ED9B6351ABBD76D0043567C /* BGReflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9B6341ABBD76D0043567C /* BGReflection.m */; };
 		7EE870661AB66291004679E8 /* BGFog.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE870651AB66291004679E8 /* BGFog.m */; };
 		8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8392007918EE8E3300B6C429 /* GLKit.framework */; };
 		927F61A5196C771E000F43EF /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3517B978D7009739AE /* OpenAL.framework */; };
@@ -428,6 +429,8 @@
 		7EADAC7C1AB67B6E004902A9 /* AccelerometerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerometerManager.m; sourceTree = "<group>"; };
 		7ED9B61B1ABAD9C20043567C /* alpha_gradient_mask.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = alpha_gradient_mask.fsh; sourceTree = "<group>"; };
 		7ED9B6231ABAE2280043567C /* alpha_gradient_mask.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = alpha_gradient_mask.vsh; sourceTree = "<group>"; };
+		7ED9B6331ABBD76D0043567C /* BGReflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGReflection.h; sourceTree = "<group>"; };
+		7ED9B6341ABBD76D0043567C /* BGReflection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGReflection.m; sourceTree = "<group>"; };
 		7EE870641AB66291004679E8 /* BGFog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGFog.h; sourceTree = "<group>"; };
 		7EE870651AB66291004679E8 /* BGFog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGFog.m; sourceTree = "<group>"; };
 		7EE870671AB67082004679E8 /* Bird.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bird.h; sourceTree = "<group>"; };
@@ -907,6 +910,8 @@
 				7EE870651AB66291004679E8 /* BGFog.m */,
 				7EE870671AB67082004679E8 /* Bird.h */,
 				7EE870681AB67082004679E8 /* Bird.m */,
+				7ED9B6331ABBD76D0043567C /* BGReflection.h */,
+				7ED9B6341ABBD76D0043567C /* BGReflection.m */,
 			);
 			name = bg;
 			path = game/bg;
@@ -1465,6 +1470,7 @@
 				7E3B0C0F1A131E8E0057869B /* Player.m in Sources */,
 				7E3B0C251A131E8E0057869B /* PolyLib.m in Sources */,
 				7E90D18C1AB63DB700E06F92 /* BGSky.m in Sources */,
+				7ED9B6351ABBD76D0043567C /* BGReflection.m in Sources */,
 				7E1461181ABBB8540044B31F /* Spirit_Fish_6.m in Sources */,
 				7EE870661AB66291004679E8 /* BGFog.m in Sources */,
 				7EADAC791AB67506004902A9 /* AccelerometerSimulation.m in Sources */,
