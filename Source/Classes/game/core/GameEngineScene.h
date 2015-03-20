@@ -14,10 +14,12 @@ typedef enum _PlayerState {
 
 @interface GameEngineScene : CCScene <UIAccelerometerDelegate>
 @property(readwrite,assign) int _player_state;
+@property(readwrite,assign) int _water_num;
 
 +(GameEngineScene*)cons;
 
 -(Player*)player;
+-(CCNode*)spirit_anchor;
 
 -(void)add_particle:(Particle*)p;
 -(void)add_gameobject:(GameObject*)o;

@@ -32,7 +32,6 @@
 	CameraZoom _target_camera;
 	CameraZoom _current_camera;
 	
-	
 	int _money;
 	CCLabelTTF *_money_text;
 	
@@ -40,8 +39,6 @@
 	
 	SHButton *_but_action, *_but_info, *_but_play;
 	SHItemRow *_row_melee, *_row_bow, *_row_armor;
-	
-	
 	
 	CGPoint _camera_center_point;
 	NSArray *_rows;

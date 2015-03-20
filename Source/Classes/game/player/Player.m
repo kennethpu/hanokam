@@ -61,7 +61,7 @@ static bool _test = YES;
 			if ([self is_underwater]) {
 				
 				if(g.touch_down) {
-					_vy += (-7 -_vy) * 0.018 * dt_scale_get();
+					_vy += (-6 -_vy) * 0.018 * dt_scale_get();
 				} else {
 					_vy += (13 -_vy) * 0.01 * dt_scale_get();
 				}

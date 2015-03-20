@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GameEngineScene.h"
 
 @interface SpiritManager : CCNode
 
@@ -17,6 +18,7 @@
 +(float)dive_y;
 +(void)set_dive_y:(float)y;
 
-+(void)init;
++(void)cons:(GameEngineScene*)g;
 
++(void)i_update;
 @end

@@ -16,9 +16,10 @@
 @property(readwrite,assign) int _follow_pos;
 @property(readwrite,assign) BOOL _following;
 
--(SpiritBase*) cons_pos_x:(float)pos_x;
+-(SpiritBase*) cons_size:(float)size;
 
 -(void)i_update_game:(GameEngineScene*)g;
 -(void)water_behavior:(GameEngineScene*)g;
+-(void)air_behavior:(GameEngineScene*)g;
 -(float)angle_towards_x:(float)x y:(float)y;
 @end

@@ -1,6 +1,6 @@
 //
-//  EnemyBasic.h
-//  hobobob
+//  Fish
+//  hanoka
 //
 //  Created by spotco on 18/03/2015.
 //  Copyright (c) 2015 Apportable. All rights reserved.
@@ -9,8 +9,8 @@
 #import "cocos2d.h"
 #import "SpiritBase.h"
 
-@interface SpiritBasic : SpiritBase
+@interface Spirit_Fish_3 : SpiritBase
 
-+(SpiritBasic*) cons_pos_x:(float)pos_x;
++(Spirit_Fish_3*) cons_size:(float)size;
 
 @end
