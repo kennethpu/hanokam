@@ -20,5 +20,7 @@
 -(float)dive_y;
 -(void)set_dive_y:(float)y;
 
+-(NSMutableArray*)get_spirits;
+
 -(void)i_update;
 @end

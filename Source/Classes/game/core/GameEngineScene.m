@@ -130,6 +130,12 @@
 		[_player visit];
 		_player.position = player_pos;
 	}
+	_spirit_anchor.position = ccp(0,self.HORIZON_HEIGHT);
+	for (SpiritBase *itr in _spirit_manager.get_spirits) if (itr.position.y < 0) itr.visible = NO;
+	[_spirit_anchor visit];
+	for (SpiritBase *itr in _spirit_manager.get_spirits) itr.visible = YES;
+	_spirit_anchor.position = CGPointZero;
+	
 	[_bg_fog visit];
 	[_reflection_texture end];
 }
