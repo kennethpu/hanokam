@@ -59,7 +59,8 @@ static NSSet* dont_load;
 		TEX_TEST_SH_ITEM: @"sh_test_item.png",
 		TEX_TEST_BG_OBJ_CLOUD: @"bg_test_obj_cloud.png",
 		TEX_SPRITER_CHAR_HANOKATEST: @"hanoka v0.01.png",
-		TEX_SPIRIT_FISH_1: @"spirit_fish_1.png"
+		TEX_SPIRIT_FISH_1: @"spirit_fish_1.png",
+		TEX_DOT: @"dot.png"
 	};
 	
 	

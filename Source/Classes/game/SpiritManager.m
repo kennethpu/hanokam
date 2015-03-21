@@ -20,6 +20,7 @@
 
 -(float)dive_y				{ return _dive_y; }
 -(void)set_dive_y:(float)y	{ _dive_y = y; }
+-(NSMutableArray*)get_spirits { return _spirits; }
 
 -(SpiritManager*)cons:(GameEngineScene*)game {
 	_game = game;
@@ -27,7 +28,11 @@
 	
 	Spirit_Fish_1 *_new_spirit;
 	_new_spirit = (Spirit_Fish_1*)[[Spirit_Fish_1 cons_size:1] add_to:_game.spirit_anchor z:0];
-	[_new_spirit setPosition:ccp(19, 19)];
+	[_new_spirit setPosition:ccp(game_screen().width-50, -25)];
+	[_spirits addObject:_new_spirit];
+	
+	_new_spirit = (Spirit_Fish_1*)[[Spirit_Fish_1 cons_size:1] add_to:_game.spirit_anchor z:0];
+	[_new_spirit setPosition:ccp(50, 19)];
 	[_spirits addObject:_new_spirit];
 	
 	return self;
