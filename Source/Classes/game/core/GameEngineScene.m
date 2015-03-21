@@ -53,12 +53,13 @@
 
 -(Player*)player { return _player; }
 -(CCNode*)spirit_anchor { return _spirit_anchor; }
--(float)tick {return _tick;}
--(CGPoint)touch_position {return _touch_position;}
--(BOOL)touch_down { return _touch_down;}
--(BOOL)touch_tapped {return _touch_tapped;}
--(BOOL)touch_released {return _touch_released;}
--(SpiritManager*)get_spirit_manager{return _spirit_manager;}
+-(float)tick { return _tick; }
+-(CGPoint)touch_position { return _touch_position; }
+-(BOOL)touch_down { return _touch_down; }
+-(BOOL)touch_tapped { return _touch_tapped; }
+-(BOOL)touch_released { return _touch_released; }
+-(float)get_camera_y { return -_game_anchor.position.y + game_screen().height / 2; }
+-(SpiritManager*)get_spirit_manager{ return _spirit_manager; }
 
 @synthesize _water_num;
 
@@ -100,7 +101,7 @@
 	
 	_reflection_texture = [CCRenderTexture renderTextureWithWidth:game_screen().width height:self.REFLECTION_HEIGHT];
 	[self render_reflection_texture];
-	[_reflection_texture setPosition:ccp(game_screen().width/2,-(self.REFLECTION_HEIGHT)/2 + self.HORIZON_HEIGHT)];
+	[_reflection_texture setPosition:ccp(game_screen().width / 2, -(self.REFLECTION_HEIGHT) / 2 + self.HORIZON_HEIGHT)];
 	_reflection_texture.scaleY = -1;
 	[bg_anchor addChild:_reflection_texture z:0];
 	
@@ -110,7 +111,7 @@
 	
 	UIAccelerometer *accel = [UIAccelerometer sharedAccelerometer];
 	accel.delegate = self;
-	accel.updateInterval = 1.0f/60.0f;
+	accel.updateInterval = 1.0f / 60.0f;
 	
 	_heightRefrence = (CCDrawNode*)[[CCDrawNode node] add_to:_game_anchor z:99];
 	for(int i = 0; i < 400; i++){
@@ -126,7 +127,7 @@
 	
 	if (_player.position.y > -10) {
 		CGPoint player_pos = _player.position;
-		_player.position = ccp(_player.position.x,self.HORIZON_HEIGHT + _player.position.y);
+		_player.position = ccp(_player.position.x, self.HORIZON_HEIGHT + _player.position.y);
 		[_player visit];
 		_player.position = player_pos;
 	}
@@ -159,13 +160,14 @@
 			_cam_y_lirp += (.1 - _cam_y_lirp) * .1;
 		break;
 		case PlayerState_Combat:
-			_cam_y += (-100 + _player._vy * 10 - _cam_y) * _cam_y_lirp * dt_scale_get();
+			_cam_y += (-100 - _cam_y) * _cam_y_lirp * dt_scale_get();
 			_cam_y_lirp += (.2 - _cam_y_lirp) * .1;
 			if(_player_combat_top_y < _player.position.y)
 				_player_combat_top_y = _player.position.y;
+			_player_combat_top_y += 3;
 			
-			if(_player.position.y < _player_combat_top_y - 300)
-				_player_combat_top_y = _player.position.y + 300;
+			if(_player.position.y < _player_combat_top_y - 340)
+				_player_combat_top_y = _player.position.y + 340;
 		break;
 		case PlayerState_WaveEnd:
 			_player_combat_top_y = 0;
@@ -192,13 +194,13 @@
 	CGPoint pt = ccp(game_screen().width / 2, hei);
 	_camera_center_point = pt;
 	CGSize s = [CCDirector sharedDirector].viewSize;
-	CGPoint halfScreenSize = ccp(s.width/2,s.height/2);
+	CGPoint halfScreenSize = ccp(s.width / 2, s.height / 2);
 	[_game_anchor setScale:1];
 	[_game_anchor setPosition:CGPointAdd(
 	 ccp(
-		 clampf(halfScreenSize.x-pt.x,-999999,999999) * [self scale],
-		 clampf(halfScreenSize.y-pt.y,-999999,999999) * [self scale]),
-	 ccp(_current_camera.x,_current_camera.y))];
+		 clampf(halfScreenSize.x - pt.x, -999999, 999999) * [self scale],
+		 clampf(halfScreenSize.y - pt.y, -999999, 999999) * [self scale]),
+	 ccp(_current_camera.x, _current_camera.y))];
 }
 
 -(void)touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event {

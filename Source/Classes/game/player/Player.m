@@ -30,10 +30,10 @@
 	SpriterJSONParser *frame_data = [[[SpriterJSONParser alloc] init] parseFile:@"hanoka v0.01.json"];
 	SpriterData *spriter_data = [SpriterData dataFromSpriteSheet:[Resource get_tex:TEX_SPRITER_CHAR_HANOKATEST] frames:frame_data scml:@"hanoka v0.01.scml"];
 	_img = [SpriterNode nodeFromData:spriter_data];
-	[_img playAnim:@"test" repeat:YES];
+	[_img playAnim:@"swim" repeat:YES];
 	[self addChild:_img z:1];
 	[self set_pos:game_screen_pct(0.5, 0.5)];
-	[_img set_scale:0.3];
+	[_img set_scale:0.2];
 	
 	_state_waveEnd_jump_back = false;
 	
@@ -45,12 +45,15 @@
 	float _y = self.position.y;
 	float _rotation = self.rotation * .0174532925;
 	
+	_x += (g.touch_position.x - _x) * .4;
+	
 	switch ([g get_player_state]) {
 		case PlayerState_Dive:
 			if ([self is_underwater]) {
 				
 				if(g.touch_down) {
 					_vy += (-6 -_vy) * 0.018 * dt_scale_get();
+					
 				} else {
 					_vy += (13 -_vy) * 0.01 * dt_scale_get();
 				}
@@ -73,16 +76,22 @@
 			_vy += (17 -_vy) * 0.01 * dt_scale_get();
 			if (![self is_underwater]) {
 				g._player_state = PlayerState_Combat;
+				
+				_vy = 10;
+				
+				[g.get_spirit_manager toss_spirit];
+				[g.get_spirit_manager toss_spirit];
+				[g.get_spirit_manager toss_spirit];
 			}
 		break;
 		case PlayerState_Combat:
-			_y += 5;
+			_y += 5 * dt_scale_get();
 			if(_vy < 5 && _vy > 0) // hold at peek
 				_vy -= 0.2 * dt_scale_get();
 			else
 				_vy -= 0.3 * dt_scale_get();
 			
-			if (_vy < 0 && _y < 20) {
+			if (_vy < 0 && _y + _vy * dt_scale_get() < 20) {
 				_y = 20;
 				_vy = 0;
 				g._player_state = PlayerState_WaveEnd;
@@ -100,12 +109,11 @@
 					_vy = 5;
 				}
 			} else {
-				_vy -= .5;
+				_vy -= .5 * dt_scale_get();
 				if(_y < 0) {
 					g._player_state = PlayerState_Dive;
 					[g.get_spirit_manager set_dive_y:0];
 					_vy = -10;
-					[g.get_spirit_manager reset_follow_pos];
 				}
 			}
 			
@@ -120,9 +128,9 @@
 		if(_vy > .7)
 			_y += _vy * dt_scale_get() * 1.5;
 		else if (_vy > 0)
-			_y += _vy * dt_scale_get() * 1;
+			_y += _vy * dt_scale_get() * 0.5;
 		else
-			_y += _vy * dt_scale_get() * 2;
+			_y += _vy * dt_scale_get() * 1;
 	}
 	
 	

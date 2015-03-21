@@ -14,7 +14,7 @@
 
 @property(readwrite,assign) float _vx,_vy,_aimDir,_wave;
 @property(readwrite,assign) int _follow_pos;
-@property(readwrite,assign) BOOL _following;
+@property(readwrite,assign) BOOL _following, _tossed;
 
 -(SpiritBase*) cons_size:(float)size;
 
@@ -22,4 +22,5 @@
 -(void)water_behavior:(GameEngineScene*)g;
 -(void)air_behavior:(GameEngineScene*)g;
 -(float)angle_towards_x:(float)x y:(float)y;
+-(void)toss:(GameEngineScene*)g;
 @end

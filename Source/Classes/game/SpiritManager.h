@@ -13,12 +13,11 @@
 
 -(SpiritManager*)cons:(GameEngineScene*)g;
 
--(int)follow_pos;
 -(void)advance_follow_pos;
--(void)reset_follow_pos;
 
 -(float)dive_y;
 -(void)set_dive_y:(float)y;
+-(void)toss_spirit;
 
 -(void)i_update;
 @end

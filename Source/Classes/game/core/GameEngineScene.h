@@ -34,6 +34,7 @@ typedef enum _PlayerState {
 -(BOOL)touch_down;
 -(BOOL)touch_tapped;
 -(BOOL)touch_released;
+-(float)get_camera_y;
 
 -(PlayerState)get_player_state;
 
