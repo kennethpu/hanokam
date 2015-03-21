@@ -8,6 +8,8 @@
 #import "SpiritBase.h"
 #import "Spirit_Fish_1.h"
 
+#import "CCTexture_Private.h"
+
 #import "AccelerometerManager.h"
 //#import "AccelerometerSimulation.h" 
 
@@ -47,6 +49,8 @@
 	CCLabelTTF *_water_text;
 	
 	CCRenderTexture *_reflection_texture;
+	CCRenderTexture *_ripple_texture_1, *_ripple_texture_2, *_current_ripple_texture;
+	CCSprite *_ripple_dot;
 	
 	SpiritManager *_spirit_manager;
 }
@@ -103,10 +107,46 @@
 	[_reflection_texture setPosition:ccp(game_screen().width/2,-(self.REFLECTION_HEIGHT)/2 + self.HORIZON_HEIGHT)];
 	_reflection_texture.scaleY = -1;
 	[bg_anchor addChild:_reflection_texture z:0];
-	
-	CCShader *shader = [CCShader shaderNamed:@"alpha_gradient_mask"];
 	_reflection_texture.sprite.blendMode = [CCBlendMode alphaMode];
-	_reflection_texture.sprite.shader = shader;
+	_reflection_texture.sprite.shader = [CCShader shaderNamed:@"alpha_gradient_mask"];
+	
+	_ripple_texture_1 = [CCRenderTexture renderTextureWithWidth:game_screen().width height:self.REFLECTION_HEIGHT];
+	_ripple_texture_1.sprite.shader = [CCShader shaderNamed:@"ripple_effect"];
+	_ripple_texture_1.sprite.shaderUniforms[@"scalex"] = [NSNumber numberWithInt:game_screen().width];
+	_ripple_texture_1.sprite.shaderUniforms[@"scaley"] = [NSNumber numberWithInt:self.REFLECTION_HEIGHT];
+	_ripple_texture_1.sprite.shaderUniforms[@"buffer2"] = _ripple_texture_1.texture;
+	//[_ripple_texture_1 setPosition:ccp(game_screen().width/2,-(self.REFLECTION_HEIGHT)/2 + self.HORIZON_HEIGHT)];
+	[_ripple_texture_1 setPosition:ccp(game_screen().width/2,self.REFLECTION_HEIGHT/2)];
+	[_ripple_texture_1 clear:0 g:0 b:0 a:0];
+	_current_ripple_texture = _ripple_texture_1;
+	[bg_anchor addChild:_ripple_texture_1 z:99];
+	
+	_ripple_dot = [CCSprite spriteWithTexture:[Resource get_tex:TEX_DOT]];
+	[_ripple_dot setPosition:ccp(100,100)];
+	[_ripple_dot setScale:1];
+	
+	_ripple_texture_2 = [CCRenderTexture renderTextureWithWidth:game_screen().width height:self.REFLECTION_HEIGHT];
+	_ripple_texture_2.sprite.shader = [CCShader shaderNamed:@"ripple_effect"];
+	_ripple_texture_2.sprite.shaderUniforms[@"scalex"] = [NSNumber numberWithInt:game_screen().width];
+	_ripple_texture_2.sprite.shaderUniforms[@"scaley"] = [NSNumber numberWithInt:self.REFLECTION_HEIGHT];
+	_ripple_texture_2.sprite.shaderUniforms[@"buffer2"] = _ripple_texture_2.texture;
+	//[_ripple_texture_2 setPosition:ccp(game_screen().width/2,-(self.REFLECTION_HEIGHT)/2 + self.HORIZON_HEIGHT)];
+	[_ripple_texture_2 setPosition:ccp(game_screen().width/2,self.REFLECTION_HEIGHT/2)];
+	[_ripple_texture_2 clear:0 g:0 b:0 a:0];
+	[bg_anchor addChild:_ripple_texture_2 z:99];
+	
+	[_ripple_texture_1 clear:0 g:0 b:0 a:0];
+	[_ripple_texture_2 clear:0 g:0 b:0 a:0];
+	[_ripple_texture_1 begin];
+	[_ripple_dot visit];
+	[_ripple_texture_1 end];
+	
+	//[_ripple_texture_1 setVisible:NO];
+	//[_ripple_texture_2 setVisible:YES];
+	
+	//DO_FOR(10, [self render_ripple_texture]);
+	
+	
 	
 	UIAccelerometer *accel = [UIAccelerometer sharedAccelerometer];
 	accel.delegate = self;
@@ -117,6 +157,19 @@
 		[_heightRefrence drawSegmentFrom:ccp(0, (i - 200) * 200) to: ccp(100, (i - 200) * 200) radius:1 color:[CCColor blackColor]];
 	}
 	return self;
+}
+
+-(void)render_ripple_texture {
+	CCRenderTexture *cur = _current_ripple_texture;
+	CCRenderTexture *next = _current_ripple_texture == _ripple_texture_1 ? _ripple_texture_2 : _ripple_texture_1;
+	[cur setVisible:YES];
+	[next setVisible:YES];
+	[next begin];
+	[cur visit];
+	[next end];
+	[cur setVisible:NO];
+	[next setVisible:YES];
+	_current_ripple_texture = next;
 }
 
 -(void)render_reflection_texture {
@@ -151,6 +204,7 @@
 	
 	
 	[self render_reflection_texture];
+	[self render_ripple_texture];
 	
 	[_accel i_update:self];
 	[_player update_game:self];

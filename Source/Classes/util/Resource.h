@@ -23,4 +23,6 @@
 #define TEX_TEST_CHAR_HANOKA @"bg_test_hanoka"
 #define TEX_SPRITER_CHAR_HANOKATEST @"hanoka v0.01"
 
+#define TEX_DOT @"dot"
+
 @end
