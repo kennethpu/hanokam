@@ -7,6 +7,8 @@
 #import "BGReflection.h"
 #import "SpiritBase.h"
 #import "Spirit_Fish_1.h"
+#import "Particle.h"
+#import "RotateFadeOutParticle.h"
 
 #import "CCTexture_Private.h"
 
@@ -24,7 +26,16 @@
 	float _tick;
 	float _cam_y;
 	float _cam_y_lirp;
+	float _player_dive_bottom_y;
 	float _player_combat_top_y;
+	
+	float _shake_rumble_time;
+	float _shake_rumble_total_time;
+	float _shake_rumble_distance;
+	
+	float _shake_rumble_slow_time;
+	float _shake_rumble_slow_total_time;
+	float _shake_rumble_slow_distance;
 
 	Player *_player;
 	
@@ -53,6 +64,8 @@
 	CCSprite *_ripple_dot;
 	
 	SpiritManager *_spirit_manager;
+	
+	NSMutableArray *_particles,*_particles_tba;
 }
 
 -(Player*)player { return _player; }
@@ -81,9 +94,13 @@
 
 -(id)cons {
 	self.userInteractionEnabled = YES;
+	_particles = [NSMutableArray array];
+	_particles_tba = [NSMutableArray array];
 	_accel = [AccelerometerManager cons];
 	dt_unset();
 	_current_camera = camerazoom_cons(0, 0, 0.1);
+	_shake_rumble_total_time = _shake_rumble_time = _shake_rumble_distance = 1;
+	_shake_rumble_slow_total_time = _shake_rumble_slow_time = _shake_rumble_slow_distance = 1;
 	
 	_game_anchor = [[CCNode node] add_to:self];
 	_spirit_anchor = [[CCNode node] add_to:_game_anchor z:1];
@@ -111,13 +128,14 @@
 	_reflection_texture.sprite.blendMode = [CCBlendMode alphaMode];
 	_reflection_texture.sprite.shader = [CCShader shaderNamed:@"alpha_gradient_mask"];
 	
+	/*
 	_ripple_texture_1 = [CCRenderTexture renderTextureWithWidth:game_screen().width height:self.REFLECTION_HEIGHT];
 	_ripple_texture_1.sprite.shader = [CCShader shaderNamed:@"ripple_effect"];
 	_ripple_texture_1.sprite.shaderUniforms[@"scalex"] = [NSNumber numberWithInt:game_screen().width];
 	_ripple_texture_1.sprite.shaderUniforms[@"scaley"] = [NSNumber numberWithInt:self.REFLECTION_HEIGHT];
-	_ripple_texture_1.sprite.shaderUniforms[@"buffer2"] = _ripple_texture_1.texture;
+	_ripple_texture_1.sprite.shaderUniforms[@"buffer"] = _ripple_texture_1.texture;
 	//[_ripple_texture_1 setPosition:ccp(game_screen().width/2,-(self.REFLECTION_HEIGHT)/2 + self.HORIZON_HEIGHT)];
-	[_ripple_texture_1 setPosition:ccp(game_screen().width/2,self.REFLECTION_HEIGHT/2)];
+	[_ripple_texture_1 setPosition:ccp(game_screen().width / 2,self.REFLECTION_HEIGHT / 2)];
 	[_ripple_texture_1 clear:0 g:0 b:0 a:0];
 	_current_ripple_texture = _ripple_texture_1;
 	[bg_anchor addChild:_ripple_texture_1 z:99];
@@ -130,9 +148,13 @@
 	_ripple_texture_2.sprite.shader = [CCShader shaderNamed:@"ripple_effect"];
 	_ripple_texture_2.sprite.shaderUniforms[@"scalex"] = [NSNumber numberWithInt:game_screen().width];
 	_ripple_texture_2.sprite.shaderUniforms[@"scaley"] = [NSNumber numberWithInt:self.REFLECTION_HEIGHT];
-	_ripple_texture_2.sprite.shaderUniforms[@"buffer2"] = _ripple_texture_2.texture;
+	_ripple_texture_2.sprite.shaderUniforms[@"buffer"] = _ripple_texture_2.texture;
+	
+	_ripple_texture_1.sprite.shaderUniforms[@"buffer2"] = _ripple_texture_2;
+	_ripple_texture_2.sprite.shaderUniforms[@"buffer2"] = _ripple_texture_1;
+	
 	//[_ripple_texture_2 setPosition:ccp(game_screen().width/2,-(self.REFLECTION_HEIGHT)/2 + self.HORIZON_HEIGHT)];
-	[_ripple_texture_2 setPosition:ccp(game_screen().width/2,self.REFLECTION_HEIGHT/2)];
+	[_ripple_texture_2 setPosition:ccp(game_screen().width / 2,self.REFLECTION_HEIGHT / 2)];
 	[_ripple_texture_2 clear:0 g:0 b:0 a:0];
 	[bg_anchor addChild:_ripple_texture_2 z:99];
 	
@@ -141,6 +163,7 @@
 	[_ripple_texture_1 begin];
 	[_ripple_dot visit];
 	[_ripple_texture_1 end];
+	*/
 	
 	//[_ripple_texture_1 setVisible:NO];
 	//[_ripple_texture_2 setVisible:YES];
@@ -161,6 +184,7 @@
 }
 
 -(void)render_ripple_texture {
+	/*
 	CCRenderTexture *cur = _current_ripple_texture;
 	CCRenderTexture *next = _current_ripple_texture == _ripple_texture_1 ? _ripple_texture_2 : _ripple_texture_1;
 	[cur setVisible:YES];
@@ -171,6 +195,7 @@
 	[cur setVisible:NO];
 	[next setVisible:YES];
 	_current_ripple_texture = next;
+	*/
 }
 
 -(void)render_reflection_texture {
@@ -209,19 +234,34 @@
 	
 	[_accel i_update:self];
 	[_player update_game:self];
+	[self update_particles];
+	
+	if (int_random(0, 100) == 0) {
+		NSLog(@"add");
+		[self add_particle:(Particle*)[[[RotateFadeOutParticle cons_tex:[Resource get_tex:TEX_DOT]
+													  rect:CGRectMake(0, 0, 16, 16)] set_ctmax:50]
+													  set_pos:ccp(50,50)]];
+	}
+	
 	
 	switch(_player_state) {
 		case PlayerState_Dive:
-			_cam_y += (_player._vy * 20 - 20 - _cam_y) * _cam_y_lirp * dt_scale_get();
-			_cam_y_lirp += (.1 - _cam_y_lirp) * .1;
+			if(self.touch_down == false) {
+				if(_player.position.y > _player_dive_bottom_y + 200)
+					_player_state = PlayerState_Return;
+			}
+			
+			_player_dive_bottom_y = [self get_spirit_manager].dive_y - 200;
+			
+			_cam_y += (0 - _cam_y) * .1 * dt_scale_get();
+			
+			_cam_y_lirp += (_player_dive_bottom_y - _cam_y_lirp) * .06 * dt_scale_get();
 		break;
 		case PlayerState_Return:
-			_cam_y += (100 - _cam_y) * _cam_y_lirp * dt_scale_get();
-			_cam_y_lirp += (.1 - _cam_y_lirp) * .1;
+			_cam_y_lirp += (_player.position.y + 100 - _cam_y_lirp) * .1 * dt_scale_get();
 		break;
 		case PlayerState_Combat:
-			_cam_y += (-100 - _cam_y) * _cam_y_lirp * dt_scale_get();
-			_cam_y_lirp += (.2 - _cam_y_lirp) * .1;
+			_cam_y += (-100 - _cam_y) * .2 * dt_scale_get();
 			if(_player_combat_top_y < _player.position.y)
 				_player_combat_top_y = _player.position.y;
 			_player_combat_top_y += 3;
@@ -231,12 +271,14 @@
 		break;
 		case PlayerState_WaveEnd:
 			_player_combat_top_y = 0;
-			_cam_y += (130 - _cam_y) * _cam_y_lirp * dt_scale_get();
-			_cam_y_lirp += (.02 - _cam_y_lirp) * .5;
+			_cam_y += (130 - _cam_y) * .02 * dt_scale_get();
+			//_cam_y_lirp += 100;
 		break;
 	}
 	
-	if(_player_state == PlayerState_Combat) {
+	if(_player_state == PlayerState_Dive || _player_state == PlayerState_Return) {
+		[self center_camera_hei:_cam_y_lirp];
+	} else if (_player_state == PlayerState_Combat) {
 		[self center_camera_hei:_player_combat_top_y + _cam_y];
 	} else {
 		[self center_camera_hei:_player.position.y + _cam_y];
@@ -247,7 +289,46 @@
 	
 	[_spirit_manager i_update];
 	
+	// shake it baby
+	if(_shake_rumble_time > 0)
+		_shake_rumble_time -= dt_scale_get();
+	else
+		_shake_rumble_time = 0;
+	
+	float _rumble_dist = _shake_rumble_distance * (_shake_rumble_time / _shake_rumble_total_time);
+	
+	[_game_anchor setPosition:CGPointAdd(_game_anchor.position,ccp(sinf(_tick) * _rumble_dist, cosf(_tick) * _rumble_dist))];
+	
+	
+	if(_shake_rumble_slow_time > 0)
+		_shake_rumble_slow_time -= dt_scale_get();
+	else
+		_shake_rumble_slow_time = 0;
+	
+	float _rumble_slow_dist = _shake_rumble_slow_distance * (_shake_rumble_slow_time / _shake_rumble_slow_total_time);
+	
+	[_game_anchor setPosition:CGPointAdd(_game_anchor.position,ccp(sinf(_tick / 2) * _rumble_slow_dist / 2, cosf(_tick / 2) * _rumble_slow_dist))];
 	_touch_tapped = _touch_released = false;
+}
+
+-(void)add_particle:(Particle*)p {
+    [_particles_tba addObject:p];
+}
+-(void)update_particles {
+    for (Particle *p in _particles_tba) {
+        [_particles addObject:p];
+        [_game_anchor addChild:p z:[p get_render_ord]];
+    }
+    [_particles_tba removeAllObjects];
+    NSMutableArray *toremove = [NSMutableArray array];
+    for (Particle *i in _particles) {
+        [i i_update:self];
+        if ([i should_remove]) {
+			[_game_anchor removeChild:i cleanup:YES];
+            [toremove addObject:i];
+        }
+    }
+    [_particles removeObjectsInArray:toremove];
 }
 
 -(void)center_camera_hei:(float)hei {
@@ -278,11 +359,19 @@
 
 -(BOOL)fullScreenTouch { return YES; }
 
--(void)add_particle:(Particle*)p{}
 -(void)add_gameobject:(GameObject*)o{}
 -(void)remove_gameobject:(GameObject*)o{}
 -(void)set_target_camera:(CameraZoom)tar{}
--(void)shake_for:(float)ct intensity:(float)intensity{}
+-(void)shake_for:(float)ct distance:(float)distance{
+	_shake_rumble_time = _shake_rumble_total_time = ct;
+	_shake_rumble_distance = distance;
+}
+
+-(void)shake_slow_for:(float)ct distance:(float)distance{
+	_shake_rumble_slow_time = _shake_rumble_slow_total_time = ct;
+	_shake_rumble_slow_distance = distance;
+}
+
 -(void)freeze_frame:(int)ct{}
 -(HitRect)get_viewbox{ return hitrect_cons_xy_widhei(_camera_center_point.x-game_screen().width/2,_camera_center_point.y-game_screen().height/2,game_screen().width,game_screen().height); }
 

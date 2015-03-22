@@ -1,22 +1,31 @@
 uniform float scalex;
 uniform float scaley;
-uniform sampler2D buffer2;
+uniform sampler2D buffer;
 
 float get1(int x, int y) {
     return texture2D(cc_MainTexture, cc_FragTexCoord1 + (vec2(x, y)) / vec2(scalex,scaley)).a;
 }
 
 float get2(int x, int y) {
-    return texture2D(buffer2, cc_FragTexCoord1 + (vec2(x, y)) / vec2(scalex,scaley)).a;
+    return texture2D(buffer, cc_FragTexCoord1 + (vec2(x, y)) / vec2(scalex,scaley)).a;
 }
 
 //buffer1 -
 //buffer2
 void main(){
-	gl_FragColor = vec4(0,0,0,get1(-1,0));
-	//gl_FragColor = vec4(0,0,0,((get(0,1) + get(0,-1) + get(1,0) + get(-1,0)) / 0.5 - get2(0,0)) * 0.5);
-
 	/*
+	gl_FragColor = vec4(0,0,0,get1(-1,0));
+	float new_height = (
+		get1( 0, 1) +
+		get1( 0,-1) +
+		get1( 1, 0) +
+		get1(-1, 0)) * .25;
+	
+	new_height -= get1(0, 0) * .4;
+	
+	gl_FragColor = vec4(0, 0, 0, new_height);
+
+	
 	float velocity = -get2(0,0);
 	float smoothed = ( get1(-1,0) + get1(1,0) + get1(0,-1) + get1(0,1) ) / 4.0;
 	float new_height = (velocity + smoothed)*0.95;

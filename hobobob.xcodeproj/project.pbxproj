@@ -194,6 +194,14 @@
 		7ED9B6261ABAE2280043567C /* alpha_gradient_mask.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9B6231ABAE2280043567C /* alpha_gradient_mask.vsh */; };
 		7ED9B6351ABBD76D0043567C /* BGReflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9B6341ABBD76D0043567C /* BGReflection.m */; };
 		7EE870661AB66291004679E8 /* BGFog.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE870651AB66291004679E8 /* BGFog.m */; };
+		7EF468A91ABF71E50041E55F /* Particle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF468A61ABF71E50041E55F /* Particle.m */; };
+		7EF468AA1ABF71E50041E55F /* Particle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF468A61ABF71E50041E55F /* Particle.m */; };
+		7EF468AB1ABF71E50041E55F /* Particle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF468A61ABF71E50041E55F /* Particle.m */; };
+		7EF468AC1ABF71E50041E55F /* Particle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF468A61ABF71E50041E55F /* Particle.m */; };
+		7EF468AD1ABF71E50041E55F /* RotateFadeOutParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF468A81ABF71E50041E55F /* RotateFadeOutParticle.m */; };
+		7EF468AE1ABF71E50041E55F /* RotateFadeOutParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF468A81ABF71E50041E55F /* RotateFadeOutParticle.m */; };
+		7EF468AF1ABF71E50041E55F /* RotateFadeOutParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF468A81ABF71E50041E55F /* RotateFadeOutParticle.m */; };
+		7EF468B01ABF71E50041E55F /* RotateFadeOutParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF468A81ABF71E50041E55F /* RotateFadeOutParticle.m */; };
 		8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8392007918EE8E3300B6C429 /* GLKit.framework */; };
 		927F61A5196C771E000F43EF /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3517B978D7009739AE /* OpenAL.framework */; };
 		927F61A9196C771E000F43EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3D17B978D7009739AE /* Foundation.framework */; };
@@ -443,6 +451,10 @@
 		7EE870651AB66291004679E8 /* BGFog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGFog.m; sourceTree = "<group>"; };
 		7EE870671AB67082004679E8 /* Bird.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bird.h; sourceTree = "<group>"; };
 		7EE870681AB67082004679E8 /* Bird.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bird.m; sourceTree = "<group>"; };
+		7EF468A51ABF71E50041E55F /* Particle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Particle.h; sourceTree = "<group>"; };
+		7EF468A61ABF71E50041E55F /* Particle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Particle.m; sourceTree = "<group>"; };
+		7EF468A71ABF71E50041E55F /* RotateFadeOutParticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateFadeOutParticle.h; sourceTree = "<group>"; };
+		7EF468A81ABF71E50041E55F /* RotateFadeOutParticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotateFadeOutParticle.m; sourceTree = "<group>"; };
 		8392007918EE8E3300B6C429 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		927F61BF196C771E000F43EF /* hobobob Android.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hobobob Android.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B71F5907188484E7003F4D28 /* iPad-old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad-old.png"; path = "Icons/iPad-old.png"; sourceTree = "<group>"; };
@@ -788,6 +800,7 @@
 		7E3B0BC71A131E8E0057869B /* game */ = {
 			isa = PBXGroup;
 			children = (
+				7EF468A41ABF71E50041E55F /* particle */,
 				7E1460DE1ABA41A40044B31F /* monster */,
 				7E3B0BC81A131E8E0057869B /* core */,
 				7E3B0BD31A131E8E0057869B /* player */,
@@ -925,6 +938,17 @@
 			);
 			name = bg;
 			path = game/bg;
+			sourceTree = "<group>";
+		};
+		7EF468A41ABF71E50041E55F /* particle */ = {
+			isa = PBXGroup;
+			children = (
+				7EF468A51ABF71E50041E55F /* Particle.h */,
+				7EF468A61ABF71E50041E55F /* Particle.m */,
+				7EF468A71ABF71E50041E55F /* RotateFadeOutParticle.h */,
+				7EF468A81ABF71E50041E55F /* RotateFadeOutParticle.m */,
+			);
+			path = particle;
 			sourceTree = "<group>";
 		};
 		9222E2B918734FF800A246C7 /* libs */ = {
@@ -1373,6 +1397,7 @@
 				7E1461141ABBB8490044B31F /* Spirit_Fish_5.m in Sources */,
 				7E14611A1ABBB8540044B31F /* Spirit_Fish_6.m in Sources */,
 				7E535C241AB914FD00EF6B6E /* SHItem.m in Sources */,
+				7EF468AB1ABF71E50041E55F /* Particle.m in Sources */,
 				7E1460E41ABA41C50044B31F /* SpiritBase.m in Sources */,
 				7E90D18E1AB63DB700E06F92 /* BGSky.m in Sources */,
 				7E535C261AB914FD00EF6B6E /* SHItemRow.m in Sources */,
@@ -1385,6 +1410,7 @@
 				7E2675A31AB69453002EF2EC /* Bird.m in Sources */,
 				7E1461021ABBB81E0044B31F /* Spirit_Fish_2.m in Sources */,
 				7E90D1941AB63DD800E06F92 /* BGWater.m in Sources */,
+				7EF468AF1ABF71E50041E55F /* RotateFadeOutParticle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1412,6 +1438,8 @@
 				7E1460E51ABA41C50044B31F /* SpiritBase.m in Sources */,
 				7E535C281AB914FD00EF6B6E /* SHItem.m in Sources */,
 				7E1461031ABBB81E0044B31F /* Spirit_Fish_2.m in Sources */,
+				7EF468AC1ABF71E50041E55F /* Particle.m in Sources */,
+				7EF468B01ABF71E50041E55F /* RotateFadeOutParticle.m in Sources */,
 				7E1779531AB8152600E3986C /* SpriterData.m in Sources */,
 				7E1779781AB8C88B00E3986C /* SpriterNode.m in Sources */,
 			);
@@ -1430,9 +1458,11 @@
 				7E1461131ABBB8490044B31F /* Spirit_Fish_5.m in Sources */,
 				7E1461071ABBB82E0044B31F /* Spirit_Fish_3.m in Sources */,
 				7E1779511AB8152600E3986C /* SpriterData.m in Sources */,
+				7EF468AA1ABF71E50041E55F /* Particle.m in Sources */,
 				7E2675A11AB69451002EF2EC /* Bird.m in Sources */,
 				7E1461191ABBB8540044B31F /* Spirit_Fish_6.m in Sources */,
 				7E1461011ABBB81E0044B31F /* Spirit_Fish_2.m in Sources */,
+				7EF468AE1ABF71E50041E55F /* RotateFadeOutParticle.m in Sources */,
 				7E1460E91ABA48E50044B31F /* Spirit_Fish_1.m in Sources */,
 				7E535C2B1AB914FE00EF6B6E /* SHBackground.m in Sources */,
 				7E1779721AB8289A00E3986C /* SpriterTypes.m in Sources */,
@@ -1462,6 +1492,7 @@
 				7E1779761AB8C88B00E3986C /* SpriterNode.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
 				7E1461121ABBB8490044B31F /* Spirit_Fish_5.m in Sources */,
+				7EF468AD1ABF71E50041E55F /* RotateFadeOutParticle.m in Sources */,
 				7E1460E21ABA41C50044B31F /* SpiritBase.m in Sources */,
 				7E3B0C0A1A131E8E0057869B /* GameEngineScene.m in Sources */,
 				7E535C221AB914FC00EF6B6E /* SHItemRow.m in Sources */,
@@ -1472,6 +1503,7 @@
 				7E535C201AB914FC00EF6B6E /* SHItem.m in Sources */,
 				7E3B0C231A131E8E0057869B /* GEventDispatcher.m in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
+				7EF468A91ABF71E50041E55F /* Particle.m in Sources */,
 				7E17798D1AB9316500E3986C /* SpriterUtil.m in Sources */,
 				7E3B0C261A131E8E0057869B /* Resource.m in Sources */,
 				7E31E4BF1AB8BD13004DAC8E /* ShopScene.m in Sources */,

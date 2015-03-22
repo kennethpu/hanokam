@@ -152,4 +152,7 @@ CCLabelTTF* label_cons(CGPoint pos, ccColor3B color, int fontSize, NSString* str
 
 CGPoint bezier_point_for_t(CGPoint p0, CGPoint p1, CGPoint p2, CGPoint p3, float t);
 float cubic_interp(float a, float b, float c1, float c2, float t);
+
+float signum(float value);
+
 #endif

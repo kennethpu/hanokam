@@ -19,21 +19,23 @@
 	int _follow_pos;
 	BOOL _following;
 }
+
 @synthesize _vx,_vy,_aimDir,_wave;
 @synthesize _follow_pos;
 @synthesize _following;
 @synthesize _tossed;
+@synthesize _remove_me;
 
 -(SpiritBase*) cons_size:(float)size {
 	_following = NO;
 	_tossed = false;
+	_remove_me = false;
 	return self;
 }
 
 -(void)i_update_game:(GameEngineScene*)g{
 	[self basic_behaviors:g];
 }
-
 
 -(void)basic_behaviors:(GameEngineScene*)g {
 	float _x = self.position.x;
@@ -56,15 +58,15 @@
 			float _goto_y;
 			float _goto_x;
 			// UNDER WATER
-			if(g.touch_down){
+			if(g.touch_down && g._player_state != PlayerState_Return){
 				// FOLLOWING
-				_goto_y = g.player.position.y + _follow_pos * 20 + 40;
+				_goto_y = g.player.position.y + _follow_pos * 20 + 30;
 				_goto_x = g.player.position.x + sinf(_wave) * 20 + ((_follow_pos + 1) % 3 - 1) * 20;
 				_aimDir = [self angle_towards_x:_goto_x y:_goto_y];
 				
 				if(_y > _goto_y) {
 					_vx += (sinf(_aimDir) * 7 - _vx) * .1 * dt_scale_get();
-					_vy += (cosf(_aimDir) * 10 - _vy) * .1 * dt_scale_get();
+					_vy += (cosf(_aimDir) * 8 - _vy) * .1 * dt_scale_get();
 					
 					_x += (_goto_x - _x) * .01 * dt_scale_get();
 					_y += (_goto_y - _y) * .01 * dt_scale_get();
@@ -82,8 +84,8 @@
 				if(_y > _goto_y) {
 					// PLAYER STOPS
 					_vx += (sinf(_aimDir) * 10 - _vx) * .1 * dt_scale_get();
-					_vy += (-6 - _vx) * .07 * dt_scale_get();
-					_x += (_goto_x - _x) * .01 * dt_scale_get();
+					_vy += (- 4 - _vx) * .07 * dt_scale_get();
+					//_x += (_goto_x - _x) * .004 * dt_scale_get();
 				} else {
 					// SWIM UP
 					_aimDir = [self angle_towards_x:_goto_x y: _goto_y];
@@ -98,18 +100,18 @@
 			_vy = _vy - (_vy * .05 * dt_scale_get());
 			
 		} else {
-			//NSLog(@"tossed %b");
 			// IN AIR
 			if(_tossed == true) {
 				[self air_behavior:g];
-				_y += (g.get_camera_y - 80 - _y) * .2 * dt_scale_get();
+				_y += (g.get_camera_y - 80 - _y) * .03 * dt_scale_get();
 				_vx = 0;
 				_vy = 1;
 				// HIT PLAYER
 				if(g.player.position.x > _x - 15 && g.player.position.x < _x + 15) {
 					if(g.player.position.y < _y && g.player.position.y > _y - 40) {
+						[g shake_for:15 distance:7];
 						g.player._vy = 6;
-						_x = -100;
+						_remove_me = true;
 						[g.get_spirit_manager toss_spirit];
 					}
 				}
@@ -131,20 +133,17 @@
 }
 
 -(void) toss:(GameEngineScene*)g {
-	[self setPosition:ccp(float_random(0, game_screen().width), g.player.position.y - 400)];
+	[self setPosition:ccp(float_random(0, game_screen().width), g.player.position.y - 200)];
 	_vy = 20;
 	_tossed = true;
 }
 
--(void) water_behavior:(GameEngineScene*)g {
-}
+-(void) water_behavior:(GameEngineScene*)g {}
 
--(void) air_behavior:(GameEngineScene*)g {
-}
+-(void) air_behavior:(GameEngineScene*)g {}
 
 -(float)angle_towards_x:(float)x y:(float)y {
 	return atan2f(x - self.position.x, y - self.position.y);
 }
-
 
 @end

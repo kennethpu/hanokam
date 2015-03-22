@@ -453,3 +453,7 @@ float cubic_interp(float a, float b, float c1, float c2, float t) {
 	CGPoint bez = bezier_point_for_t(ccp(0,0), ccp(0.25,c1), ccp(0.75,c2), ccp(1,1), t);
 	return bez.y * (b-a) + a;
 }
+
+float signum(float value) {
+	return (value < 0) ? -1 : (value > 0) ? 1 : 0;
+}

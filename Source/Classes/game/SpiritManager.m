@@ -40,9 +40,20 @@
 
 -(void)i_update {
 	[self update_spawn];
+	
+	NSMutableArray *spirits_to_remove = [NSMutableArray array];
 	for (SpiritBase *itr in _spirits) {
 		[itr i_update_game:_game];
+		
+		if (itr._remove_me == true) {
+			[spirits_to_remove addObject:itr];
+			[itr removeFromParent];
+		}
 	}
+	
+	[_spirits removeObjectsInArray:spirits_to_remove];
+	[spirits_to_remove removeAllObjects];
+	
 }
 
 -(void)update_spawn {

@@ -64,25 +64,25 @@
 	_bldg_2.position = ccp(_bldg_2.position.x,clampf(((_viewBox.y1 + _viewBox.y2) / 2) * .2 - game.HORIZON_HEIGHT,-game.HORIZON_HEIGHT,0));
 }
 
--(void)i_update:(GameEngineScene*)game {
+-(void)i_update:(GameEngineScene*)g {
 	_tick += dt_scale_get();
 	
 	
 	[_sky_bg setTextureRect:CGRectMake(
 		0,
-		MAX(0, [game get_viewbox].y1),
+		MAX(0, [g get_viewbox].y1),
 		game_screen().width,
-		MAX(0, [game get_viewbox].y2+game_screen().height)
+		MAX(0, [g get_viewbox].y2 + game_screen().height)
 	)];
-	[self set_bgobj_positions:game];
+	[self set_bgobj_positions:g];
 
 	
 	// birds!
-	if(int_random(0, 50) == 0) [self spawnBird];
+	if(int_random(0, 40) == 0 && g.get_camera_y > 300) [self spawnBird_y:g.get_camera_y];
 	
 	NSMutableArray *birds_to_remove = [NSMutableArray array];
 	for (Bird *bird in _birds) {
-		[bird i_update:game];
+		[bird i_update:g];
 		if (bird.position.x > game_screen().width + 100) {
 			[birds_to_remove addObject:bird];
 			[bird removeFromParent];
@@ -92,11 +92,11 @@
 	[birds_to_remove removeAllObjects];
 }
 
--(Bird*)spawnBird {
+-(Bird*)spawnBird_y:(float)y {
 	Bird * _new_bird;
 	_new_bird = (Bird*)[[Bird cons] add_to:self z:3];
 	[_birds addObject:_new_bird];
-	_new_bird.position = ccp(-70, float_random(500,100));
+	_new_bird.position = ccp(-70, y + float_random(300,-300));
 	return _new_bird;
 }
 

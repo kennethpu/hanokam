@@ -41,7 +41,7 @@
     }
 	*/
 	_val = x;
-	NSLog(@"val %f", _val);
+	//NSLog(@"val %f", _val);
 }
 
 -(void)i_update:(GameEngineScene*)game {
@@ -54,7 +54,7 @@
 	*/
 	
 	float playerX = game.player.position.x;
-	playerX += ((160 + _val * 320) - playerX) * .1;
+	playerX += clampf(((160 + _val * 320) - playerX) * .1, - 7, 7) * dt_scale_get();
 	
 	game.player.position = ccp(playerX, game.player.position.y);
 	

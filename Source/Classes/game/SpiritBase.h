@@ -14,7 +14,7 @@
 
 @property(readwrite,assign) float _vx,_vy,_aimDir,_wave;
 @property(readwrite,assign) int _follow_pos;
-@property(readwrite,assign) BOOL _following, _tossed;
+@property(readwrite,assign) BOOL _following, _tossed, _remove_me;
 
 -(SpiritBase*) cons_size:(float)size;
 

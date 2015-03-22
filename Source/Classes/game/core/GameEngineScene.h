@@ -26,7 +26,8 @@ typedef enum _PlayerState {
 -(void)add_gameobject:(GameObject*)o;
 -(void)remove_gameobject:(GameObject*)o;
 -(void)set_target_camera:(CameraZoom)tar;
--(void)shake_for:(float)ct intensity:(float)intensity;
+-(void)shake_for:(float)ct distance:(float)distance;
+-(void)shake_slow_for:(float)ct distance:(float)distance;
 -(void)freeze_frame:(int)ct;
 
 -(float) tick;
