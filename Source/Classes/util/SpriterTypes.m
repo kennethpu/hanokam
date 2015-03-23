@@ -68,12 +68,16 @@
     return self;
 }
 -(int)indexOfKeyForTime:(float)val {
-	int i = 0;
-	for (; i < keys_.count-1; i++) {
-		TGSpriterTimelineKey *keyframe = keys_[i+1];
-		if (keyframe.startsAt >= val) break;
+	int rtv = 0;
+	for (int i = 0; i < keys_.count; i++) {
+		TGSpriterTimelineKey *keyframe = keys_[i];
+		if (keyframe.startsAt >= val) {
+			break;
+		} else {
+			rtv = i;
+		}
 	}
-	return i;
+	return rtv;
 }
 -(TGSpriterTimelineKey*)keyForTime:(float)val {
 	return keys_[[self indexOfKeyForTime:val]];

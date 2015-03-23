@@ -83,7 +83,13 @@
 		TGSpriterTimeline *timeline = [[_data anim_of_name:_current_anim_name] timeline_key_of_id:itr_bone._timeline_id];
 		TGSpriterTimelineKey *keyframe_current = [timeline keyForTime:_current_anim_time];
 		TGSpriterTimelineKey *keyframe_next = [timeline nextKeyForTime:_current_anim_time];
-		float t = clampf((_current_anim_time-keyframe_current.startsAt)/(keyframe_next.startsAt-keyframe_current.startsAt),0,1);
+		float t;
+		if (keyframe_current.startsAt > keyframe_next.startsAt) {
+			t = clampf((_current_anim_time-keyframe_current.startsAt)/(_anim_duration-keyframe_current.startsAt)  + keyframe_next.startsAt, 0, 1);
+		} else {
+			t = clampf((_current_anim_time-keyframe_current.startsAt)/(keyframe_next.startsAt-keyframe_current.startsAt),0,1);
+		}
+		
 		[self interpolate:itr_bone from:keyframe_current to:keyframe_next t:t cp1:ccp(0.25,0) cp2:ccp(0.75, 1)];
 	}
 	for (NSNumber *itr in _objs) {

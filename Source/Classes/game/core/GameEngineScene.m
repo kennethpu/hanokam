@@ -178,6 +178,7 @@
 }
 
 -(void)add_ripple:(CGPoint)pos {
+	if ([_ripples count] > 20) return;
 	[_ripples addObject:[[RippleInfo alloc] initWithPosition:pos game:self]];
 }
 
@@ -227,8 +228,11 @@
 	
 	_tick += dt_scale_get();
 	
-	[self render_ripple_texture];
-	[self render_reflection_texture];
+	if ([self get_viewbox].y1 < self.HORIZON_HEIGHT && [self get_viewbox].y2 > -self.REFLECTION_HEIGHT) {
+		[self render_ripple_texture];
+		[self render_reflection_texture];
+	}
+	
 	[_accel i_update:self];
 	[_player update_game:self];
 	[self update_particles];
@@ -275,7 +279,6 @@
 	for (BGElement *itr in _bg_elements) {
 		[itr i_update:self];
 	}
-	
 	[_spirit_manager i_update];
 	
 	// shake it baby
