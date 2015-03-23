@@ -28,5 +28,8 @@
 
 #define TEX_ARROW @"arrow"
 #define TEX_RIPPLE @"ripple"
+#define TEX_BG_SPRITESHEET_1 @"bg_spritesheet_1"
+
+#define TEX_KELP_SPRITESHEET @"kelp_spritesheet"
 
 @end

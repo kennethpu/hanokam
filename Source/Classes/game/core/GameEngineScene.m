@@ -332,6 +332,10 @@
     [_particles removeObjectsInArray:toremove];
 }
 
+-(float)get_ground_depth {
+	return -400;
+}
+
 -(void)center_camera_hei:(float)hei {
 	CGPoint pt = ccp(game_screen().width / 2, hei);
 	_camera_center_point = pt;
@@ -358,11 +362,6 @@
 	_touch_position = [touch locationInWorld];
 }
 
--(BOOL)fullScreenTouch { return YES; }
-
--(void)add_gameobject:(GameObject*)o{}
--(void)remove_gameobject:(GameObject*)o{}
--(void)set_target_camera:(CameraZoom)tar{}
 -(void)shake_for:(float)ct distance:(float)distance{
 	_shake_rumble_time = _shake_rumble_total_time = ct;
 	_shake_rumble_distance = distance;
@@ -376,6 +375,7 @@
 -(void)freeze_frame:(int)ct{}
 -(HitRect)get_viewbox{ return hitrect_cons_xy_widhei(_camera_center_point.x-game_screen().width/2,_camera_center_point.y-game_screen().height/2,game_screen().width,game_screen().height); }
 -(CCNode*)get_anchor { return _game_anchor; }
+-(BOOL)fullScreenTouch { return YES; }
 @end
 
 @implementation BGElement

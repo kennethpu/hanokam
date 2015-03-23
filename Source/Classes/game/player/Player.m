@@ -174,28 +174,11 @@
 	_x_vel = _x - _x_prev;
 	_x_prev = _x;
 	
-	NSMutableArray *arrows_to_remove = [NSMutableArray array];
-	for (Arrow *arrow in _arrows) {
-		[arrow i_update:g];
-		if (arrow.position.x > game_screen().width + 100 || arrow.position.x <  -100) {
-			[arrows_to_remove addObject:arrow];
-			[arrow removeFromParent];
-		}
-	}
-	[_arrows removeObjectsInArray:arrows_to_remove];
-	[arrows_to_remove removeAllObjects];
-	
-	if(g.touch_down) {
-		_reload -= dt_scale_get();
-		if(_reload < 0) {
-			_reload += 10;
-			[self shoot_arrow:g];
-		}
-		
-	}
-	
 	[self setRotation:_rotation * 57.2957795];
-	[self setPosition:ccp(clampf(_x, 0, game_screen().width),_y)];
+	
+	_x = clampf(_x, 0, game_screen().width);
+	_y = clampf(_y, g.get_ground_depth, INFINITY);
+	[self setPosition:ccp(_x,_y)];
 }
 
 -(Arrow*)shoot_arrow:(GameEngineScene*)g {

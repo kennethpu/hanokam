@@ -411,10 +411,10 @@ NSString* platform() {
 }
 
 void scale_to_fit_screen_x(CCSprite *spr) {
-	[spr setScaleX:game_screen().width/spr.texture.contentSize.width];
+	[spr setScaleX:game_screen().width/spr.textureRect.size.width];
 }
 void scale_to_fit_screen_y(CCSprite *spr) {
-	[spr setScaleY:game_screen().height/spr.texture.contentSize.height];
+	[spr setScaleY:game_screen().height/spr.textureRect.size.height];
 }
 
 #define KEY_UUID @"key_uuid"

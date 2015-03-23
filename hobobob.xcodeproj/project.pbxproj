@@ -95,7 +95,6 @@
 		7E17798D1AB9316500E3986C /* SpriterUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E17798C1AB9316500E3986C /* SpriterUtil.m */; };
 		7E1B806E1A189C330055E654 /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1B806D1A189C330055E654 /* MainMenuScene.m */; };
 		7E1B80711A189F450055E654 /* TouchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1B80701A189F450055E654 /* TouchButton.m */; };
-		7E1B80741A18B5FB0055E654 /* CCNode+SFGestureRecognizers.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1B80731A18B5FB0055E654 /* CCNode+SFGestureRecognizers.m */; };
 		7E26759F1AB69451002EF2EC /* Bird.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE870681AB67082004679E8 /* Bird.m */; };
 		7E2675A11AB69451002EF2EC /* Bird.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE870681AB67082004679E8 /* Bird.m */; };
 		7E2675A21AB69452002EF2EC /* Bird.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE870681AB67082004679E8 /* Bird.m */; };
@@ -198,6 +197,12 @@
 		7EA7AE6B1ABFB931001C9EFE /* bg_spritesheet_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EA7AE671ABFB931001C9EFE /* bg_spritesheet_1.png */; };
 		7EA7AE6C1ABFB931001C9EFE /* bg_spritesheet_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EA7AE671ABFB931001C9EFE /* bg_spritesheet_1.png */; };
 		7EA7AE6D1ABFB931001C9EFE /* bg_spritesheet_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EA7AE671ABFB931001C9EFE /* bg_spritesheet_1.png */; };
+		7EA7AE7D1ABFCC22001C9EFE /* kelp_spritesheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EA7AE7B1ABFCC22001C9EFE /* kelp_spritesheet.plist */; };
+		7EA7AE7E1ABFCC22001C9EFE /* kelp_spritesheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EA7AE7B1ABFCC22001C9EFE /* kelp_spritesheet.plist */; };
+		7EA7AE7F1ABFCC22001C9EFE /* kelp_spritesheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EA7AE7B1ABFCC22001C9EFE /* kelp_spritesheet.plist */; };
+		7EA7AE801ABFCC22001C9EFE /* kelp_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EA7AE7C1ABFCC22001C9EFE /* kelp_spritesheet.png */; };
+		7EA7AE811ABFCC22001C9EFE /* kelp_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EA7AE7C1ABFCC22001C9EFE /* kelp_spritesheet.png */; };
+		7EA7AE821ABFCC22001C9EFE /* kelp_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EA7AE7C1ABFCC22001C9EFE /* kelp_spritesheet.png */; };
 		7EADAC611AB655D7004902A9 /* bg_test_bldg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EADAC5C1AB655D7004902A9 /* bg_test_bldg1.png */; };
 		7EADAC621AB655D7004902A9 /* bg_test_bldg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EADAC5C1AB655D7004902A9 /* bg_test_bldg1.png */; };
 		7EADAC631AB655D7004902A9 /* bg_test_bldg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EADAC5C1AB655D7004902A9 /* bg_test_bldg1.png */; };
@@ -417,8 +422,6 @@
 		7E1B806D1A189C330055E654 /* MainMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuScene.m; sourceTree = "<group>"; };
 		7E1B806F1A189F450055E654 /* TouchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchButton.h; sourceTree = "<group>"; };
 		7E1B80701A189F450055E654 /* TouchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchButton.m; sourceTree = "<group>"; };
-		7E1B80721A18B5FB0055E654 /* CCNode+SFGestureRecognizers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNode+SFGestureRecognizers.h"; sourceTree = "<group>"; };
-		7E1B80731A18B5FB0055E654 /* CCNode+SFGestureRecognizers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNode+SFGestureRecognizers.m"; sourceTree = "<group>"; };
 		7E31E4BD1AB8BD13004DAC8E /* ShopScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopScene.h; sourceTree = "<group>"; };
 		7E31E4BE1AB8BD13004DAC8E /* ShopScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopScene.m; sourceTree = "<group>"; };
 		7E31E4C21AB8C341004DAC8E /* SHBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHBackground.h; sourceTree = "<group>"; };
@@ -480,6 +483,8 @@
 		7EA7AE5C1ABFB85D001C9EFE /* sh_test_item.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sh_test_item.png; sourceTree = "<group>"; };
 		7EA7AE661ABFB931001C9EFE /* bg_spritesheet_1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bg_spritesheet_1.plist; sourceTree = "<group>"; };
 		7EA7AE671ABFB931001C9EFE /* bg_spritesheet_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_spritesheet_1.png; sourceTree = "<group>"; };
+		7EA7AE7B1ABFCC22001C9EFE /* kelp_spritesheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = kelp_spritesheet.plist; sourceTree = "<group>"; };
+		7EA7AE7C1ABFCC22001C9EFE /* kelp_spritesheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kelp_spritesheet.png; sourceTree = "<group>"; };
 		7EADAC5C1AB655D7004902A9 /* bg_test_bldg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_test_bldg1.png; sourceTree = "<group>"; };
 		7EADAC5D1AB655D7004902A9 /* bg_test_bldg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_test_bldg2.png; sourceTree = "<group>"; };
 		7EADAC5E1AB655D7004902A9 /* bg_test_fog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_test_fog.png; sourceTree = "<group>"; };
@@ -878,8 +883,6 @@
 				7E3B0C071A131E8E0057869B /* Vec3D.m */,
 				7E3B0C081A131E8E0057869B /* WebRequest.h */,
 				7E3B0C091A131E8E0057869B /* WebRequest.m */,
-				7E1B80721A18B5FB0055E654 /* CCNode+SFGestureRecognizers.h */,
-				7E1B80731A18B5FB0055E654 /* CCNode+SFGestureRecognizers.m */,
 				7EADAC771AB67506004902A9 /* AccelerometerSimulation.h */,
 				7EADAC781AB67506004902A9 /* AccelerometerSimulation.m */,
 				7EADAC7B1AB67B6E004902A9 /* AccelerometerManager.h */,
@@ -929,6 +932,8 @@
 		7E3B0C4F1A134D3D0057869B /* background */ = {
 			isa = PBXGroup;
 			children = (
+				7EA7AE7B1ABFCC22001C9EFE /* kelp_spritesheet.plist */,
+				7EA7AE7C1ABFCC22001C9EFE /* kelp_spritesheet.png */,
 				7EA7AE661ABFB931001C9EFE /* bg_spritesheet_1.plist */,
 				7EA7AE671ABFB931001C9EFE /* bg_spritesheet_1.png */,
 				7EADAC5C1AB655D7004902A9 /* bg_test_bldg1.png */,
@@ -1313,6 +1318,7 @@
 				7EA7AE6D1ABFB931001C9EFE /* bg_spritesheet_1.png in Resources */,
 				7EA7AE501ABFB844001C9EFE /* blank.png in Resources */,
 				7A4036F919DE401F007B6E8F /* iPad.png in Resources */,
+				7EA7AE7F1ABFCC22001C9EFE /* kelp_spritesheet.plist in Resources */,
 				7EA7AE441ABFB7FC001C9EFE /* alpha_gradient_mask.vsh in Resources */,
 				7A4036FA19DE401F007B6E8F /* iPad@2x.png in Resources */,
 				7EA7AE621ABFB85D001C9EFE /* sh_button_side.png in Resources */,
@@ -1338,6 +1344,7 @@
 				7EA7AE361ABFB7D8001C9EFE /* hanoka v0.01.png in Resources */,
 				7EA7AE391ABFB7D8001C9EFE /* hanoka v0.01.scml in Resources */,
 				7EA7AE331ABFB7D8001C9EFE /* hanoka v0.01.json in Resources */,
+				7EA7AE821ABFCC22001C9EFE /* kelp_spritesheet.png in Resources */,
 				7EA7AE411ABFB7FC001C9EFE /* alpha_gradient_mask.fsh in Resources */,
 				7A40370119DE401F007B6E8F /* Default-568h@2x.png in Resources */,
 				7E4DB51A1ABFBCA700FCDB20 /* spirit_fish_3.png in Resources */,
@@ -1378,6 +1385,7 @@
 				7EA7AE6C1ABFB931001C9EFE /* bg_spritesheet_1.png in Resources */,
 				7EA7AE4F1ABFB844001C9EFE /* blank.png in Resources */,
 				7EF468E61ABFBB4B0041E55F /* particle_blood_1.png in Resources */,
+				7EA7AE811ABFCC22001C9EFE /* kelp_spritesheet.png in Resources */,
 				927F61B4196C771E000F43EF /* Settings@2x.png in Resources */,
 				927F61B5196C771E000F43EF /* Default-Landscape~ipad.png in Resources */,
 				B78A0B10198AF87200C63841 /* Published-Android in Resources */,
@@ -1389,6 +1397,7 @@
 				7EA7AE571ABFB851001C9EFE /* spirit_fish_1.png in Resources */,
 				927F61B9196C771E000F43EF /* iPhone@2x.png in Resources */,
 				7EA7AE351ABFB7D8001C9EFE /* hanoka v0.01.png in Resources */,
+				7EA7AE7E1ABFCC22001C9EFE /* kelp_spritesheet.plist in Resources */,
 				7EA7AE381ABFB7D8001C9EFE /* hanoka v0.01.scml in Resources */,
 				7EA7AE431ABFB7FC001C9EFE /* alpha_gradient_mask.vsh in Resources */,
 				927F61BA196C771E000F43EF /* Default.png in Resources */,
@@ -1407,6 +1416,7 @@
 				7EA7AE421ABFB7FC001C9EFE /* alpha_gradient_mask.vsh in Resources */,
 				7EA7AE631ABFB85D001C9EFE /* sh_test_item.png in Resources */,
 				7EA7AE601ABFB85D001C9EFE /* sh_button_side.png in Resources */,
+				7EA7AE7D1ABFCC22001C9EFE /* kelp_spritesheet.plist in Resources */,
 				7EADAC6D1AB655D8004902A9 /* bg_test_obj_cloud.png in Resources */,
 				7EF468E51ABFBB4B0041E55F /* particle_blood_1.png in Resources */,
 				B71F5919188484E7003F4D28 /* Settings.png in Resources */,
@@ -1434,6 +1444,7 @@
 				7EA7AE341ABFB7D8001C9EFE /* hanoka v0.01.png in Resources */,
 				7EA7AE481ABFB7FC001C9EFE /* ripple_effect.vsh in Resources */,
 				7EADAC611AB655D7004902A9 /* bg_test_bldg1.png in Resources */,
+				7EA7AE801ABFCC22001C9EFE /* kelp_spritesheet.png in Resources */,
 				7EA7AE371ABFB7D8001C9EFE /* hanoka v0.01.scml in Resources */,
 				7EA7AE561ABFB851001C9EFE /* spirit_fish_1.png in Resources */,
 				7EA7AE451ABFB7FC001C9EFE /* ripple_effect.fsh in Resources */,
@@ -1599,7 +1610,6 @@
 				7E3B0C271A131E8E0057869B /* Vec3D.m in Sources */,
 				7E3B0C0B1A131E8E0057869B /* GameObject.m in Sources */,
 				7E1779501AB8152600E3986C /* SpriterData.m in Sources */,
-				7E1B80741A18B5FB0055E654 /* CCNode+SFGestureRecognizers.m in Sources */,
 				7E1B80711A189F450055E654 /* TouchButton.m in Sources */,
 				7EF468B81ABF78870041E55F /* ParticlePhysical.m in Sources */,
 				7E1460E81ABA48E50044B31F /* Spirit_Fish_1.m in Sources */,
