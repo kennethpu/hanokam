@@ -44,38 +44,6 @@
 		7A97910819E62F84001FFC4D /* libcocos2dAndroid.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A97910019E62E40001FFC4D /* libcocos2dAndroid.a */; };
 		7A97911719E631C6001FFC4D /* libcocos2d-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A97910419E62E40001FFC4D /* libcocos2d-mac.a */; };
 		7A97911819E631CD001FFC4D /* libcocos2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A9790FE19E62E40001FFC4D /* libcocos2d.a */; };
-		7E1460E21ABA41C50044B31F /* SpiritBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1460E11ABA41C50044B31F /* SpiritBase.m */; };
-		7E1460E31ABA41C50044B31F /* SpiritBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1460E11ABA41C50044B31F /* SpiritBase.m */; };
-		7E1460E41ABA41C50044B31F /* SpiritBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1460E11ABA41C50044B31F /* SpiritBase.m */; };
-		7E1460E51ABA41C50044B31F /* SpiritBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1460E11ABA41C50044B31F /* SpiritBase.m */; };
-		7E1460E81ABA48E50044B31F /* Spirit_Fish_1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1460E71ABA48E50044B31F /* Spirit_Fish_1.m */; };
-		7E1460E91ABA48E50044B31F /* Spirit_Fish_1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1460E71ABA48E50044B31F /* Spirit_Fish_1.m */; };
-		7E1460EA1ABA48E50044B31F /* Spirit_Fish_1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1460E71ABA48E50044B31F /* Spirit_Fish_1.m */; };
-		7E1460EB1ABA48E50044B31F /* Spirit_Fish_1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1460E71ABA48E50044B31F /* Spirit_Fish_1.m */; };
-		7E1460F31ABA6A1A0044B31F /* SpiritManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1460F21ABA6A1A0044B31F /* SpiritManager.m */; };
-		7E1460F41ABA6A1A0044B31F /* SpiritManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1460F21ABA6A1A0044B31F /* SpiritManager.m */; };
-		7E1460F51ABA6A1A0044B31F /* SpiritManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1460F21ABA6A1A0044B31F /* SpiritManager.m */; };
-		7E1460F61ABA6A1A0044B31F /* SpiritManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1460F21ABA6A1A0044B31F /* SpiritManager.m */; };
-		7E1461001ABBB81E0044B31F /* Spirit_Fish_2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1460FF1ABBB81E0044B31F /* Spirit_Fish_2.m */; };
-		7E1461011ABBB81E0044B31F /* Spirit_Fish_2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1460FF1ABBB81E0044B31F /* Spirit_Fish_2.m */; };
-		7E1461021ABBB81E0044B31F /* Spirit_Fish_2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1460FF1ABBB81E0044B31F /* Spirit_Fish_2.m */; };
-		7E1461031ABBB81E0044B31F /* Spirit_Fish_2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1460FF1ABBB81E0044B31F /* Spirit_Fish_2.m */; };
-		7E1461061ABBB82E0044B31F /* Spirit_Fish_3.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1461051ABBB82E0044B31F /* Spirit_Fish_3.m */; };
-		7E1461071ABBB82E0044B31F /* Spirit_Fish_3.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1461051ABBB82E0044B31F /* Spirit_Fish_3.m */; };
-		7E1461081ABBB82E0044B31F /* Spirit_Fish_3.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1461051ABBB82E0044B31F /* Spirit_Fish_3.m */; };
-		7E1461091ABBB82E0044B31F /* Spirit_Fish_3.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1461051ABBB82E0044B31F /* Spirit_Fish_3.m */; };
-		7E14610C1ABBB83C0044B31F /* Spirit_Fish_4.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E14610B1ABBB83C0044B31F /* Spirit_Fish_4.m */; };
-		7E14610D1ABBB83C0044B31F /* Spirit_Fish_4.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E14610B1ABBB83C0044B31F /* Spirit_Fish_4.m */; };
-		7E14610E1ABBB83C0044B31F /* Spirit_Fish_4.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E14610B1ABBB83C0044B31F /* Spirit_Fish_4.m */; };
-		7E14610F1ABBB83C0044B31F /* Spirit_Fish_4.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E14610B1ABBB83C0044B31F /* Spirit_Fish_4.m */; };
-		7E1461121ABBB8490044B31F /* Spirit_Fish_5.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1461111ABBB8490044B31F /* Spirit_Fish_5.m */; };
-		7E1461131ABBB8490044B31F /* Spirit_Fish_5.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1461111ABBB8490044B31F /* Spirit_Fish_5.m */; };
-		7E1461141ABBB8490044B31F /* Spirit_Fish_5.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1461111ABBB8490044B31F /* Spirit_Fish_5.m */; };
-		7E1461151ABBB8490044B31F /* Spirit_Fish_5.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1461111ABBB8490044B31F /* Spirit_Fish_5.m */; };
-		7E1461181ABBB8540044B31F /* Spirit_Fish_6.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1461171ABBB8540044B31F /* Spirit_Fish_6.m */; };
-		7E1461191ABBB8540044B31F /* Spirit_Fish_6.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1461171ABBB8540044B31F /* Spirit_Fish_6.m */; };
-		7E14611A1ABBB8540044B31F /* Spirit_Fish_6.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1461171ABBB8540044B31F /* Spirit_Fish_6.m */; };
-		7E14611B1ABBB8540044B31F /* Spirit_Fish_6.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1461171ABBB8540044B31F /* Spirit_Fish_6.m */; };
 		7E1779501AB8152600E3986C /* SpriterData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E17794F1AB8152600E3986C /* SpriterData.m */; };
 		7E1779511AB8152600E3986C /* SpriterData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E17794F1AB8152600E3986C /* SpriterData.m */; };
 		7E1779521AB8152600E3986C /* SpriterData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E17794F1AB8152600E3986C /* SpriterData.m */; };
@@ -119,22 +87,6 @@
 		7E4DB51E1ABFBCE200FCDB20 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4DB51D1ABFBCE200FCDB20 /* arrow.png */; };
 		7E4DB51F1ABFBCE200FCDB20 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4DB51D1ABFBCE200FCDB20 /* arrow.png */; };
 		7E4DB5201ABFBCE200FCDB20 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4DB51D1ABFBCE200FCDB20 /* arrow.png */; };
-		7E535C1F1AB914FC00EF6B6E /* SHBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4C31AB8C341004DAC8E /* SHBackground.m */; };
-		7E535C201AB914FC00EF6B6E /* SHItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4C61AB8C356004DAC8E /* SHItem.m */; };
-		7E535C211AB914FC00EF6B6E /* SHButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4C91AB8C38C004DAC8E /* SHButton.m */; };
-		7E535C221AB914FC00EF6B6E /* SHItemRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4D41AB8FA10004DAC8E /* SHItemRow.m */; };
-		7E535C231AB914FD00EF6B6E /* SHBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4C31AB8C341004DAC8E /* SHBackground.m */; };
-		7E535C241AB914FD00EF6B6E /* SHItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4C61AB8C356004DAC8E /* SHItem.m */; };
-		7E535C251AB914FD00EF6B6E /* SHButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4C91AB8C38C004DAC8E /* SHButton.m */; };
-		7E535C261AB914FD00EF6B6E /* SHItemRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4D41AB8FA10004DAC8E /* SHItemRow.m */; };
-		7E535C271AB914FD00EF6B6E /* SHBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4C31AB8C341004DAC8E /* SHBackground.m */; };
-		7E535C281AB914FD00EF6B6E /* SHItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4C61AB8C356004DAC8E /* SHItem.m */; };
-		7E535C291AB914FD00EF6B6E /* SHButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4C91AB8C38C004DAC8E /* SHButton.m */; };
-		7E535C2A1AB914FD00EF6B6E /* SHItemRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4D41AB8FA10004DAC8E /* SHItemRow.m */; };
-		7E535C2B1AB914FE00EF6B6E /* SHBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4C31AB8C341004DAC8E /* SHBackground.m */; };
-		7E535C2C1AB914FE00EF6B6E /* SHItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4C61AB8C356004DAC8E /* SHItem.m */; };
-		7E535C2D1AB914FE00EF6B6E /* SHButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4C91AB8C38C004DAC8E /* SHButton.m */; };
-		7E535C2E1AB914FE00EF6B6E /* SHItemRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E31E4D41AB8FA10004DAC8E /* SHItemRow.m */; };
 		7E90D1781AB635A200E06F92 /* bg_test_tile_sky.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E90D1761AB635A200E06F92 /* bg_test_tile_sky.png */; };
 		7E90D1791AB635A200E06F92 /* bg_test_tile_sky.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E90D1761AB635A200E06F92 /* bg_test_tile_sky.png */; };
 		7E90D17A1AB635A200E06F92 /* bg_test_tile_sky.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E90D1761AB635A200E06F92 /* bg_test_tile_sky.png */; };
@@ -203,6 +155,45 @@
 		7EA7AE801ABFCC22001C9EFE /* kelp_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EA7AE7C1ABFCC22001C9EFE /* kelp_spritesheet.png */; };
 		7EA7AE811ABFCC22001C9EFE /* kelp_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EA7AE7C1ABFCC22001C9EFE /* kelp_spritesheet.png */; };
 		7EA7AE821ABFCC22001C9EFE /* kelp_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EA7AE7C1ABFCC22001C9EFE /* kelp_spritesheet.png */; };
+		7EA7AE8C1ABFDCD6001C9EFE /* SHBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE851ABFDCD6001C9EFE /* SHBackground.m */; };
+		7EA7AE8D1ABFDCD6001C9EFE /* SHBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE851ABFDCD6001C9EFE /* SHBackground.m */; };
+		7EA7AE8E1ABFDCD6001C9EFE /* SHBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE851ABFDCD6001C9EFE /* SHBackground.m */; };
+		7EA7AE8F1ABFDCD6001C9EFE /* SHButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE871ABFDCD6001C9EFE /* SHButton.m */; };
+		7EA7AE901ABFDCD6001C9EFE /* SHButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE871ABFDCD6001C9EFE /* SHButton.m */; };
+		7EA7AE911ABFDCD6001C9EFE /* SHButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE871ABFDCD6001C9EFE /* SHButton.m */; };
+		7EA7AE921ABFDCD6001C9EFE /* SHItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE891ABFDCD6001C9EFE /* SHItem.m */; };
+		7EA7AE931ABFDCD6001C9EFE /* SHItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE891ABFDCD6001C9EFE /* SHItem.m */; };
+		7EA7AE941ABFDCD6001C9EFE /* SHItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE891ABFDCD6001C9EFE /* SHItem.m */; };
+		7EA7AE951ABFDCD6001C9EFE /* SHItemRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE8B1ABFDCD6001C9EFE /* SHItemRow.m */; };
+		7EA7AE961ABFDCD6001C9EFE /* SHItemRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE8B1ABFDCD6001C9EFE /* SHItemRow.m */; };
+		7EA7AE971ABFDCD6001C9EFE /* SHItemRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE8B1ABFDCD6001C9EFE /* SHItemRow.m */; };
+		7EA7AEA81ABFDD06001C9EFE /* Spirit_Fish_1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE991ABFDD06001C9EFE /* Spirit_Fish_1.m */; };
+		7EA7AEA91ABFDD06001C9EFE /* Spirit_Fish_1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE991ABFDD06001C9EFE /* Spirit_Fish_1.m */; };
+		7EA7AEAA1ABFDD06001C9EFE /* Spirit_Fish_1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE991ABFDD06001C9EFE /* Spirit_Fish_1.m */; };
+		7EA7AEAB1ABFDD06001C9EFE /* Spirit_Fish_2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE9B1ABFDD06001C9EFE /* Spirit_Fish_2.m */; };
+		7EA7AEAC1ABFDD06001C9EFE /* Spirit_Fish_2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE9B1ABFDD06001C9EFE /* Spirit_Fish_2.m */; };
+		7EA7AEAD1ABFDD06001C9EFE /* Spirit_Fish_2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE9B1ABFDD06001C9EFE /* Spirit_Fish_2.m */; };
+		7EA7AEAE1ABFDD06001C9EFE /* Spirit_Fish_3.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE9D1ABFDD06001C9EFE /* Spirit_Fish_3.m */; };
+		7EA7AEAF1ABFDD06001C9EFE /* Spirit_Fish_3.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE9D1ABFDD06001C9EFE /* Spirit_Fish_3.m */; };
+		7EA7AEB01ABFDD06001C9EFE /* Spirit_Fish_3.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE9D1ABFDD06001C9EFE /* Spirit_Fish_3.m */; };
+		7EA7AEB11ABFDD06001C9EFE /* Spirit_Fish_4.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE9F1ABFDD06001C9EFE /* Spirit_Fish_4.m */; };
+		7EA7AEB21ABFDD06001C9EFE /* Spirit_Fish_4.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE9F1ABFDD06001C9EFE /* Spirit_Fish_4.m */; };
+		7EA7AEB31ABFDD06001C9EFE /* Spirit_Fish_4.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE9F1ABFDD06001C9EFE /* Spirit_Fish_4.m */; };
+		7EA7AEB41ABFDD06001C9EFE /* Spirit_Fish_5.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEA11ABFDD06001C9EFE /* Spirit_Fish_5.m */; };
+		7EA7AEB51ABFDD06001C9EFE /* Spirit_Fish_5.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEA11ABFDD06001C9EFE /* Spirit_Fish_5.m */; };
+		7EA7AEB61ABFDD06001C9EFE /* Spirit_Fish_5.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEA11ABFDD06001C9EFE /* Spirit_Fish_5.m */; };
+		7EA7AEB71ABFDD06001C9EFE /* Spirit_Fish_6.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEA31ABFDD06001C9EFE /* Spirit_Fish_6.m */; };
+		7EA7AEB81ABFDD06001C9EFE /* Spirit_Fish_6.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEA31ABFDD06001C9EFE /* Spirit_Fish_6.m */; };
+		7EA7AEB91ABFDD06001C9EFE /* Spirit_Fish_6.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEA31ABFDD06001C9EFE /* Spirit_Fish_6.m */; };
+		7EA7AEBA1ABFDD06001C9EFE /* SpiritBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEA51ABFDD06001C9EFE /* SpiritBase.m */; };
+		7EA7AEBB1ABFDD06001C9EFE /* SpiritBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEA51ABFDD06001C9EFE /* SpiritBase.m */; };
+		7EA7AEBC1ABFDD06001C9EFE /* SpiritBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEA51ABFDD06001C9EFE /* SpiritBase.m */; };
+		7EA7AEBD1ABFDD06001C9EFE /* SpiritManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEA71ABFDD06001C9EFE /* SpiritManager.m */; };
+		7EA7AEBE1ABFDD06001C9EFE /* SpiritManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEA71ABFDD06001C9EFE /* SpiritManager.m */; };
+		7EA7AEBF1ABFDD06001C9EFE /* SpiritManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEA71ABFDD06001C9EFE /* SpiritManager.m */; };
+		7EA7AEC21ABFDDFD001C9EFE /* Arrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEC11ABFDDFD001C9EFE /* Arrow.m */; };
+		7EA7AEC31ABFDDFD001C9EFE /* Arrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEC11ABFDDFD001C9EFE /* Arrow.m */; };
+		7EA7AEC41ABFDDFD001C9EFE /* Arrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEC11ABFDDFD001C9EFE /* Arrow.m */; };
 		7EADAC611AB655D7004902A9 /* bg_test_bldg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EADAC5C1AB655D7004902A9 /* bg_test_bldg1.png */; };
 		7EADAC621AB655D7004902A9 /* bg_test_bldg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EADAC5C1AB655D7004902A9 /* bg_test_bldg1.png */; };
 		7EADAC631AB655D7004902A9 /* bg_test_bldg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EADAC5C1AB655D7004902A9 /* bg_test_bldg1.png */; };
@@ -236,9 +227,6 @@
 		7EF468BA1ABF78870041E55F /* ParticlePhysical.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF468B71ABF78870041E55F /* ParticlePhysical.m */; };
 		7EF468BB1ABF78870041E55F /* ParticlePhysical.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF468B71ABF78870041E55F /* ParticlePhysical.m */; };
 		7EF468CD1ABFB4300041E55F /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EF468CB1ABFB4300041E55F /* arrow.png */; };
-		7EF468D21ABFB4BE0041E55F /* Arrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF468D11ABFB4BE0041E55F /* Arrow.m */; };
-		7EF468D31ABFB4BE0041E55F /* Arrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF468D11ABFB4BE0041E55F /* Arrow.m */; };
-		7EF468D41ABFB4BE0041E55F /* Arrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF468D11ABFB4BE0041E55F /* Arrow.m */; };
 		7EF468DD1ABFBB400041E55F /* spirit_fish_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EF468DB1ABFBB400041E55F /* spirit_fish_2.png */; };
 		7EF468DE1ABFBB400041E55F /* spirit_fish_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EF468DB1ABFBB400041E55F /* spirit_fish_2.png */; };
 		7EF468DF1ABFBB400041E55F /* spirit_fish_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EF468DB1ABFBB400041E55F /* spirit_fish_2.png */; };
@@ -390,22 +378,6 @@
 		7A59498A19E38E4A00F65F90 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = Platforms/Mac/MainMenu.xib; sourceTree = "<group>"; };
 		7AFCD5DB19E9BD9F00BCCCDA /* cocos2d.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cocos2d.h; path = "Source/libs/cocos2d-iphone/cocos2d/cocos2d.h"; sourceTree = "<group>"; };
 		7AFCD5DD19E9BDC200BCCCDA /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "Source/Bridging-Header.h"; sourceTree = "<group>"; };
-		7E1460E01ABA41C50044B31F /* SpiritBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpiritBase.h; sourceTree = "<group>"; };
-		7E1460E11ABA41C50044B31F /* SpiritBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpiritBase.m; sourceTree = "<group>"; };
-		7E1460E61ABA48E50044B31F /* Spirit_Fish_1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spirit_Fish_1.h; sourceTree = "<group>"; };
-		7E1460E71ABA48E50044B31F /* Spirit_Fish_1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spirit_Fish_1.m; sourceTree = "<group>"; };
-		7E1460F11ABA6A1A0044B31F /* SpiritManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpiritManager.h; sourceTree = "<group>"; };
-		7E1460F21ABA6A1A0044B31F /* SpiritManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpiritManager.m; sourceTree = "<group>"; };
-		7E1460FE1ABBB81E0044B31F /* Spirit_Fish_2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spirit_Fish_2.h; sourceTree = "<group>"; };
-		7E1460FF1ABBB81E0044B31F /* Spirit_Fish_2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spirit_Fish_2.m; sourceTree = "<group>"; };
-		7E1461041ABBB82E0044B31F /* Spirit_Fish_3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spirit_Fish_3.h; sourceTree = "<group>"; };
-		7E1461051ABBB82E0044B31F /* Spirit_Fish_3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spirit_Fish_3.m; sourceTree = "<group>"; };
-		7E14610A1ABBB83C0044B31F /* Spirit_Fish_4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spirit_Fish_4.h; sourceTree = "<group>"; };
-		7E14610B1ABBB83C0044B31F /* Spirit_Fish_4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spirit_Fish_4.m; sourceTree = "<group>"; };
-		7E1461101ABBB8490044B31F /* Spirit_Fish_5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spirit_Fish_5.h; sourceTree = "<group>"; };
-		7E1461111ABBB8490044B31F /* Spirit_Fish_5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spirit_Fish_5.m; sourceTree = "<group>"; };
-		7E1461161ABBB8540044B31F /* Spirit_Fish_6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spirit_Fish_6.h; sourceTree = "<group>"; };
-		7E1461171ABBB8540044B31F /* Spirit_Fish_6.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spirit_Fish_6.m; sourceTree = "<group>"; };
 		7E17794E1AB8152600E3986C /* SpriterData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriterData.h; sourceTree = "<group>"; };
 		7E17794F1AB8152600E3986C /* SpriterData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriterData.m; sourceTree = "<group>"; };
 		7E1779651AB81AF600E3986C /* SpriterXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriterXMLParser.h; sourceTree = "<group>"; };
@@ -424,14 +396,6 @@
 		7E1B80701A189F450055E654 /* TouchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchButton.m; sourceTree = "<group>"; };
 		7E31E4BD1AB8BD13004DAC8E /* ShopScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopScene.h; sourceTree = "<group>"; };
 		7E31E4BE1AB8BD13004DAC8E /* ShopScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopScene.m; sourceTree = "<group>"; };
-		7E31E4C21AB8C341004DAC8E /* SHBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHBackground.h; sourceTree = "<group>"; };
-		7E31E4C31AB8C341004DAC8E /* SHBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHBackground.m; sourceTree = "<group>"; };
-		7E31E4C51AB8C356004DAC8E /* SHItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHItem.h; sourceTree = "<group>"; };
-		7E31E4C61AB8C356004DAC8E /* SHItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHItem.m; sourceTree = "<group>"; };
-		7E31E4C81AB8C38C004DAC8E /* SHButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHButton.h; sourceTree = "<group>"; };
-		7E31E4C91AB8C38C004DAC8E /* SHButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHButton.m; sourceTree = "<group>"; };
-		7E31E4D31AB8FA10004DAC8E /* SHItemRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHItemRow.h; sourceTree = "<group>"; };
-		7E31E4D41AB8FA10004DAC8E /* SHItemRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHItemRow.m; sourceTree = "<group>"; };
 		7E3B0BC91A131E8E0057869B /* GameEngineScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEngineScene.h; sourceTree = "<group>"; };
 		7E3B0BCA1A131E8E0057869B /* GameEngineScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameEngineScene.m; sourceTree = "<group>"; };
 		7E3B0BCB1A131E8E0057869B /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
@@ -485,6 +449,32 @@
 		7EA7AE671ABFB931001C9EFE /* bg_spritesheet_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_spritesheet_1.png; sourceTree = "<group>"; };
 		7EA7AE7B1ABFCC22001C9EFE /* kelp_spritesheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = kelp_spritesheet.plist; sourceTree = "<group>"; };
 		7EA7AE7C1ABFCC22001C9EFE /* kelp_spritesheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kelp_spritesheet.png; sourceTree = "<group>"; };
+		7EA7AE841ABFDCD6001C9EFE /* SHBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHBackground.h; sourceTree = "<group>"; };
+		7EA7AE851ABFDCD6001C9EFE /* SHBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHBackground.m; sourceTree = "<group>"; };
+		7EA7AE861ABFDCD6001C9EFE /* SHButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHButton.h; sourceTree = "<group>"; };
+		7EA7AE871ABFDCD6001C9EFE /* SHButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHButton.m; sourceTree = "<group>"; };
+		7EA7AE881ABFDCD6001C9EFE /* SHItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHItem.h; sourceTree = "<group>"; };
+		7EA7AE891ABFDCD6001C9EFE /* SHItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHItem.m; sourceTree = "<group>"; };
+		7EA7AE8A1ABFDCD6001C9EFE /* SHItemRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHItemRow.h; sourceTree = "<group>"; };
+		7EA7AE8B1ABFDCD6001C9EFE /* SHItemRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHItemRow.m; sourceTree = "<group>"; };
+		7EA7AE981ABFDD06001C9EFE /* Spirit_Fish_1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Spirit_Fish_1.h; path = monster/Spirit_Fish_1.h; sourceTree = "<group>"; };
+		7EA7AE991ABFDD06001C9EFE /* Spirit_Fish_1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Spirit_Fish_1.m; path = monster/Spirit_Fish_1.m; sourceTree = "<group>"; };
+		7EA7AE9A1ABFDD06001C9EFE /* Spirit_Fish_2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Spirit_Fish_2.h; path = monster/Spirit_Fish_2.h; sourceTree = "<group>"; };
+		7EA7AE9B1ABFDD06001C9EFE /* Spirit_Fish_2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Spirit_Fish_2.m; path = monster/Spirit_Fish_2.m; sourceTree = "<group>"; };
+		7EA7AE9C1ABFDD06001C9EFE /* Spirit_Fish_3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Spirit_Fish_3.h; path = monster/Spirit_Fish_3.h; sourceTree = "<group>"; };
+		7EA7AE9D1ABFDD06001C9EFE /* Spirit_Fish_3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Spirit_Fish_3.m; path = monster/Spirit_Fish_3.m; sourceTree = "<group>"; };
+		7EA7AE9E1ABFDD06001C9EFE /* Spirit_Fish_4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Spirit_Fish_4.h; path = monster/Spirit_Fish_4.h; sourceTree = "<group>"; };
+		7EA7AE9F1ABFDD06001C9EFE /* Spirit_Fish_4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Spirit_Fish_4.m; path = monster/Spirit_Fish_4.m; sourceTree = "<group>"; };
+		7EA7AEA01ABFDD06001C9EFE /* Spirit_Fish_5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Spirit_Fish_5.h; path = monster/Spirit_Fish_5.h; sourceTree = "<group>"; };
+		7EA7AEA11ABFDD06001C9EFE /* Spirit_Fish_5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Spirit_Fish_5.m; path = monster/Spirit_Fish_5.m; sourceTree = "<group>"; };
+		7EA7AEA21ABFDD06001C9EFE /* Spirit_Fish_6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Spirit_Fish_6.h; path = monster/Spirit_Fish_6.h; sourceTree = "<group>"; };
+		7EA7AEA31ABFDD06001C9EFE /* Spirit_Fish_6.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Spirit_Fish_6.m; path = monster/Spirit_Fish_6.m; sourceTree = "<group>"; };
+		7EA7AEA41ABFDD06001C9EFE /* SpiritBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpiritBase.h; path = monster/SpiritBase.h; sourceTree = "<group>"; };
+		7EA7AEA51ABFDD06001C9EFE /* SpiritBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpiritBase.m; path = monster/SpiritBase.m; sourceTree = "<group>"; };
+		7EA7AEA61ABFDD06001C9EFE /* SpiritManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpiritManager.h; path = monster/SpiritManager.h; sourceTree = "<group>"; };
+		7EA7AEA71ABFDD06001C9EFE /* SpiritManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpiritManager.m; path = monster/SpiritManager.m; sourceTree = "<group>"; };
+		7EA7AEC01ABFDDFD001C9EFE /* Arrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Arrow.h; path = projectiles/Arrow.h; sourceTree = "<group>"; };
+		7EA7AEC11ABFDDFD001C9EFE /* Arrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Arrow.m; path = projectiles/Arrow.m; sourceTree = "<group>"; };
 		7EADAC5C1AB655D7004902A9 /* bg_test_bldg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_test_bldg1.png; sourceTree = "<group>"; };
 		7EADAC5D1AB655D7004902A9 /* bg_test_bldg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_test_bldg2.png; sourceTree = "<group>"; };
 		7EADAC5E1AB655D7004902A9 /* bg_test_fog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_test_fog.png; sourceTree = "<group>"; };
@@ -508,8 +498,6 @@
 		7EF468B61ABF78870041E55F /* ParticlePhysical.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticlePhysical.h; sourceTree = "<group>"; };
 		7EF468B71ABF78870041E55F /* ParticlePhysical.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticlePhysical.m; sourceTree = "<group>"; };
 		7EF468CB1ABFB4300041E55F /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
-		7EF468D01ABFB4BE0041E55F /* Arrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Arrow.h; sourceTree = "<group>"; };
-		7EF468D11ABFB4BE0041E55F /* Arrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Arrow.m; sourceTree = "<group>"; };
 		7EF468DB1ABFBB400041E55F /* spirit_fish_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spirit_fish_2.png; sourceTree = "<group>"; };
 		7EF468E41ABFBB4B0041E55F /* particle_blood_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = particle_blood_1.png; sourceTree = "<group>"; };
 		8392007918EE8E3300B6C429 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
@@ -767,22 +755,22 @@
 		7E1460DE1ABA41A40044B31F /* monster */ = {
 			isa = PBXGroup;
 			children = (
-				7E1460E01ABA41C50044B31F /* SpiritBase.h */,
-				7E1460E11ABA41C50044B31F /* SpiritBase.m */,
-				7E1460F11ABA6A1A0044B31F /* SpiritManager.h */,
-				7E1460F21ABA6A1A0044B31F /* SpiritManager.m */,
-				7E1460E61ABA48E50044B31F /* Spirit_Fish_1.h */,
-				7E1460E71ABA48E50044B31F /* Spirit_Fish_1.m */,
-				7E1460FE1ABBB81E0044B31F /* Spirit_Fish_2.h */,
-				7E1460FF1ABBB81E0044B31F /* Spirit_Fish_2.m */,
-				7E1461041ABBB82E0044B31F /* Spirit_Fish_3.h */,
-				7E1461051ABBB82E0044B31F /* Spirit_Fish_3.m */,
-				7E14610A1ABBB83C0044B31F /* Spirit_Fish_4.h */,
-				7E14610B1ABBB83C0044B31F /* Spirit_Fish_4.m */,
-				7E1461101ABBB8490044B31F /* Spirit_Fish_5.h */,
-				7E1461111ABBB8490044B31F /* Spirit_Fish_5.m */,
-				7E1461161ABBB8540044B31F /* Spirit_Fish_6.h */,
-				7E1461171ABBB8540044B31F /* Spirit_Fish_6.m */,
+				7EA7AE981ABFDD06001C9EFE /* Spirit_Fish_1.h */,
+				7EA7AE991ABFDD06001C9EFE /* Spirit_Fish_1.m */,
+				7EA7AE9A1ABFDD06001C9EFE /* Spirit_Fish_2.h */,
+				7EA7AE9B1ABFDD06001C9EFE /* Spirit_Fish_2.m */,
+				7EA7AE9C1ABFDD06001C9EFE /* Spirit_Fish_3.h */,
+				7EA7AE9D1ABFDD06001C9EFE /* Spirit_Fish_3.m */,
+				7EA7AE9E1ABFDD06001C9EFE /* Spirit_Fish_4.h */,
+				7EA7AE9F1ABFDD06001C9EFE /* Spirit_Fish_4.m */,
+				7EA7AEA01ABFDD06001C9EFE /* Spirit_Fish_5.h */,
+				7EA7AEA11ABFDD06001C9EFE /* Spirit_Fish_5.m */,
+				7EA7AEA21ABFDD06001C9EFE /* Spirit_Fish_6.h */,
+				7EA7AEA31ABFDD06001C9EFE /* Spirit_Fish_6.m */,
+				7EA7AEA41ABFDD06001C9EFE /* SpiritBase.h */,
+				7EA7AEA51ABFDD06001C9EFE /* SpiritBase.m */,
+				7EA7AEA61ABFDD06001C9EFE /* SpiritManager.h */,
+				7EA7AEA71ABFDD06001C9EFE /* SpiritManager.m */,
 			);
 			name = monster;
 			sourceTree = "<group>";
@@ -798,25 +786,10 @@
 			path = menu;
 			sourceTree = "<group>";
 		};
-		7E31E4C11AB8C305004DAC8E /* shop */ = {
-			isa = PBXGroup;
-			children = (
-				7E31E4C21AB8C341004DAC8E /* SHBackground.h */,
-				7E31E4C31AB8C341004DAC8E /* SHBackground.m */,
-				7E31E4C51AB8C356004DAC8E /* SHItem.h */,
-				7E31E4C61AB8C356004DAC8E /* SHItem.m */,
-				7E31E4C81AB8C38C004DAC8E /* SHButton.h */,
-				7E31E4C91AB8C38C004DAC8E /* SHButton.m */,
-				7E31E4D31AB8FA10004DAC8E /* SHItemRow.h */,
-				7E31E4D41AB8FA10004DAC8E /* SHItemRow.m */,
-			);
-			name = shop;
-			sourceTree = "<group>";
-		};
 		7E3B0BC61A131E8E0057869B /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				7E31E4C11AB8C305004DAC8E /* shop */,
+				7EA7AE831ABFDCD6001C9EFE /* shop */,
 				7E90D1891AB63DB700E06F92 /* bg */,
 				7E1B806A1A189C230055E654 /* menu */,
 				7E3B0BC71A131E8E0057869B /* game */,
@@ -1014,6 +987,21 @@
 			path = shop_menu;
 			sourceTree = "<group>";
 		};
+		7EA7AE831ABFDCD6001C9EFE /* shop */ = {
+			isa = PBXGroup;
+			children = (
+				7EA7AE841ABFDCD6001C9EFE /* SHBackground.h */,
+				7EA7AE851ABFDCD6001C9EFE /* SHBackground.m */,
+				7EA7AE861ABFDCD6001C9EFE /* SHButton.h */,
+				7EA7AE871ABFDCD6001C9EFE /* SHButton.m */,
+				7EA7AE881ABFDCD6001C9EFE /* SHItem.h */,
+				7EA7AE891ABFDCD6001C9EFE /* SHItem.m */,
+				7EA7AE8A1ABFDCD6001C9EFE /* SHItemRow.h */,
+				7EA7AE8B1ABFDCD6001C9EFE /* SHItemRow.m */,
+			);
+			path = shop;
+			sourceTree = "<group>";
+		};
 		7EF468A41ABF71E50041E55F /* particle */ = {
 			isa = PBXGroup;
 			children = (
@@ -1030,8 +1018,8 @@
 		7EF468CF1ABFB4970041E55F /* projectiles */ = {
 			isa = PBXGroup;
 			children = (
-				7EF468D01ABFB4BE0041E55F /* Arrow.h */,
-				7EF468D11ABFB4BE0041E55F /* Arrow.m */,
+				7EA7AEC01ABFDDFD001C9EFE /* Arrow.h */,
+				7EA7AEC11ABFDDFD001C9EFE /* Arrow.m */,
 			);
 			name = projectiles;
 			sourceTree = "<group>";
@@ -1511,23 +1499,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E14610E1ABBB83C0044B31F /* Spirit_Fish_4.m in Sources */,
-				7E1460EA1ABA48E50044B31F /* Spirit_Fish_1.m in Sources */,
-				7E1461141ABBB8490044B31F /* Spirit_Fish_5.m in Sources */,
-				7E14611A1ABBB8540044B31F /* Spirit_Fish_6.m in Sources */,
-				7E535C241AB914FD00EF6B6E /* SHItem.m in Sources */,
 				7EF468AB1ABF71E50041E55F /* Particle.m in Sources */,
-				7E1460E41ABA41C50044B31F /* SpiritBase.m in Sources */,
 				7E90D18E1AB63DB700E06F92 /* BGSky.m in Sources */,
-				7E535C261AB914FD00EF6B6E /* SHItemRow.m in Sources */,
 				5B12102A197484DD004C1E1D /* hobobobActivity.java in Sources */,
-				7E535C231AB914FD00EF6B6E /* SHBackground.m in Sources */,
-				7E535C251AB914FD00EF6B6E /* SHButton.m in Sources */,
-				7E1460F51ABA6A1A0044B31F /* SpiritManager.m in Sources */,
 				7E1779521AB8152600E3986C /* SpriterData.m in Sources */,
-				7E1461081ABBB82E0044B31F /* Spirit_Fish_3.m in Sources */,
 				7E2675A31AB69453002EF2EC /* Bird.m in Sources */,
-				7E1461021ABBB81E0044B31F /* Spirit_Fish_2.m in Sources */,
 				7E90D1941AB63DD800E06F92 /* BGWater.m in Sources */,
 				7EF468BA1ABF78870041E55F /* ParticlePhysical.m in Sources */,
 				7EF468AF1ABF71E50041E55F /* RotateFadeOutParticle.m in Sources */,
@@ -1538,31 +1514,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EA7AE911ABFDCD6001C9EFE /* SHButton.m in Sources */,
 				7E2675A21AB69452002EF2EC /* Bird.m in Sources */,
-				7E535C271AB914FD00EF6B6E /* SHBackground.m in Sources */,
+				7EA7AEAA1ABFDD06001C9EFE /* Spirit_Fish_1.m in Sources */,
+				7EA7AE971ABFDCD6001C9EFE /* SHItemRow.m in Sources */,
 				7E17796E1AB81EC300E3986C /* SpriterJSONParser.m in Sources */,
+				7EA7AEBC1ABFDD06001C9EFE /* SpiritBase.m in Sources */,
 				7EF468BB1ABF78870041E55F /* ParticlePhysical.m in Sources */,
-				7E535C291AB914FD00EF6B6E /* SHButton.m in Sources */,
-				7E535C2A1AB914FD00EF6B6E /* SHItemRow.m in Sources */,
-				7E14610F1ABBB83C0044B31F /* Spirit_Fish_4.m in Sources */,
 				7E90D1951AB63DD800E06F92 /* BGWater.m in Sources */,
+				7EA7AEBF1ABFDD06001C9EFE /* SpiritManager.m in Sources */,
+				7EA7AEB91ABFDD06001C9EFE /* Spirit_Fish_6.m in Sources */,
 				7A40360419DDEE84007B6E8F /* main.m in Sources */,
-				7E1460EB1ABA48E50044B31F /* Spirit_Fish_1.m in Sources */,
 				7EA7AE2D1ABFA984001C9EFE /* ShaderManager.m in Sources */,
+				7EA7AEAD1ABFDD06001C9EFE /* Spirit_Fish_2.m in Sources */,
+				7EA7AEC41ABFDDFD001C9EFE /* Arrow.m in Sources */,
+				7EA7AEB31ABFDD06001C9EFE /* Spirit_Fish_4.m in Sources */,
 				7E1779691AB81AF600E3986C /* SpriterXMLParser.m in Sources */,
-				7E1460F61ABA6A1A0044B31F /* SpiritManager.m in Sources */,
-				7E1461091ABBB82E0044B31F /* Spirit_Fish_3.m in Sources */,
-				7E1461151ABBB8490044B31F /* Spirit_Fish_5.m in Sources */,
 				7E90D18F1AB63DB700E06F92 /* BGSky.m in Sources */,
+				7EA7AEB01ABFDD06001C9EFE /* Spirit_Fish_3.m in Sources */,
 				7A59498E19E3941300F65F90 /* AppDelegate.m in Sources */,
 				7E1779731AB8289A00E3986C /* SpriterTypes.m in Sources */,
-				7E14611B1ABBB8540044B31F /* Spirit_Fish_6.m in Sources */,
-				7E1460E51ABA41C50044B31F /* SpiritBase.m in Sources */,
-				7E535C281AB914FD00EF6B6E /* SHItem.m in Sources */,
-				7E1461031ABBB81E0044B31F /* Spirit_Fish_2.m in Sources */,
 				7EF468AC1ABF71E50041E55F /* Particle.m in Sources */,
 				7EF468B01ABF71E50041E55F /* RotateFadeOutParticle.m in Sources */,
-				7EF468D41ABFB4BE0041E55F /* Arrow.m in Sources */,
+				7EA7AEB61ABFDD06001C9EFE /* Spirit_Fish_5.m in Sources */,
+				7EA7AE941ABFDCD6001C9EFE /* SHItem.m in Sources */,
+				7EA7AE8E1ABFDCD6001C9EFE /* SHBackground.m in Sources */,
 				7E1779531AB8152600E3986C /* SpriterData.m in Sources */,
 				7E1779781AB8C88B00E3986C /* SpriterNode.m in Sources */,
 			);
@@ -1572,32 +1548,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E1460F41ABA6A1A0044B31F /* SpiritManager.m in Sources */,
-				7E535C2D1AB914FE00EF6B6E /* SHButton.m in Sources */,
 				7E1779681AB81AF600E3986C /* SpriterXMLParser.m in Sources */,
+				7EA7AEB21ABFDD06001C9EFE /* Spirit_Fish_4.m in Sources */,
 				7E90D18D1AB63DB700E06F92 /* BGSky.m in Sources */,
+				7EA7AEB81ABFDD06001C9EFE /* Spirit_Fish_6.m in Sources */,
+				7EA7AE8D1ABFDCD6001C9EFE /* SHBackground.m in Sources */,
+				7EA7AEAF1ABFDD06001C9EFE /* Spirit_Fish_3.m in Sources */,
+				7EA7AEAC1ABFDD06001C9EFE /* Spirit_Fish_2.m in Sources */,
+				7EA7AEB51ABFDD06001C9EFE /* Spirit_Fish_5.m in Sources */,
+				7EA7AE931ABFDCD6001C9EFE /* SHItem.m in Sources */,
 				7EA7AE2C1ABFA984001C9EFE /* ShaderManager.m in Sources */,
 				5B121030197484FA004C1E1D /* hobobobActivity.m in Sources */,
 				7E1779771AB8C88B00E3986C /* SpriterNode.m in Sources */,
-				7E1461131ABBB8490044B31F /* Spirit_Fish_5.m in Sources */,
-				7E1461071ABBB82E0044B31F /* Spirit_Fish_3.m in Sources */,
 				7E1779511AB8152600E3986C /* SpriterData.m in Sources */,
 				7EF468AA1ABF71E50041E55F /* Particle.m in Sources */,
 				7E2675A11AB69451002EF2EC /* Bird.m in Sources */,
-				7E1461191ABBB8540044B31F /* Spirit_Fish_6.m in Sources */,
-				7E1461011ABBB81E0044B31F /* Spirit_Fish_2.m in Sources */,
+				7EA7AE901ABFDCD6001C9EFE /* SHButton.m in Sources */,
+				7EA7AEBE1ABFDD06001C9EFE /* SpiritManager.m in Sources */,
 				7EF468AE1ABF71E50041E55F /* RotateFadeOutParticle.m in Sources */,
-				7E1460E91ABA48E50044B31F /* Spirit_Fish_1.m in Sources */,
-				7E535C2B1AB914FE00EF6B6E /* SHBackground.m in Sources */,
 				7E1779721AB8289A00E3986C /* SpriterTypes.m in Sources */,
+				7EA7AEA91ABFDD06001C9EFE /* Spirit_Fish_1.m in Sources */,
 				7E17796D1AB81EC300E3986C /* SpriterJSONParser.m in Sources */,
-				7E535C2C1AB914FE00EF6B6E /* SHItem.m in Sources */,
-				7E1460E31ABA41C50044B31F /* SpiritBase.m in Sources */,
-				7E535C2E1AB914FE00EF6B6E /* SHItemRow.m in Sources */,
+				7EA7AEC31ABFDDFD001C9EFE /* Arrow.m in Sources */,
+				7EA7AEBB1ABFDD06001C9EFE /* SpiritBase.m in Sources */,
 				7E90D1931AB63DD800E06F92 /* BGWater.m in Sources */,
 				7EF468B91ABF78870041E55F /* ParticlePhysical.m in Sources */,
-				7EF468D31ABFB4BE0041E55F /* Arrow.m in Sources */,
-				7E14610D1ABBB83C0044B31F /* Spirit_Fish_4.m in Sources */,
+				7EA7AE961ABFDCD6001C9EFE /* SHItemRow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1606,37 +1582,39 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E1779671AB81AF600E3986C /* SpriterXMLParser.m in Sources */,
+				7EA7AEB11ABFDD06001C9EFE /* Spirit_Fish_4.m in Sources */,
 				7E26759F1AB69451002EF2EC /* Bird.m in Sources */,
 				7E3B0C271A131E8E0057869B /* Vec3D.m in Sources */,
+				7EA7AEAE1ABFDD06001C9EFE /* Spirit_Fish_3.m in Sources */,
 				7E3B0C0B1A131E8E0057869B /* GameObject.m in Sources */,
+				7EA7AEC21ABFDDFD001C9EFE /* Arrow.m in Sources */,
+				7EA7AEB41ABFDD06001C9EFE /* Spirit_Fish_5.m in Sources */,
 				7E1779501AB8152600E3986C /* SpriterData.m in Sources */,
 				7E1B80711A189F450055E654 /* TouchButton.m in Sources */,
 				7EF468B81ABF78870041E55F /* ParticlePhysical.m in Sources */,
-				7E1460E81ABA48E50044B31F /* Spirit_Fish_1.m in Sources */,
+				7EA7AEBA1ABFDD06001C9EFE /* SpiritBase.m in Sources */,
+				7EA7AE951ABFDCD6001C9EFE /* SHItemRow.m in Sources */,
 				7E1B806E1A189C330055E654 /* MainMenuScene.m in Sources */,
+				7EA7AEAB1ABFDD06001C9EFE /* Spirit_Fish_2.m in Sources */,
 				7E1779711AB8289A00E3986C /* SpriterTypes.m in Sources */,
 				7E1779761AB8C88B00E3986C /* SpriterNode.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
-				7E1461121ABBB8490044B31F /* Spirit_Fish_5.m in Sources */,
 				7EF468AD1ABF71E50041E55F /* RotateFadeOutParticle.m in Sources */,
-				7E1460E21ABA41C50044B31F /* SpiritBase.m in Sources */,
 				7E3B0C0A1A131E8E0057869B /* GameEngineScene.m in Sources */,
-				7E535C221AB914FC00EF6B6E /* SHItemRow.m in Sources */,
-				7E535C211AB914FC00EF6B6E /* SHButton.m in Sources */,
-				7E14610C1ABBB83C0044B31F /* Spirit_Fish_4.m in Sources */,
-				7E1460F31ABA6A1A0044B31F /* SpiritManager.m in Sources */,
 				7E3B0C201A131E8E0057869B /* Common.m in Sources */,
-				7E535C201AB914FC00EF6B6E /* SHItem.m in Sources */,
 				7E3B0C231A131E8E0057869B /* GEventDispatcher.m in Sources */,
 				7EA7AE2B1ABFA984001C9EFE /* ShaderManager.m in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
+				7EA7AE8F1ABFDCD6001C9EFE /* SHButton.m in Sources */,
 				7EF468A91ABF71E50041E55F /* Particle.m in Sources */,
 				7E17798D1AB9316500E3986C /* SpriterUtil.m in Sources */,
+				7EA7AEB71ABFDD06001C9EFE /* Spirit_Fish_6.m in Sources */,
+				7EA7AE921ABFDCD6001C9EFE /* SHItem.m in Sources */,
 				7E3B0C261A131E8E0057869B /* Resource.m in Sources */,
 				7E31E4BF1AB8BD13004DAC8E /* ShopScene.m in Sources */,
-				7E1461061ABBB82E0044B31F /* Spirit_Fish_3.m in Sources */,
-				7E1461001ABBB81E0044B31F /* Spirit_Fish_2.m in Sources */,
+				7EA7AE8C1ABFDCD6001C9EFE /* SHBackground.m in Sources */,
 				7E90D1921AB63DD800E06F92 /* BGWater.m in Sources */,
+				7EA7AEBD1ABFDD06001C9EFE /* SpiritManager.m in Sources */,
 				7E17796C1AB81EC300E3986C /* SpriterJSONParser.m in Sources */,
 				7E3B0C1E1A131E8E0057869B /* GameMain.m in Sources */,
 				7E3B0C221A131E8E0057869B /* FileCache.m in Sources */,
@@ -1646,12 +1624,10 @@
 				7E3B0C251A131E8E0057869B /* PolyLib.m in Sources */,
 				7E90D18C1AB63DB700E06F92 /* BGSky.m in Sources */,
 				7ED9B6351ABBD76D0043567C /* BGReflection.m in Sources */,
-				7E1461181ABBB8540044B31F /* Spirit_Fish_6.m in Sources */,
+				7EA7AEA81ABFDD06001C9EFE /* Spirit_Fish_1.m in Sources */,
 				7EE870661AB66291004679E8 /* BGFog.m in Sources */,
 				7EADAC791AB67506004902A9 /* AccelerometerSimulation.m in Sources */,
 				7E3B0C1F1A131E8E0057869B /* BatchDraw.m in Sources */,
-				7EF468D21ABFB4BE0041E55F /* Arrow.m in Sources */,
-				7E535C1F1AB914FC00EF6B6E /* SHBackground.m in Sources */,
 				7E3B0C281A131E8E0057869B /* WebRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
