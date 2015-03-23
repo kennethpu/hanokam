@@ -23,9 +23,6 @@ typedef enum _PlayerState {
 -(CCNode*)spirit_anchor;
 
 -(void)add_particle:(Particle*)p;
--(void)add_gameobject:(GameObject*)o;
--(void)remove_gameobject:(GameObject*)o;
--(void)set_target_camera:(CameraZoom)tar;
 -(void)shake_for:(float)ct distance:(float)distance;
 -(void)shake_slow_for:(float)ct distance:(float)distance;
 -(void)freeze_frame:(int)ct;
@@ -44,6 +41,7 @@ typedef enum _PlayerState {
 -(SpiritManager*)get_spirit_manager;
 
 -(void)add_ripple:(CGPoint)pos;
+-(float)get_ground_depth;
 
 -(float) REFLECTION_HEIGHT;
 -(float) HORIZON_HEIGHT;

@@ -173,23 +173,13 @@
 	_x_vel = _x - _x_prev;
 	_x_prev = _x;
 	
-	/*
-	NSMutableArray *birds_to_remove = [NSMutableArray array];
-	for (Bird *bird in _birds) {
-		[bird i_update:g];
-		if (bird.position.x > game_screen().width + 100) {
-			[birds_to_remove addObject:bird];
-			[bird removeFromParent];
-		}
-	}
-	[_birds removeObjectsInArray:birds_to_remove];
-	[birds_to_remove removeAllObjects];
-	*/
-	
 	[self shoot_arrow];
 	
 	[self setRotation:_rotation * 57.2957795];
-	[self setPosition:ccp(clampf(_x, 0, game_screen().width),_y)];
+	
+	_x = clampf(_x, 0, game_screen().width);
+	_y = clampf(_y, g.get_ground_depth, INFINITY);
+	[self setPosition:ccp(_x,_y)];
 }
 
 -(Arrow*)shoot_arrow {
