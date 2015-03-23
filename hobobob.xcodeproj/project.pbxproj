@@ -95,7 +95,6 @@
 		7E17798D1AB9316500E3986C /* SpriterUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E17798C1AB9316500E3986C /* SpriterUtil.m */; };
 		7E1B806E1A189C330055E654 /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1B806D1A189C330055E654 /* MainMenuScene.m */; };
 		7E1B80711A189F450055E654 /* TouchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1B80701A189F450055E654 /* TouchButton.m */; };
-		7E1B80741A18B5FB0055E654 /* CCNode+SFGestureRecognizers.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1B80731A18B5FB0055E654 /* CCNode+SFGestureRecognizers.m */; };
 		7E26759F1AB69451002EF2EC /* Bird.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE870681AB67082004679E8 /* Bird.m */; };
 		7E2675A11AB69451002EF2EC /* Bird.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE870681AB67082004679E8 /* Bird.m */; };
 		7E2675A21AB69452002EF2EC /* Bird.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE870681AB67082004679E8 /* Bird.m */; };
@@ -417,8 +416,6 @@
 		7E1B806D1A189C330055E654 /* MainMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuScene.m; sourceTree = "<group>"; };
 		7E1B806F1A189F450055E654 /* TouchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchButton.h; sourceTree = "<group>"; };
 		7E1B80701A189F450055E654 /* TouchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchButton.m; sourceTree = "<group>"; };
-		7E1B80721A18B5FB0055E654 /* CCNode+SFGestureRecognizers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNode+SFGestureRecognizers.h"; sourceTree = "<group>"; };
-		7E1B80731A18B5FB0055E654 /* CCNode+SFGestureRecognizers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNode+SFGestureRecognizers.m"; sourceTree = "<group>"; };
 		7E31E4BD1AB8BD13004DAC8E /* ShopScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopScene.h; sourceTree = "<group>"; };
 		7E31E4BE1AB8BD13004DAC8E /* ShopScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopScene.m; sourceTree = "<group>"; };
 		7E31E4C21AB8C341004DAC8E /* SHBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHBackground.h; sourceTree = "<group>"; };
@@ -878,8 +875,6 @@
 				7E3B0C071A131E8E0057869B /* Vec3D.m */,
 				7E3B0C081A131E8E0057869B /* WebRequest.h */,
 				7E3B0C091A131E8E0057869B /* WebRequest.m */,
-				7E1B80721A18B5FB0055E654 /* CCNode+SFGestureRecognizers.h */,
-				7E1B80731A18B5FB0055E654 /* CCNode+SFGestureRecognizers.m */,
 				7EADAC771AB67506004902A9 /* AccelerometerSimulation.h */,
 				7EADAC781AB67506004902A9 /* AccelerometerSimulation.m */,
 				7EADAC7B1AB67B6E004902A9 /* AccelerometerManager.h */,
@@ -1599,7 +1594,6 @@
 				7E3B0C271A131E8E0057869B /* Vec3D.m in Sources */,
 				7E3B0C0B1A131E8E0057869B /* GameObject.m in Sources */,
 				7E1779501AB8152600E3986C /* SpriterData.m in Sources */,
-				7E1B80741A18B5FB0055E654 /* CCNode+SFGestureRecognizers.m in Sources */,
 				7E1B80711A189F450055E654 /* TouchButton.m in Sources */,
 				7EF468B81ABF78870041E55F /* ParticlePhysical.m in Sources */,
 				7E1460E81ABA48E50044B31F /* Spirit_Fish_1.m in Sources */,

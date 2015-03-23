@@ -46,7 +46,6 @@ static NSSet* dont_load;
 		TEX_BLANK: @"blank.png",
 		TEX_TEST_BG_TILE_SKY: @"bg_test_tile_sky.png",
 		TEX_TEST_BG_TILE_WATER: @"bg_test_tile_water.png",
-		TEX_TEST_CHAR_HANOKA: @"char_test_hanoka.png",
 		TEX_TEST_BG_TILE_SKY: @"bg_test_tile_sky.png",
 		TEX_TEST_BG_TILE_WATER: @"bg_test_tile_water.png",
 		TEX_TEST_BG_BLDG1: @"bg_test_bldg1.png",
@@ -64,8 +63,8 @@ static NSSet* dont_load;
 		TEX_SPIRIT_FISH_3: @"spirit_fish_3.png",
 		TEX_PARTICLE_BLOOD_1: @"particle_blood_1.png",
 		TEX_ARROW: @"arrow.png",
-		TEX_DOT: @"dot.png"
-		TEX_RIPPLE: @"ripple.png"
+		TEX_RIPPLE: @"ripple.png",
+		TEX_BG_SPRITESHEET_1: @"bg_spritesheet_1.png"
 	};
 	
 	
