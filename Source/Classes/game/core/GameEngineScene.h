@@ -43,6 +43,8 @@ typedef enum _PlayerState {
 
 -(SpiritManager*)get_spirit_manager;
 
+-(void)add_ripple:(CGPoint)pos;
+
 -(float) REFLECTION_HEIGHT;
 -(float) HORIZON_HEIGHT;
 @end

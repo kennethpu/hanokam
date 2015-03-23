@@ -9,6 +9,7 @@
 #import "Spirit_Fish_1.h"
 #import "Particle.h"
 #import "RotateFadeOutParticle.h"
+#import "ShaderManager.h"
 
 #import "CCTexture_Private.h"
 
@@ -34,11 +35,12 @@
 	CGPoint pre = proto.position;
 	[proto setPosition:_pos];
 	[proto setScale:lerp(0.55, 1.5, _ct)];
+	[proto setOpacity:lerp(1.0, 0, _ct)];
 	[proto visit];
 	proto.position = pre;
 }
 -(void)i_update {
-	_ct += 0.05;
+	_ct += 0.015 * dt_scale_get();
 }
 -(BOOL)should_remove {
 	return _ct >= 1.0;
@@ -150,12 +152,18 @@
 	_water_text.string = [NSString stringWithFormat:@"water %i", _water_num];
 	
 	_reflection_texture = [CCRenderTexture renderTextureWithWidth:game_screen().width height:self.REFLECTION_HEIGHT];
-	[self render_reflection_texture];
 	[_reflection_texture setPosition:ccp(game_screen().width / 2, -(self.REFLECTION_HEIGHT) / 2 + self.HORIZON_HEIGHT)];
 	_reflection_texture.scaleY = -1;
 	[bg_anchor addChild:_reflection_texture z:0];
 	_reflection_texture.sprite.blendMode = [CCBlendMode alphaMode];
-	_reflection_texture.sprite.shader = [CCShader shaderNamed:@"alpha_gradient_mask"];
+	_reflection_texture.sprite.shader = [ShaderManager get_shader:SHADER_ALPHA_GRADIENT_MASK];
+	_ripples = [NSMutableArray array];
+	_ripple_texture = [CCRenderTexture renderTextureWithWidth:game_screen().width height:self.REFLECTION_HEIGHT];
+	[_ripple_texture clear:0 g:0 b:0 a:0];
+	_ripple_proto = [CCSprite spriteWithTexture:[Resource get_tex:TEX_RIPPLE]];
+	_ripple_proto.shader = [ShaderManager get_shader:SHADER_RIPPLE_FX];
+	_reflection_texture.sprite.shaderUniforms[@"rippleTexture"] = _ripple_texture.sprite.texture;
+	
 	
 	UIAccelerometer *accel = [UIAccelerometer sharedAccelerometer];
 	accel.delegate = self;
@@ -166,24 +174,27 @@
 		[_heightRefrence drawSegmentFrom:ccp(0, (i - 200) * 200) to: ccp(100, (i - 200) * 200) radius:1 color:[CCColor blackColor]];
 	}
 	
-	_ripple_texture = [CCRenderTexture renderTextureWithWidth:game_screen().width height:self.REFLECTION_HEIGHT];
-	[_ripple_texture setPosition:ccp(game_screen().width/2,-(self.REFLECTION_HEIGHT)/2 + self.HORIZON_HEIGHT)];
-	[_ripple_texture clear:0 g:0 b:0 a:0];
-	
-	_ripples = [NSMutableArray array];
-	
-	_ripple_proto = [CCSprite spriteWithTexture:[Resource get_tex:TEX_RIPPLE]];
-	_ripple_proto.shader = [CCShader shaderNamed:@"ripple_effect"];
-	
-	[_ripple_texture begin];
-	for (RippleInfo *itr in _ripples) {
-		[itr render:_ripple_proto];
-	}
-	[_ripple_texture end];
-	
-	_reflection_texture.sprite.shaderUniforms[@"rippleTexture"] = _ripple_texture.sprite.texture;
-	
 	return self;
+}
+
+-(void)add_ripple:(CGPoint)pos {
+	[_ripples addObject:[[RippleInfo alloc] initWithPosition:pos game:self]];
+}
+
+-(void)render_ripple_texture {
+	[_ripple_texture clear:0 g:0 b:0 a:0];
+	[_ripple_texture begin];
+	NSMutableArray *to_remove = [NSMutableArray array];
+	for (RippleInfo *itr in _ripples) {
+		if ([itr should_remove]) {
+			[to_remove addObject:itr];
+		} else {
+			[itr render:_ripple_proto];
+			[itr i_update];
+		}
+	}
+	[_ripples removeObjectsInArray:to_remove];
+	[_ripple_texture end];
 }
 
 -(void)render_reflection_texture {
@@ -216,13 +227,11 @@
 	
 	_tick += dt_scale_get();
 	
-	[_ripples addObject:[[RippleInfo alloc] initWithPosition:ccp(_player.position.x, _player.position.y) game:self]];
-	
+	[self render_ripple_texture];
 	[self render_reflection_texture];
 	[_accel i_update:self];
 	[_player update_game:self];
 	[self update_particles];
-	
 	
 	switch(_player_state) {
 		case PlayerState_Dive:
