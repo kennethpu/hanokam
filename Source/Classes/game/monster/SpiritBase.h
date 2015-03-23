@@ -23,4 +23,8 @@
 -(void)air_behavior:(GameEngineScene*)g;
 -(float)angle_towards_x:(float)x y:(float)y;
 -(void)toss:(GameEngineScene*)g;
+
+-(CGPoint)get_healthbar_offset;
+-(BOOL)has_health_bar;
+-(float)get_health_pct;
 @end

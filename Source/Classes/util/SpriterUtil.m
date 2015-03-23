@@ -9,12 +9,12 @@
 #import "SpriterUtil.h"
 
 @implementation NSDictionary (KeySet)
--(NSSet*)keySet {
+-(NSMutableSet*)keySet {
 	NSMutableArray *rtv = [NSMutableArray array];
 	for (id obj in [self keyEnumerator]) {
 		[rtv addObject:obj];
 	}
-	return [NSSet setWithArray:rtv];
+	return [NSMutableSet setWithArray:rtv];
 }
 @end
 

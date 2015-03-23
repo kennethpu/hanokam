@@ -104,12 +104,12 @@
 @end
 
 @implementation NSDictionary (KeySet)
--(NSSet*)keySet {
+-(NSMutableSet*)keySet {
 	NSMutableArray *rtv = [NSMutableArray array];
 	for (id obj in [self keyEnumerator]) {
 		[rtv addObject:obj];
 	}
-	return [NSSet setWithArray:rtv];
+	return [NSMutableSet setWithArray:rtv];
 }
 @end
 
@@ -225,6 +225,22 @@ CGSize game_screen() {
 
 CGPoint game_screen_pct(float pctwid, float pcthei) {
     return ccp(game_screen().width*pctwid,game_screen().height*pcthei);
+}
+
+CGPoint game_screen_anchor_offset(ScreenAnchor anchor, CGPoint offset) {
+	CGPoint rtv;
+	switch (anchor) {
+		case ScreenAnchor_BL: rtv = game_screen_pct(0, 0); break;
+		case ScreenAnchor_BM: rtv = game_screen_pct(0.5, 0); break;
+		case ScreenAnchor_BR: rtv = game_screen_pct(1, 0); break;
+		case ScreenAnchor_ML: rtv = game_screen_pct(0, 0.5); break;
+		case ScreenAnchor_MM: rtv = game_screen_pct(0.5, 0.5); break;
+		case ScreenAnchor_MR: rtv = game_screen_pct(1, 0.5); break;
+		case ScreenAnchor_TL: rtv = game_screen_pct(0, 1); break;
+		case ScreenAnchor_TM: rtv = game_screen_pct(0.5, 1); break;
+		case ScreenAnchor_TR: rtv = game_screen_pct(1, 1); break;
+	}
+	return CGPointAdd(rtv, offset);
 }
 
 void callback_run(CallBack *c) {

@@ -11,6 +11,7 @@
 #import "ParticlePhysical.h"
 #import "RotateFadeOutParticle.h"
 #import "ShaderManager.h"
+#import "GameUI.h"
 
 #import "CCTexture_Private.h"
 
@@ -70,11 +71,10 @@
 	
 	Player *_player;
 	
-	CameraZoom _target_camera;
-	CameraZoom _current_camera;
-	
 	CCNode *_game_anchor;
 	CCNode *_spirit_anchor;
+	
+	CCNode *_zoom_node;
 	
 	CGPoint _camera_center_point;
 	
@@ -97,6 +97,8 @@
 	SpiritManager *_spirit_manager;
 	
 	NSMutableArray *_particles,*_particles_tba;
+	
+	GameUI *_ui;
 }
 
 -(Player*)player { return _player; }
@@ -129,11 +131,13 @@
 	_particles_tba = [NSMutableArray array];
 	_accel = [AccelerometerManager cons];
 	dt_unset();
-	_current_camera = camerazoom_cons(0, 0, 0.1);
 	_shake_rumble_total_time = _shake_rumble_time = _shake_rumble_distance = 1;
 	_shake_rumble_slow_total_time = _shake_rumble_slow_time = _shake_rumble_slow_distance = 1;
 	
-	_game_anchor = [[CCNode node] add_to:self];
+	_zoom_node = [[CCNode node] add_to:self];
+	[_zoom_node setPosition:game_screen_pct(.5,.5)];
+	
+	_game_anchor = [[CCNode node] add_to:_zoom_node];
 	_spirit_anchor = [[CCNode node] add_to:_game_anchor z:1];
 	
 	_player = (Player*)[[Player cons] add_to:_game_anchor z:5];
@@ -173,6 +177,9 @@
 	for(int i = 0; i < 400; i++){
 		[_heightRefrence drawSegmentFrom:ccp(0, (i - 200) * 200) to: ccp(100, (i - 200) * 200) radius:1 color:[CCColor blackColor]];
 	}
+	
+	_ui = [GameUI cons:self];
+	[self addChild:_ui z:2];
 	
 	return self;
 }
@@ -310,8 +317,12 @@
 	
 	[_game_anchor setPosition:CGPointAdd(_game_anchor.position,ccp(sinf(_tick / 2) * _rumble_slow_dist / 2, cosf(_tick / 2) * _rumble_slow_dist))];
 	_touch_tapped = _touch_released = false;
+	
+	[_ui i_update:self];
 }
-
+-(void)set_zoom:(float)val {
+	[_zoom_node setScale:clampf(val, 1, INFINITY)];
+}
 -(void)add_particle:(Particle*)p {
     [_particles_tba addObject:p];
 }
@@ -340,13 +351,14 @@
 	CGPoint pt = ccp(game_screen().width / 2, hei);
 	_camera_center_point = pt;
 	CGSize s = [CCDirector sharedDirector].viewSize;
-	CGPoint halfScreenSize = ccp(s.width / 2, s.height / 2);
 	[_game_anchor setScale:1];
+	CGPoint halfScreenSize = ccp(s.width / 2, s.height / 2);
 	[_game_anchor setPosition:CGPointAdd(
-	 ccp(
-		 clampf(halfScreenSize.x - pt.x, -999999, 999999) * [self scale],
-		 clampf(halfScreenSize.y - pt.y, -999999, 999999) * [self scale]),
-	 ccp(_current_camera.x, _current_camera.y))];
+		game_screen_pct(-.5, -.5),
+	ccp(
+		 halfScreenSize.x - pt.x,
+		 halfScreenSize.y - pt.y
+	))];
 }
 
 -(void)touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event {

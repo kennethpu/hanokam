@@ -31,7 +31,7 @@
 @end
 
 @interface NSDictionary (KeySet)
-	-(NSSet*)keySet;
+	-(NSMutableSet*)keySet;
 @end
 
 @interface CallBack : NSObject
@@ -119,6 +119,20 @@ CGPoint pct_of_obj(CCNode* obj, float pctx, float pcty);
 
 CGSize game_screen();
 CGPoint game_screen_pct(float pctwid, float pcthei);
+
+typedef enum _ScreenAnchor {
+	ScreenAnchor_TL,
+	ScreenAnchor_TM,
+	ScreenAnchor_TR,
+	ScreenAnchor_ML,
+	ScreenAnchor_MM,
+	ScreenAnchor_MR,
+	ScreenAnchor_BL,
+	ScreenAnchor_BM,
+	ScreenAnchor_BR
+} ScreenAnchor;
+CGPoint game_screen_anchor_offset(ScreenAnchor anchor, CGPoint offset);
+
 void scale_to_fit_screen_x(CCSprite *spr);
 void scale_to_fit_screen_y(CCSprite *spr);
 
