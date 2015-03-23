@@ -104,7 +104,7 @@
 			// IN AIR
 			if(_tossed == true) {
 				[self air_behavior:g];
-				_y += (g.get_camera_y - 80 - _y) * .03 * dt_scale_get();
+				_y += (g.get_camera_y - 20 - _y) * .03 * dt_scale_get();
 				_vx = 0;
 				_vy = 1;
 				// HIT PLAYER

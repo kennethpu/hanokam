@@ -8,7 +8,4 @@
 -(void)update_game:(GameEngineScene*)g;
 -(BOOL)is_underwater;
 -(HitRect)get_hit_rect;
-
-
--(void)render_reflection;
 @end

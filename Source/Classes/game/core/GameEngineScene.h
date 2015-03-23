@@ -38,9 +38,8 @@ typedef enum _PlayerState {
 -(float)get_camera_y;
 
 -(PlayerState)get_player_state;
-
 -(HitRect)get_viewbox;
-
+-(CCNode*)get_anchor;
 -(SpiritManager*)get_spirit_manager;
 
 -(void)add_ripple:(CGPoint)pos;

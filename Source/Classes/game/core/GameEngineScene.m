@@ -375,7 +375,7 @@
 
 -(void)freeze_frame:(int)ct{}
 -(HitRect)get_viewbox{ return hitrect_cons_xy_widhei(_camera_center_point.x-game_screen().width/2,_camera_center_point.y-game_screen().height/2,game_screen().width,game_screen().height); }
-
+-(CCNode*)get_anchor { return _game_anchor; }
 @end
 
 @implementation BGElement

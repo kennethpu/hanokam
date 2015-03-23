@@ -21,6 +21,7 @@
 	float _x_prev;
 	float _x_vel;
 	float _rotate_vel;
+	float _reload;
 	
 	int combat_step;
 	BOOL _state_waveEnd_jump_back;
@@ -35,6 +36,8 @@
 }
 -(id)init {
 	self = [super init];
+	
+	_arrows = [NSMutableArray array];
 	
 	SpriterJSONParser *frame_data = [[[SpriterJSONParser alloc] init] parseFile:@"hanoka v0.01.json"];
 	SpriterData *spriter_data = [SpriterData dataFromSpriteSheet:[Resource get_tex:TEX_SPRITER_CHAR_HANOKATEST] frames:frame_data scml:@"hanoka v0.01.scml"];
@@ -53,8 +56,6 @@
 	float _x = self.position.x;
 	float _y = self.position.y;
 	float _rotation = self.rotation * .0174532925;
-	
-	//_x += (g.touch_position.x - _x) * .4;
 	
 	switch ([g get_player_state]) {
 		case PlayerState_Dive:
@@ -173,31 +174,41 @@
 	_x_vel = _x - _x_prev;
 	_x_prev = _x;
 	
-	/*
-	NSMutableArray *birds_to_remove = [NSMutableArray array];
-	for (Bird *bird in _birds) {
-		[bird i_update:g];
-		if (bird.position.x > game_screen().width + 100) {
-			[birds_to_remove addObject:bird];
-			[bird removeFromParent];
+	NSMutableArray *arrows_to_remove = [NSMutableArray array];
+	for (Arrow *arrow in _arrows) {
+		[arrow i_update:g];
+		if (arrow.position.x > game_screen().width + 100 || arrow.position.x <  -100) {
+			[arrows_to_remove addObject:arrow];
+			[arrow removeFromParent];
 		}
 	}
-	[_birds removeObjectsInArray:birds_to_remove];
-	[birds_to_remove removeAllObjects];
-	*/
+	[_arrows removeObjectsInArray:arrows_to_remove];
+	[arrows_to_remove removeAllObjects];
 	
-	[self shoot_arrow];
+	if(g.touch_down) {
+		_reload -= dt_scale_get();
+		if(_reload < 0) {
+			_reload += 10;
+			[self shoot_arrow:g];
+		}
+		
+	}
 	
 	[self setRotation:_rotation * 57.2957795];
 	[self setPosition:ccp(clampf(_x, 0, game_screen().width),_y)];
 }
 
--(Arrow*)shoot_arrow {
-	Arrow *_new_arrow = (Arrow*)[[[Arrow cons] add_to:self z:3]set_pos:self.position];
+-(Arrow*)shoot_arrow:(GameEngineScene*)g {
+	Arrow *_new_arrow = (Arrow*)[[[[Arrow cons] add_to:g.get_anchor z:3]
+	set_pos:self.position]
+	set_rotation:[self angle_towards_x:g.touch_position.x y:g.touch_position.y + g.get_camera_y - game_screen().height / 2] * (180 / M_PI) - 90];
 	
 	[_arrows addObject:_new_arrow];
 	return _new_arrow;
+}
 
+-(float)angle_towards_x:(float)x y:(float)y {
+	return atan2f(x - self.position.x, y - self.position.y);
 }
 
 -(BOOL)is_underwater {

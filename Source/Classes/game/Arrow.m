@@ -20,12 +20,13 @@
 
 -(Arrow*)cons{
 	_sprite = (CCSprite*)[[CCSprite spriteWithTexture:[Resource get_tex:TEX_ARROW]] add_to:self z:0];
-	[_sprite set_anchor_pt:ccp(0, 0)];
-	[_sprite set_scale:0.5];
+	[_sprite set_anchor_pt:ccp(0.7, 0.5)];
+	[_sprite set_scale:0.2];
 	return self;
 }
 
 -(void)i_update:(GameEngineScene*)g {
-	
+	float _shoot_speed = 20;
+	[self setPosition:CGPointAdd(self.position, ccp(sinf((self.rotation + 90) * (M_PI / 180)) * _shoot_speed, cosf((self.rotation + 90) * (M_PI / 180)) * _shoot_speed))];
 }
 @end
