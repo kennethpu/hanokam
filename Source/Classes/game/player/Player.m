@@ -22,6 +22,7 @@
 	float _x_vel;
 	float _rotate_vel;
 	float _reload;
+	float _vel_lerp;
 	
 	int combat_step;
 	BOOL _state_waveEnd_jump_back;
@@ -86,7 +87,7 @@
 				
 				if(_y > [g.get_spirit_manager dive_y] + 100) {
 					g._player_state = PlayerState_Return;
-					[g.get_spirit_manager set_dive_y: 0];
+					//[g.get_spirit_manager set_dive_y: 0];
 				}
 				
 			} else {
@@ -104,15 +105,16 @@
 				g._player_state = PlayerState_Combat;
 				_vy = 10;
 				[_img playAnim:@"in air" repeat:YES];
+				[g.get_spirit_manager reset_dive];
 			}
 		break;
 		case PlayerState_Combat:
 			_rotation = 0;
 			
 			_y += 5 * dt_scale_get();
-			if(_vy < 5 && _vy > 0) // hold at peek
-				_vy -= 0.2 * dt_scale_get();
-			else
+			//if(_vy < 2.5 && _vy > -2.5) // hold at peek
+			//	_vy -= 0.05 * dt_scale_get();
+			//else
 				_vy -= 0.3 * dt_scale_get();
 			
 			if(combat_step == 0 && self.position.y > 300) {
@@ -163,12 +165,17 @@
 		_y += _vy * dt_scale_get();
 	} else {
 		_x += _vx * dt_scale_get();
-		if(_vy > .7)
-			_y += _vy * dt_scale_get() * 1.5;
-		else if (_vy > 0)
-			_y += _vy * dt_scale_get() * 0.5;
+		/*
+		if(_vy > 2)
+			_vel_lerp += (1.3 - _vel_lerp) * .6 * dt_scale_get(); // going up
+		else if (_vy > -2)
+			_vel_lerp += (.4 - _vel_lerp) * .4 * dt_scale_get(); // hold at peek
 		else
-			_y += _vy * dt_scale_get() * 1;
+			_vel_lerp += (1.5 - _vel_lerp) * .3 * dt_scale_get(); // going down
+		
+		_y += _vy * _vel_lerp * dt_scale_get();
+		*/
+		_y += _vy / 2 + (_vy * ABS(_vy) / 15) * dt_scale_get();
 	}
 	
 	_x_vel = _x - _x_prev;

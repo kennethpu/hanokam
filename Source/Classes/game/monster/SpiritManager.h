@@ -18,6 +18,7 @@
 -(float)dive_y;
 -(void)set_dive_y:(float)y;
 -(void)toss_spirit;
+-(void)reset_dive;
 
 -(NSMutableArray*)get_spirits;
 

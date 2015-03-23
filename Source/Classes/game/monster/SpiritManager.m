@@ -71,6 +71,11 @@
 	
 }
 
+-(void)reset_dive {
+	_spawned = 0;
+	_dive_y = 0;
+}
+
 -(void)spawn_spirit {
 	CCNode *_new_spirit;
 	if(float_random(0, 1) < .8){

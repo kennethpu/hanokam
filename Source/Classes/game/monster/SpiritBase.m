@@ -17,6 +17,7 @@
 	float _vx, _vy;
 	float _aimDir;
 	float _wave;
+	float _air_time;
 	int _follow_pos;
 	BOOL _following;
 }
@@ -26,6 +27,7 @@
 @synthesize _following;
 @synthesize _tossed;
 @synthesize _remove_me;
+@synthesize _air_time;
 
 -(SpiritBase*) cons_size:(float)size {
 	_following = NO;
@@ -86,7 +88,6 @@
 					// PLAYER STOPS
 					_vx += (sinf(_aimDir) * 10 - _vx) * .1 * dt_scale_get();
 					_vy += (- 4 - _vx) * .07 * dt_scale_get();
-					//_x += (_goto_x - _x) * .004 * dt_scale_get();
 				} else {
 					// SWIM UP
 					_aimDir = [self angle_towards_x:_goto_x y: _goto_y];
@@ -97,23 +98,31 @@
 					_y += (_goto_y - _y) * .2 * dt_scale_get();
 				}
 			}
-			_vx = _vx - (_vx * .05 * dt_scale_get());
-			_vy = _vy - (_vy * .05 * dt_scale_get());
+			_vx -= _vx * .05 * dt_scale_get();
+			_vy -= _vy * .05 * dt_scale_get();
 			
 		} else {
 			// IN AIR
 			if(_tossed == true) {
 				[self air_behavior:g];
-				_y += (g.get_camera_y - 20 - _y) * .03 * dt_scale_get();
-				_vx = 0;
+				_y += (g.get_camera_y - (_air_time * _air_time) - 50 - _y) * .08 * dt_scale_get();
 				_vy = 1;
+				_vx = 0;
+				_rotation += _vx;
+				_air_time += .05;
+				if(_air_time > 40) {
+					_remove_me = true;
+					[g.get_spirit_manager toss_spirit];
+				}
 				// HIT PLAYER
 				if(g.player.position.x > _x - 15 && g.player.position.x < _x + 15) {
 					if(g.player.position.y < _y && g.player.position.y > _y - 40) {
 						[g shake_for:15 distance:7];
-						g.player._vy = 6;
+						g.player._vy = 10;
 						_remove_me = true;
 						[g.get_spirit_manager toss_spirit];
+						
+						[g freeze_frame:5];
 						
 						DO_FOR(10,
 						[g add_particle:(Particle*)[[[[ParticlePhysical cons_tex:[Resource get_tex:TEX_PARTICLE_BLOOD_1]
@@ -146,8 +155,8 @@
 }
 
 -(void) toss:(GameEngineScene*)g {
-	[self setPosition:ccp(float_random(0, game_screen().width), g.player.position.y - 200)];
-	_vy = 20;
+	[self setPosition:ccp(float_random(40, game_screen().width-40), self.position.y)];
+	_vy = 0;
 	_tossed = true;
 }
 

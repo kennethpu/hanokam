@@ -60,13 +60,10 @@
 	float _player_dive_bottom_y;
 	float _player_combat_top_y;
 	
-	float _shake_rumble_time;
-	float _shake_rumble_total_time;
-	float _shake_rumble_distance;
+	float _shake_rumble_time, _shake_rumble_total_time, _shake_rumble_distance;
+	float _shake_rumble_slow_time, _shake_rumble_slow_total_time, _shake_rumble_slow_distance;
 	
-	float _shake_rumble_slow_time;
-	float _shake_rumble_slow_total_time;
-	float _shake_rumble_slow_distance;
+	float _freeze;
 	
 	Player *_player;
 	
@@ -228,61 +225,66 @@
 	
 	_tick += dt_scale_get();
 	
-	if ([self get_viewbox].y1 < self.HORIZON_HEIGHT && [self get_viewbox].y2 > -self.REFLECTION_HEIGHT) {
-		[self render_ripple_texture];
-		[self render_reflection_texture];
-	}
-	
-	[_accel i_update:self];
-	[_player update_game:self];
-	[self update_particles];
-	
-	switch(_player_state) {
-		case PlayerState_Dive:
-			if(self.touch_down == false) {
-				if(_player.position.y > _player_dive_bottom_y + 200)
-					_player_state = PlayerState_Return;
-			}
-			
-			_player_dive_bottom_y = [self get_spirit_manager].dive_y - 200;
-			
-			_cam_y += (0 - _cam_y) * .1 * dt_scale_get();
-			
-			_cam_y_lirp += (_player_dive_bottom_y - _cam_y_lirp) * .06 * dt_scale_get();
-		break;
-		case PlayerState_Return:
-			_cam_y_lirp += (_player.position.y + 100 - _cam_y_lirp) * .1 * dt_scale_get();
-		break;
-		case PlayerState_Combat:
-			//_cam_y += (-100 - _cam_y) * .2 * dt_scale_get();
-			if(_player_combat_top_y < _player.position.y)
-				_player_combat_top_y = _player.position.y;
-			_player_combat_top_y += 3;
-			
-			if(_player.position.y < _player_combat_top_y - 320){
-				_player_combat_top_y = _player.position.y + 330;
-				_cam_y_lirp += (_player.position.y + 50 - _cam_y_lirp) * .2 * dt_scale_get();
-			} else {
-				_cam_y_lirp += (_player_combat_top_y - _cam_y_lirp) * .15 * dt_scale_get();
-			}
-			
-			break;
-		case PlayerState_WaveEnd:
-			_player_combat_top_y = 0;
-			_cam_y += (130 - _cam_y) * .02 * dt_scale_get();
-			
-			_cam_y_lirp += (_player.position.y + _cam_y - _cam_y_lirp) * .3 * dt_scale_get();
-		break;
-	}
-	/*
-	if(_player_state == PlayerState_Dive || _player_state == PlayerState_Return) {
-		[self center_camera_hei:_cam_y_lirp];
-	} else if (_player_state == PlayerState_Combat) {
-		[self center_camera_hei:_player_combat_top_y + _cam_y];
+	if(_freeze > 0) {
+		_freeze -= dt_scale_get();
 	} else {
-		[self center_camera_hei:_player.position.y + _cam_y];
+		if ([self get_viewbox].y1 < self.HORIZON_HEIGHT && [self get_viewbox].y2 > -self.REFLECTION_HEIGHT) {
+			[self render_ripple_texture];
+			[self render_reflection_texture];
+		}
+		
+		[_accel i_update:self];
+		[_player update_game:self];
+		[self update_particles];
+		
+		switch(_player_state) {
+			case PlayerState_Dive:
+				if(self.touch_down == false) {
+					if(_player.position.y > _player_dive_bottom_y + 200)
+						_player_state = PlayerState_Return;
+				}
+				
+				_player_dive_bottom_y = [self get_spirit_manager].dive_y - 200;
+				
+				_cam_y += (0 - _cam_y) * .1 * dt_scale_get();
+				
+				_cam_y_lirp += (_player_dive_bottom_y - _cam_y_lirp) * .06 * dt_scale_get();
+			break;
+			case PlayerState_Return:
+				_cam_y_lirp += (_player.position.y + 100 - _cam_y_lirp) * .1 * dt_scale_get();
+			break;
+			case PlayerState_Combat:
+				//_cam_y += (-100 - _cam_y) * .2 * dt_scale_get();
+				if(_player.position.y > _player_combat_top_y + 100)
+					_player_combat_top_y = _player.position.y - 100;
+				_player_combat_top_y += 3;
+				
+				if(_player.position.y < _player_combat_top_y - 320){
+					//_player_combat_top_y = _player.position.y + 330;
+					_cam_y_lirp += (_player.position.y + 50 - _cam_y_lirp) * .2 * dt_scale_get();
+				} else {
+					_cam_y_lirp += (_player_combat_top_y - _cam_y_lirp) * .15 * dt_scale_get();
+				}
+				
+				break;
+			case PlayerState_WaveEnd:
+				_player_combat_top_y = 200;
+				_cam_y += (130 - _cam_y) * .02 * dt_scale_get();
+				
+				_cam_y_lirp += (_player.position.y + _cam_y - _cam_y_lirp) * .3 * dt_scale_get();
+			break;
+		}
+		/*
+		if(_player_state == PlayerState_Dive || _player_state == PlayerState_Return) {
+			[self center_camera_hei:_cam_y_lirp];
+		} else if (_player_state == PlayerState_Combat) {
+			[self center_camera_hei:_player_combat_top_y + _cam_y];
+		} else {
+			[self center_camera_hei:_player.position.y + _cam_y];
+		}
+		*/
 	}
-	*/
+	
 	[self center_camera_hei:_cam_y_lirp];
 	
 	for (BGElement *itr in _bg_elements) {
@@ -333,7 +335,7 @@
 }
 
 -(float)get_ground_depth {
-	return -400;
+	return -2000;
 }
 
 -(void)center_camera_hei:(float)hei {
@@ -372,7 +374,9 @@
 	_shake_rumble_slow_distance = distance;
 }
 
--(void)freeze_frame:(int)ct{}
+-(void)freeze_frame:(int)ct{
+	_freeze = ct;
+}
 -(HitRect)get_viewbox{ return hitrect_cons_xy_widhei(_camera_center_point.x-game_screen().width/2,_camera_center_point.y-game_screen().height/2,game_screen().width,game_screen().height); }
 -(CCNode*)get_anchor { return _game_anchor; }
 -(BOOL)fullScreenTouch { return YES; }

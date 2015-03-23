@@ -1,5 +1,6 @@
 #import "ParticlePhysical.h"
 #import "Common.h"
+#import	"GameEngineScene.h"
 
 @implementation ParticlePhysical {
 	float _vr;
@@ -28,6 +29,7 @@
 	if(_y > 0)
 		_vy -= .2 * dt_scale_get();
 	else {
+		[g add_ripple:self.position];
 		_vy += .3 * dt_scale_get();
 		_vy -= (_vy * .05) * dt_scale_get();
 		_vx += (5 - _vx) * .03 * dt_scale_get();
@@ -44,7 +46,7 @@
 }
 
 -(BOOL)should_remove {
-	return (self.position.x < -30 || self.position.x > game_screen().width + 30);
+	return (self.position.x < -30 || self.position.x > game_screen().width + 30 || self.position.y < 0);
 }
 
 -(int)get_render_ord {
