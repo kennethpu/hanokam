@@ -10,6 +10,8 @@
 #import "GameEngineScene.h"
 #import "SpiritBase.h"
 #import "Spirit_Fish_1.h"
+#import "Spirit_Fish_2.h"
+#import "Spirit_Fish_3.h"
 
 @implementation SpiritManager {
 	int _dive_y;
@@ -70,8 +72,14 @@
 }
 
 -(void)spawn_spirit {
-	Spirit_Fish_1 *_new_spirit;
-	_new_spirit = (Spirit_Fish_1*)[[Spirit_Fish_1 cons_size:1] add_to:_game.spirit_anchor z:0];
+	CCNode *_new_spirit;
+	if(float_random(0, 1) < .8){
+		_new_spirit = (Spirit_Fish_1*)[[Spirit_Fish_1 cons_size:1] add_to:_game.spirit_anchor z:0];
+	} else if(float_random(0, 1) < .6) {
+		_new_spirit = (Spirit_Fish_1*)[[Spirit_Fish_2 cons_size:1] add_to:_game.spirit_anchor z:0];
+	} else {
+		_new_spirit = (Spirit_Fish_1*)[[Spirit_Fish_3 cons_size:1] add_to:_game.spirit_anchor z:0];
+	}
 	[_new_spirit setPosition:ccp(float_random(0, game_screen().width), _dive_y - 600 + float_random(0, 50))];
 	[_spirits addObject:_new_spirit];
 	_spawned ++;

@@ -25,7 +25,7 @@
 -(Spirit_Fish_5*) cons_size:(float)size {
 	_obj_sprite = (CCSprite*)[[CCSprite spriteWithTexture:[Resource get_tex:TEX_SPIRIT_FISH_1]] add_to:self z:1];
 	[_obj_sprite set_anchor_pt:ccp(.5, .5)];
-	[_obj_sprite set_scale: 0.3 * size];
+	[_obj_sprite set_scale: 0.25 * size];
 	[super cons_size: size];
 	
 	return self;

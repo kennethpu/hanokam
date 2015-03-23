@@ -8,7 +8,7 @@
 #import "SpiritBase.h"
 #import "Spirit_Fish_1.h"
 #import "Particle.h"
-#import "RotateFadeOutParticle.h"
+#import "ParticlePhysical.h"
 
 #import "CCTexture_Private.h"
 
@@ -36,7 +36,7 @@
 	float _shake_rumble_slow_time;
 	float _shake_rumble_slow_total_time;
 	float _shake_rumble_slow_distance;
-
+	
 	Player *_player;
 	
 	CameraZoom _target_camera;
@@ -55,7 +55,6 @@
 	CCDrawNode *_heightRefrence;
 	
 	AccelerometerManager *_accel;
-	
 	
 	CCLabelTTF *_water_text;
 	
@@ -236,13 +235,10 @@
 	[_player update_game:self];
 	[self update_particles];
 	
-	if (int_random(0, 100) == 0) {
+	if (int_random(0, 10) == 0) {
 		NSLog(@"add");
-		[self add_particle:(Particle*)[[[RotateFadeOutParticle cons_tex:[Resource get_tex:TEX_DOT]
-													  rect:CGRectMake(0, 0, 16, 16)] set_ctmax:50]
-													  set_pos:ccp(50,50)]];
+		
 	}
-	
 	
 	switch(_player_state) {
 		case PlayerState_Dive:
@@ -261,21 +257,27 @@
 			_cam_y_lirp += (_player.position.y + 100 - _cam_y_lirp) * .1 * dt_scale_get();
 		break;
 		case PlayerState_Combat:
-			_cam_y += (-100 - _cam_y) * .2 * dt_scale_get();
+			//_cam_y += (-100 - _cam_y) * .2 * dt_scale_get();
 			if(_player_combat_top_y < _player.position.y)
 				_player_combat_top_y = _player.position.y;
 			_player_combat_top_y += 3;
 			
-			if(_player.position.y < _player_combat_top_y - 340)
-				_player_combat_top_y = _player.position.y + 340;
-		break;
+			if(_player.position.y < _player_combat_top_y - 320){
+				_player_combat_top_y = _player.position.y + 330;
+				_cam_y_lirp += (_player.position.y + 50 - _cam_y_lirp) * .2 * dt_scale_get();
+			} else {
+				_cam_y_lirp += (_player_combat_top_y - _cam_y_lirp) * .15 * dt_scale_get();
+			}
+			
+			break;
 		case PlayerState_WaveEnd:
 			_player_combat_top_y = 0;
 			_cam_y += (130 - _cam_y) * .02 * dt_scale_get();
-			//_cam_y_lirp += 100;
+			
+			_cam_y_lirp += (_player.position.y + _cam_y - _cam_y_lirp) * .3 * dt_scale_get();
 		break;
 	}
-	
+	/*
 	if(_player_state == PlayerState_Dive || _player_state == PlayerState_Return) {
 		[self center_camera_hei:_cam_y_lirp];
 	} else if (_player_state == PlayerState_Combat) {
@@ -283,6 +285,9 @@
 	} else {
 		[self center_camera_hei:_player.position.y + _cam_y];
 	}
+	*/
+	[self center_camera_hei:_cam_y_lirp];
+	
 	for (BGElement *itr in _bg_elements) {
 		[itr i_update:self];
 	}

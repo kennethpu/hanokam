@@ -1,12 +1,12 @@
 //
-//  Bird.h
+//  Arrow.h
 //  hobobob
 //
-//  Created by spotco on 15/03/2015.
+//  Created by spotco on 22/03/2015.
 //  Copyright (c) 2015 Apportable. All rights reserved.
 //
 
 #import "cocos2d.h"
-@interface Bird : BGElement
-+(Bird*)cons;
+@interface Arrow : CCSprite
++(Arrow*)cons;
 @end

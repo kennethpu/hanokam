@@ -9,6 +9,8 @@
 #import "SpriterData.h"
 #import "SpiritManager.h"
 
+#import "Arrow.h"
+
 #import "CCTexture_Private.h"
 
 @implementation Player {
@@ -22,6 +24,8 @@
 	
 	int combat_step;
 	BOOL _state_waveEnd_jump_back;
+	
+	NSMutableArray *_arrows;
 	
 }
 @synthesize _vx,_vy;
@@ -61,8 +65,13 @@
 				if(g.touch_down) {
 					_vy += (-5 -_vy) * 0.025 * dt_scale_get();
 				} else {
-					if(g.touch_released && _vy < 0)
-						_vy *= 1.3;
+					if(g.touch_released) {
+						if(_vy > - 8)
+							_vy *= 1.3;
+						else if (_vy > 0) {
+							_vy *= .1;
+						}
+					}
 					
 					if(_vy < -5)
 						_vy += (13 -_vy) * 0.004 * dt_scale_get();
@@ -132,7 +141,7 @@
 					_vy = 5;
 				}
 			} else {
-				_rotation += .1;
+				_rotation += .1 * dt_scale_get();
 			
 				_vy -= .5 * dt_scale_get();
 				if(_y < 0) {
@@ -163,8 +172,31 @@
 	_x_vel = _x - _x_prev;
 	_x_prev = _x;
 	
+	/*
+	NSMutableArray *birds_to_remove = [NSMutableArray array];
+	for (Bird *bird in _birds) {
+		[bird i_update:g];
+		if (bird.position.x > game_screen().width + 100) {
+			[birds_to_remove addObject:bird];
+			[bird removeFromParent];
+		}
+	}
+	[_birds removeObjectsInArray:birds_to_remove];
+	[birds_to_remove removeAllObjects];
+	*/
+	
+	[self shoot_arrow];
+	
 	[self setRotation:_rotation * 57.2957795];
 	[self setPosition:ccp(clampf(_x, 0, game_screen().width),_y)];
+}
+
+-(Arrow*)shoot_arrow {
+	Arrow *_new_arrow = (Arrow*)[[[Arrow cons] add_to:self z:3]set_pos:self.position];
+	
+	[_arrows addObject:_new_arrow];
+	return _new_arrow;
+
 }
 
 -(BOOL)is_underwater {

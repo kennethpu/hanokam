@@ -11,6 +11,7 @@
 #import "Resource.h"
 #import "SpiritManager.h"
 #import "Player.h" 
+#import "ParticlePhysical.h"
 
 @implementation SpiritBase {
 	float _vx, _vy;
@@ -113,6 +114,14 @@
 						g.player._vy = 6;
 						_remove_me = true;
 						[g.get_spirit_manager toss_spirit];
+						
+						DO_FOR(10,
+						[g add_particle:(Particle*)[[[[ParticlePhysical cons_tex:[Resource get_tex:TEX_PARTICLE_BLOOD_1]
+							rect:CGRectMake(0, 0, 55, 55)]
+							explode_speed:5]
+							set_pos:ccp(_x, _y)]
+							set_scale:.5]]);
+						
 					}
 				}
 			} else {

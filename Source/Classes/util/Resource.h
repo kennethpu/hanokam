@@ -19,9 +19,15 @@
 #define TEX_TEST_SH_ITEM @"sh_test_item"
 
 #define TEX_SPIRIT_FISH_1 @"spirit_fish_1"
+#define TEX_SPIRIT_FISH_2 @"spirit_fish_2"
+#define TEX_SPIRIT_FISH_3 @"spirit_fish_3"
 
 #define TEX_TEST_CHAR_HANOKA @"bg_test_hanoka"
 #define TEX_SPRITER_CHAR_HANOKATEST @"hanoka v0.01"
+
+#define TEX_PARTICLE_BLOOD_1 @"particle_blood_1"
+
+#define TEX_ARROW @"arrow"
 
 #define TEX_DOT @"dot"
 
