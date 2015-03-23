@@ -21,7 +21,7 @@
 	return self;
 }
 
--(void)i_update:(GameEngineScene*)g {
+-(void)i_update:(id)g {
 	float _x = self.position.x;
 	float _y = self.position.y;
 	

@@ -445,7 +445,7 @@ NSString* unique_id() {
 }
 
 CCLabelTTF* label_cons(CGPoint pos, ccColor3B color, int fontSize, NSString* str) {
-	CCLabelTTF *rtv = (CCLabelTTF*)[[CCLabelTTF labelWithString:str fontName:@"" fontSize:fontSize] set_pos:pos];
+	CCLabelTTF *rtv = (CCLabelTTF*)[[CCLabelTTF labelWithString:str fontName:@"5ceta_mono.ttf" fontSize:fontSize] set_pos:pos];
 	[rtv setColor:_CCColor(color)];
 	return rtv;
 }

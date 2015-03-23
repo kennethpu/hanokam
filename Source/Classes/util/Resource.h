@@ -32,4 +32,6 @@
 
 #define TEX_KELP_SPRITESHEET @"kelp_spritesheet"
 
+#define TEX_HUD_SPRITESHEET @"hud_spritesheet"
+
 @end

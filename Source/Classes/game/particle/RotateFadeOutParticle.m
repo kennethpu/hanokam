@@ -1,5 +1,4 @@
 #import "RotateFadeOutParticle.h"
-#import "Common.h"
 
 @implementation RotateFadeOutParticle {
 	float _ct, _ctmax;
@@ -21,7 +20,7 @@
 	return self;
 }
 
--(void)i_update:(GameEngineScene*)g {
+-(void)i_update:(id)g {
 	float pct = _ct/_ctmax;
 	_ct -= dt_scale_get();
 	[self setOpacity:255 * pct];

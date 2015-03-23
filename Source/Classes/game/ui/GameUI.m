@@ -5,10 +5,23 @@
 #import "GameEngineScene.h"
 #import "SpiritBase.h"
 #import "HealthBar.h"
+#import "Particle.h"
+#import "UIBossIntroParticle.h"
+
+typedef enum _GameUIBossIntroMode {
+	GameUIBossIntroMode_None,
+	GameUIBossIntroMode_FillInToBoss,
+	GameUIBossIntroMode_Boss
+} GameUIBossIntroMode;
 
 @implementation GameUI {
 	NSMutableDictionary *_enemy_health_bars;
 	HealthBar *_boss_health_bar;
+	CCLabelTTF *_boss_health_label;
+	GameUIBossIntroMode _current_boss_mode;
+	float _boss_fillin_pct;
+	
+	ParticleSystem *_particles;
 }
 
 +(GameUI*)cons:(GameEngineScene*)game {
@@ -18,15 +31,53 @@
 -(GameUI*)cons:(GameEngineScene*)game {
 	[self setAnchorPoint:ccp(0,0)];
 	_enemy_health_bars = [NSMutableDictionary dictionary];
+	
 	_boss_health_bar = [HealthBar cons_size:CGSizeMake(game_screen().width-10, 15) anchor:ccp(0,0)];
 	[_boss_health_bar setPosition:game_screen_anchor_offset(ScreenAnchor_BL, ccp(5,5))];
 	[self addChild:_boss_health_bar];
 	[_boss_health_bar set_pct:0.5];
+	_boss_health_label = (CCLabelTTF*)[label_cons(ccp(0,15), ccc3(255, 255, 255), 6, @"Big Badass Boss") set_anchor_pt:ccp(0,0)];
+	[_boss_health_bar addChild:_boss_health_label];
+	
+	_particles = [ParticleSystem cons_anchor:self];
+	
+	_current_boss_mode = GameUIBossIntroMode_None;
+	
 	return self;
+}
+
+-(void)start_boss:(NSString*)title sub:(NSString*)sub {
+	[_particles add_particle:[UIBossIntroParticle cons_header:title sub:sub]];
+	_current_boss_mode = GameUIBossIntroMode_FillInToBoss;
+	_boss_fillin_pct = 0;
+	[_boss_health_bar setVisible:YES];
+	[_boss_health_label setString:title];
+}
+
+-(void)update_boss_ui:(GameEngineScene*)game {
+	switch (_current_boss_mode) {
+		case GameUIBossIntroMode_None:;
+			[_boss_health_bar setVisible:NO];
+		break;
+		case GameUIBossIntroMode_FillInToBoss:;
+			_boss_fillin_pct += 0.025 * dt_scale_get();
+			[_boss_health_bar setVisible:YES];
+			[_boss_health_label setVisible:NO];
+			[_boss_health_bar set_pct:_boss_fillin_pct];
+			if (_boss_fillin_pct >= 1) _current_boss_mode = GameUIBossIntroMode_Boss;
+		break;
+		case GameUIBossIntroMode_Boss:;
+			[_boss_health_bar setVisible:YES];
+			[_boss_health_label setVisible:YES];
+			[_boss_health_bar set_pct:1.0];
+		break;
+	}
 }
 
 -(void)i_update:(GameEngineScene*)game {
 	[self update_enemy_health_bars:game];
+	[self update_boss_ui:game];
+	[_particles update_particles:self];
 }
 
 -(void)update_enemy_health_bars:(GameEngineScene*)game {

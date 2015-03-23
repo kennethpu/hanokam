@@ -12,6 +12,7 @@
 #import "RotateFadeOutParticle.h"
 #import "ShaderManager.h"
 #import "GameUI.h"
+#import "Particle.h"
 
 #import "CCTexture_Private.h"
 
@@ -96,9 +97,8 @@
 	
 	SpiritManager *_spirit_manager;
 	
-	NSMutableArray *_particles,*_particles_tba;
-	
 	GameUI *_ui;
+	ParticleSystem *_particles;
 }
 
 -(Player*)player { return _player; }
@@ -127,8 +127,6 @@
 
 -(id)cons {
 	self.userInteractionEnabled = YES;
-	_particles = [NSMutableArray array];
-	_particles_tba = [NSMutableArray array];
 	_accel = [AccelerometerManager cons];
 	dt_unset();
 	_shake_rumble_total_time = _shake_rumble_time = _shake_rumble_distance = 1;
@@ -139,6 +137,8 @@
 	
 	_game_anchor = [[CCNode node] add_to:_zoom_node];
 	_spirit_anchor = [[CCNode node] add_to:_game_anchor z:1];
+	
+	_particles = [ParticleSystem cons_anchor:_game_anchor];
 	
 	_player = (Player*)[[Player cons] add_to:_game_anchor z:5];
 	_player_state = PlayerState_WaveEnd;
@@ -230,8 +230,14 @@
 	[_accel accel_report_x:aceler.x y:aceler.y z:aceler.z];
 }
 
+static bool TEST_HAS_ACTIVATED_BOSS = NO;
+
 -(void)update:(CCTime)delta {
 	dt_set(delta);
+	if (!TEST_HAS_ACTIVATED_BOSS && _player.position.y <= self.get_ground_depth + 50) {
+		TEST_HAS_ACTIVATED_BOSS = YES;
+		[_ui start_boss:@"Big Bad Boss" sub:@"This guy mad."];
+	}
 	
 	_tick += dt_scale_get();
 	
@@ -242,7 +248,7 @@
 	
 	[_accel i_update:self];
 	[_player update_game:self];
-	[self update_particles];
+	[_particles update_particles:self];
 	
 	switch(_player_state) {
 		case PlayerState_Dive:
@@ -323,28 +329,13 @@
 -(void)set_zoom:(float)val {
 	[_zoom_node setScale:clampf(val, 1, INFINITY)];
 }
--(void)add_particle:(Particle*)p {
-    [_particles_tba addObject:p];
-}
--(void)update_particles {
-    for (Particle *p in _particles_tba) {
-        [_particles addObject:p];
-        [_game_anchor addChild:p z:[p get_render_ord]];
-    }
-    [_particles_tba removeAllObjects];
-    NSMutableArray *toremove = [NSMutableArray array];
-    for (Particle *i in _particles) {
-        [i i_update:self];
-        if ([i should_remove]) {
-			[_game_anchor removeChild:i cleanup:YES];
-            [toremove addObject:i];
-        }
-    }
-    [_particles removeObjectsInArray:toremove];
-}
 
 -(float)get_ground_depth {
 	return -400;
+}
+
+-(void)add_particle:(Particle*)p {
+	[_particles add_particle:p];
 }
 
 -(void)center_camera_hei:(float)hei {

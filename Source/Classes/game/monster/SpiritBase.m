@@ -159,7 +159,7 @@
 	return atan2f(x - self.position.x, y - self.position.y);
 }
 
--(CGPoint)get_healthbar_offset { return ccp(0, 15);}
+-(CGPoint)get_healthbar_offset { return ccp(0, 20);}
 -(BOOL)has_health_bar { return YES; }
 -(float)get_health_pct { return 1.0f; }
 
