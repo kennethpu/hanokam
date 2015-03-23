@@ -30,5 +30,6 @@
 #define TEX_ARROW @"arrow"
 
 #define TEX_DOT @"dot"
+#define TEX_RIPPLE @"ripple"
 
 @end

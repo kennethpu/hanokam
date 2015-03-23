@@ -150,6 +150,7 @@
 					_vy = -10;
 					[g shake_slow_for:100 distance:10];
 					[_img playAnim:@"swim" repeat:YES];
+					[g add_ripple:self.position];
 				}
 			}
 			

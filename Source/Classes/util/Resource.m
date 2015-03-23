@@ -65,6 +65,7 @@ static NSSet* dont_load;
 		TEX_PARTICLE_BLOOD_1: @"particle_blood_1.png",
 		TEX_ARROW: @"arrow.png",
 		TEX_DOT: @"dot.png"
+		TEX_RIPPLE: @"ripple.png"
 	};
 	
 	

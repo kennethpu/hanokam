@@ -137,6 +137,10 @@
 	_x += _vx * dt_scale_get();
 	_y += _vy * dt_scale_get();
 	
+	if(self.position.y > 0 && _y < 0) {
+		[g add_ripple:self.position];
+	}
+	
 	[self setRotation:_rotation * 57.2957795];
 	[self setPosition:ccp(_x, _y)];
 }
