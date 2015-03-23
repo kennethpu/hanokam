@@ -11,6 +11,8 @@
 #import "ParticlePhysical.h"
 #import "RotateFadeOutParticle.h"
 #import "ShaderManager.h"
+#import "GameUI.h"
+#import "Particle.h"
 
 #import "CCTexture_Private.h"
 
@@ -67,11 +69,10 @@
 	
 	Player *_player;
 	
-	CameraZoom _target_camera;
-	CameraZoom _current_camera;
-	
 	CCNode *_game_anchor;
 	CCNode *_spirit_anchor;
+	
+	CCNode *_zoom_node;
 	
 	CGPoint _camera_center_point;
 	
@@ -93,7 +94,8 @@
 	
 	SpiritManager *_spirit_manager;
 	
-	NSMutableArray *_particles,*_particles_tba;
+	GameUI *_ui;
+	ParticleSystem *_particles;
 }
 
 -(Player*)player { return _player; }
@@ -122,16 +124,18 @@
 
 -(id)cons {
 	self.userInteractionEnabled = YES;
-	_particles = [NSMutableArray array];
-	_particles_tba = [NSMutableArray array];
 	_accel = [AccelerometerManager cons];
 	dt_unset();
-	_current_camera = camerazoom_cons(0, 0, 0.1);
 	_shake_rumble_total_time = _shake_rumble_time = _shake_rumble_distance = 1;
 	_shake_rumble_slow_total_time = _shake_rumble_slow_time = _shake_rumble_slow_distance = 1;
 	
-	_game_anchor = [[CCNode node] add_to:self];
+	_zoom_node = [[CCNode node] add_to:self];
+	[_zoom_node setPosition:game_screen_pct(.5,.5)];
+	
+	_game_anchor = [[CCNode node] add_to:_zoom_node];
 	_spirit_anchor = [[CCNode node] add_to:_game_anchor z:1];
+	
+	_particles = [ParticleSystem cons_anchor:_game_anchor];
 	
 	_player = (Player*)[[Player cons] add_to:_game_anchor z:5];
 	_player_state = PlayerState_WaveEnd;
@@ -170,6 +174,9 @@
 	for(int i = 0; i < 400; i++){
 		[_heightRefrence drawSegmentFrom:ccp(0, (i - 200) * 200) to: ccp(100, (i - 200) * 200) radius:1 color:[CCColor blackColor]];
 	}
+	
+	_ui = [GameUI cons:self];
+	[self addChild:_ui z:2];
 	
 	return self;
 }
@@ -220,69 +227,68 @@
 	[_accel accel_report_x:aceler.x y:aceler.y z:aceler.z];
 }
 
+static bool TEST_HAS_ACTIVATED_BOSS = NO;
+
 -(void)update:(CCTime)delta {
 	dt_set(delta);
+	if (!TEST_HAS_ACTIVATED_BOSS && _player.position.y <= self.get_ground_depth + 50) {
+		TEST_HAS_ACTIVATED_BOSS = YES;
+		[_ui start_boss:@"Big Bad Boss" sub:@"This guy mad."];
+	}
 	
 	_tick += dt_scale_get();
 	
+	[self update_shake];
+	
 	if(_freeze > 0) {
 		_freeze -= dt_scale_get();
-	} else {
-		if ([self get_viewbox].y1 < self.HORIZON_HEIGHT && [self get_viewbox].y2 > -self.REFLECTION_HEIGHT) {
-			[self render_ripple_texture];
-			[self render_reflection_texture];
-		}
-		
-		[_accel i_update:self];
-		[_player update_game:self];
-		[self update_particles];
-		
-		switch(_player_state) {
-			case PlayerState_Dive:
-				if(self.touch_down == false) {
-					if(_player.position.y > _player_dive_bottom_y + 200)
-						_player_state = PlayerState_Return;
-				}
-				
-				_player_dive_bottom_y = [self get_spirit_manager].dive_y - 200;
-				
-				_cam_y += (0 - _cam_y) * .1 * dt_scale_get();
-				
-				_cam_y_lirp += (_player_dive_bottom_y - _cam_y_lirp) * .06 * dt_scale_get();
+		return;
+	}
+	if ([self get_viewbox].y1 < self.HORIZON_HEIGHT && [self get_viewbox].y2 > -self.REFLECTION_HEIGHT) {
+		[self render_ripple_texture];
+		[self render_reflection_texture];
+	}
+	
+	[_accel i_update:self];
+	[_player update_game:self];
+	[_particles update_particles:self];
+	
+	switch(_player_state) {
+		case PlayerState_Dive:
+			if(self.touch_down == false) {
+				if(_player.position.y > _player_dive_bottom_y + 200)
+					_player_state = PlayerState_Return;
+			}
+			
+			_player_dive_bottom_y = [self get_spirit_manager].dive_y - 200;
+			
+			_cam_y += (0 - _cam_y) * .1 * dt_scale_get();
+			
+			_cam_y_lirp += (_player_dive_bottom_y - _cam_y_lirp) * .06 * dt_scale_get();
+		break;
+		case PlayerState_Return:
+			_cam_y_lirp += (_player.position.y + 100 - _cam_y_lirp) * .1 * dt_scale_get();
+		break;
+		case PlayerState_Combat:
+			//_cam_y += (-100 - _cam_y) * .2 * dt_scale_get();
+			if(_player_combat_top_y < _player.position.y)
+				_player_combat_top_y = _player.position.y;
+			_player_combat_top_y += 3;
+			
+			if(_player.position.y < _player_combat_top_y - 320){
+				_player_combat_top_y = _player.position.y + 330;
+				_cam_y_lirp += (_player.position.y + 50 - _cam_y_lirp) * .2 * dt_scale_get();
+			} else {
+				_cam_y_lirp += (_player_combat_top_y - _cam_y_lirp) * .15 * dt_scale_get();
+			}
+			
 			break;
-			case PlayerState_Return:
-				_cam_y_lirp += (_player.position.y + 100 - _cam_y_lirp) * .1 * dt_scale_get();
-			break;
-			case PlayerState_Combat:
-				//_cam_y += (-100 - _cam_y) * .2 * dt_scale_get();
-				if(_player.position.y > _player_combat_top_y + 100)
-					_player_combat_top_y = _player.position.y - 100;
-				_player_combat_top_y += 3;
-				
-				if(_player.position.y < _player_combat_top_y - 320){
-					//_player_combat_top_y = _player.position.y + 330;
-					_cam_y_lirp += (_player.position.y + 50 - _cam_y_lirp) * .2 * dt_scale_get();
-				} else {
-					_cam_y_lirp += (_player_combat_top_y - _cam_y_lirp) * .15 * dt_scale_get();
-				}
-				
-				break;
-			case PlayerState_WaveEnd:
-				_player_combat_top_y = 200;
-				_cam_y += (130 - _cam_y) * .02 * dt_scale_get();
-				
-				_cam_y_lirp += (_player.position.y + _cam_y - _cam_y_lirp) * .3 * dt_scale_get();
-			break;
-		}
-		/*
-		if(_player_state == PlayerState_Dive || _player_state == PlayerState_Return) {
-			[self center_camera_hei:_cam_y_lirp];
-		} else if (_player_state == PlayerState_Combat) {
-			[self center_camera_hei:_player_combat_top_y + _cam_y];
-		} else {
-			[self center_camera_hei:_player.position.y + _cam_y];
-		}
-		*/
+		case PlayerState_WaveEnd:
+			_player_combat_top_y = 0;
+			_cam_y += (130 - _cam_y) * .02 * dt_scale_get();
+			
+			_cam_y_lirp += (_player.position.y + _cam_y - _cam_y_lirp) * .3 * dt_scale_get();
+		break;
 	}
 	
 	[self center_camera_hei:_cam_y_lirp];
@@ -291,8 +297,11 @@
 		[itr i_update:self];
 	}
 	[_spirit_manager i_update];
-	
-	// shake it baby
+	_touch_tapped = _touch_released = false;
+	[_ui i_update:self];
+}
+
+-(void)update_shake {
 	if(_shake_rumble_time > 0)
 		_shake_rumble_time -= dt_scale_get();
 	else
@@ -311,44 +320,32 @@
 	float _rumble_slow_dist = _shake_rumble_slow_distance * (_shake_rumble_slow_time / _shake_rumble_slow_total_time);
 	
 	[_game_anchor setPosition:CGPointAdd(_game_anchor.position,ccp(sinf(_tick / 2) * _rumble_slow_dist / 2, cosf(_tick / 2) * _rumble_slow_dist))];
-	_touch_tapped = _touch_released = false;
 }
 
--(void)add_particle:(Particle*)p {
-    [_particles_tba addObject:p];
-}
--(void)update_particles {
-    for (Particle *p in _particles_tba) {
-        [_particles addObject:p];
-        [_game_anchor addChild:p z:[p get_render_ord]];
-    }
-    [_particles_tba removeAllObjects];
-    NSMutableArray *toremove = [NSMutableArray array];
-    for (Particle *i in _particles) {
-        [i i_update:self];
-        if ([i should_remove]) {
-			[_game_anchor removeChild:i cleanup:YES];
-            [toremove addObject:i];
-        }
-    }
-    [_particles removeObjectsInArray:toremove];
+-(void)set_zoom:(float)val {
+	[_zoom_node setScale:clampf(val, 1, INFINITY)];
 }
 
 -(float)get_ground_depth {
 	return -2000;
 }
 
+-(void)add_particle:(Particle*)p {
+	[_particles add_particle:p];
+}
+
 -(void)center_camera_hei:(float)hei {
 	CGPoint pt = ccp(game_screen().width / 2, hei);
 	_camera_center_point = pt;
 	CGSize s = [CCDirector sharedDirector].viewSize;
-	CGPoint halfScreenSize = ccp(s.width / 2, s.height / 2);
 	[_game_anchor setScale:1];
+	CGPoint halfScreenSize = ccp(s.width / 2, s.height / 2);
 	[_game_anchor setPosition:CGPointAdd(
-	 ccp(
-		 clampf(halfScreenSize.x - pt.x, -999999, 999999) * [self scale],
-		 clampf(halfScreenSize.y - pt.y, -999999, 999999) * [self scale]),
-	 ccp(_current_camera.x, _current_camera.y))];
+		game_screen_pct(-.5, -.5),
+	ccp(
+		 halfScreenSize.x - pt.x,
+		 halfScreenSize.y - pt.y
+	))];
 }
 
 -(void)touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event {

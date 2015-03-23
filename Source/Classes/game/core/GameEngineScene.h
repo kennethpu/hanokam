@@ -41,6 +41,7 @@ typedef enum _PlayerState {
 
 -(void)add_ripple:(CGPoint)pos;
 -(float)get_ground_depth;
+-(void)set_zoom:(float)val;
 
 -(float) REFLECTION_HEIGHT;
 -(float) HORIZON_HEIGHT;

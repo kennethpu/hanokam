@@ -194,6 +194,24 @@
 		7EA7AEC21ABFDDFD001C9EFE /* Arrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEC11ABFDDFD001C9EFE /* Arrow.m */; };
 		7EA7AEC31ABFDDFD001C9EFE /* Arrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEC11ABFDDFD001C9EFE /* Arrow.m */; };
 		7EA7AEC41ABFDDFD001C9EFE /* Arrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEC11ABFDDFD001C9EFE /* Arrow.m */; };
+		7EA7AEC81ABFE12F001C9EFE /* GameUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEC71ABFE12F001C9EFE /* GameUI.m */; };
+		7EA7AEC91ABFE12F001C9EFE /* GameUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEC71ABFE12F001C9EFE /* GameUI.m */; };
+		7EA7AECA1ABFE12F001C9EFE /* GameUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEC71ABFE12F001C9EFE /* GameUI.m */; };
+		7EA7AECD1ABFF929001C9EFE /* HealthBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AECC1ABFF929001C9EFE /* HealthBar.m */; };
+		7EA7AECE1ABFF929001C9EFE /* HealthBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AECC1ABFF929001C9EFE /* HealthBar.m */; };
+		7EA7AECF1ABFF929001C9EFE /* HealthBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AECC1ABFF929001C9EFE /* HealthBar.m */; };
+		7EA7AED11AC003F4001C9EFE /* 5ceta_mono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EA7AED01AC003F4001C9EFE /* 5ceta_mono.ttf */; };
+		7EA7AED21AC003F4001C9EFE /* 5ceta_mono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EA7AED01AC003F4001C9EFE /* 5ceta_mono.ttf */; };
+		7EA7AED31AC003F4001C9EFE /* 5ceta_mono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7EA7AED01AC003F4001C9EFE /* 5ceta_mono.ttf */; };
+		7EA7AED71AC006A1001C9EFE /* hud_spritesheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EA7AED51AC006A1001C9EFE /* hud_spritesheet.plist */; };
+		7EA7AED81AC006A1001C9EFE /* hud_spritesheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EA7AED51AC006A1001C9EFE /* hud_spritesheet.plist */; };
+		7EA7AED91AC006A1001C9EFE /* hud_spritesheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EA7AED51AC006A1001C9EFE /* hud_spritesheet.plist */; };
+		7EA7AEDA1AC006A1001C9EFE /* hud_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EA7AED61AC006A1001C9EFE /* hud_spritesheet.png */; };
+		7EA7AEDB1AC006A1001C9EFE /* hud_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EA7AED61AC006A1001C9EFE /* hud_spritesheet.png */; };
+		7EA7AEDC1AC006A1001C9EFE /* hud_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EA7AED61AC006A1001C9EFE /* hud_spritesheet.png */; };
+		7EA7AEDF1AC0081E001C9EFE /* UIBossIntroParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEDE1AC0081E001C9EFE /* UIBossIntroParticle.m */; };
+		7EA7AEE01AC0081E001C9EFE /* UIBossIntroParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEDE1AC0081E001C9EFE /* UIBossIntroParticle.m */; };
+		7EA7AEE11AC0081E001C9EFE /* UIBossIntroParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEDE1AC0081E001C9EFE /* UIBossIntroParticle.m */; };
 		7EADAC611AB655D7004902A9 /* bg_test_bldg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EADAC5C1AB655D7004902A9 /* bg_test_bldg1.png */; };
 		7EADAC621AB655D7004902A9 /* bg_test_bldg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EADAC5C1AB655D7004902A9 /* bg_test_bldg1.png */; };
 		7EADAC631AB655D7004902A9 /* bg_test_bldg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EADAC5C1AB655D7004902A9 /* bg_test_bldg1.png */; };
@@ -475,6 +493,15 @@
 		7EA7AEA71ABFDD06001C9EFE /* SpiritManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpiritManager.m; path = monster/SpiritManager.m; sourceTree = "<group>"; };
 		7EA7AEC01ABFDDFD001C9EFE /* Arrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Arrow.h; path = projectiles/Arrow.h; sourceTree = "<group>"; };
 		7EA7AEC11ABFDDFD001C9EFE /* Arrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Arrow.m; path = projectiles/Arrow.m; sourceTree = "<group>"; };
+		7EA7AEC61ABFE12F001C9EFE /* GameUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameUI.h; sourceTree = "<group>"; };
+		7EA7AEC71ABFE12F001C9EFE /* GameUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameUI.m; sourceTree = "<group>"; };
+		7EA7AECB1ABFF929001C9EFE /* HealthBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthBar.h; sourceTree = "<group>"; };
+		7EA7AECC1ABFF929001C9EFE /* HealthBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthBar.m; sourceTree = "<group>"; };
+		7EA7AED01AC003F4001C9EFE /* 5ceta_mono.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 5ceta_mono.ttf; sourceTree = "<group>"; };
+		7EA7AED51AC006A1001C9EFE /* hud_spritesheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = hud_spritesheet.plist; sourceTree = "<group>"; };
+		7EA7AED61AC006A1001C9EFE /* hud_spritesheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hud_spritesheet.png; sourceTree = "<group>"; };
+		7EA7AEDD1AC0081E001C9EFE /* UIBossIntroParticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBossIntroParticle.h; sourceTree = "<group>"; };
+		7EA7AEDE1AC0081E001C9EFE /* UIBossIntroParticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBossIntroParticle.m; sourceTree = "<group>"; };
 		7EADAC5C1AB655D7004902A9 /* bg_test_bldg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_test_bldg1.png; sourceTree = "<group>"; };
 		7EADAC5D1AB655D7004902A9 /* bg_test_bldg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_test_bldg2.png; sourceTree = "<group>"; };
 		7EADAC5E1AB655D7004902A9 /* bg_test_fog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_test_fog.png; sourceTree = "<group>"; };
@@ -789,6 +816,7 @@
 		7E3B0BC61A131E8E0057869B /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				7EA7AEC51ABFE107001C9EFE /* ui */,
 				7EA7AE831ABFDCD6001C9EFE /* shop */,
 				7E90D1891AB63DB700E06F92 /* bg */,
 				7E1B806A1A189C230055E654 /* menu */,
@@ -881,6 +909,7 @@
 		7E3B0C291A131F400057869B /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				7EA7AED41AC006A1001C9EFE /* hud */,
 				7E4DB51C1ABFBCE200FCDB20 /* projectiles */,
 				7EA7AE591ABFB85D001C9EFE /* shop_menu */,
 				7EA7AE541ABFB851001C9EFE /* monster */,
@@ -1002,6 +1031,27 @@
 			path = shop;
 			sourceTree = "<group>";
 		};
+		7EA7AEC51ABFE107001C9EFE /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				7EA7AEC61ABFE12F001C9EFE /* GameUI.h */,
+				7EA7AEC71ABFE12F001C9EFE /* GameUI.m */,
+				7EA7AECB1ABFF929001C9EFE /* HealthBar.h */,
+				7EA7AECC1ABFF929001C9EFE /* HealthBar.m */,
+			);
+			name = ui;
+			path = game/ui;
+			sourceTree = "<group>";
+		};
+		7EA7AED41AC006A1001C9EFE /* hud */ = {
+			isa = PBXGroup;
+			children = (
+				7EA7AED51AC006A1001C9EFE /* hud_spritesheet.plist */,
+				7EA7AED61AC006A1001C9EFE /* hud_spritesheet.png */,
+			);
+			path = hud;
+			sourceTree = "<group>";
+		};
 		7EF468A41ABF71E50041E55F /* particle */ = {
 			isa = PBXGroup;
 			children = (
@@ -1011,6 +1061,8 @@
 				7EF468A81ABF71E50041E55F /* RotateFadeOutParticle.m */,
 				7EF468B61ABF78870041E55F /* ParticlePhysical.h */,
 				7EF468B71ABF78870041E55F /* ParticlePhysical.m */,
+				7EA7AEDD1AC0081E001C9EFE /* UIBossIntroParticle.h */,
+				7EA7AEDE1AC0081E001C9EFE /* UIBossIntroParticle.m */,
 			);
 			path = particle;
 			sourceTree = "<group>";
@@ -1112,6 +1164,7 @@
 		B77F1B4617B978D7009739AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7EA7AED01AC003F4001C9EFE /* 5ceta_mono.ttf */,
 				7E3B0C291A131F400057869B /* assets */,
 				7A40366119DDF8C2007B6E8F /* Platforms */,
 				5B12100D197483EE004C1E1D /* res */,
@@ -1303,6 +1356,7 @@
 				7E90D17A1AB635A200E06F92 /* bg_test_tile_sky.png in Resources */,
 				7E90D17D1AB635A200E06F92 /* bg_test_tile_water.png in Resources */,
 				7A4036F819DE401F007B6E8F /* iPad-old@2x.png in Resources */,
+				7EA7AEDC1AC006A1001C9EFE /* hud_spritesheet.png in Resources */,
 				7EA7AE6D1ABFB931001C9EFE /* bg_spritesheet_1.png in Resources */,
 				7EA7AE501ABFB844001C9EFE /* blank.png in Resources */,
 				7A4036F919DE401F007B6E8F /* iPad.png in Resources */,
@@ -1323,7 +1377,9 @@
 				7A59498B19E38E4A00F65F90 /* MainMenu.xib in Resources */,
 				7A4036FE19DE401F007B6E8F /* iPhone@2x.png in Resources */,
 				7A4036FF19DE401F007B6E8F /* Settings.png in Resources */,
+				7EA7AED31AC003F4001C9EFE /* 5ceta_mono.ttf in Resources */,
 				7EA7AE471ABFB7FC001C9EFE /* ripple_effect.fsh in Resources */,
+				7EA7AED91AC006A1001C9EFE /* hud_spritesheet.plist in Resources */,
 				7A40370019DE401F007B6E8F /* Settings@2x.png in Resources */,
 				7EF468E71ABFBB4B0041E55F /* particle_blood_1.png in Resources */,
 				7EA7AE651ABFB85D001C9EFE /* sh_test_item.png in Resources */,
@@ -1377,6 +1433,7 @@
 				927F61B4196C771E000F43EF /* Settings@2x.png in Resources */,
 				927F61B5196C771E000F43EF /* Default-Landscape~ipad.png in Resources */,
 				B78A0B10198AF87200C63841 /* Published-Android in Resources */,
+				7EA7AED21AC003F4001C9EFE /* 5ceta_mono.ttf in Resources */,
 				7EA7AE491ABFB7FC001C9EFE /* ripple_effect.vsh in Resources */,
 				927F61B6196C771E000F43EF /* iPhone-old.png in Resources */,
 				927F61B7196C771E000F43EF /* iPhone.png in Resources */,
@@ -1386,6 +1443,8 @@
 				927F61B9196C771E000F43EF /* iPhone@2x.png in Resources */,
 				7EA7AE351ABFB7D8001C9EFE /* hanoka v0.01.png in Resources */,
 				7EA7AE7E1ABFCC22001C9EFE /* kelp_spritesheet.plist in Resources */,
+				7EA7AEDB1AC006A1001C9EFE /* hud_spritesheet.png in Resources */,
+				7EA7AED81AC006A1001C9EFE /* hud_spritesheet.plist in Resources */,
 				7EA7AE381ABFB7D8001C9EFE /* hanoka v0.01.scml in Resources */,
 				7EA7AE431ABFB7FC001C9EFE /* alpha_gradient_mask.vsh in Resources */,
 				927F61BA196C771E000F43EF /* Default.png in Resources */,
@@ -1405,6 +1464,7 @@
 				7EA7AE631ABFB85D001C9EFE /* sh_test_item.png in Resources */,
 				7EA7AE601ABFB85D001C9EFE /* sh_button_side.png in Resources */,
 				7EA7AE7D1ABFCC22001C9EFE /* kelp_spritesheet.plist in Resources */,
+				7EA7AED11AC003F4001C9EFE /* 5ceta_mono.ttf in Resources */,
 				7EADAC6D1AB655D8004902A9 /* bg_test_obj_cloud.png in Resources */,
 				7EF468E51ABFBB4B0041E55F /* particle_blood_1.png in Resources */,
 				B71F5919188484E7003F4D28 /* Settings.png in Resources */,
@@ -1440,6 +1500,8 @@
 				B71F5917188484E7003F4D28 /* iPhone.png in Resources */,
 				7EF468DD1ABFBB400041E55F /* spirit_fish_2.png in Resources */,
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
+				7EA7AEDA1AC006A1001C9EFE /* hud_spritesheet.png in Resources */,
+				7EA7AED71AC006A1001C9EFE /* hud_spritesheet.plist in Resources */,
 				7EADAC671AB655D7004902A9 /* bg_test_fog.png in Resources */,
 				B71F5918188484E7003F4D28 /* iPhone@2x.png in Resources */,
 				B7378977180762440076A88C /* Default.png in Resources */,
@@ -1519,6 +1581,7 @@
 				7EA7AEAA1ABFDD06001C9EFE /* Spirit_Fish_1.m in Sources */,
 				7EA7AE971ABFDCD6001C9EFE /* SHItemRow.m in Sources */,
 				7E17796E1AB81EC300E3986C /* SpriterJSONParser.m in Sources */,
+				7EA7AECF1ABFF929001C9EFE /* HealthBar.m in Sources */,
 				7EA7AEBC1ABFDD06001C9EFE /* SpiritBase.m in Sources */,
 				7EF468BB1ABF78870041E55F /* ParticlePhysical.m in Sources */,
 				7E90D1951AB63DD800E06F92 /* BGWater.m in Sources */,
@@ -1540,7 +1603,9 @@
 				7EA7AE941ABFDCD6001C9EFE /* SHItem.m in Sources */,
 				7EA7AE8E1ABFDCD6001C9EFE /* SHBackground.m in Sources */,
 				7E1779531AB8152600E3986C /* SpriterData.m in Sources */,
+				7EA7AEE11AC0081E001C9EFE /* UIBossIntroParticle.m in Sources */,
 				7E1779781AB8C88B00E3986C /* SpriterNode.m in Sources */,
+				7EA7AECA1ABFE12F001C9EFE /* GameUI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1561,13 +1626,16 @@
 				5B121030197484FA004C1E1D /* hobobobActivity.m in Sources */,
 				7E1779771AB8C88B00E3986C /* SpriterNode.m in Sources */,
 				7E1779511AB8152600E3986C /* SpriterData.m in Sources */,
+				7EA7AECE1ABFF929001C9EFE /* HealthBar.m in Sources */,
 				7EF468AA1ABF71E50041E55F /* Particle.m in Sources */,
 				7E2675A11AB69451002EF2EC /* Bird.m in Sources */,
 				7EA7AE901ABFDCD6001C9EFE /* SHButton.m in Sources */,
+				7EA7AEE01AC0081E001C9EFE /* UIBossIntroParticle.m in Sources */,
 				7EA7AEBE1ABFDD06001C9EFE /* SpiritManager.m in Sources */,
 				7EF468AE1ABF71E50041E55F /* RotateFadeOutParticle.m in Sources */,
 				7E1779721AB8289A00E3986C /* SpriterTypes.m in Sources */,
 				7EA7AEA91ABFDD06001C9EFE /* Spirit_Fish_1.m in Sources */,
+				7EA7AEC91ABFE12F001C9EFE /* GameUI.m in Sources */,
 				7E17796D1AB81EC300E3986C /* SpriterJSONParser.m in Sources */,
 				7EA7AEC31ABFDDFD001C9EFE /* Arrow.m in Sources */,
 				7EA7AEBB1ABFDD06001C9EFE /* SpiritBase.m in Sources */,
@@ -1590,8 +1658,10 @@
 				7EA7AEC21ABFDDFD001C9EFE /* Arrow.m in Sources */,
 				7EA7AEB41ABFDD06001C9EFE /* Spirit_Fish_5.m in Sources */,
 				7E1779501AB8152600E3986C /* SpriterData.m in Sources */,
+				7EA7AECD1ABFF929001C9EFE /* HealthBar.m in Sources */,
 				7E1B80711A189F450055E654 /* TouchButton.m in Sources */,
 				7EF468B81ABF78870041E55F /* ParticlePhysical.m in Sources */,
+				7EA7AEDF1AC0081E001C9EFE /* UIBossIntroParticle.m in Sources */,
 				7EA7AEBA1ABFDD06001C9EFE /* SpiritBase.m in Sources */,
 				7EA7AE951ABFDCD6001C9EFE /* SHItemRow.m in Sources */,
 				7E1B806E1A189C330055E654 /* MainMenuScene.m in Sources */,
@@ -1629,6 +1699,7 @@
 				7EADAC791AB67506004902A9 /* AccelerometerSimulation.m in Sources */,
 				7E3B0C1F1A131E8E0057869B /* BatchDraw.m in Sources */,
 				7E3B0C281A131E8E0057869B /* WebRequest.m in Sources */,
+				7EA7AEC81ABFE12F001C9EFE /* GameUI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

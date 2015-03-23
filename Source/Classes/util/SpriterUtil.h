@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 
 @interface NSDictionary (KeySet)
-	-(NSSet*)keySet;
+	-(NSMutableSet*)keySet;
 @end
 
 float sbezier_val_for_t(float p0, float p1, float p2, float p3, float t);
