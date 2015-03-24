@@ -43,6 +43,7 @@ typedef enum _PlayerState {
 -(float)get_ground_depth;
 -(void)set_zoom:(float)val;
 -(float)zoom;
+-(float)player_combat_top_y;
 
 -(float) REFLECTION_HEIGHT;
 -(float) HORIZON_HEIGHT;

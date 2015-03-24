@@ -161,9 +161,7 @@
 			_rotation += _salto;
 			
 			if(combat_step == 0 && self.position.y > 300) {
-				[g.get_spirit_manager toss_spirit];
-				[g.get_spirit_manager toss_spirit];
-				[g.get_spirit_manager toss_spirit];
+				DO_FOR(5, [g.get_spirit_manager toss_spirit]);
 				combat_step ++;
 			}
 			

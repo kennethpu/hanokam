@@ -189,7 +189,7 @@
 }
 
 -(void)add_ripple:(CGPoint)pos {
-	if ([_ripples count] > 20) return;
+	if ([_ripples count] > 6) return;
 	[_ripples addObject:[[RippleInfo alloc] initWithPosition:pos game:self]];
 }
 
@@ -236,7 +236,7 @@
 	[_accel accel_report_x:aceler.x y:aceler.y z:aceler.z];
 }
 
-static bool TEST_HAS_ACTIVATED_BOSS = NO;
+static bool TEST_HAS_ACTIVATED_BOSS = false;
 
 -(void)update:(CCTime)delta {
 	dt_set(delta);
@@ -253,14 +253,15 @@ static bool TEST_HAS_ACTIVATED_BOSS = NO;
 		_freeze -= dt_scale_get();
 		return;
 	}
-	if ([self get_viewbox].y1 < self.HORIZON_HEIGHT && [self get_viewbox].y2 > -self.REFLECTION_HEIGHT) {
-		[self render_ripple_texture];
-		[self render_reflection_texture];
-	}
 	
 	[_accel i_update:self];
 	[_player update_game:self];
 	[_particles update_particles:self];
+	if ([self get_viewbox].y1 < self.HORIZON_HEIGHT && [self get_viewbox].y2 > -self.REFLECTION_HEIGHT) {
+		[self render_ripple_texture];
+		[self render_reflection_texture];
+		_reflection_texture.sprite.shaderUniforms[@"testTime"] = @(fmodf(_tick * 0.01,M_PI * 2));
+	}
 	
 	switch(_player_state) {
 		case PlayerState_Dive:
@@ -336,9 +337,9 @@ static bool TEST_HAS_ACTIVATED_BOSS = NO;
 	_zoom = val;
 }
 
--(float)zoom {
-	return _zoom;
-}
+-(float)player_combat_top_y { return _player_combat_top_y; }
+
+-(float)zoom {return _zoom;}
 
 -(float)get_ground_depth {
 	return -2000;

@@ -62,12 +62,11 @@
 		}
 	} else if(_tossed == true) {
 		[self air_behavior:g];
-		_y += (g.get_camera_y - (_air_time * _air_time) - 50 - _y) * .08 * dt_scale_get();
+		_y += (g.player_combat_top_y - (_air_time * _air_time) - 50 - _y) * .08 * dt_scale_get();
 		_vy = 1;
-		//_vx = 0;
 		_rotation += _vx;
-		_air_time += .05;
-		if(_air_time > 40) {
+		_air_time += .05 * dt_scale_get();
+		if(_x < -30 || _x > game_screen().width + 20 || (_air_time > 1 && _y > g.get_camera_y + 400)) {
 			_remove_me = true;
 			[g.get_spirit_manager toss_spirit];
 		}
