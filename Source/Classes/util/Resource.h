@@ -11,6 +11,7 @@
 #define TEX_TEST_BG_TILE_WATER @"bg_test_tile_water"
 #define TEX_TEST_BG_BLDG1 @"bg_test_bldg1"
 #define TEX_TEST_BG_BLDG2 @"bg_test_bldg2"
+#define TEX_TEST_BG_BLDG3 @"bg_test_bldg3"
 #define TEX_TEST_BG_FOG @"bg_test_fog"
 #define TEX_TEST_BG_OBJ_BIRD @"bg_test_obj_bird"
 #define TEX_TEST_BG_OBJ_CLOUD @"bg_test_obj_cloud"
@@ -25,6 +26,7 @@
 #define TEX_SPRITER_CHAR_HANOKATEST @"hanoka v0.01"
 
 #define TEX_PARTICLE_BLOOD_1 @"particle_blood_1"
+#define TEX_PARTICLE_BUBBLE @"particle_bubble"
 
 #define TEX_ARROW @"arrow"
 #define TEX_RIPPLE @"ripple"
@@ -32,6 +34,7 @@
 
 #define TEX_KELP_SPRITESHEET @"kelp_spritesheet"
 
+#define TEX_AIMING_BAR @"aiming_bar"
 #define TEX_HUD_SPRITESHEET @"hud_spritesheet"
 
 @end

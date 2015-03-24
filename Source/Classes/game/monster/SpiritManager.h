@@ -13,6 +13,8 @@
 
 -(SpiritManager*)cons:(GameEngineScene*)g;
 
+@property(readwrite, assign) int _spawned;
+
 -(void)advance_follow_pos;
 
 -(float)dive_y;

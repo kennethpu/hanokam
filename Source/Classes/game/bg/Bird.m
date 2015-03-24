@@ -23,6 +23,7 @@
 	_obj_bird = (CCSprite*)[[CCSprite spriteWithTexture:[Resource get_tex:TEX_TEST_BG_OBJ_BIRD]] add_to:self z:0];
 	[_obj_bird set_anchor_pt:ccp(0,0)];
 	[_obj_bird set_scale:0.5];
+	
 	_ct = float_random(0, 10);
 	return self;
 }

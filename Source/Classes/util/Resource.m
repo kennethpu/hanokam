@@ -50,6 +50,7 @@ static NSSet* dont_load;
 		TEX_TEST_BG_TILE_WATER: @"bg_test_tile_water.png",
 		TEX_TEST_BG_BLDG1: @"bg_test_bldg1.png",
 		TEX_TEST_BG_BLDG2: @"bg_test_bldg2.png",
+		TEX_TEST_BG_BLDG3: @"bg_test_bldg3.png",
 		TEX_TEST_BG_FOG: @"bg_test_fog.png",
 		TEX_TEST_BG_OBJ_BIRD: @"bg_test_obj_bird.png",
 		TEX_TEST_BG_OBJ_CLOUD: @"bg_test_obj_cloud.png",
@@ -62,10 +63,12 @@ static NSSet* dont_load;
 		TEX_SPIRIT_FISH_2: @"spirit_fish_2.png",
 		TEX_SPIRIT_FISH_3: @"spirit_fish_3.png",
 		TEX_PARTICLE_BLOOD_1: @"particle_blood_1.png",
+		TEX_PARTICLE_BUBBLE: @"particle_bubble.png",
 		TEX_ARROW: @"arrow.png",
 		TEX_RIPPLE: @"ripple.png",
 		TEX_BG_SPRITESHEET_1: @"bg_spritesheet_1.png",
 		TEX_KELP_SPRITESHEET: @"kelp_spritesheet.png",
+		TEX_AIMING_BAR: @"aiming_bar.png",
 		TEX_HUD_SPRITESHEET: @"hud_spritesheet.png"
 	};
 	

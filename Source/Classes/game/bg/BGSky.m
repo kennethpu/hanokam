@@ -16,7 +16,7 @@
 @implementation BGSky {
 	CCSprite *_sky_bg;
 	
-	CCSprite *_bldg_1, *_bldg_2;
+	CCSprite *_bldg_1, *_bldg_2, *_bldg_3;
 	
 	float _tick;
 	
@@ -38,30 +38,38 @@
 	
 	[self setPosition:ccp(0,g.HORIZON_HEIGHT)];
 	
+	_bldg_3 = (CCSprite*)[[CCSprite spriteWithTexture:[Resource get_tex:TEX_TEST_BG_BLDG3]] add_to:self z:1];
+	[_bldg_3 set_scale:0.1];
+	[_bldg_3 set_pos:ccp(0,-g.HORIZON_HEIGHT)];
+	[_bldg_3 set_anchor_pt:ccp(0,0)];
+	
 	_bldg_2 = (CCSprite*)[[CCSprite spriteWithTexture:[Resource get_tex:TEX_TEST_BG_BLDG2]] add_to:self z:1];
-	[_bldg_2 set_scale:0.5];
+	[_bldg_2 set_scale:0.08];
 	[_bldg_2 set_pos:ccp(game_screen().width,-g.HORIZON_HEIGHT)];
 	[_bldg_2 set_anchor_pt:ccp(1,0)];
 	
 	_bldg_1 = (CCSprite*)[[CCSprite spriteWithTexture:[Resource get_tex:TEX_TEST_BG_BLDG1]] add_to:self z:2];
-	[_bldg_1 set_scale:0.5];
+	[_bldg_1 set_scale:0.09];
 	[_bldg_1 set_pos:ccp(0,-g.HORIZON_HEIGHT)];
 	[_bldg_1 set_anchor_pt:ccp(0,0)];
-	
-	
 	
 	return self;
 }
 
 -(void)render_reflection:(GameEngineScene*)game {
+	[BGReflection reflection_render:_bldg_3];
 	[BGReflection reflection_render:_bldg_2];
 	[BGReflection reflection_render:_bldg_1];
 }
 
 -(void)set_bgobj_positions:(GameEngineScene*)game {
 	HitRect _viewBox = [game get_viewbox];
-	_bldg_1.position = ccp(_bldg_1.position.x,clampf(((_viewBox.y1 + _viewBox.y2) / 2) * .1 - game.HORIZON_HEIGHT,-game.HORIZON_HEIGHT,0));
-	_bldg_2.position = ccp(_bldg_2.position.x,clampf(((_viewBox.y1 + _viewBox.y2) / 2) * .2 - game.HORIZON_HEIGHT,-game.HORIZON_HEIGHT,0));
+	//_bldg_1.position = ccp(_bldg_1.position.x,clampf(((_viewBox.y1 + _viewBox.y2) / 2) * -.2 - game.HORIZON_HEIGHT, -game.HORIZON_HEIGHT,0));
+	//_bldg_2.position = ccp(_bldg_2.position.x,clampf(((_viewBox.y1 + _viewBox.y2) / 2) * -.1 - game.HORIZON_HEIGHT, -game.HORIZON_HEIGHT,0));
+
+	_bldg_1.position = ccp(_bldg_1.position.x,((_viewBox.y1 + _viewBox.y2) / 2) * .1 - game.HORIZON_HEIGHT);
+	_bldg_2.position = ccp(_bldg_2.position.x,((_viewBox.y1 + _viewBox.y2) / 2) * .2 - game.HORIZON_HEIGHT);
+	_bldg_3.position = ccp(_bldg_3.position.x,((_viewBox.y1 + _viewBox.y2) / 2) * .25 - game.HORIZON_HEIGHT);
 }
 
 -(void)i_update:(GameEngineScene*)g {

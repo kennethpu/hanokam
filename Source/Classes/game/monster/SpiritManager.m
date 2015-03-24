@@ -15,10 +15,11 @@
 
 @implementation SpiritManager {
 	int _dive_y;
-	int _spawned;
 	NSMutableArray *_spirits;
 	GameEngineScene *_game;
 }
+
+@synthesize _spawned;
 
 -(float)dive_y				{ return _dive_y; }
 -(void)set_dive_y:(float)y	{ _dive_y = y; }
