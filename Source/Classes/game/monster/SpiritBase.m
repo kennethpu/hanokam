@@ -151,7 +151,7 @@
 			} else {
 				// IN AIR, HIDDEN
 				if(g.player._falling) {
-					_y = 400 + ()
+					_y = 400;
 				} else {
 					_vy = 3;
 					_y = g.get_camera_y - 300;

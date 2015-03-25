@@ -11,6 +11,8 @@
 #import "Resource.h"
 #import "CCTexture_Private.h"
 #import "FileCache.h"
+#import "GameEngineScene.h"
+#import "Player.h"
 
 @implementation BGWater {
 	CCSprite *_water_bg;
@@ -27,7 +29,7 @@
 	[_water_bg set_anchor_pt:ccp(0, 0)];
 	ccTexParams par = {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT};
 	[_water_bg.texture setTexParameters:&par];
-	
+	[_water_bg setPosition:ccp(0,0)];
 	[_water_bg setTextureRect:CGRectMake(0, 0, game_screen().width, game_screen().height)];
 	
 	_ground = [CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_SPRITESHEET_1] rect:[FileCache get_cgrect_from_plist:TEX_BG_SPRITESHEET_1 idname:@"bg_lake_ground_1.png"]];
@@ -52,7 +54,6 @@
 	[_ground setPosition:ccp(0, g.get_ground_depth)];
 	[_ground_fill setPosition:ccp(0, g.get_ground_depth - _ground.textureRect.size.height * _ground.anchorPoint.y)];
 	[_ground_fill setTextureRect:CGRectMake(0, 0, game_screen().width, game_screen().height)];
-	
 }
 
 @end

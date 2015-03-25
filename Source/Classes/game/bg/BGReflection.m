@@ -21,4 +21,11 @@
 	tar.position = ccp(tar.position.x,y);
 }
 
++(void)above_water_below_render:(CCNode*)tar {
+	float y = tar.position.y;
+	tar.position = ccp(tar.position.x,0);
+	[tar visit];
+	tar.position = ccp(tar.position.x,y);
+}
+
 @end

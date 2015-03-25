@@ -46,6 +46,10 @@ typedef enum _PlayerState {
 
 -(float) REFLECTION_HEIGHT;
 -(float) HORIZON_HEIGHT;
+
+-(CCTexture*)get_ripple_texture;
+-(NSNumber*)get_tick_mod_pi;
+-(CCNode*)get_bg_anchor;
 @end
 
 @interface BGElement : CCNode

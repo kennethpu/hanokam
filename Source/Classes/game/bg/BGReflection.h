@@ -12,4 +12,5 @@
 
 +(void)reflection_render:(CCNode*)tar;
 +(void)reflection_render:(CCNode*)tar offset:(CGPoint)offset;
++(void)above_water_below_render:(CCNode*)tar;
 @end

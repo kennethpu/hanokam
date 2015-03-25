@@ -3,7 +3,6 @@
 #import "Common.h"
 #import "BGSky.h" 
 #import "BGWater.h"
-#import "BGFog.h"
 #import "BGReflection.h"
 #import "SpiritBase.h"
 #import "Spirit_Fish_1.h"
@@ -36,11 +35,11 @@
 	return self;
 }
 
--(void)render:(CCSprite*)proto scale_y:(float)scale_y {
+-(void)render:(CCSprite*)proto {
 	CGPoint pre = proto.position;
 	[proto setPosition:_pos];
 	[proto setScale:lerp(0.55, 1.5, _ct)];
-	[proto setScaleY:proto.scaleY * 2 * scale_y];
+	//[proto setScaleY:proto.scaleY * 2 * scale_y];
 	[proto setOpacity:lerp(1.0, 0, _ct)];
 	[proto visit];
 	proto.position = pre;
@@ -71,7 +70,7 @@
 	float _shake_rumble_slow_time, _shake_rumble_slow_total_time, _shake_rumble_slow_distance;
 	float _freeze;
 	
-	NSMutableArray *_water_lights;
+	
 	ParticleSystem *_particles;
 	
 	CCRenderTexture *_reflection_texture, *_ripple_texture;
@@ -80,7 +79,7 @@
 	
 	// CAM
 	float _cam_y_lirp, _player_dive_bottom_y, _player_combat_top_y;
-	CCNode *_zoom_node, *_game_anchor, *_spirit_anchor;
+	CCNode *_zoom_node, *_game_anchor, *_spirit_anchor, *_bg_anchor;
 	float _zoom;
 	CGPoint _camera_center_point;
 	
@@ -89,7 +88,6 @@
 	
 	BGSky *_bg_sky;
 	BGWater *_bg_water;
-	BGFog *_bg_fog;
 	NSArray *_bg_elements;
 	
 	SpiritManager *_spirit_manager;
@@ -97,9 +95,6 @@
 	// GUI
 	CCLabelTTF *_water_text;
 	GameUI *_ui;
-	
-	// no idea
-	CCDrawNode *_heightRefrence;
 }
 
 -(Player*)player { return _player; }
@@ -144,54 +139,17 @@
 	_player = (Player*)[[Player cons] add_to:_game_anchor z:10];
 	_player_state = PlayerState_WaveEnd;
 	
-	CCNode *bg_anchor = [[CCNode node] add_to:_game_anchor z:0];
-	_bg_sky = (BGSky*)[[BGSky cons:self] add_to:bg_anchor z:1];
-	_bg_water = (BGWater*)[[BGWater cons:self] add_to:bg_anchor z:-10];
-	_bg_fog = (BGFog*)[[BGFog cons] add_to:_game_anchor z:5];
-	//[_bg_fog setVisible:NO];
-	//[_bg_sky setVisible:NO];
-	[_bg_fog setVisible:NO];
-	_bg_elements = @[_bg_sky, _bg_water,_bg_fog];
+	_bg_anchor = [[CCNode node] add_to:_game_anchor z:0];
+	[self initialize_reflection_and_ripples];
+	_bg_sky = (BGSky*)[[BGSky cons:self] add_to:_bg_anchor z:1];
+	_bg_water = (BGWater*)[[BGWater cons:self] add_to:_bg_anchor z:-10];
+	_bg_elements = @[_bg_sky, _bg_water];
 	
 	_spirit_manager = [[[SpiritManager alloc] init] cons:self];
-	
-	_water_lights = [NSMutableArray array];
-	for(int i = 0; i < 10; i++) {
-		CCSprite * _water_light;
-		_water_light = (CCSprite*)[[CCSprite spriteWithTexture:[Resource get_tex:TEX_WATER_SHINE]] add_to:_game_anchor z:(i < 5) ? 0 : 10];
-		[_water_lights addObject: _water_light];
-		_water_light.position = ccp(float_random(-400, game_screen().width + 100), 0);
-		[_water_light set_scale: .5 + (float)i / 10];
-		[_water_light set_anchor_pt: ccp(0, 1)];
-	}
-	
-	/*
-	_water_text = label_cons(ccp(100, 300), ccc3(255, 255, 255), 25, @"");
-	[_game_anchor addChild:_water_text z:99];
-	_water_text.string = [NSString stringWithFormat:@"water %i", _water_num];
-	*/
-	
-	_reflection_texture = [CCRenderTexture renderTextureWithWidth:game_screen().width height:self.REFLECTION_HEIGHT];
-	[_reflection_texture setPosition:ccp(game_screen().width / 2, -(self.REFLECTION_HEIGHT) / 2 + self.HORIZON_HEIGHT)];
-	_reflection_texture.scaleY = -1;
-	[bg_anchor addChild:_reflection_texture z:0];
-	_reflection_texture.sprite.blendMode = [CCBlendMode alphaMode];
-	_reflection_texture.sprite.shader = [ShaderManager get_shader:SHADER_ALPHA_GRADIENT_MASK];
-	_ripples = [NSMutableArray array];
-	_ripple_texture = [CCRenderTexture renderTextureWithWidth:game_screen().width height:self.REFLECTION_HEIGHT];
-	[_ripple_texture clear:0 g:0 b:0 a:0];
-	_ripple_proto = [CCSprite spriteWithTexture:[Resource get_tex:TEX_RIPPLE]];
-	_ripple_proto.shader = [ShaderManager get_shader:SHADER_RIPPLE_FX];
-	_reflection_texture.sprite.shaderUniforms[@"rippleTexture"] = _ripple_texture.sprite.texture;
 	
 	UIAccelerometer *accel = [UIAccelerometer sharedAccelerometer];
 	accel.delegate = self;
 	accel.updateInterval = 1.0f / 60.0f;
-	
-	_heightRefrence = (CCDrawNode*)[[CCDrawNode node] add_to:_game_anchor z:99];
-	for(int i = 0; i < 400; i++){
-		[_heightRefrence drawSegmentFrom:ccp(0, (i - 200) * 200) to: ccp(100, (i - 200) * 200) radius:1 color:[CCColor blackColor]];
-	}
 	
 	_ui = [GameUI cons:self];
 	[self addChild:_ui z:2];
@@ -199,9 +157,40 @@
 	return self;
 }
 
+-(CCNode*)get_bg_anchor {
+	return _bg_anchor;
+}
+
+-(void)initialize_reflection_and_ripples {
+	_reflection_texture = [CCRenderTexture renderTextureWithWidth:game_screen().width height:self.REFLECTION_HEIGHT];
+	[_reflection_texture setPosition:ccp(game_screen().width / 2, -(self.REFLECTION_HEIGHT) / 2 + self.HORIZON_HEIGHT)];
+	_reflection_texture.scaleY = -1;
+	[_bg_anchor addChild:_reflection_texture z:2];
+	_reflection_texture.sprite.blendMode = [CCBlendMode alphaMode];
+	_reflection_texture.sprite.shader = [ShaderManager get_shader:SHADER_REFLECTION_AM_DOWN];
+	_ripples = [NSMutableArray array];
+	_ripple_texture = [CCRenderTexture renderTextureWithWidth:game_screen().width height:self.REFLECTION_HEIGHT];
+	[_ripple_texture clear:0 g:0 b:0 a:0];
+	_ripple_proto = [CCSprite spriteWithTexture:[Resource get_tex:TEX_RIPPLE]];
+	_ripple_proto.shader = [ShaderManager get_shader:SHADER_RIPPLE_FX];
+	_reflection_texture.sprite.shaderUniforms[@"rippleTexture"] = [self get_ripple_texture];
+}
+
 -(void)add_ripple:(CGPoint)pos {
 	if ([_ripples count] > 6) return;
 	[_ripples addObject:[[RippleInfo alloc] initWithPosition:pos game:self]];
+}
+
+-(void)update_ripples {
+	NSMutableArray *to_remove = [NSMutableArray array];
+	for (RippleInfo *itr in _ripples) {
+		if ([itr should_remove]) {
+			[to_remove addObject:itr];
+		} else {
+			[itr i_update];
+		}
+	}
+	[_ripples removeObjectsInArray:to_remove];
 }
 
 -(void)render_ripple_texture {
@@ -209,12 +198,7 @@
 	[_ripple_texture begin];
 	NSMutableArray *to_remove = [NSMutableArray array];
 	for (RippleInfo *itr in _ripples) {
-		if ([itr should_remove]) {
-			[to_remove addObject:itr];
-		} else {
-			[itr render:_ripple_proto scale_y:[self get_camera_y] / 1000];
-			[itr i_update];
-		}
+		[itr render:_ripple_proto];
 	}
 	[_ripples removeObjectsInArray:to_remove];
 	[_ripple_texture end];
@@ -238,9 +222,7 @@
 	for (SpiritBase *itr in _spirit_manager.get_spirits) itr.visible = YES;
 	_spirit_anchor.position = CGPointZero;
 	
-	[_bg_fog visit];
 	[_reflection_texture end];
-	
 }
 
 -(void)accelerometer:(UIAccelerometer *)acel didAccelerate:(UIAcceleration *)aceler {
@@ -268,14 +250,8 @@ static bool TEST_HAS_ACTIVATED_BOSS = false;
 	[_accel i_update:self];
 	[_player update_game:self];
 	[_particles update_particles:self];
-	if ([self get_viewbox].y1 < self.HORIZON_HEIGHT && [self get_viewbox].y2 > -self.REFLECTION_HEIGHT) {
-		[self render_ripple_texture];
-		[self render_reflection_texture];
-		_reflection_texture.sprite.shaderUniforms[@"testTime"] = @(fmodf(_tick * 0.01,M_PI * 2));
-	}
 	
 	// CAMERA
-	
 	switch(_player_state) {
 		case PlayerState_Dive:
 			if(self.touch_down == false) {
@@ -316,18 +292,28 @@ static bool TEST_HAS_ACTIVATED_BOSS = false;
 		[itr i_update:self];
 	}
 	
-	// UPDATE WATER LIGHTS
-	
-	for (CCSprite *itr in _water_lights) {
-		if(itr.position.x > game_screen().width + 100)
-			itr.position = ccp(- 400, 0);
-		float new_x = itr.position.x + (sinf(_tick * itr.scale * .01) + sinf(_tick * itr.scale * .0002) + .05) * itr.scale * .4 * dt_scale_get() * .4;
-		[itr setPosition:ccp(new_x, -(itr.scaleX - 1) * self.get_camera_y * .5)];
-	}
-	
 	[_spirit_manager i_update];
+	if (_player.position.y > 0) {
+		if ([self get_viewbox].y1 < self.HORIZON_HEIGHT && [self get_viewbox].y2 > -self.REFLECTION_HEIGHT) {
+			[self render_ripple_texture];
+			[self render_reflection_texture];
+			_reflection_texture.sprite.shaderUniforms[@"testTime"] = [self get_tick_mod_pi];
+		}
+		[_reflection_texture setVisible:YES];
+	} else {
+		[_reflection_texture setVisible:NO];
+	}
+	[self update_ripples];
+	
 	_touch_tapped = _touch_released = false;
 	[_ui i_update:self];
+}
+
+-(CCTexture*)get_ripple_texture {
+	return _ripple_texture.sprite.texture;
+}
+-(NSNumber*)get_tick_mod_pi {
+	return @(fmodf(_tick * 0.01,M_PI * 2));
 }
 
 -(void)update_shake {
