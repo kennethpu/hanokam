@@ -27,6 +27,9 @@
 
 #define TEX_PARTICLE_BLOOD_1 @"particle_blood_1"
 #define TEX_PARTICLE_BUBBLE @"particle_bubble"
+#define TEX_WATER_SHINE @"water_shine"
+
+
 
 #define TEX_ARROW @"arrow"
 #define TEX_RIPPLE @"ripple"

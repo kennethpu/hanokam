@@ -28,6 +28,8 @@
 	[_obj_sprite set_scale: 0.25 * size];
 	[super cons_size: size];
 	
+	super._health = super._health_total = 3;
+	
 	return self;
 }
 

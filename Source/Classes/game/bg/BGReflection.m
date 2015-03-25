@@ -10,7 +10,6 @@
 
 @implementation BGReflection
 
-
 +(void)reflection_render:(CCNode *)tar {
 	[self reflection_render:tar offset:CGPointZero];
 }

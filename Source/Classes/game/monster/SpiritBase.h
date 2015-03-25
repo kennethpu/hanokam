@@ -9,12 +9,17 @@
 #import "cocos2d.h"
 #import "GameEngineScene.h"
 #import "SpiritManager.h"
+typedef enum _spirit_state {
+	spirit_state_waiting = 0,
+	spirit_state_following = 1,
+	spirit_state_combat = 2
+} spirit_state;
 
 @interface SpiritBase : CCSprite
 
 @property(readwrite,assign) float _vx,_vy,_aimDir,_wave, _air_time;
-@property(readwrite,assign) int _follow_pos;
-@property(readwrite,assign) BOOL _following, _tossed, _remove_me;
+@property(readwrite,assign) int _health, _health_total, _follow_pos, _state;
+@property(readwrite,assign) BOOL _remove_me;
 
 -(SpiritBase*) cons_size:(float)size;
 

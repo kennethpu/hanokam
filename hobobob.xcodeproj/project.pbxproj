@@ -111,6 +111,9 @@
 		7E707FA61AC1252100BAD2E6 /* bg_test_bldg3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E707F9C1AC1252100BAD2E6 /* bg_test_bldg3.png */; };
 		7E707FA71AC1252100BAD2E6 /* bg_test_bldg3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E707F9C1AC1252100BAD2E6 /* bg_test_bldg3.png */; };
 		7E707FA81AC1252100BAD2E6 /* bg_test_bldg3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E707F9C1AC1252100BAD2E6 /* bg_test_bldg3.png */; };
+		7E80FEA61AC23AF80048B7D4 /* water_shine.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E80FEA51AC23AF80048B7D4 /* water_shine.png */; };
+		7E80FEA71AC23AF80048B7D4 /* water_shine.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E80FEA51AC23AF80048B7D4 /* water_shine.png */; };
+		7E80FEA81AC23AF80048B7D4 /* water_shine.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E80FEA51AC23AF80048B7D4 /* water_shine.png */; };
 		7E90D1781AB635A200E06F92 /* bg_test_tile_sky.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E90D1761AB635A200E06F92 /* bg_test_tile_sky.png */; };
 		7E90D1791AB635A200E06F92 /* bg_test_tile_sky.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E90D1761AB635A200E06F92 /* bg_test_tile_sky.png */; };
 		7E90D17A1AB635A200E06F92 /* bg_test_tile_sky.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E90D1761AB635A200E06F92 /* bg_test_tile_sky.png */; };
@@ -476,6 +479,7 @@
 		7E707F9A1AC1252100BAD2E6 /* bg_test_bldg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_test_bldg1.png; sourceTree = "<group>"; };
 		7E707F9B1AC1252100BAD2E6 /* bg_test_bldg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_test_bldg2.png; sourceTree = "<group>"; };
 		7E707F9C1AC1252100BAD2E6 /* bg_test_bldg3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_test_bldg3.png; sourceTree = "<group>"; };
+		7E80FEA51AC23AF80048B7D4 /* water_shine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water_shine.png; sourceTree = "<group>"; };
 		7E90D1761AB635A200E06F92 /* bg_test_tile_sky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_test_tile_sky.png; sourceTree = "<group>"; };
 		7E90D1771AB635A200E06F92 /* bg_test_tile_water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_test_tile_water.png; sourceTree = "<group>"; };
 		7E90D18A1AB63DB700E06F92 /* BGSky.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGSky.h; sourceTree = "<group>"; };
@@ -1027,6 +1031,7 @@
 		7EA7AE4B1ABFB844001C9EFE /* effects */ = {
 			isa = PBXGroup;
 			children = (
+				7E80FEA51AC23AF80048B7D4 /* water_shine.png */,
 				7E08F3F51AC0D2170023D757 /* particle_bubble.png */,
 				7EF468E41ABFBB4B0041E55F /* particle_blood_1.png */,
 				7EA7AE4C1ABFB844001C9EFE /* blank.png */,
@@ -1417,6 +1422,7 @@
 				7E707FA21AC1252100BAD2E6 /* bg_test_bldg1.png in Resources */,
 				7E707FA51AC1252100BAD2E6 /* bg_test_bldg2.png in Resources */,
 				7EADAC6C1AB655D7004902A9 /* bg_test_obj_bird.png in Resources */,
+				7E80FEA81AC23AF80048B7D4 /* water_shine.png in Resources */,
 				7A4036FB19DE401F007B6E8F /* iPhone-old.png in Resources */,
 				7A4036FC19DE401F007B6E8F /* iPhone-old@2x.png in Resources */,
 				7EADAC661AB655D7004902A9 /* bg_test_bldg2_x.png in Resources */,
@@ -1503,6 +1509,7 @@
 				927F61BA196C771E000F43EF /* Default.png in Resources */,
 				7E707FA71AC1252100BAD2E6 /* bg_test_bldg3.png in Resources */,
 				7E707FA41AC1252100BAD2E6 /* bg_test_bldg2.png in Resources */,
+				7E80FEA71AC23AF80048B7D4 /* water_shine.png in Resources */,
 				927F61BB196C771E000F43EF /* iPad-old.png in Resources */,
 				7E707FA11AC1252100BAD2E6 /* bg_test_bldg1.png in Resources */,
 				7EF468B41ABF78480041E55F /* particle_blood_1.png in Resources */,
@@ -1548,6 +1555,7 @@
 				B71F5915188484E7003F4D28 /* iPhone-old.png in Resources */,
 				7E90D1781AB635A200E06F92 /* bg_test_tile_sky.png in Resources */,
 				7E4DB5181ABFBCA700FCDB20 /* spirit_fish_3.png in Resources */,
+				7E80FEA61AC23AF80048B7D4 /* water_shine.png in Resources */,
 				7EA7AE341ABFB7D8001C9EFE /* hanoka v0.01.png in Resources */,
 				7EA7AE481ABFB7FC001C9EFE /* ripple_effect.vsh in Resources */,
 				7EADAC611AB655D7004902A9 /* bg_test_bldg1_x.png in Resources */,

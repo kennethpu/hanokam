@@ -18,9 +18,12 @@
 -(void)advance_follow_pos;
 
 -(float)dive_y;
+-(int)count_alive;
 -(void)set_dive_y:(float)y;
 -(void)toss_spirit;
 -(void)reset_dive;
+-(void)kill_all;
+-(void)kill_all_with_spirit_state_waiting;
 
 -(NSMutableArray*)get_spirits;
 

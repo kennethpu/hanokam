@@ -2,6 +2,7 @@
 #import "GameEngineScene.h"
 #import "MainMenuScene.h"
 #import "ShopScene.h"
+#import "DataStore.h"
 
 #import "Resource.h"
 #import "ShaderManager.h"
@@ -10,6 +11,7 @@
 +(CCScene*)main; {
 	[Resource load_all];
 	[ShaderManager load_all];
+	[DataStore cons];
 	
 	NSLog(@"%@",cocos2dVersion());
 	//return [MainMenuScene cons];

@@ -14,5 +14,4 @@ typedef struct SATPoly {
 +(BOOL)poly_intersect_SAT:(SATPoly)a b:(SATPoly)b;
 +(NSString*)satpoly_to_str:(SATPoly)poly;
 
-
 @end

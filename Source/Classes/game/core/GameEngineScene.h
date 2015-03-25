@@ -10,7 +10,6 @@ typedef enum _PlayerState {
 	PlayerState_Return = 1,
 	PlayerState_Combat = 2,
 	PlayerState_WaveEnd = 3
-
 } PlayerState;
 
 @interface GameEngineScene : CCScene <UIAccelerometerDelegate>

@@ -15,6 +15,8 @@
 
 @implementation SpiritManager {
 	int _dive_y;
+	int _left_to_toss;
+	float _toss_countdown;
 	NSMutableArray *_spirits;
 	GameEngineScene *_game;
 }
@@ -29,20 +31,18 @@
 	_game = game;
 	_spirits = [NSMutableArray array];
 	
-	Spirit_Fish_1 *_new_spirit;
-	_new_spirit = (Spirit_Fish_1*)[[Spirit_Fish_1 cons_size:1] add_to:_game.spirit_anchor z:0];
-	[_new_spirit setPosition:ccp(game_screen().width-50, -25)];
-	[_spirits addObject:_new_spirit];
-	
-	_new_spirit = (Spirit_Fish_1*)[[Spirit_Fish_1 cons_size:1] add_to:_game.spirit_anchor z:0];
-	[_new_spirit setPosition:ccp(50, 19)];
-	[_spirits addObject:_new_spirit];
-	
 	return self;
 }
 
 -(void)i_update {
 	[self update_spawn];
+	
+	if(_toss_countdown > 0)
+		_toss_countdown -= dt_scale_get();
+	
+	if(_left_to_toss > 0 && _toss_countdown <= 0) {
+		[self toss_now];
+	}
 	
 	NSMutableArray *spirits_to_remove = [NSMutableArray array];
 	for (SpiritBase *itr in _spirits) {
@@ -59,17 +59,42 @@
 	
 }
 
+-(int)count_alive {
+	return _spirits.count;
+}
+
 -(void)update_spawn {
-	if(_dive_y < -_spawned * 150){
-		[self spawn_spirit];
-		[self spawn_spirit];
-		[self spawn_spirit];
-		[self spawn_spirit];
+	if(_dive_y < (_spawned / 14) * -150 - 100){
+		DO_FOR(14, [self spawn_spirit]);
 	}
 }
 
 -(void)update_air_spawning {
+
+}
+
+-(void)kill_all {
+	for (SpiritBase *itr in _spirits) {
+		[itr removeFromParent];
+	}
+	[_spirits removeObjectsInArray:_spirits];
+	[_spirits removeAllObjects];
 	
+	_left_to_toss = 0;
+}
+
+-(void)kill_all_with_spirit_state_waiting {
+	
+	NSMutableArray *spirits_to_remove = [NSMutableArray array];
+	for (SpiritBase *itr in _spirits) {
+		if (itr._state == spirit_state_waiting) {
+			[spirits_to_remove addObject:itr];
+			[itr removeFromParent];
+		}
+	}
+	
+	[_spirits removeObjectsInArray:spirits_to_remove];
+	[spirits_to_remove removeAllObjects];
 }
 
 -(void)reset_dive {
@@ -92,8 +117,15 @@
 }
 
 -(void)toss_spirit {
+	_left_to_toss ++;
+}
+
+-(void)toss_now {
+	_left_to_toss --;
+	_toss_countdown = float_random(2, 20);
+
 	for (SpiritBase *itr in _spirits) {
-		if (![itr _tossed]) {
+		if (itr._state != spirit_state_combat) {
 			[itr toss:_game];
 			return;
 		}

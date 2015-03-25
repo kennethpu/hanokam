@@ -19,7 +19,9 @@
 	CCAction *_current_anim;
 	SpriterNode *_img;
 	
-	float _x_prev, _x_vel;
+	NSString *_current_playing;
+	
+	float _x_prev, _x_vel, _x_deck;
 	float _rotate_vel;
 	float _vel_lerp;
 	
@@ -27,15 +29,19 @@
 	float _salto;
 	
 	int combat_step;
-	BOOL _state_waveEnd_jump_back;
+	BOOL _state_waveEnd_jump_back, _small_jump_back;
 	
+	int _birds_left;
 	
 	CCSprite *_bar1, *_bar2;
 	
 	NSMutableArray *_arrows;
 	
 }
-@synthesize _vx,_vy;
+@synthesize _vx, _vy, _accelerometer_x;
+@synthesize _falling;
+
+-(int)stat_damage { return 1; }
 
 +(Player*)cons {
 	return [Player node];
@@ -57,10 +63,10 @@
 	SpriterJSONParser *frame_data = [[[SpriterJSONParser alloc] init] parseFile:@"hanoka v0.01.json"];
 	SpriterData *spriter_data = [SpriterData dataFromSpriteSheet:[Resource get_tex:TEX_SPRITER_CHAR_HANOKATEST] frames:frame_data scml:@"hanoka v0.01.scml"];
 	_img = [SpriterNode nodeFromData:spriter_data];
-	[_img playAnim:@"swim" repeat:YES];
+	[_img playAnim:@"idle" repeat:YES];
 	[self addChild:_img z:1];
 	[self set_pos:game_screen_pct(0.5, 0.5)];
-	[_img set_scale:0.2];
+	[_img set_scale:0.25];
 	
 	_state_waveEnd_jump_back = false;
 	
@@ -80,16 +86,25 @@
 	
 	switch ([g get_player_state]) {
 		case PlayerState_Dive:
+			
+			_x += clampf(((160 + _accelerometer_x * 320) - _x) * .1, - 7, 7) * dt_scale_get();
+		
+			if(_x < game_screen().width / 2) {
+				[_img set_scale_x:-0.25];
+			} else {
+				[_img set_scale_x: 0.25];
+			}
+		
 			if ([self is_underwater]) {
 				
-				[g set_zoom:g.zoom + (1 - g.zoom) * .3];
+				[g set_zoom: g.zoom + (1 - g.zoom) * .3];
 				
 				if(float_random(0, 1) < .1) {
-					[g add_particle:(Particle*)[[[[ParticleBubble cons_tex:[Resource get_tex:TEX_PARTICLE_BUBBLE]
-						rect:CGRectMake(0, 0, 55, 55)]
-						explode_speed:1]
-						set_pos:ccp(_x, _y)]
-						set_scale:.5]];
+					[g add_particle: (Particle*)[[[[ParticleBubble cons_tex:[Resource get_tex:TEX_PARTICLE_BUBBLE]
+						rect: CGRectMake(0, 0, 20, 20)]
+						explode_speed: 1]
+						set_pos: ccp(_x, _y)]
+						set_scale: .5]];
 				}
 				
 				_rotate_vel += (_x_vel / 9 - _rotate_vel) * .3 * dt_scale_get();
@@ -117,8 +132,7 @@
 				}
 				
 				if(_y > [g.get_spirit_manager dive_y] + 100) {
-					g._player_state = PlayerState_Return;
-					//[g.get_spirit_manager set_dive_y: 0];
+					g._player_state = PlayerState_Return; // <--
 				}
 				
 			} else {
@@ -127,28 +141,62 @@
 	
 		break;
 		case PlayerState_Return:
-			[g set_zoom:g.zoom + (1.4 - g.zoom) * .05];
+		
+			_x += clampf(((160 + _accelerometer_x * 320) - _x) * .08, -6, 6) * dt_scale_get();
+		
+			if(_x < game_screen().width / 2) {
+				[_img set_scale_x: 0.25];
+			} else {
+				[_img set_scale_x:-0.25];
+			}
+			
+			[g set_zoom:g.zoom + (1.5 - g.zoom) * .05];
 			_rotate_vel += (_x_vel / 9 - _rotate_vel) * .3 * dt_scale_get();
 			_rotation = clampf(M_PI -_vy, 0, M_PI) + _rotate_vel;
 		
 			_vy += (17 -_vy) * 0.01 * dt_scale_get();
 			if (![self is_underwater]) {
-				g._player_state = PlayerState_Combat;
-				_vy = 10;
-				[_img playAnim:@"in air" repeat:YES];
+				if(g.get_spirit_manager.dive_y < -200) {
+					_vy = 10;
+				} else {
+					_vy = 5;
+					_small_jump_back = true;
+				}
+				_birds_left = 3;
+				
+				[self goto_anim:@"in air"];
 				[g.get_spirit_manager reset_dive];
+				[g.get_spirit_manager kill_all_with_spirit_state_waiting];
+				
+				g._player_state = PlayerState_Combat; // <--
 			}
 		break;
 		case PlayerState_Combat:
-			[g set_zoom:g.zoom + (1 - g.zoom) * .1];
+			
+			_x += clampf(((160 + _accelerometer_x * 320) - _x) * .07, - 7, 7) * dt_scale_get();
+			
+			if(_x < game_screen().width / 2) {
+				[_img set_scale_x: 0.25];
+			} else {
+				[_img set_scale_x:-0.25];
+			}
+			
+			if(g.get_spirit_manager.count_alive == 0 && _small_jump_back == false) {
+				[g set_zoom:g.zoom + (1.4 - g.zoom) * .05];
+			} else {
+				[g set_zoom:g.zoom + (1 - g.zoom) * .1];
+			}
 			_rotation = 0;
 			
 			_y += 5 * dt_scale_get();
-			if(_vy < 3 && _vy > -2 && g.touch_down) {
-				_vy -= 0.15 * dt_scale_get();
+			if(_vy < 2 && _vy > -1.5) {
+				_vy -= 0.2 * dt_scale_get();
 			} else {
-				_vy -= 0.3 * dt_scale_get();
+				_vy -= 0.27 * dt_scale_get();
 			}
+			
+			if(g.get_spirit_manager.count_alive != 0 && _vy < -12)
+				_vy = -12;
 			
 			if (_salto > 1) {
 				_salto -= .1 * dt_scale_get();
@@ -156,64 +204,124 @@
 				_salto += .1 * dt_scale_get();
 			}
 			
+			if (ABS(_salto > 1)) {
+				[self goto_anim:@"attack"];
+			} else {
+				[self goto_anim:@"in air"];
+			}
+			
 			_salto -= _salto * .06 * dt_scale_get();
 
 			_rotation += _salto;
 			
-			if(combat_step == 0 && self.position.y > 300) {
+			if(combat_step == 0 && self.position.y > 100) {
 				DO_FOR(5, [g.get_spirit_manager toss_spirit]);
 				combat_step ++;
+			}
+			
+			if(_y < g.get_camera_y - 400) {
+				if(_birds_left > 0) {
+					_y = g.get_camera_y;
+					_birds_left --;
+				} else {
+					_falling = true;
+				}
+			}
+			
+			if(g.get_spirit_manager.count_alive != 0 && roundf(_salto) == 0) {
+				if(g.touch_down) {
+					if(_reload > 0) {
+						_reload -= .4;
+					}
+					
+					if(_bar1.opacity < 1)
+						[_bar1 setOpacity:_bar1.opacity + .2];
+					[_bar2 setOpacity:_bar1.opacity];
+					
+					[_bar1 setRotation:_aim_dir + _reload * 5];
+					[_bar2 setRotation:_aim_dir - _reload * 5];
+				}
+				
+				if(g.touch_released) {
+					[self shoot_arrow:g];
+				}
+			} else {
+				[_bar1 setOpacity:0];
+				[_bar2 setOpacity:_bar1.opacity];
+				_reload = 1;
 			}
 			
 			if (_vy < 0 && _y + _vy * dt_scale_get() < 20) {
 				_y = 20;
 				_vy = 0;
-				[g shake_slow_for:30 distance:30];
-				g._player_state = PlayerState_WaveEnd;
-				_state_waveEnd_jump_back = false;
-				combat_step = 0;
-			}
-			
-			if(g.touch_down && roundf(_salto) == 0) {
-				if(_reload > 1) {
-					_reload -= .4;
+				_falling = false;
+				
+				if(_small_jump_back == false){
+					[g shake_slow_for: 60 distance: 15];
+					[g shake_for: 7 distance: 30];
 				}
 				
-				if(_bar1.opacity < 1)
-						[_bar1 setOpacity:_bar1.opacity + .2];
-					
-					if(_bar2.opacity < 1)
-						[_bar2 setOpacity:_bar1.opacity];
-					
-					[_bar1 setRotation:_aim_dir + _reload * 5];
-					[_bar2 setRotation:_aim_dir - _reload * 5];
-			}
-			
-			if(g.touch_released) {
-				[self shoot_arrow:g];
+				_small_jump_back = false;
+				combat_step = 0;
+				[g.get_spirit_manager kill_all];
+				
+				_state_waveEnd_jump_back = false;
+				g._player_state = PlayerState_WaveEnd; // <--
 			}
 			
 		break;
 		case PlayerState_WaveEnd:
-			
 			if(!_state_waveEnd_jump_back) {
+				[g set_zoom:g.zoom + (1.1 - g.zoom) * .2];
+				
+				if(160 + _accelerometer_x * 320 < _x - 25) {
+					[_img set_scale_x:-0.25];
+					_vx += (-3 - _vx) * .2 * dt_scale_get();
+				} else if(160 + _accelerometer_x * 320 > _x + 25) {
+					[_img set_scale_x: 0.25];
+					_vx += (3 - _vx) * .2 * dt_scale_get();
+				} else {
+					_vx -= _vx * .07 * dt_scale_get();
+				}
+				
+				if(ABS(_vx) > .5) {
+					[self goto_anim:@"run"];
+				} else {
+					[self goto_anim:@"idle"];
+				}
+			
 				_y = 20;
 				_vy = 0;
 				if(g.touch_tapped) {
 					_state_waveEnd_jump_back = true;
+					_vy = 10;
 					
-					_vy = 5;
+					[self goto_anim:@"in air"];
+					
+					if(_x < game_screen().width / 2) {
+						[_img set_scale_x: 0.25];
+					} else {
+						[_img set_scale_x:-0.25];
+					}
 				}
 			} else {
-				_rotation += .1 * dt_scale_get();
+				
+				_x += clampf(((160 + _accelerometer_x * 320) - _x) * .07, - 7, 7) * dt_scale_get();
+				
+				[g set_zoom:g.zoom + (1 - g.zoom) * .1];
+				_rotation += .08 * dt_scale_get() * signum(_img.scaleX);
 			
 				_vy -= .5 * dt_scale_get();
 				if(_y < 0) {
-					g._player_state = PlayerState_Dive;
+					g._player_state = PlayerState_Dive; // <--
 					[g.get_spirit_manager set_dive_y:0];
-					_vy = -10;
+					if(g.touch_down){
+						_vy = -10;
+					} else {
+						_vy = -6;
+					}
 					[g shake_slow_for:100 distance:10];
-					[_img playAnim:@"swim" repeat:YES];
+					[self goto_anim:@"swim"];
 					[g add_ripple:self.position];
 				}
 			}
@@ -225,16 +333,6 @@
 		_y += _vy * dt_scale_get();
 	} else {
 		_x += _vx * dt_scale_get();
-		/*
-		if(_vy > 2)
-			_vel_lerp += (1.3 - _vel_lerp) * .6 * dt_scale_get(); // going up
-		else if (_vy > -2)
-			_vel_lerp += (.4 - _vel_lerp) * .4 * dt_scale_get(); // hold at peek
-		else
-			_vel_lerp += (1.5 - _vel_lerp) * .3 * dt_scale_get(); // going down
-		
-		_y += _vy * _vel_lerp * dt_scale_get();
-		*/
 		_y += _vy / 2 + (_vy * ABS(_vy) / 15) * dt_scale_get();
 	}
 	
@@ -273,13 +371,20 @@
 	return _new_arrow;
 }
 
+-(void)goto_anim:(NSString*)anim {
+	if(_current_playing != anim) {
+		_current_playing = anim;
+		[_img playAnim:anim repeat:YES];
+	}
+}
+
 -(float)angle_towards_x:(float)x y:(float)y {
 	return atan2f(x - self.position.x, y - self.position.y);
 }
 
 -(void)melee_spirit {
 	_vy = 12;
-	_salto = M_PI * 2 * signum(float_random(-100, 50));
+	_salto = M_PI * 2 * signum(float_random(-100, 30)) * signum(_img.scaleX);
 	_reload = 10;
 	[_bar1 setOpacity:0];
 	[_bar2 setOpacity:0];

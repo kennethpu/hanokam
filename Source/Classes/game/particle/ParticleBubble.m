@@ -5,6 +5,7 @@
 @implementation ParticleBubble {
 	float _vr;
 	float _vx, _vy;
+	float _tick;
 }
 
 +(ParticleBubble*)cons_tex:(CCTexture*)tex rect:(CGRect)rect {
@@ -33,6 +34,12 @@
 	
 	_x += _vx * dt_scale_get();
 	_y += _vy * dt_scale_get();
+	
+	_tick += dt_scale_get();
+	
+	[self setScaleX:.5 + sinf(_tick/2) * .03];
+	[self setScaleY:.5 + cosf(_tick/2) * .03];
+	_x += sinf(_tick/10);
 
 	[self setPosition:ccp(_x, _y)];
 	[self setRotation:self.rotation + _vr * dt_scale_get()];

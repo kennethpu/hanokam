@@ -26,6 +26,7 @@
 	float _ct;
 	CGPoint _pos;
 }
+
 -(id)initWithPosition:(CGPoint)pos game:(GameEngineScene*)game {
 	self = [super init];
 	_ct = 0;
@@ -34,6 +35,7 @@
 	_pos = ccp(pos.x,flip_axis - (pos.y - flip_axis));
 	return self;
 }
+
 -(void)render:(CCSprite*)proto scale_y:(float)scale_y {
 	CGPoint pre = proto.position;
 	[proto setPosition:_pos];
@@ -43,60 +45,61 @@
 	[proto visit];
 	proto.position = pre;
 }
+
 -(void)i_update {
 	_ct += 0.015 * dt_scale_get();
 }
+
 -(BOOL)should_remove {
 	return _ct >= 1.0;
 }
+
 @end
 
 @implementation GameEngineScene {
-	CGPoint _touch_position;
-	BOOL _touch_down;
-	BOOL _touch_tapped;
-	BOOL _touch_released;
-	
+
+	// UTILS
 	float _tick;
-	float _cam_y, _cam_y_lirp;
-	float _player_dive_bottom_y;
-	float _player_combat_top_y;
 	
+	CGPoint _touch_position;
+	BOOL _touch_down, _touch_tapped, _touch_released;
+	
+	AccelerometerManager *_accel;
+	
+	// EFFECTS
 	float _shake_rumble_time, _shake_rumble_total_time, _shake_rumble_distance;
 	float _shake_rumble_slow_time, _shake_rumble_slow_total_time, _shake_rumble_slow_distance;
-	
 	float _freeze;
 	
-	Player *_player;
+	NSMutableArray *_water_lights;
+	ParticleSystem *_particles;
 	
-	CCNode *_game_anchor;
-	CCNode *_spirit_anchor;
+	CCRenderTexture *_reflection_texture, *_ripple_texture;
+	CCSprite *_ripple_proto;
+	NSMutableArray *_ripples;
 	
-	CCNode *_zoom_node;
+	// CAM
+	float _cam_y_lirp, _player_dive_bottom_y, _player_combat_top_y;
+	CCNode *_zoom_node, *_game_anchor, *_spirit_anchor;
 	float _zoom;
-	
 	CGPoint _camera_center_point;
+	
+	// WORLD
+	Player *_player;
 	
 	BGSky *_bg_sky;
 	BGWater *_bg_water;
 	BGFog *_bg_fog;
 	NSArray *_bg_elements;
 	
-	CCDrawNode *_heightRefrence;
-	
-	AccelerometerManager *_accel;
-	
-	CCLabelTTF *_water_text;
-	
-	CCRenderTexture *_reflection_texture;
-	CCRenderTexture *_ripple_texture;
-	CCSprite *_ripple_proto;
-	NSMutableArray *_ripples;
-	
 	SpiritManager *_spirit_manager;
 	
+	// GUI
+	CCLabelTTF *_water_text;
 	GameUI *_ui;
-	ParticleSystem *_particles;
+	
+	// no idea
+	CCDrawNode *_heightRefrence;
 }
 
 -(Player*)player { return _player; }
@@ -143,16 +146,24 @@
 	
 	CCNode *bg_anchor = [[CCNode node] add_to:_game_anchor z:0];
 	_bg_sky = (BGSky*)[[BGSky cons:self] add_to:bg_anchor z:1];
-	_bg_water = (BGWater*)[[BGWater cons:self] add_to:bg_anchor z:-1];
+	_bg_water = (BGWater*)[[BGWater cons:self] add_to:bg_anchor z:-10];
 	_bg_fog = (BGFog*)[[BGFog cons] add_to:_game_anchor z:5];
-	[_bg_fog setVisible:NO];
-	//[_bg_sky setVisible:NO];
 	//[_bg_fog setVisible:NO];
+	//[_bg_sky setVisible:NO];
+	[_bg_fog setVisible:NO];
 	_bg_elements = @[_bg_sky, _bg_water,_bg_fog];
 	
 	_spirit_manager = [[[SpiritManager alloc] init] cons:self];
 	
-	
+	_water_lights = [NSMutableArray array];
+	for(int i = 0; i < 10; i++) {
+		CCSprite * _water_light;
+		_water_light = (CCSprite*)[[CCSprite spriteWithTexture:[Resource get_tex:TEX_WATER_SHINE]] add_to:_game_anchor z:(i < 5) ? 0 : 10];
+		[_water_lights addObject: _water_light];
+		_water_light.position = ccp(float_random(-400, game_screen().width + 100), 0);
+		[_water_light set_scale: .5 + (float)i / 10];
+		[_water_light set_anchor_pt: ccp(0, 1)];
+	}
 	
 	/*
 	_water_text = label_cons(ccp(100, 300), ccc3(255, 255, 255), 25, @"");
@@ -179,7 +190,7 @@
 	
 	_heightRefrence = (CCDrawNode*)[[CCDrawNode node] add_to:_game_anchor z:99];
 	for(int i = 0; i < 400; i++){
-		//[_heightRefrence drawSegmentFrom:ccp(0, (i - 200) * 200) to: ccp(100, (i - 200) * 200) radius:1 color:[CCColor blackColor]];
+		[_heightRefrence drawSegmentFrom:ccp(0, (i - 200) * 200) to: ccp(100, (i - 200) * 200) radius:1 color:[CCColor blackColor]];
 	}
 	
 	_ui = [GameUI cons:self];
@@ -263,6 +274,8 @@ static bool TEST_HAS_ACTIVATED_BOSS = false;
 		_reflection_texture.sprite.shaderUniforms[@"testTime"] = @(fmodf(_tick * 0.01,M_PI * 2));
 	}
 	
+	// CAMERA
+	
 	switch(_player_state) {
 		case PlayerState_Dive:
 			if(self.touch_down == false) {
@@ -272,21 +285,19 @@ static bool TEST_HAS_ACTIVATED_BOSS = false;
 			
 			_player_dive_bottom_y = [self get_spirit_manager].dive_y - 200;
 			
-			_cam_y += (0 - _cam_y) * .1 * dt_scale_get();
-			
 			_cam_y_lirp += (_player_dive_bottom_y - _cam_y_lirp) * .06 * dt_scale_get();
 		break;
 		case PlayerState_Return:
 			_cam_y_lirp += (_player.position.y + 100 - _cam_y_lirp) * .1 * dt_scale_get();
 		break;
 		case PlayerState_Combat:
-			//_cam_y += (-100 - _cam_y) * .2 * dt_scale_get();
-			if(_player_combat_top_y < _player.position.y)
-				_player_combat_top_y = _player.position.y;
+			if(_player_combat_top_y < _player.position.y - 100)
+				_player_combat_top_y = _player.position.y - 100;
 			_player_combat_top_y += 3;
 			
-			if(_player.position.y < _player_combat_top_y - 320){
-				_player_combat_top_y = _player.position.y + 330;
+			if(self.get_spirit_manager.count_alive == 0){
+				_cam_y_lirp += (_player.position.y - 100 - _cam_y_lirp) * .3 * dt_scale_get();
+			} else if(_player._falling) {//_player.position.y < _player_combat_top_y - 320){
 				_cam_y_lirp += (_player.position.y + 50 - _cam_y_lirp) * .2 * dt_scale_get();
 			} else {
 				_cam_y_lirp += (_player_combat_top_y - _cam_y_lirp) * .15 * dt_scale_get();
@@ -295,9 +306,7 @@ static bool TEST_HAS_ACTIVATED_BOSS = false;
 			break;
 		case PlayerState_WaveEnd:
 			_player_combat_top_y = 0;
-			_cam_y += (130 - _cam_y) * .02 * dt_scale_get();
-			
-			_cam_y_lirp += (_player.position.y + _cam_y - _cam_y_lirp) * .3 * dt_scale_get();
+			_cam_y_lirp += (150 - _cam_y_lirp) * .05 * dt_scale_get();
 		break;
 	}
 	
@@ -306,12 +315,24 @@ static bool TEST_HAS_ACTIVATED_BOSS = false;
 	for (BGElement *itr in _bg_elements) {
 		[itr i_update:self];
 	}
+	
+	// UPDATE WATER LIGHTS
+	
+	for (CCSprite *itr in _water_lights) {
+		if(itr.position.x > game_screen().width + 100)
+			itr.position = ccp(- 400, 0);
+		float new_x = itr.position.x + (sinf(_tick * itr.scale * .01) + sinf(_tick * itr.scale * .0002) + .05) * itr.scale * .4 * dt_scale_get() * .4;
+		[itr setPosition:ccp(new_x, -(itr.scaleX - 1) * self.get_camera_y * .5)];
+	}
+	
 	[_spirit_manager i_update];
 	_touch_tapped = _touch_released = false;
 	[_ui i_update:self];
 }
 
 -(void)update_shake {
+	[_zoom_node setPosition:game_screen_pct(.5, .5)];
+
 	if(_shake_rumble_time > 0)
 		_shake_rumble_time -= dt_scale_get();
 	else
@@ -319,7 +340,7 @@ static bool TEST_HAS_ACTIVATED_BOSS = false;
 	
 	float _rumble_dist = _shake_rumble_distance * (_shake_rumble_time / _shake_rumble_total_time);
 	
-	[_game_anchor setPosition:CGPointAdd(_game_anchor.position,ccp(sinf(_tick) * _rumble_dist, cosf(_tick) * _rumble_dist))];
+	[_zoom_node setPosition:CGPointAdd(_zoom_node.position, ccp(sinf(_tick * 1.2) * _rumble_dist, cosf(_tick * 1.2) * _rumble_dist))];
 	
 	
 	if(_shake_rumble_slow_time > 0)
@@ -329,7 +350,7 @@ static bool TEST_HAS_ACTIVATED_BOSS = false;
 	
 	float _rumble_slow_dist = _shake_rumble_slow_distance * (_shake_rumble_slow_time / _shake_rumble_slow_total_time);
 	
-	[_game_anchor setPosition:CGPointAdd(_game_anchor.position,ccp(sinf(_tick / 2) * _rumble_slow_dist / 2, cosf(_tick / 2) * _rumble_slow_dist))];
+	[_zoom_node setPosition:CGPointAdd(_zoom_node.position, ccp(sinf(_tick / 3) * _rumble_slow_dist / 2, cosf(_tick / 3) * _rumble_slow_dist))];
 }
 
 -(void)set_zoom:(float)val {

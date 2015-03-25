@@ -30,6 +30,7 @@
 	[_obj_sprite set_scale: 0.2 * size];
 	_movement = int_random(0, 2);
 	[super cons_size: size];
+	super._health = super._health_total = 1;
 	
 	return self;
 }
