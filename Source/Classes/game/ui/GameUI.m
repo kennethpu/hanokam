@@ -22,6 +22,9 @@ typedef enum _GameUIBossIntroMode {
 	float _boss_fillin_pct;
 	
 	ParticleSystem *_particles;
+	
+	CCSprite *_depth_bar_back;
+	CCSprite *_depth_bar_fill;
 }
 
 +(GameUI*)cons:(GameEngineScene*)game {
@@ -38,12 +41,37 @@ typedef enum _GameUIBossIntroMode {
 	[_boss_health_bar set_pct:0.5];
 	_boss_health_label = (CCLabelTTF*)[label_cons(ccp(0,15), ccc3(255, 255, 255), 6, @"Big Badass Boss") set_anchor_pt:ccp(0,0)];
 	[_boss_health_bar addChild:_boss_health_label];
-	
 	_particles = [ParticleSystem cons_anchor:self];
-	
 	_current_boss_mode = GameUIBossIntroMode_None;
 	
+	_depth_bar_back = [CCSprite spriteWithTexture:[Resource get_tex:TEX_HUD_SPRITESHEET] rect:[FileCache get_cgrect_from_plist:TEX_HUD_SPRITESHEET idname:@"hudicon_depthbar_back.png"]];
+	[_depth_bar_back setAnchorPoint:ccp(0,1)];
+	[_depth_bar_back setPosition:game_screen_anchor_offset(ScreenAnchor_TL, ccp(10,-40))];
+	[_depth_bar_back setScale:0.85];
+	[self addChild:_depth_bar_back];
+	
+	_depth_bar_fill = [CCSprite spriteWithTexture:[Resource get_tex:TEX_HUD_SPRITESHEET] rect:[FileCache get_cgrect_from_plist:TEX_HUD_SPRITESHEET idname:@"hudicon_depthbar_fill.png"]];
+	[_depth_bar_fill setAnchorPoint:ccp(0,0)];
+	[_depth_bar_back addChild:_depth_bar_fill];
+	
+	[self depth_bar_from_top_fill_pct:0.9];
+	
 	return self;
+}
+
+-(float)depth_bar_from_top_fill_pct:(float)pct {
+	CGRect rect = [FileCache get_cgrect_from_plist:TEX_HUD_SPRITESHEET idname:@"hudicon_depthbar_fill.png"];
+	float hei = rect.size.height * (1-pct);
+	rect.origin.y += hei;
+	rect.size.height -= hei;
+	_depth_bar_fill.textureRect = rect;
+	[_depth_bar_fill setPosition:ccp(0,hei)];
+	return hei;
+}
+
+-(float)depth_bar_from_bottom_fill_pct:(float)pct {
+	[_depth_bar_fill setPosition:ccp(0,0)];
+	CGRect rect = [FileCache get_cgrect_from_plist:TEX_HUD_SPRITESHEET idname:@"hudicon_depthbar_fill.png"];
 }
 
 -(void)start_boss:(NSString*)title sub:(NSString*)sub {

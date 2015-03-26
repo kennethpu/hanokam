@@ -168,7 +168,9 @@
 
 -(void)initialize_reflection_and_ripples {
 	_reflection_texture = [CCRenderTexture renderTextureWithWidth:game_screen().width height:self.REFLECTION_HEIGHT];
+	
 	[_reflection_texture setPosition:ccp(game_screen().width / 2, -(self.REFLECTION_HEIGHT) / 2 + self.HORIZON_HEIGHT)];
+	
 	_reflection_texture.scaleY = -1;
 	[_bg_anchor addChild:_reflection_texture z:2];
 	_reflection_texture.sprite.blendMode = [CCBlendMode alphaMode];
