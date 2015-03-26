@@ -67,7 +67,8 @@ static NSSet* dont_load;
 		TEX_KELP_SPRITESHEET: @"kelp_spritesheet.png",
 		TEX_AIMING_BAR: @"aiming_bar.png",
 		TEX_WATER_SHINE: @"water_shine.png",
-		TEX_HUD_SPRITESHEET: @"hud_spritesheet.png"
+		TEX_HUD_SPRITESHEET: @"hud_spritesheet.png",
+		TEX_PARTICLES_SPRITESHEET: @"particles_spritesheet.png"
 	};
 	
 	dont_load = _NSSET(

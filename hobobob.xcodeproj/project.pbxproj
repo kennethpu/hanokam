@@ -246,6 +246,11 @@
 		7EADAC7D1AB67B6E004902A9 /* AccelerometerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EADAC7C1AB67B6E004902A9 /* AccelerometerManager.m */; };
 		7EBE56FA1AC3771F008AD888 /* abovewater_am_up.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 7EBE56F91AC3771F008AD888 /* abovewater_am_up.vsh */; };
 		7EBE56FD1AC3772C008AD888 /* abovewater_am_up.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 7EBE56FC1AC3772C008AD888 /* abovewater_am_up.fsh */; };
+		7EBE57021AC3F08F008AD888 /* TouchTrackingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBE57011AC3F08F008AD888 /* TouchTrackingLayer.m */; };
+		7EBE57051AC3F162008AD888 /* particles_spritesheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EBE57031AC3F162008AD888 /* particles_spritesheet.plist */; };
+		7EBE57061AC3F162008AD888 /* particles_spritesheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EBE57031AC3F162008AD888 /* particles_spritesheet.plist */; };
+		7EBE57071AC3F162008AD888 /* particles_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EBE57041AC3F162008AD888 /* particles_spritesheet.png */; };
+		7EBE57081AC3F162008AD888 /* particles_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EBE57041AC3F162008AD888 /* particles_spritesheet.png */; };
 		7ED9B6351ABBD76D0043567C /* BGReflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9B6341ABBD76D0043567C /* BGReflection.m */; };
 		7EF468A91ABF71E50041E55F /* Particle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF468A61ABF71E50041E55F /* Particle.m */; };
 		7EF468AA1ABF71E50041E55F /* Particle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF468A61ABF71E50041E55F /* Particle.m */; };
@@ -536,6 +541,10 @@
 		7EADAC7C1AB67B6E004902A9 /* AccelerometerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerometerManager.m; sourceTree = "<group>"; };
 		7EBE56F91AC3771F008AD888 /* abovewater_am_up.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = abovewater_am_up.vsh; sourceTree = "<group>"; };
 		7EBE56FC1AC3772C008AD888 /* abovewater_am_up.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = abovewater_am_up.fsh; sourceTree = "<group>"; };
+		7EBE57001AC3F08F008AD888 /* TouchTrackingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchTrackingLayer.h; sourceTree = "<group>"; };
+		7EBE57011AC3F08F008AD888 /* TouchTrackingLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchTrackingLayer.m; sourceTree = "<group>"; };
+		7EBE57031AC3F162008AD888 /* particles_spritesheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = particles_spritesheet.plist; sourceTree = "<group>"; };
+		7EBE57041AC3F162008AD888 /* particles_spritesheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = particles_spritesheet.png; sourceTree = "<group>"; };
 		7ED9B6331ABBD76D0043567C /* BGReflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGReflection.h; sourceTree = "<group>"; };
 		7ED9B6341ABBD76D0043567C /* BGReflection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGReflection.m; sourceTree = "<group>"; };
 		7EE870671AB67082004679E8 /* Bird.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bird.h; sourceTree = "<group>"; };
@@ -925,6 +934,8 @@
 				7E17798C1AB9316500E3986C /* SpriterUtil.m */,
 				7EA7AE291ABFA984001C9EFE /* ShaderManager.h */,
 				7EA7AE2A1ABFA984001C9EFE /* ShaderManager.m */,
+				7EBE57001AC3F08F008AD888 /* TouchTrackingLayer.h */,
+				7EBE57011AC3F08F008AD888 /* TouchTrackingLayer.m */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -1012,6 +1023,8 @@
 		7EA7AE4B1ABFB844001C9EFE /* effects */ = {
 			isa = PBXGroup;
 			children = (
+				7EBE57031AC3F162008AD888 /* particles_spritesheet.plist */,
+				7EBE57041AC3F162008AD888 /* particles_spritesheet.png */,
 				7E80FEA51AC23AF80048B7D4 /* water_shine.png */,
 				7E08F3F51AC0D2170023D757 /* particle_bubble.png */,
 				7EF468E41ABFBB4B0041E55F /* particle_blood_1.png */,
@@ -1401,6 +1414,7 @@
 				7EA7AE4A1ABFB7FC001C9EFE /* ripple_effect.vsh in Resources */,
 				7EADAC6C1AB655D7004902A9 /* bg_test_obj_bird.png in Resources */,
 				7E80FEA81AC23AF80048B7D4 /* water_shine.png in Resources */,
+				7EBE57061AC3F162008AD888 /* particles_spritesheet.plist in Resources */,
 				7A4036FB19DE401F007B6E8F /* iPhone-old.png in Resources */,
 				7A4036FC19DE401F007B6E8F /* iPhone-old@2x.png in Resources */,
 				7E4DB5201ABFBCE200FCDB20 /* arrow.png in Resources */,
@@ -1410,6 +1424,7 @@
 				7A4036FE19DE401F007B6E8F /* iPhone@2x.png in Resources */,
 				7A4036FF19DE401F007B6E8F /* Settings.png in Resources */,
 				7EA7AED31AC003F4001C9EFE /* 5ceta_mono.ttf in Resources */,
+				7EBE57081AC3F162008AD888 /* particles_spritesheet.png in Resources */,
 				7EA7AE471ABFB7FC001C9EFE /* ripple_effect.fsh in Resources */,
 				7EA7AED91AC006A1001C9EFE /* hud_spritesheet.plist in Resources */,
 				7A40370019DE401F007B6E8F /* Settings@2x.png in Resources */,
@@ -1518,6 +1533,7 @@
 				B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */,
 				7EBE56FA1AC3771F008AD888 /* abovewater_am_up.vsh in Resources */,
 				B71F5916188484E7003F4D28 /* iPhone-old@2x.png in Resources */,
+				7EBE57071AC3F162008AD888 /* particles_spritesheet.png in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
 				B71F591A188484E7003F4D28 /* Settings@2x.png in Resources */,
 				7EA7AE6B1ABFB931001C9EFE /* bg_spritesheet_1.png in Resources */,
@@ -1535,6 +1551,7 @@
 				7EA7AE371ABFB7D8001C9EFE /* hanoka v0.01.scml in Resources */,
 				7EA7AE561ABFB851001C9EFE /* spirit_fish_1.png in Resources */,
 				7EA7AE451ABFB7FC001C9EFE /* ripple_effect.fsh in Resources */,
+				7EBE57051AC3F162008AD888 /* particles_spritesheet.plist in Resources */,
 				7E4DB51E1ABFBCE200FCDB20 /* arrow.png in Resources */,
 				B71F5917188484E7003F4D28 /* iPhone.png in Resources */,
 				7EF468DD1ABFBB400041E55F /* spirit_fish_2.png in Resources */,
@@ -1741,6 +1758,7 @@
 				7E90D18C1AB63DB700E06F92 /* BGSky.m in Sources */,
 				7ED9B6351ABBD76D0043567C /* BGReflection.m in Sources */,
 				7EA7AEA81ABFDD06001C9EFE /* Spirit_Fish_1.m in Sources */,
+				7EBE57021AC3F08F008AD888 /* TouchTrackingLayer.m in Sources */,
 				7EADAC791AB67506004902A9 /* AccelerometerSimulation.m in Sources */,
 				7E3B0C1F1A131E8E0057869B /* BatchDraw.m in Sources */,
 				7E3B0C281A131E8E0057869B /* WebRequest.m in Sources */,

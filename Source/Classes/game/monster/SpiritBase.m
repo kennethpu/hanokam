@@ -61,6 +61,8 @@
 			break;
 		case spirit_state_combat:
 			[self air_behavior:g];
+			
+			/*
 			_y += (g.player_combat_top_y - (_air_time * _air_time) - 50 - _y) * .05 * dt_scale_get();
 			_vy = 1;
 			_rotation += _vx;
@@ -95,6 +97,7 @@
 					[g.get_spirit_manager toss_spirit];
 				}
 			}
+			*/
 		break;
 		case spirit_state_following:
 			if(_y < 0) {
@@ -150,12 +153,14 @@
 				
 			} else {
 				// IN AIR, HIDDEN
+				/*
 				if(g.player._falling) {
 					_y = 400;
 				} else {
 					_vy = 3;
 					_y = g.get_camera_y - 300;
 				}
+				*/
 			}
 		break;
 	}

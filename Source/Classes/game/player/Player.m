@@ -223,12 +223,15 @@
 			}
 			
 			if(_y < g.get_camera_y - 400) {
+				/*
 				if(_birds_left > 0) {
 					_y = g.get_camera_y;
 					_birds_left --;
 				} else {
 					_falling = true;
 				}
+				*/
+				_falling = true;
 			}
 			
 			if(g.get_spirit_manager.count_alive != 0 && roundf(_salto) == 0) {

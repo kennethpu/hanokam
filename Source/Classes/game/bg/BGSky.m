@@ -15,6 +15,7 @@
 #import "Player.h"
 #import "ShaderManager.h"
 #import "FileCache.h"
+#import "SpiritBase.h"
 
 @implementation BGSky {
 	CCSprite *_sky_bg;
@@ -120,7 +121,7 @@
 -(void)i_update:(GameEngineScene*)g {
 	_tick += dt_scale_get();
 	
-	if (g.player.position.y < 0) {
+	if (g.player.position.y < 0 && g.player.position.y > -game_screen().height) {
 		[_above_water_root setVisible:NO];
 		[_below_water_root setVisible:YES];
 		[_water_surface_ripples clear:0 g:0 b:0 a:0];
@@ -137,6 +138,29 @@
 		[BGReflection above_water_below_render:_bldg_2];
 		[BGReflection above_water_below_render:_bldg_1];
 		[BGReflection above_water_below_render:_docks];
+		
+		{
+			CGPoint player_pre = g.player.position;
+			float player_scale_pre = g.player.scaleY;
+			g.player.position = ccp(player_pre.x,-player_pre.y);
+			g.player.scaleY = -player_scale_pre;
+			[g.player visit];
+			g.player.position = player_pre;
+			g.player.scaleY = player_scale_pre;
+		}
+		
+		for (SpiritBase *itr in g.get_spirit_manager.get_spirits) {
+			if (itr.position.y < 0 && itr.position.y > -500) {
+				CGPoint itr_pre = itr.position;
+				float itr_scale_pre = itr.scaleY;
+				itr.position = ccp(itr_pre.x,-itr_pre.y);
+				itr.scaleY = -itr_scale_pre;
+				[itr visit];
+				itr.position = itr_pre;
+				itr.scaleY = itr_scale_pre;
+			}
+		}
+		
 		[_above_water_belowreflection end];
 		_above_water_belowreflection.sprite.shaderUniforms[@"testTime"] = [g get_tick_mod_pi];
 		

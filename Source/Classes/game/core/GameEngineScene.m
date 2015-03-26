@@ -12,6 +12,7 @@
 #import "ShaderManager.h"
 #import "GameUI.h"
 #import "Particle.h"
+#import "TouchTrackingLayer.h"
 
 #import "CCTexture_Private.h"
 
@@ -99,6 +100,8 @@
 	// GUI
 	CCLabelTTF *_water_text;
 	GameUI *_ui;
+	
+	TouchTrackingLayer *_touch_tracking;
 }
 
 -(Player*)player { return _player; }
@@ -129,6 +132,10 @@
 	self.userInteractionEnabled = YES;
 	_accel = [AccelerometerManager cons];
 	dt_unset();
+	
+	_touch_tracking = [TouchTrackingLayer node];
+	[self addChild:_touch_tracking z:99];
+	
 	_shake_rumble_total_time = _shake_rumble_time = _shake_rumble_distance = 1;
 	_shake_rumble_slow_total_time = _shake_rumble_slow_time = _shake_rumble_slow_distance = 1;
 	
@@ -318,14 +325,17 @@ static bool TEST_HAS_ACTIVATED_BOSS = false;
 -(void)touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
 	_touch_tapped = _touch_down = true;
 	_touch_position = [touch locationInWorld];
+	[_touch_tracking touch_begin:[touch locationInWorld]];
 }
 -(void)touchMoved:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
 	_touch_position = [touch locationInWorld];
+	[_touch_tracking touch_move:[touch locationInWorld]];
 }
 -(void)touchEnded:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
 	_touch_released = true;
 	_touch_down = false;
 	_touch_position = [touch locationInWorld];
+	[_touch_tracking touch_end:[touch locationInWorld]];
 }
 
 -(void)shake_for:(float)ct distance:(float)distance{
