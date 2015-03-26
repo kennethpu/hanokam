@@ -30,7 +30,7 @@
 		_touch_button.opacity = drp(_touch_button.opacity, 0.25, 30.0);
 		if (_ct % 20 == 0) {
 			_touch_button.opacity = 1;
-			_touch_button.scale = 3;
+			_touch_button.scale = 6;
 		}
 		
 	} else {
@@ -43,7 +43,7 @@
 	_is_touch_down = YES;
 	[_motion_streak reset];
 	_touch_button.opacity = 1;
-	_touch_button.scale = 3;
+	_touch_button.scale = 6;
 	[_touch_button setPosition:pt];
 	[_motion_streak setPosition:pt];
 }

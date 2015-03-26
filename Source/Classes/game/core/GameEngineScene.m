@@ -168,6 +168,8 @@
 	_ui = [GameUI cons:self];
 	[self addChild:_ui z:2];
 	
+	[self update:0];
+	
 	return self;
 }
 

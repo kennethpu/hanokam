@@ -21,11 +21,12 @@
 	CCSprite *_water_bg;
 	CCSprite *_ground, *_ground_fill;
 	CCSprite *_top_cliff;
+	CCSprite *_bg_2_ground,*_bg_3_ground;
 	
 	CCRenderTexture *_reflection_texture, *_ripple_texture;
 }
 +(BGWater*)cons:(GameEngineScene *)g {
-	return [[BGWater node] cons:g];
+	return (BGWater*)[[BGWater node] cons:g];
 }
 -(BGWater*)cons:(GameEngineScene *)g {
 	_water_bg = (CCSprite*)[[CCSprite node] add_to:self z:0];
@@ -51,10 +52,24 @@
 	
 	_top_cliff = [CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_SPRITESHEET_1] rect:[FileCache get_cgrect_from_plist:TEX_BG_SPRITESHEET_1 idname:@"pier_bottom_cliff.png"]];
 	scale_to_fit_screen_x(_top_cliff);
-	[_top_cliff setPosition:ccp(0,2)];
+	[_top_cliff setPosition:ccp(0,10)];
 	[_top_cliff setScaleY:_top_cliff.scaleX];
 	[_top_cliff setAnchorPoint:ccp(0,1)];
-	[self addChild:_top_cliff];
+	[self addChild:_top_cliff z:4];
+	
+	_bg_2_ground = [CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_SPRITESHEET_1] rect:[FileCache get_cgrect_from_plist:TEX_BG_SPRITESHEET_1 idname:@"bg_underwater_2.png"]];
+	scale_to_fit_screen_x(_bg_2_ground);
+	[_bg_2_ground setPosition:ccp(0,20)];
+	[_bg_2_ground setScaleY:_bg_2_ground.scaleX];
+	[_bg_2_ground setAnchorPoint:ccp(0,1)];
+	[self addChild:_bg_2_ground z:3];
+	
+	_bg_3_ground = [CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_SPRITESHEET_1] rect:[FileCache get_cgrect_from_plist:TEX_BG_SPRITESHEET_1 idname:@"bg_underwater_3.png"]];
+	scale_to_fit_screen_x(_bg_3_ground);
+	[_bg_3_ground setPosition:ccp(0,20)];
+	[_bg_3_ground setScaleY:_bg_3_ground.scaleX];
+	[_bg_3_ground setAnchorPoint:ccp(0,1)];
+	[self addChild:_bg_3_ground z:2];
 	
 	return self;
 }
@@ -105,11 +120,16 @@
 -(void)i_update:(GameEngineScene*)g {
 	[_water_bg setPosition:ccp(0, g.get_camera_y - game_screen().height / 2)];
 	
+	HitRect _viewBox = [g get_viewbox];
+	_bg_2_ground.position = ccp(_bg_2_ground.position.x,clampf(((_viewBox.y1 + _viewBox.y2) / 2) * .2 + 5, 20,200));
+	_bg_3_ground.position = ccp(_bg_3_ground.position.x,clampf(((_viewBox.y1 + _viewBox.y2) / 2) * .1 + 35, 40,200));
+	
+	
 	[_ground setPosition:ccp(0, g.get_ground_depth)];
 	[_ground_fill setPosition:ccp(0, g.get_ground_depth - _ground.textureRect.size.height * _ground.anchorPoint.y)];
 	[_ground_fill setTextureRect:CGRectMake(0, 0, game_screen().width, game_screen().height)];
 	
-	if (g.player.position.y > 0) {
+	if (g.get_camera_y > 0) {
 		if ([g get_viewbox].y1 < g.HORIZON_HEIGHT && [g get_viewbox].y2 > -g.REFLECTION_HEIGHT) {
 			[self render_ripple_texture:g];
 			[self render_reflection_texture:g];

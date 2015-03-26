@@ -64,6 +64,7 @@
 }
 
 -(void)air_behavior:(GameEngineScene *)g {
+
 }
 
 @end

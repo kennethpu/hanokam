@@ -66,7 +66,7 @@
 	
 	_docks = (CCSprite*)[[CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_SPRITESHEET_1] rect:[FileCache get_cgrect_from_plist:TEX_BG_SPRITESHEET_1 idname:@"pier_top.png"]] add_to:_above_water_root z:2];
 	[_docks setScale:0.5];
-	[_docks set_pos:ccp(0,-g.HORIZON_HEIGHT)];
+	[_docks set_pos:ccp(0,-g.HORIZON_HEIGHT-18)];
 	[_docks set_anchor_pt:ccp(0,0)];
 	
 	[_bldg_1 setVisible:YES];
@@ -121,7 +121,7 @@
 -(void)i_update:(GameEngineScene*)g {
 	_tick += dt_scale_get();
 	
-	if (g.player.position.y < 0 && g.player.position.y > -game_screen().height) {
+	if (g.get_camera_y < 0 && g.get_camera_y > -game_screen().height) {
 		[_above_water_root setVisible:NO];
 		[_below_water_root setVisible:YES];
 		[_water_surface_ripples clear:0 g:0 b:0 a:0];
