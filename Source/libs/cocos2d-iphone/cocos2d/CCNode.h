@@ -178,7 +178,6 @@ A common user pattern in building a Cocos2d game is to subclass CCNode, add it t
 /** Whether of not the node is visible. Default is YES. */
 @property( nonatomic,readwrite,assign) BOOL visible;
 
-
 /// -----------------------------------------------------------------------
 /// @name Tagging and Setting User Object
 /// -----------------------------------------------------------------------

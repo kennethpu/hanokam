@@ -14,10 +14,11 @@
 #import "BGReflection.h"
 #import "Player.h"
 #import "ShaderManager.h"
+#import "FileCache.h"
 
 @implementation BGSky {
 	CCSprite *_sky_bg;
-	CCSprite *_bldg_1, *_bldg_2, *_bldg_3;
+	CCSprite *_docks,*_bldg_1, *_bldg_2, *_bldg_3;
 	float _tick;
 	NSMutableArray *_birds;
 	
@@ -47,20 +48,25 @@
 	
 	[self setPosition:ccp(0,g.HORIZON_HEIGHT)];
 	
-	_bldg_3 = (CCSprite*)[[CCSprite spriteWithTexture:[Resource get_tex:TEX_TEST_BG_BLDG3]] add_to:_above_water_root z:1];
-	[_bldg_3 set_scale:0.1];
-	[_bldg_3 set_pos:ccp(0,-g.HORIZON_HEIGHT)];
-	[_bldg_3 set_anchor_pt:ccp(0,0)];
+	_bldg_3 = (CCSprite*)[[CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_SPRITESHEET_1] rect:[FileCache get_cgrect_from_plist:TEX_BG_SPRITESHEET_1 idname:@"bg_3.png"]] add_to:_above_water_root z:1];
+	[_bldg_3 set_scale:0.5];
+	[_bldg_3 set_pos:ccp(game_screen().width,-g.HORIZON_HEIGHT)];
+	[_bldg_3 set_anchor_pt:ccp(1,0)];
 	
-	_bldg_2 = (CCSprite*)[[CCSprite spriteWithTexture:[Resource get_tex:TEX_TEST_BG_BLDG2]] add_to:_above_water_root z:1];
-	[_bldg_2 set_scale:0.08];
+	_bldg_2 = (CCSprite*)[[CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_SPRITESHEET_1] rect:[FileCache get_cgrect_from_plist:TEX_BG_SPRITESHEET_1 idname:@"bg_2.png"]] add_to:_above_water_root z:1];
+	[_bldg_2 set_scale:0.5];
 	[_bldg_2 set_pos:ccp(game_screen().width,-g.HORIZON_HEIGHT)];
 	[_bldg_2 set_anchor_pt:ccp(1,0)];
 	
-	_bldg_1 = (CCSprite*)[[CCSprite spriteWithTexture:[Resource get_tex:TEX_TEST_BG_BLDG1]] add_to:_above_water_root z:2];
-	[_bldg_1 set_scale:0.09];
+	_bldg_1 = (CCSprite*)[[CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_SPRITESHEET_1] rect:[FileCache get_cgrect_from_plist:TEX_BG_SPRITESHEET_1 idname:@"bg_1.png"]] add_to:_above_water_root z:2];
+	[_bldg_1 setScale:0.5];
 	[_bldg_1 set_pos:ccp(0,-g.HORIZON_HEIGHT)];
 	[_bldg_1 set_anchor_pt:ccp(0,0)];
+	
+	_docks = (CCSprite*)[[CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_SPRITESHEET_1] rect:[FileCache get_cgrect_from_plist:TEX_BG_SPRITESHEET_1 idname:@"pier_top.png"]] add_to:_above_water_root z:2];
+	[_docks setScale:0.5];
+	[_docks set_pos:ccp(0,-g.HORIZON_HEIGHT)];
+	[_docks set_anchor_pt:ccp(0,0)];
 	
 	[_bldg_1 setVisible:YES];
 	[_bldg_2 setVisible:YES];
@@ -101,6 +107,7 @@
 	[BGReflection reflection_render:_bldg_3 offset:ccp(0,-5)];
 	[BGReflection reflection_render:_bldg_2 offset:ccp(0,-3)];
 	[BGReflection reflection_render:_bldg_1 offset:ccp(0,-3)];
+	[BGReflection reflection_render:_docks offset:ccp(0,-3)];
 }
 
 -(void)set_bgobj_positions:(GameEngineScene*)game {
@@ -108,6 +115,7 @@
 	_bldg_1.position = ccp(_bldg_1.position.x,clampf(((_viewBox.y1 + _viewBox.y2) / 2) * .1 - game.HORIZON_HEIGHT, -game.HORIZON_HEIGHT,0));
 	_bldg_2.position = ccp(_bldg_2.position.x,clampf(((_viewBox.y1 + _viewBox.y2) / 2) * .2 - game.HORIZON_HEIGHT, -game.HORIZON_HEIGHT,0));
 	_bldg_3.position = ccp(_bldg_3.position.x,clampf(((_viewBox.y1 + _viewBox.y2) / 2) * .25 - game.HORIZON_HEIGHT, -game.HORIZON_HEIGHT,0));
+	//_bldg_3.position = ccp(_bldg_3.position.x,clampf(((_viewBox.y1 + _viewBox.y2) / 2) * .25 - game.HORIZON_HEIGHT, -game.HORIZON_HEIGHT,0));
 }
 
 -(void)i_update:(GameEngineScene*)g {

@@ -78,6 +78,8 @@
 }
 
 -(void)update_game:(GameEngineScene*)g {
+	int dock_height = 30;
+
 	float _x = self.position.x;
 	float _y = self.position.y;
 	float _rotation = self.rotation * .0174532925;
@@ -251,8 +253,8 @@
 				_reload = 1;
 			}
 			
-			if (_vy < 0 && _y + _vy * dt_scale_get() < 20) {
-				_y = 20;
+			if (_vy < 0 && _y + _vy * dt_scale_get() < dock_height) {
+				_y = dock_height;
 				_vy = 0;
 				_falling = false;
 				
@@ -290,7 +292,7 @@
 					[self goto_anim:@"idle"];
 				}
 			
-				_y = 20;
+				_y = dock_height;
 				_vy = 0;
 				if(g.touch_tapped) {
 					_state_waveEnd_jump_back = true;

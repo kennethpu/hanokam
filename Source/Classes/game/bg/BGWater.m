@@ -22,8 +22,6 @@
 	return [[BGWater node] cons:g];
 }
 -(BGWater*)cons:(GameEngineScene *)g {
-	//[self setPosition:ccp(0,g.HORIZON_HEIGHT)];
-
 	_water_bg = (CCSprite*)[[CCSprite node] add_to:self z:0];
 	[_water_bg setTexture:[Resource get_tex:TEX_TEST_BG_TILE_WATER]];
 	[_water_bg set_anchor_pt:ccp(0, 0)];
@@ -47,8 +45,6 @@
 }
 
 -(void)i_update:(GameEngineScene*)g {
-	
-	//[_water_bg setTextureRect:CGRectMake(0, MIN(-100, [g get_viewbox].y2), game_screen().width, MIN(-100, [g get_viewbox].y1))];
 	[_water_bg setPosition:ccp(0, g.get_camera_y - game_screen().height / 2)];
 	
 	[_ground setPosition:ccp(0, g.get_ground_depth)];
