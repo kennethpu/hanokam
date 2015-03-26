@@ -12,6 +12,11 @@ typedef enum _PlayerState {
 	PlayerState_WaveEnd = 3
 } PlayerState;
 
+@interface RippleInfo : NSObject
+-(void)render_reflected:(CCSprite*)proto;
+-(void)render_default:(CCSprite*)proto offset:(CGPoint)offset;
+@end
+
 @interface GameEngineScene : CCScene <UIAccelerometerDelegate>
 @property(readwrite,assign) int _player_state;
 @property(readwrite,assign) int _water_num;
@@ -47,9 +52,10 @@ typedef enum _PlayerState {
 -(float) REFLECTION_HEIGHT;
 -(float) HORIZON_HEIGHT;
 
--(CCTexture*)get_ripple_texture;
 -(NSNumber*)get_tick_mod_pi;
 -(CCNode*)get_bg_anchor;
+-(NSArray*)get_ripple_infos;
+-(CCSprite*)get_ripple_proto;
 @end
 
 @interface BGElement : CCNode

@@ -25,6 +25,7 @@
 	
 	CCNode *_above_water_root, *_below_water_root;
 	CCRenderTexture *_above_water_belowreflection;
+	CCRenderTexture *_water_surface_ripples;
 	
 	NSMutableArray *_water_lights;
 }
@@ -72,12 +73,16 @@
 	[_surface_gradient setPosition:ccp(0,-g.HORIZON_HEIGHT)];
 	[_surface_gradient setScaleY:1];
 	
+	_water_surface_ripples = [CCRenderTexture renderTextureWithWidth:game_screen().width height:600];
+	[_above_water_belowreflection setPosition:ccp(game_screen().width / 2, 600/2 - g.HORIZON_HEIGHT)];
+	[_water_surface_ripples clear:0 g:0 b:0 a:0];
+	
 	_above_water_belowreflection = [CCRenderTexture renderTextureWithWidth:game_screen().width height:600];
 	[_above_water_belowreflection setPosition:ccp(game_screen().width / 2, 600/2 - g.HORIZON_HEIGHT)];
 	[_below_water_root addChild:_above_water_belowreflection];
 	_above_water_belowreflection.sprite.shader = [CCShader shaderNamed:SHADER_ABOVEWATER_AM_UP];
 	_above_water_belowreflection.sprite.shaderUniforms[@"testTime"] = [g get_tick_mod_pi];
-	_above_water_belowreflection.sprite.shaderUniforms[@"rippleTexture"] = [g get_ripple_texture];
+	_above_water_belowreflection.sprite.shaderUniforms[@"rippleTexture"] = _water_surface_ripples.sprite.texture;
 	
 	
 	_water_lights = [NSMutableArray array];
@@ -108,18 +113,25 @@
 -(void)i_update:(GameEngineScene*)g {
 	_tick += dt_scale_get();
 	
-	[_above_water_belowreflection beginWithClear:0 g:0 b:0 a:0];
-	[BGReflection above_water_below_render:_sky_bg];
-	[BGReflection above_water_below_render:_bldg_3];
-	[BGReflection above_water_below_render:_bldg_2];
-	[BGReflection above_water_below_render:_bldg_1];
-	[_above_water_belowreflection end];
-	_above_water_belowreflection.sprite.shaderUniforms[@"testTime"] = [g get_tick_mod_pi];
-	
-	
 	if (g.player.position.y < 0) {
 		[_above_water_root setVisible:NO];
 		[_below_water_root setVisible:YES];
+		[_water_surface_ripples clear:0 g:0 b:0 a:0];
+		[_water_surface_ripples begin];
+		CCSprite *proto = g.get_ripple_proto;
+		for (RippleInfo *itr in g.get_ripple_infos) {
+			[itr render_default:proto offset:ccp(0,50)];
+		}
+		[_water_surface_ripples end];
+		
+		[_above_water_belowreflection beginWithClear:0 g:0 b:0 a:0];
+		[BGReflection above_water_below_render:_sky_bg];
+		[BGReflection above_water_below_render:_bldg_3];
+		[BGReflection above_water_below_render:_bldg_2];
+		[BGReflection above_water_below_render:_bldg_1];
+		[_above_water_belowreflection end];
+		_above_water_belowreflection.sprite.shaderUniforms[@"testTime"] = [g get_tick_mod_pi];
+		
 	} else {
 		[_above_water_root setVisible:YES];
 		[_below_water_root setVisible:NO];

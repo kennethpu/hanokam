@@ -16,30 +16,34 @@
 #import "CCTexture_Private.h"
 
 #import "AccelerometerManager.h"
-//#import "AccelerometerSimulation.h"
 #import "Resource.h"
 
-@interface RippleInfo : NSObject
-@end
 @implementation RippleInfo {
 	float _ct;
-	CGPoint _pos;
+	CGPoint _reflected_pos;
+	CGPoint _default_pos;
 }
 
 -(id)initWithPosition:(CGPoint)pos game:(GameEngineScene*)game {
 	self = [super init];
 	_ct = 0;
+	_default_pos = pos;
 	pos.y = (game.REFLECTION_HEIGHT - game.HORIZON_HEIGHT) + pos.y;
 	float flip_axis = game.REFLECTION_HEIGHT - game.HORIZON_HEIGHT - 25;
-	_pos = ccp(pos.x,flip_axis - (pos.y - flip_axis));
+	_reflected_pos = ccp(pos.x,flip_axis - (pos.y - flip_axis));
 	return self;
 }
 
--(void)render:(CCSprite*)proto {
+-(void)render_reflected:(CCSprite*)proto {
+	[self render:proto pos:_reflected_pos];
+}
+-(void)render_default:(CCSprite*)proto offset:(CGPoint)offset {
+	[self render:proto pos:CGPointAdd(_default_pos, offset)];
+}
+-(void)render:(CCSprite*)proto pos:(CGPoint)pos {
 	CGPoint pre = proto.position;
-	[proto setPosition:_pos];
+	[proto setPosition:pos];
 	[proto setScale:lerp(0.55, 1.5, _ct)];
-	//[proto setScaleY:proto.scaleY * 2 * scale_y];
 	[proto setOpacity:lerp(1.0, 0, _ct)];
 	[proto visit];
 	proto.position = pre;
@@ -141,7 +145,7 @@
 	
 	_bg_anchor = [[CCNode node] add_to:_game_anchor z:0];
 	[self initialize_reflection_and_ripples];
-	_bg_sky = (BGSky*)[[BGSky cons:self] add_to:_bg_anchor z:1];
+	_bg_sky = (BGSky*)[[BGSky cons:self] add_to:_bg_anchor z:2];
 	_bg_water = (BGWater*)[[BGWater cons:self] add_to:_bg_anchor z:-10];
 	_bg_elements = @[_bg_sky, _bg_water];
 	
@@ -157,9 +161,10 @@
 	return self;
 }
 
--(CCNode*)get_bg_anchor {
-	return _bg_anchor;
-}
+-(NSArray*)get_ripple_infos { return _ripples; }
+-(CCSprite*)get_ripple_proto { return _ripple_proto; }
+-(CCNode*)get_bg_anchor { return _bg_anchor; }
+-(NSNumber*)get_tick_mod_pi { return @(fmodf(_tick * 0.01,M_PI * 2)); }
 
 -(void)initialize_reflection_and_ripples {
 	_reflection_texture = [CCRenderTexture renderTextureWithWidth:game_screen().width height:self.REFLECTION_HEIGHT];
@@ -173,7 +178,7 @@
 	[_ripple_texture clear:0 g:0 b:0 a:0];
 	_ripple_proto = [CCSprite spriteWithTexture:[Resource get_tex:TEX_RIPPLE]];
 	_ripple_proto.shader = [ShaderManager get_shader:SHADER_RIPPLE_FX];
-	_reflection_texture.sprite.shaderUniforms[@"rippleTexture"] = [self get_ripple_texture];
+	_reflection_texture.sprite.shaderUniforms[@"rippleTexture"] = _ripple_texture.sprite.texture;
 }
 
 -(void)add_ripple:(CGPoint)pos {
@@ -198,7 +203,7 @@
 	[_ripple_texture begin];
 	NSMutableArray *to_remove = [NSMutableArray array];
 	for (RippleInfo *itr in _ripples) {
-		[itr render:_ripple_proto];
+		[itr render_reflected:_ripple_proto];
 	}
 	[_ripples removeObjectsInArray:to_remove];
 	[_ripple_texture end];
@@ -307,13 +312,6 @@ static bool TEST_HAS_ACTIVATED_BOSS = false;
 	
 	_touch_tapped = _touch_released = false;
 	[_ui i_update:self];
-}
-
--(CCTexture*)get_ripple_texture {
-	return _ripple_texture.sprite.texture;
-}
--(NSNumber*)get_tick_mod_pi {
-	return @(fmodf(_tick * 0.01,M_PI * 2));
 }
 
 -(void)update_shake {
