@@ -29,21 +29,22 @@
 	_ct = 0;
 	_default_pos = pos;
 	pos.y = (game.REFLECTION_HEIGHT - game.HORIZON_HEIGHT) + pos.y;
-	float flip_axis = game.REFLECTION_HEIGHT - game.HORIZON_HEIGHT - 25;
+	float flip_axis = game.REFLECTION_HEIGHT - game.HORIZON_HEIGHT - 10;
 	_reflected_pos = ccp(pos.x,flip_axis - (pos.y - flip_axis));
 	return self;
 }
 
--(void)render_reflected:(CCSprite*)proto {
-	[self render:proto pos:_reflected_pos];
+-(void)render_reflected:(CCSprite*)proto scymult:(float)scymult {
+	[self render:proto pos:_reflected_pos scymult:scymult];
 }
--(void)render_default:(CCSprite*)proto offset:(CGPoint)offset {
-	[self render:proto pos:CGPointAdd(_default_pos, offset)];
+-(void)render_default:(CCSprite*)proto offset:(CGPoint)offset scymult:(float)scymult {
+	[self render:proto pos:CGPointAdd(_default_pos, offset) scymult:scymult];
 }
--(void)render:(CCSprite*)proto pos:(CGPoint)pos {
+-(void)render:(CCSprite*)proto pos:(CGPoint)pos scymult:(float)scymult {
 	CGPoint pre = proto.position;
 	[proto setPosition:pos];
 	[proto setScale:lerp(0.55, 1.5, _ct)];
+	[proto setScaleY:proto.scale*scymult];
 	[proto setOpacity:lerp(1.0, 0, _ct)];
 	[proto visit];
 	proto.position = pre;
@@ -77,7 +78,6 @@
 	
 	ParticleSystem *_particles;
 	
-	CCRenderTexture *_reflection_texture, *_ripple_texture;
 	CCSprite *_ripple_proto;
 	NSMutableArray *_ripples;
 	
@@ -143,9 +143,12 @@
 	_player = (Player*)[[Player cons] add_to:_game_anchor z:10];
 	_player_state = PlayerState_WaveEnd;
 	
+	_ripples = [NSMutableArray array];
+	_ripple_proto = [CCSprite spriteWithTexture:[Resource get_tex:TEX_RIPPLE]];
+	_ripple_proto.shader = [ShaderManager get_shader:SHADER_RIPPLE_FX];
+	
 	_bg_anchor = [[CCNode node] add_to:_game_anchor z:0];
-	[self initialize_reflection_and_ripples];
-	_bg_sky = (BGSky*)[[BGSky cons:self] add_to:_bg_anchor z:2];
+	_bg_sky = (BGSky*)[[BGSky cons:self] add_to:_bg_anchor z:3];
 	_bg_water = (BGWater*)[[BGWater cons:self] add_to:_bg_anchor z:-10];
 	_bg_elements = @[_bg_sky, _bg_water];
 	
@@ -165,23 +168,7 @@
 -(CCSprite*)get_ripple_proto { return _ripple_proto; }
 -(CCNode*)get_bg_anchor { return _bg_anchor; }
 -(NSNumber*)get_tick_mod_pi { return @(fmodf(_tick * 0.01,M_PI * 2)); }
-
--(void)initialize_reflection_and_ripples {
-	_reflection_texture = [CCRenderTexture renderTextureWithWidth:game_screen().width height:self.REFLECTION_HEIGHT];
-	
-	[_reflection_texture setPosition:ccp(game_screen().width / 2, -(self.REFLECTION_HEIGHT) / 2 + self.HORIZON_HEIGHT)];
-	
-	_reflection_texture.scaleY = -1;
-	[_bg_anchor addChild:_reflection_texture z:2];
-	_reflection_texture.sprite.blendMode = [CCBlendMode alphaMode];
-	_reflection_texture.sprite.shader = [ShaderManager get_shader:SHADER_REFLECTION_AM_DOWN];
-	_ripples = [NSMutableArray array];
-	_ripple_texture = [CCRenderTexture renderTextureWithWidth:game_screen().width height:self.REFLECTION_HEIGHT];
-	[_ripple_texture clear:0 g:0 b:0 a:0];
-	_ripple_proto = [CCSprite spriteWithTexture:[Resource get_tex:TEX_RIPPLE]];
-	_ripple_proto.shader = [ShaderManager get_shader:SHADER_RIPPLE_FX];
-	_reflection_texture.sprite.shaderUniforms[@"rippleTexture"] = _ripple_texture.sprite.texture;
-}
+-(BGSky*)get_bg_sky { return _bg_sky; }
 
 -(void)add_ripple:(CGPoint)pos {
 	if ([_ripples count] > 6) return;
@@ -198,38 +185,6 @@
 		}
 	}
 	[_ripples removeObjectsInArray:to_remove];
-}
-
--(void)render_ripple_texture {
-	[_ripple_texture clear:0 g:0 b:0 a:0];
-	[_ripple_texture begin];
-	NSMutableArray *to_remove = [NSMutableArray array];
-	for (RippleInfo *itr in _ripples) {
-		[itr render_reflected:_ripple_proto];
-	}
-	[_ripples removeObjectsInArray:to_remove];
-	[_ripple_texture end];
-	
-}
-
--(void)render_reflection_texture {
-	[_reflection_texture clear:0 g:0 b:0 a:0];
-	[_reflection_texture begin];
-	[_bg_sky render_reflection:self];
-	
-	if (_player.position.y > -10) {
-		CGPoint player_pos = _player.position;
-		_player.position = ccp(_player.position.x, self.HORIZON_HEIGHT + _player.position.y);
-		[_player visit];
-		_player.position = player_pos;
-	}
-	_spirit_anchor.position = ccp(0,self.HORIZON_HEIGHT);
-	for (SpiritBase *itr in _spirit_manager.get_spirits) if (itr.position.y < 0) itr.visible = NO;
-	[_spirit_anchor visit];
-	for (SpiritBase *itr in _spirit_manager.get_spirits) itr.visible = YES;
-	_spirit_anchor.position = CGPointZero;
-	
-	[_reflection_texture end];
 }
 
 -(void)accelerometer:(UIAccelerometer *)acel didAccelerate:(UIAcceleration *)aceler {
@@ -300,16 +255,6 @@ static bool TEST_HAS_ACTIVATED_BOSS = false;
 	}
 	
 	[_spirit_manager i_update];
-	if (_player.position.y > 0) {
-		if ([self get_viewbox].y1 < self.HORIZON_HEIGHT && [self get_viewbox].y2 > -self.REFLECTION_HEIGHT) {
-			[self render_ripple_texture];
-			[self render_reflection_texture];
-			_reflection_texture.sprite.shaderUniforms[@"testTime"] = [self get_tick_mod_pi];
-		}
-		[_reflection_texture setVisible:YES];
-	} else {
-		[_reflection_texture setVisible:NO];
-	}
 	[self update_ripples];
 	
 	_touch_tapped = _touch_released = false;

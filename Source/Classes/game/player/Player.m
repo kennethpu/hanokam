@@ -158,6 +158,7 @@
 		
 			_vy += (17 -_vy) * 0.01 * dt_scale_get();
 			if (![self is_underwater]) {
+				[g add_ripple:self.position];
 				if(g.get_spirit_manager.dive_y < -200) {
 					_vy = 10;
 				} else {

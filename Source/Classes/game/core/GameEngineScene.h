@@ -4,6 +4,7 @@
 @class Particle;
 @class Player;
 @class SpiritManager;
+@class BGSky;
 
 typedef enum _PlayerState {
 	PlayerState_Dive = 0,
@@ -13,8 +14,8 @@ typedef enum _PlayerState {
 } PlayerState;
 
 @interface RippleInfo : NSObject
--(void)render_reflected:(CCSprite*)proto;
--(void)render_default:(CCSprite*)proto offset:(CGPoint)offset;
+-(void)render_reflected:(CCSprite*)proto scymult:(float)scymult;
+-(void)render_default:(CCSprite*)proto offset:(CGPoint)offset scymult:(float)scymult;
 @end
 
 @interface GameEngineScene : CCScene <UIAccelerometerDelegate>
@@ -56,6 +57,7 @@ typedef enum _PlayerState {
 -(CCNode*)get_bg_anchor;
 -(NSArray*)get_ripple_infos;
 -(CCSprite*)get_ripple_proto;
+-(BGSky*)get_bg_sky;
 @end
 
 @interface BGElement : CCNode

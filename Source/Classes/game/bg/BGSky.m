@@ -35,7 +35,7 @@
 }
 
 -(BGSky*)cons:(GameEngineScene *)g {
-	_above_water_root = [[CCNode node] add_to:self];
+	_above_water_root = [[CCNode node] add_to:self z:1];
 	_below_water_root = [[CCNode node] add_to:self];
 
 	_birds = [NSMutableArray array];
@@ -107,7 +107,7 @@
 	[BGReflection reflection_render:_bldg_3 offset:ccp(0,-5)];
 	[BGReflection reflection_render:_bldg_2 offset:ccp(0,-3)];
 	[BGReflection reflection_render:_bldg_1 offset:ccp(0,-3)];
-	[BGReflection reflection_render:_docks offset:ccp(0,-3)];
+	[BGReflection reflection_render:_docks offset:ccp(0,3)];
 }
 
 -(void)set_bgobj_positions:(GameEngineScene*)game {
@@ -115,7 +115,6 @@
 	_bldg_1.position = ccp(_bldg_1.position.x,clampf(((_viewBox.y1 + _viewBox.y2) / 2) * .1 - game.HORIZON_HEIGHT, -game.HORIZON_HEIGHT,0));
 	_bldg_2.position = ccp(_bldg_2.position.x,clampf(((_viewBox.y1 + _viewBox.y2) / 2) * .2 - game.HORIZON_HEIGHT, -game.HORIZON_HEIGHT,0));
 	_bldg_3.position = ccp(_bldg_3.position.x,clampf(((_viewBox.y1 + _viewBox.y2) / 2) * .25 - game.HORIZON_HEIGHT, -game.HORIZON_HEIGHT,0));
-	//_bldg_3.position = ccp(_bldg_3.position.x,clampf(((_viewBox.y1 + _viewBox.y2) / 2) * .25 - game.HORIZON_HEIGHT, -game.HORIZON_HEIGHT,0));
 }
 
 -(void)i_update:(GameEngineScene*)g {
@@ -128,7 +127,7 @@
 		[_water_surface_ripples begin];
 		CCSprite *proto = g.get_ripple_proto;
 		for (RippleInfo *itr in g.get_ripple_infos) {
-			[itr render_default:proto offset:ccp(0,50)];
+			[itr render_default:proto offset:ccp(0,65) scymult:0.35];
 		}
 		[_water_surface_ripples end];
 		
@@ -137,6 +136,7 @@
 		[BGReflection above_water_below_render:_bldg_3];
 		[BGReflection above_water_below_render:_bldg_2];
 		[BGReflection above_water_below_render:_bldg_1];
+		[BGReflection above_water_below_render:_docks];
 		[_above_water_belowreflection end];
 		_above_water_belowreflection.sprite.shaderUniforms[@"testTime"] = [g get_tick_mod_pi];
 		

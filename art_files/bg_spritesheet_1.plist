@@ -27,28 +27,6 @@
 			<false/>
 		</dict>
 		
-		<key>bg_1_sm.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{0, 0}, {644, 137}}</string>
-			<key>spriteOffset</key>
-			<string>{0, 0}</string>
-			<key>spriteSize</key>
-			<string>{644, 137}</string>
-			<key>spriteSourceSize</key>
-			<string>{644, 137}</string>
-			<key>spriteTrimmed</key>
-			<false/>
-			<key>textureRect</key>
-			<string>{{943, 0}, {644, 137}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
 		<key>bg_2.png</key>
 		<dict>
 			<key>aliases</key>
@@ -67,28 +45,6 @@
 			<false/>
 			<key>textureRect</key>
 			<string>{{642, 831}, {644, 474}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>bg_2_sm.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{0, 0}, {644, 131}}</string>
-			<key>spriteOffset</key>
-			<string>{0, 0}</string>
-			<key>spriteSize</key>
-			<string>{644, 131}</string>
-			<key>spriteSourceSize</key>
-			<string>{644, 131}</string>
-			<key>spriteTrimmed</key>
-			<false/>
-			<key>textureRect</key>
-			<string>{{943, 139}, {644, 131}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -132,7 +88,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{943, 272}, {640, 76}}</string>
+			<string>{{943, 0}, {640, 76}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
