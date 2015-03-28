@@ -46,8 +46,6 @@ static NSSet* dont_load;
 		TEX_BLANK: @"blank.png",
 		TEX_TEST_BG_TILE_SKY: @"bg_test_tile_sky.png",
 		TEX_TEST_BG_TILE_WATER: @"bg_test_tile_water.png",
-		TEX_TEST_BG_TILE_SKY: @"bg_test_tile_sky.png",
-		TEX_TEST_BG_TILE_WATER: @"bg_test_tile_water.png",
 		TEX_TEST_BG_UNDERWATER_SURFACE_GRADIENT: @"bg_underwater_surface_gradient.png",
 		TEX_TEST_BG_OBJ_BIRD: @"bg_test_obj_bird.png",
 		TEX_TEST_BG_OBJ_CLOUD: @"bg_test_obj_cloud.png",
@@ -68,7 +66,8 @@ static NSSet* dont_load;
 		TEX_AIMING_BAR: @"aiming_bar.png",
 		TEX_WATER_SHINE: @"water_shine.png",
 		TEX_HUD_SPRITESHEET: @"hud_spritesheet.png",
-		TEX_PARTICLES_SPRITESHEET: @"particles_spritesheet.png"
+		TEX_PARTICLES_SPRITESHEET: @"particles_spritesheet.png",
+		TEX_ENEMIES_SPRITESHEET: @"enemies_spritesheet.png"
 	};
 	
 	dont_load = _NSSET(

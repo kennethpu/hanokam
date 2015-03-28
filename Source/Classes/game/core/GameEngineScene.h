@@ -5,6 +5,7 @@
 @class Player;
 @class SpiritManager;
 @class BGSky;
+@class AirEnemyManager;
 
 typedef enum _PlayerState {
 	PlayerState_Dive = 0,
@@ -12,6 +13,10 @@ typedef enum _PlayerState {
 	PlayerState_Combat = 2,
 	PlayerState_WaveEnd = 3
 } PlayerState;
+
+typedef enum _GameAnchorZ {
+	GameAnchorZ_Enemies = 50
+} GameAnchorZ;
 
 @interface RippleInfo : NSObject
 -(void)render_reflected:(CCSprite*)proto scymult:(float)scymult;
@@ -25,7 +30,6 @@ typedef enum _PlayerState {
 +(GameEngineScene*)cons;
 
 -(Player*)player;
--(CCNode*)spirit_anchor;
 
 -(void)add_particle:(Particle*)p;
 -(void)shake_for:(float)ct distance:(float)distance;
@@ -43,6 +47,7 @@ typedef enum _PlayerState {
 -(HitRect)get_viewbox;
 -(CCNode*)get_anchor;
 -(SpiritManager*)get_spirit_manager;
+-(AirEnemyManager*)get_air_enemy_manager;
 
 -(void)add_ripple:(CGPoint)pos;
 -(float)get_ground_depth;

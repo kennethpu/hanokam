@@ -13,6 +13,7 @@
 #import "GameUI.h"
 #import "Particle.h"
 #import "TouchTrackingLayer.h"
+#import "AirEnemyManager.h" 
 
 #import "CCTexture_Private.h"
 
@@ -84,7 +85,7 @@
 	
 	// CAM
 	float _cam_y_lirp, _player_dive_bottom_y, _player_combat_top_y;
-	CCNode *_zoom_node, *_game_anchor, *_spirit_anchor, *_bg_anchor;
+	CCNode *_zoom_node, *_game_anchor, *_bg_anchor;
 	float _zoom;
 	CGPoint _camera_center_point;
 	
@@ -96,6 +97,7 @@
 	NSArray *_bg_elements;
 	
 	SpiritManager *_spirit_manager;
+	AirEnemyManager *_air_enemy_manager;
 	
 	// GUI
 	CCLabelTTF *_water_text;
@@ -105,7 +107,6 @@
 }
 
 -(Player*)player { return _player; }
--(CCNode*)spirit_anchor { return _spirit_anchor; }
 -(float)tick { return _tick; }
 -(CGPoint)touch_position { return _touch_position; }
 -(BOOL)touch_down { return _touch_down; }
@@ -113,6 +114,7 @@
 -(BOOL)touch_released { return _touch_released; }
 -(float)get_camera_y { return -_game_anchor.position.y; }
 -(SpiritManager*)get_spirit_manager{ return _spirit_manager; }
+-(AirEnemyManager*)get_air_enemy_manager { return _air_enemy_manager; }
 
 @synthesize _water_num;
 
@@ -143,7 +145,6 @@
 	[_zoom_node setPosition:game_screen_pct(.5, .5)];
 	
 	_game_anchor = [[CCNode node] add_to:_zoom_node];
-	_spirit_anchor = [[CCNode node] add_to:_game_anchor z:1];
 	
 	_particles = [ParticleSystem cons_anchor:_game_anchor];
 	
@@ -160,6 +161,7 @@
 	_bg_elements = @[_bg_sky, _bg_water];
 	
 	_spirit_manager = [[[SpiritManager alloc] init] cons:self];
+	_air_enemy_manager = [AirEnemyManager cons:self];
 	
 	UIAccelerometer *accel = [UIAccelerometer sharedAccelerometer];
 	accel.delegate = self;
@@ -201,7 +203,11 @@
 }
 
 static bool TEST_HAS_ACTIVATED_BOSS = false;
-
+/*
+1. all objects on same anchor
+2. player under water, under reflection
+3. player on dock behind front pillars
+*/
 -(void)update:(CCTime)delta {
 	dt_set(delta);
 	if (!TEST_HAS_ACTIVATED_BOSS && _player.position.y <= self.get_ground_depth + 50) {
@@ -243,12 +249,14 @@ static bool TEST_HAS_ACTIVATED_BOSS = false;
 			_player_combat_top_y += 3;
 			
 			if(self.get_spirit_manager.count_alive == 0){
-				_cam_y_lirp += (_player.position.y - 100 - _cam_y_lirp) * .3 * dt_scale_get();
-			} else if(_player._falling) {//_player.position.y < _player_combat_top_y - 320){
-				_cam_y_lirp += (_player.position.y + 50 - _cam_y_lirp) * .2 * dt_scale_get();
+				_cam_y_lirp += (((_player.position.y - 100 < 2) ? 2 : _player.position.y - 100) - _cam_y_lirp) * .3 * dt_scale_get();
+			} else if(_player._falling) {
+				_cam_y_lirp += (((_player.position.y + 50 < 2) ? 2 : _player.position.y + 50) - _cam_y_lirp) * .2 * dt_scale_get();
 			} else {
-				_cam_y_lirp += (_player_combat_top_y - _cam_y_lirp) * .15 * dt_scale_get();
+				_cam_y_lirp += (((_player_combat_top_y < 2) ? 2 : _player_combat_top_y) - _cam_y_lirp) * .15 * dt_scale_get();
 			}
+			
+			if(_cam_y_lirp < 0 && _player._vy < 0) _cam_y_lirp = 0;
 			
 			break;
 		case PlayerState_WaveEnd:

@@ -32,7 +32,7 @@
 	NSMutableArray *_water_lights;
 }
 +(BGSky*)cons:(GameEngineScene *)g {
-	return [[BGSky node] cons:g];
+	return [(BGSky*)[BGSky node] cons:g];
 }
 
 -(BGSky*)cons:(GameEngineScene *)g {

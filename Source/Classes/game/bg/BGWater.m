@@ -15,7 +15,6 @@
 #import "Player.h"
 #import "ShaderManager.h"
 #import "BGSky.h"
-#import "SpiritBase.h"
 
 @implementation BGWater {
 	CCSprite *_water_bg;
@@ -106,14 +105,7 @@
 		game.player.position = ccp(game.player.position.x, game.HORIZON_HEIGHT + game.player.position.y);
 		[game.player visit];
 		game.player.position = player_pos;
-	}
-	
-	game.spirit_anchor.position = ccp(0,game.HORIZON_HEIGHT);
-	for (SpiritBase *itr in game.get_spirit_manager.get_spirits) if (itr.position.y < 0) itr.visible = NO;
-	[game.spirit_anchor visit];
-	for (SpiritBase *itr in game.get_spirit_manager.get_spirits) itr.visible = YES;
-	game.spirit_anchor.position = CGPointZero;
-	
+	}	
 	[_reflection_texture end];
 }
 

@@ -75,6 +75,16 @@
 		7E17798D1AB9316500E3986C /* SpriterUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E17798C1AB9316500E3986C /* SpriterUtil.m */; };
 		7E1B806E1A189C330055E654 /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1B806D1A189C330055E654 /* MainMenuScene.m */; };
 		7E1B80711A189F450055E654 /* TouchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1B80701A189F450055E654 /* TouchButton.m */; };
+		7E1D4B4B1AC64524002E22CC /* AirEnemyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1D4B4A1AC64524002E22CC /* AirEnemyManager.m */; };
+		7E1D4B4C1AC64524002E22CC /* AirEnemyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1D4B4A1AC64524002E22CC /* AirEnemyManager.m */; };
+		7E1D4B4D1AC64524002E22CC /* AirEnemyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1D4B4A1AC64524002E22CC /* AirEnemyManager.m */; };
+		7E1D4B4E1AC64524002E22CC /* AirEnemyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1D4B4A1AC64524002E22CC /* AirEnemyManager.m */; };
+		7E1D4B511AC64818002E22CC /* enemies_spritesheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E1D4B4F1AC64818002E22CC /* enemies_spritesheet.plist */; };
+		7E1D4B521AC64818002E22CC /* enemies_spritesheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E1D4B4F1AC64818002E22CC /* enemies_spritesheet.plist */; };
+		7E1D4B531AC64818002E22CC /* enemies_spritesheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E1D4B4F1AC64818002E22CC /* enemies_spritesheet.plist */; };
+		7E1D4B541AC64818002E22CC /* enemies_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E1D4B501AC64818002E22CC /* enemies_spritesheet.png */; };
+		7E1D4B551AC64818002E22CC /* enemies_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E1D4B501AC64818002E22CC /* enemies_spritesheet.png */; };
+		7E1D4B561AC64818002E22CC /* enemies_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E1D4B501AC64818002E22CC /* enemies_spritesheet.png */; };
 		7E26759F1AB69451002EF2EC /* Bird.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE870681AB67082004679E8 /* Bird.m */; };
 		7E2675A11AB69451002EF2EC /* Bird.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE870681AB67082004679E8 /* Bird.m */; };
 		7E2675A21AB69452002EF2EC /* Bird.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE870681AB67082004679E8 /* Bird.m */; };
@@ -102,9 +112,6 @@
 		7E4DB51E1ABFBCE200FCDB20 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4DB51D1ABFBCE200FCDB20 /* arrow.png */; };
 		7E4DB51F1ABFBCE200FCDB20 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4DB51D1ABFBCE200FCDB20 /* arrow.png */; };
 		7E4DB5201ABFBCE200FCDB20 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4DB51D1ABFBCE200FCDB20 /* arrow.png */; };
-		7E707F9D1AC1252100BAD2E6 /* 1frontlamp.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E707F991AC1252100BAD2E6 /* 1frontlamp.png */; };
-		7E707F9E1AC1252100BAD2E6 /* 1frontlamp.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E707F991AC1252100BAD2E6 /* 1frontlamp.png */; };
-		7E707F9F1AC1252100BAD2E6 /* 1frontlamp.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E707F991AC1252100BAD2E6 /* 1frontlamp.png */; };
 		7E80FEA61AC23AF80048B7D4 /* water_shine.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E80FEA51AC23AF80048B7D4 /* water_shine.png */; };
 		7E80FEA71AC23AF80048B7D4 /* water_shine.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E80FEA51AC23AF80048B7D4 /* water_shine.png */; };
 		7E80FEA81AC23AF80048B7D4 /* water_shine.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E80FEA51AC23AF80048B7D4 /* water_shine.png */; };
@@ -439,6 +446,10 @@
 		7E1B806D1A189C330055E654 /* MainMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuScene.m; sourceTree = "<group>"; };
 		7E1B806F1A189F450055E654 /* TouchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchButton.h; sourceTree = "<group>"; };
 		7E1B80701A189F450055E654 /* TouchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchButton.m; sourceTree = "<group>"; };
+		7E1D4B491AC64524002E22CC /* AirEnemyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirEnemyManager.h; sourceTree = "<group>"; };
+		7E1D4B4A1AC64524002E22CC /* AirEnemyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirEnemyManager.m; sourceTree = "<group>"; };
+		7E1D4B4F1AC64818002E22CC /* enemies_spritesheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = enemies_spritesheet.plist; sourceTree = "<group>"; };
+		7E1D4B501AC64818002E22CC /* enemies_spritesheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemies_spritesheet.png; sourceTree = "<group>"; };
 		7E31E4BD1AB8BD13004DAC8E /* ShopScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopScene.h; sourceTree = "<group>"; };
 		7E31E4BE1AB8BD13004DAC8E /* ShopScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopScene.m; sourceTree = "<group>"; };
 		7E32CADC1AC3650600461F53 /* bg_underwater_surface_gradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_underwater_surface_gradient.png; sourceTree = "<group>"; };
@@ -470,7 +481,6 @@
 		7E3B0C091A131E8E0057869B /* WebRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebRequest.m; sourceTree = "<group>"; };
 		7E4DB5171ABFBCA700FCDB20 /* spirit_fish_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spirit_fish_3.png; sourceTree = "<group>"; };
 		7E4DB51D1ABFBCE200FCDB20 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
-		7E707F991AC1252100BAD2E6 /* 1frontlamp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1frontlamp.png; sourceTree = "<group>"; };
 		7E80FEA51AC23AF80048B7D4 /* water_shine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water_shine.png; sourceTree = "<group>"; };
 		7E90D1761AB635A200E06F92 /* bg_test_tile_sky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_test_tile_sky.png; sourceTree = "<group>"; };
 		7E90D1771AB635A200E06F92 /* bg_test_tile_water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_test_tile_water.png; sourceTree = "<group>"; };
@@ -845,6 +855,15 @@
 			path = menu;
 			sourceTree = "<group>";
 		};
+		7E1D4B471AC64502002E22CC /* airenemy */ = {
+			isa = PBXGroup;
+			children = (
+				7E1D4B491AC64524002E22CC /* AirEnemyManager.h */,
+				7E1D4B4A1AC64524002E22CC /* AirEnemyManager.m */,
+			);
+			path = airenemy;
+			sourceTree = "<group>";
+		};
 		7E3B0BC61A131E8E0057869B /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -864,6 +883,7 @@
 		7E3B0BC71A131E8E0057869B /* game */ = {
 			isa = PBXGroup;
 			children = (
+				7E1D4B471AC64502002E22CC /* airenemy */,
 				7EF468CF1ABFB4970041E55F /* projectiles */,
 				7EF468A41ABF71E50041E55F /* particle */,
 				7E1460DE1ABA41A40044B31F /* monster */,
@@ -969,7 +989,6 @@
 			isa = PBXGroup;
 			children = (
 				7E32CADC1AC3650600461F53 /* bg_underwater_surface_gradient.png */,
-				7E707F991AC1252100BAD2E6 /* 1frontlamp.png */,
 				7EA7AE7B1ABFCC22001C9EFE /* kelp_spritesheet.plist */,
 				7EA7AE7C1ABFCC22001C9EFE /* kelp_spritesheet.png */,
 				7EA7AE661ABFB931001C9EFE /* bg_spritesheet_1.plist */,
@@ -1037,6 +1056,8 @@
 		7EA7AE541ABFB851001C9EFE /* monster */ = {
 			isa = PBXGroup;
 			children = (
+				7E1D4B4F1AC64818002E22CC /* enemies_spritesheet.plist */,
+				7E1D4B501AC64818002E22CC /* enemies_spritesheet.png */,
 				7EA7AE551ABFB851001C9EFE /* spirit_fish_1.png */,
 				7EF468DB1ABFBB400041E55F /* spirit_fish_2.png */,
 				7E4DB5171ABFBCA700FCDB20 /* spirit_fish_3.png */,
@@ -1417,7 +1438,9 @@
 				7EBE57061AC3F162008AD888 /* particles_spritesheet.plist in Resources */,
 				7A4036FB19DE401F007B6E8F /* iPhone-old.png in Resources */,
 				7A4036FC19DE401F007B6E8F /* iPhone-old@2x.png in Resources */,
+				7E1D4B561AC64818002E22CC /* enemies_spritesheet.png in Resources */,
 				7E4DB5201ABFBCE200FCDB20 /* arrow.png in Resources */,
+				7E1D4B531AC64818002E22CC /* enemies_spritesheet.plist in Resources */,
 				7A4036FD19DE401F007B6E8F /* iPhone.png in Resources */,
 				7E32CADF1AC3650600461F53 /* bg_underwater_surface_gradient.png in Resources */,
 				7A59498B19E38E4A00F65F90 /* MainMenu.xib in Resources */,
@@ -1433,7 +1456,6 @@
 				7EA7AE6A1ABFB931001C9EFE /* bg_spritesheet_1.plist in Resources */,
 				7E08F3F81AC0D2170023D757 /* particle_bubble.png in Resources */,
 				7EA7AE361ABFB7D8001C9EFE /* hanoka v0.01.png in Resources */,
-				7E707F9F1AC1252100BAD2E6 /* 1frontlamp.png in Resources */,
 				7EA7AE391ABFB7D8001C9EFE /* hanoka v0.01.scml in Resources */,
 				7EA7AE331ABFB7D8001C9EFE /* hanoka v0.01.json in Resources */,
 				7EA7AE821ABFCC22001C9EFE /* kelp_spritesheet.png in Resources */,
@@ -1477,7 +1499,6 @@
 				7EF468E61ABFBB4B0041E55F /* particle_blood_1.png in Resources */,
 				7EA7AE811ABFCC22001C9EFE /* kelp_spritesheet.png in Resources */,
 				7E08F3F21AC0C0810023D757 /* aiming_bar.png in Resources */,
-				7E707F9E1AC1252100BAD2E6 /* 1frontlamp.png in Resources */,
 				927F61B4196C771E000F43EF /* Settings@2x.png in Resources */,
 				927F61B5196C771E000F43EF /* Default-Landscape~ipad.png in Resources */,
 				B78A0B10198AF87200C63841 /* Published-Android in Resources */,
@@ -1485,7 +1506,9 @@
 				7EA7AE491ABFB7FC001C9EFE /* ripple_effect.vsh in Resources */,
 				927F61B6196C771E000F43EF /* iPhone-old.png in Resources */,
 				927F61B7196C771E000F43EF /* iPhone.png in Resources */,
+				7E1D4B551AC64818002E22CC /* enemies_spritesheet.png in Resources */,
 				927F61B8196C771E000F43EF /* Default-568h@2x.png in Resources */,
+				7E1D4B521AC64818002E22CC /* enemies_spritesheet.plist in Resources */,
 				7EA7AE461ABFB7FC001C9EFE /* ripple_effect.fsh in Resources */,
 				7EA7AE571ABFB851001C9EFE /* spirit_fish_1.png in Resources */,
 				927F61B9196C771E000F43EF /* iPhone@2x.png in Resources */,
@@ -1520,6 +1543,7 @@
 				7EADAC6D1AB655D8004902A9 /* bg_test_obj_cloud.png in Resources */,
 				7EF468E51ABFBB4B0041E55F /* particle_blood_1.png in Resources */,
 				B71F5919188484E7003F4D28 /* Settings.png in Resources */,
+				7E1D4B541AC64818002E22CC /* enemies_spritesheet.png in Resources */,
 				7E90D17B1AB635A200E06F92 /* bg_test_tile_water.png in Resources */,
 				7EA7AE511ABFB844001C9EFE /* ripple.png in Resources */,
 				7EBE56FD1AC3772C008AD888 /* abovewater_am_up.fsh in Resources */,
@@ -1552,11 +1576,11 @@
 				7EA7AE561ABFB851001C9EFE /* spirit_fish_1.png in Resources */,
 				7EA7AE451ABFB7FC001C9EFE /* ripple_effect.fsh in Resources */,
 				7EBE57051AC3F162008AD888 /* particles_spritesheet.plist in Resources */,
+				7E1D4B511AC64818002E22CC /* enemies_spritesheet.plist in Resources */,
 				7E4DB51E1ABFBCE200FCDB20 /* arrow.png in Resources */,
 				B71F5917188484E7003F4D28 /* iPhone.png in Resources */,
 				7EF468DD1ABFBB400041E55F /* spirit_fish_2.png in Resources */,
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
-				7E707F9D1AC1252100BAD2E6 /* 1frontlamp.png in Resources */,
 				7E08F3F61AC0D2170023D757 /* particle_bubble.png in Resources */,
 				7EA7AEDA1AC006A1001C9EFE /* hud_spritesheet.png in Resources */,
 				7EA7AED71AC006A1001C9EFE /* hud_spritesheet.plist in Resources */,
@@ -1625,6 +1649,7 @@
 				7E1779521AB8152600E3986C /* SpriterData.m in Sources */,
 				7E2675A31AB69453002EF2EC /* Bird.m in Sources */,
 				7E90D1941AB63DD800E06F92 /* BGWater.m in Sources */,
+				7E1D4B4D1AC64524002E22CC /* AirEnemyManager.m in Sources */,
 				7EF468BA1ABF78870041E55F /* ParticlePhysical.m in Sources */,
 				7EF468AF1ABF71E50041E55F /* RotateFadeOutParticle.m in Sources */,
 			);
@@ -1655,6 +1680,7 @@
 				7E1779691AB81AF600E3986C /* SpriterXMLParser.m in Sources */,
 				7E90D18F1AB63DB700E06F92 /* BGSky.m in Sources */,
 				7EA7AEB01ABFDD06001C9EFE /* Spirit_Fish_3.m in Sources */,
+				7E1D4B4E1AC64524002E22CC /* AirEnemyManager.m in Sources */,
 				7A59498E19E3941300F65F90 /* AppDelegate.m in Sources */,
 				7E1779731AB8289A00E3986C /* SpriterTypes.m in Sources */,
 				7EF468AC1ABF71E50041E55F /* Particle.m in Sources */,
@@ -1674,6 +1700,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E1779681AB81AF600E3986C /* SpriterXMLParser.m in Sources */,
+				7E1D4B4C1AC64524002E22CC /* AirEnemyManager.m in Sources */,
 				7EA7AEB21ABFDD06001C9EFE /* Spirit_Fish_4.m in Sources */,
 				7E90D18D1AB63DB700E06F92 /* BGSky.m in Sources */,
 				7EA7AEB81ABFDD06001C9EFE /* Spirit_Fish_6.m in Sources */,
@@ -1726,6 +1753,7 @@
 				7EA7AEDF1AC0081E001C9EFE /* UIBossIntroParticle.m in Sources */,
 				7EA7AEBA1ABFDD06001C9EFE /* SpiritBase.m in Sources */,
 				7EA7AE951ABFDCD6001C9EFE /* SHItemRow.m in Sources */,
+				7E1D4B4B1AC64524002E22CC /* AirEnemyManager.m in Sources */,
 				7E1B806E1A189C330055E654 /* MainMenuScene.m in Sources */,
 				7EA7AEAB1ABFDD06001C9EFE /* Spirit_Fish_2.m in Sources */,
 				7E1779711AB8289A00E3986C /* SpriterTypes.m in Sources */,
