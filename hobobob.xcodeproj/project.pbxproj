@@ -12,6 +12,7 @@
 		5B12102A197484DD004C1E1D /* hobobobActivity.java in Sources */ = {isa = PBXBuildFile; fileRef = 5B12101B19748413004C1E1D /* hobobobActivity.java */; };
 		5B121030197484FA004C1E1D /* hobobobActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B12102F197484FA004C1E1D /* hobobobActivity.m */; };
 		5B121038197487F2004C1E1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B737893E1807617C0076A88C /* AppDelegate.m */; };
+		5EBEBF721AC770CE001EF3F2 /* Spirit_Tail.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEBF711AC770CE001EF3F2 /* Spirit_Tail.m */; };
 		7A40360419DDEE84007B6E8F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A40360319DDEE84007B6E8F /* main.m */; };
 		7A4036EB19DE3F8E007B6E8F /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8392007918EE8E3300B6C429 /* GLKit.framework */; };
 		7A4036EC19DE3F90007B6E8F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3117B978D7009739AE /* QuartzCore.framework */; };
@@ -425,6 +426,8 @@
 		5B121033197485FE004C1E1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Platforms/Android/Info.plist; sourceTree = "<group>"; };
 		5B121034197485FE004C1E1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Platforms/iOS/Info.plist; sourceTree = "<group>"; };
 		5BA4619E1974C88900785744 /* AndroidManifest.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = AndroidManifest.xml; path = Platforms/Android/AndroidManifest.xml; sourceTree = "<group>"; };
+		5EBEBF701AC770CE001EF3F2 /* Spirit_Tail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spirit_Tail.h; sourceTree = "<group>"; };
+		5EBEBF711AC770CE001EF3F2 /* Spirit_Tail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spirit_Tail.m; sourceTree = "<group>"; };
 		7A4035FF19DDEE84007B6E8F /* hobobob Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hobobob Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A40360219DDEE84007B6E8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Platforms/Mac/Info.plist; sourceTree = "<group>"; };
 		7A40360319DDEE84007B6E8F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Source/Platforms/Mac/main.m; sourceTree = "<group>"; };
@@ -856,6 +859,8 @@
 				7EA7AEA51ABFDD06001C9EFE /* SpiritBase.m */,
 				7EA7AEA61ABFDD06001C9EFE /* SpiritManager.h */,
 				7EA7AEA71ABFDD06001C9EFE /* SpiritManager.m */,
+				5EBEBF701AC770CE001EF3F2 /* Spirit_Tail.h */,
+				5EBEBF711AC770CE001EF3F2 /* Spirit_Tail.m */,
 			);
 			name = monster;
 			sourceTree = "<group>";
@@ -1827,6 +1832,7 @@
 				7ED9B6351ABBD76D0043567C /* BGReflection.m in Sources */,
 				7EA7AEA81ABFDD06001C9EFE /* Spirit_Fish_1.m in Sources */,
 				7EBE57021AC3F08F008AD888 /* TouchTrackingLayer.m in Sources */,
+				5EBEBF721AC770CE001EF3F2 /* Spirit_Tail.m in Sources */,
 				7EADAC791AB67506004902A9 /* AccelerometerSimulation.m in Sources */,
 				7E3B0C1F1A131E8E0057869B /* BatchDraw.m in Sources */,
 				7E3B0C281A131E8E0057869B /* WebRequest.m in Sources */,
