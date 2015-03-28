@@ -129,6 +129,7 @@
 
 -(float) REFLECTION_HEIGHT { return 250; }
 -(float) HORIZON_HEIGHT { return 100; }
+-(float) DOCK_HEIGHT { return 48; }
 
 -(id)cons {
 	self.userInteractionEnabled = YES;
