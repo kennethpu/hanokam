@@ -12,6 +12,7 @@
 #define TEX_TEST_BG_UNDERWATER_SURFACE_GRADIENT @"bg_underwater_surface_gradient"
 
 #define TEX_SPRITER_CHAR_HANOKATEST @"hanoka v0.01"
+#define TEX_SPRITER_CHAR_HANOKA_V2 @"hanokav2"
 #define TEX_PARTICLES_SPRITESHEET @"particles_spritesheet"
 #define TEX_RIPPLE @"ripple"
 #define TEX_BG_SPRITESHEET_1 @"bg_spritesheet_1"

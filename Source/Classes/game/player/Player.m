@@ -60,10 +60,10 @@
 	[_bar2 set_scale_x:0.2];
 	[_bar2 set_scale_y:-.2];
 	
-	SpriterJSONParser *frame_data = [[[SpriterJSONParser alloc] init] parseFile:@"hanoka v0.01.json"];
-	SpriterData *spriter_data = [SpriterData dataFromSpriteSheet:[Resource get_tex:TEX_SPRITER_CHAR_HANOKATEST] frames:frame_data scml:@"hanoka v0.01.scml"];
+	SpriterJSONParser *frame_data = [[[SpriterJSONParser alloc] init] parseFile:@"hanokav2.json"];
+	SpriterData *spriter_data = [SpriterData dataFromSpriteSheet:[Resource get_tex:TEX_SPRITER_CHAR_HANOKA_V2] frames:frame_data scml:@"hanokav2.scml"];
 	_img = [SpriterNode nodeFromData:spriter_data];
-	[_img playAnim:@"idle" repeat:YES];
+	[self goto_anim:@"idle"];
 	[self addChild:_img z:1];
 	[self set_pos:game_screen_pct(0.5, 0.5)];
 	[_img set_scale:0.25];
