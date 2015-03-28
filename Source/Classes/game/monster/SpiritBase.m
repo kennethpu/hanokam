@@ -104,7 +104,7 @@
 				float _goto_y;
 				float _goto_x;
 				// UNDER WATER
-				if(g.touch_down && g._player_state != PlayerState_Return){
+				if(g.touch_down && g._player_state != PlayerState_DiveReturn){
 					// FOLLOWING
 					_goto_x = g.player.position.x + sinf(_wave) * 20 + _pos_x;
 					_goto_y = g.player.position.y + 25 + _follow_pos * 15 + _pos_y;
