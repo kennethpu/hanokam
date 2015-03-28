@@ -12,7 +12,7 @@
 
 -(id)init{
     self=[super init];
-	_motion_streak = [CCMotionStreak streakWithFade:0.2 minSeg:5 width:10 color:[CCColor whiteColor] texture:[Resource get_tex:TEX_BLANK]];
+	_motion_streak = [CCMotionStreak streakWithFade:0.4 minSeg:10 width:10 color:[CCColor whiteColor] texture:[Resource get_tex:TEX_BLANK]];
 	[self addChild:_motion_streak];
 	
 	_touch_button = [CCSprite spriteWithTexture:[Resource get_tex:TEX_PARTICLES_SPRITESHEET] rect:[FileCache get_cgrect_from_plist:TEX_PARTICLES_SPRITESHEET idname:@"grey_particle"]];
@@ -32,7 +32,6 @@
 			_touch_button.opacity = 1;
 			_touch_button.scale = 6;
 		}
-		
 	} else {
 		_touch_button.scale = drp(_touch_button.scale, 1, 20.0);
 		_touch_button.opacity = drp(_touch_button.opacity, 0, 20.0);
@@ -53,12 +52,12 @@
 	_touch_button.opacity = 1;
 	[_touch_button setPosition:pt];
 	[_motion_streak setPosition:pt];
-	[_motion_streak setVisible:YES];
+	//[_motion_streak setVisible:YES];
 }
 -(void)touch_end:(CGPoint)pt {
 	_is_touch_down = NO;
 	[_motion_streak reset];
-	[_motion_streak setVisible:NO];
+	//[_motion_streak setVisible:NO];
 }
 
 @end

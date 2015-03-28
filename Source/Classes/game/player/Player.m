@@ -124,11 +124,15 @@
 							_vy *= .1;
 						}
 					}
-					
+                    
+                    _vy += (5 -_vy) * 0.02 * dt_scale_get();
+                    
+					/*
 					if(_vy < -5)
 						_vy += (13 -_vy) * 0.004 * dt_scale_get();
 					else
 						_vy += (13 -_vy) * 0.02 * dt_scale_get();
+                    */
 				}
 				
 				if([g.get_spirit_manager dive_y] > _y && g.touch_down) {
