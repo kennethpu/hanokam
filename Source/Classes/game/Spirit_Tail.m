@@ -12,8 +12,8 @@
     CCNode *_parent;
 }
 
-(Spirit_Tail*)cons_parent:(CCNode*)parent_tail _sprite_id:(int)sprite_id {
-    return ;
++(Spirit_Tail*)cons_parent:(CCNode*)parent_tail _sprite_id:(int)sprite_id {
+    return [[Spirit_Tail node] cons_parent:parent_tail];
 }
 
 -(Spirit_Tail*)cons_parent:(CCNode*)parent_tail {

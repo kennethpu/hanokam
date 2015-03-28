@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Spirit_Tail : NSObject
+@interface Spirit_Tail : CCNode
 -(Spirit_Tail*)cons_parent:(CCNode*)_parent;
 @end

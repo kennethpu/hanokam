@@ -72,6 +72,7 @@ typedef enum _GameAnchorZ {
 
 -(float) REFLECTION_HEIGHT;
 -(float) HORIZON_HEIGHT;
+-(float) DOCK_HEIGHT;
 
 -(NSNumber*)get_tick_mod_pi;
 -(NSArray*)get_ripple_infos;

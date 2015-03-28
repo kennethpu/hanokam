@@ -114,7 +114,7 @@ typedef enum _GameUIBossIntroMode {
 		float hei_from_top = [self depth_bar_from_top_fill_pct:game.player.position.y/game.get_ground_depth];
 		[_depth_bar_icon_player setPosition:ccp(_depth_bar_icon_player.position.x,hei_from_top)];
 		
-	} else if ([game get_player_state] == PlayerState_Combat) {
+	} else if ([game get_player_state] == PlayerState_InAir) {
 		[_depth_bar_back setVisible:YES];
 		[self depth_bar_from_bottom_fill_pct:0.5];
 		
