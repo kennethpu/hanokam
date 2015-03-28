@@ -12,7 +12,9 @@
 #import "FileCache.h"
 
 @implementation BaseAirEnemy
--(void)i_update:(GameEngineScene*)game{}
+-(void)i_update:(GameEngineScene*)game{
+	[self setZOrder:self.position.y<0?GameAnchorZ_Enemies_Underwater:GameAnchorZ_Enemies_Air];
+}
 -(BOOL)should_remove{ return YES; }
 -(void)do_remove{ }
 -(HitRect)get_hitrect{ return hitrect_cons_xy_widhei(self.position.x, self.position.y, 0, 0); }
@@ -64,7 +66,7 @@
 	[do_remove removeAllObjects];
 }
 -(void)add_enemy:(BaseAirEnemy*)enemy game:(GameEngineScene*)game {
-	[[game get_anchor] addChild:enemy];
+	[[game get_anchor] addChild:enemy z:GameAnchorZ_Enemies_Air];
 	[_enemies addObject:enemy];
 }
 @end

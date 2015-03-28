@@ -78,13 +78,15 @@
 }
 
 -(void)update_game:(GameEngineScene*)g {
-	int dock_height = 30;
+	int dock_height = 48;
 
 	float _x = self.position.x;
 	float _y = self.position.y;
 	float _rotation = self.rotation * .0174532925;
 	
 	_aim_dir = [self angle_towards_x:g.touch_position.x y:g.touch_position.y + g.get_camera_y - game_screen().height / 2] * (180 / M_PI) - 90;
+	
+	[self setZOrder:_x<0?GameAnchorZ_Player_Underwater:GameAnchorZ_Player];
 	
 	switch ([g get_player_state]) {
 		case PlayerState_Dive:
@@ -158,7 +160,7 @@
 		
 			_vy += (17 -_vy) * 0.01 * dt_scale_get();
 			if (![self is_underwater]) {
-				[g add_ripple:self.position];
+				[g add_ripple:CGPointAdd(self.position, ccp(0,-20))];
 				if(g.get_spirit_manager.dive_y < -200) {
 					_vy = 10;
 				} else {

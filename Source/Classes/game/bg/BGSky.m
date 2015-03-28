@@ -25,105 +25,113 @@
 	
 	CCSprite *_surface_gradient;
 	
-	CCNode *_above_water_root, *_below_water_root;
+	NSMutableArray *_above_water_elements, *_below_water_elements;
 	CCRenderTexture *_above_water_belowreflection;
 	CCRenderTexture *_water_surface_ripples;
-	
-	NSMutableArray *_water_lights;
 }
 +(BGSky*)cons:(GameEngineScene *)g {
-	return [(BGSky*)[BGSky node] cons:g];
+	return [[[BGSky alloc] init] cons:g];
 }
 
 -(BGSky*)cons:(GameEngineScene *)g {
-	_above_water_root = [[CCNode node] add_to:self z:1];
-	_below_water_root = [[CCNode node] add_to:self];
+	_above_water_elements = [NSMutableArray array];
+	_below_water_elements = [NSMutableArray array];
 
 	_birds = [NSMutableArray array];
 	_tick = 0;
-	_sky_bg = (CCSprite*)[[CCSprite node] add_to:_above_water_root z:0];
+	_sky_bg = [CCSprite node];
+	[[g get_anchor] addChild:_sky_bg z:GameAnchorZ_BGSky_RepeatBG];
+	[_above_water_elements addObject:_sky_bg];
 	[_sky_bg setTexture:[Resource get_tex:TEX_TEST_BG_TILE_SKY]];
 	[_sky_bg set_anchor_pt:ccp(0,0)];
 	ccTexParams par = {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT};
 	[_sky_bg.texture setTexParameters:&par];
 	
-	[self setPosition:ccp(0,g.HORIZON_HEIGHT)];
-	
-	_bldg_3 = (CCSprite*)[[CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_SPRITESHEET_1] rect:[FileCache get_cgrect_from_plist:TEX_BG_SPRITESHEET_1 idname:@"bg_3.png"]] add_to:_above_water_root z:1];
+	_bldg_3 = [CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_SPRITESHEET_1] rect:[FileCache get_cgrect_from_plist:TEX_BG_SPRITESHEET_1 idname:@"bg_3.png"]];
+	[[g get_anchor] addChild:_bldg_3 z:GameAnchorZ_BGSky_BackgroundElements];
+	[_above_water_elements addObject:_bldg_3];
 	[_bldg_3 set_scale:0.5];
-	[_bldg_3 set_pos:ccp(game_screen().width,-g.HORIZON_HEIGHT)];
+	[_bldg_3 set_pos:ccp(game_screen().width,0)];
 	[_bldg_3 set_anchor_pt:ccp(1,0)];
 	
-	_bldg_2 = (CCSprite*)[[CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_SPRITESHEET_1] rect:[FileCache get_cgrect_from_plist:TEX_BG_SPRITESHEET_1 idname:@"bg_2.png"]] add_to:_above_water_root z:1];
+	_bldg_2 = [CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_SPRITESHEET_1] rect:[FileCache get_cgrect_from_plist:TEX_BG_SPRITESHEET_1 idname:@"bg_2.png"]];
+	[[g get_anchor] addChild:_bldg_2 z:GameAnchorZ_BGSky_Elements];
+	[_above_water_elements addObject:_bldg_2];
 	[_bldg_2 set_scale:0.5];
-	[_bldg_2 set_pos:ccp(game_screen().width,-g.HORIZON_HEIGHT)];
+	[_bldg_2 set_pos:ccp(game_screen().width,0)];
 	[_bldg_2 set_anchor_pt:ccp(1,0)];
 	
-	_bldg_1 = (CCSprite*)[[CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_SPRITESHEET_1] rect:[FileCache get_cgrect_from_plist:TEX_BG_SPRITESHEET_1 idname:@"bg_1.png"]] add_to:_above_water_root z:2];
+	_bldg_1 = [CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_SPRITESHEET_1] rect:[FileCache get_cgrect_from_plist:TEX_BG_SPRITESHEET_1 idname:@"bg_1.png"]];
+	[[g get_anchor] addChild:_bldg_1 z:GameAnchorZ_BGSky_Elements];
+	[_above_water_elements addObject:_bldg_1];
 	[_bldg_1 setScale:0.5];
-	[_bldg_1 set_pos:ccp(0,-g.HORIZON_HEIGHT)];
+	[_bldg_1 set_pos:ccp(0,0)];
 	[_bldg_1 set_anchor_pt:ccp(0,0)];
 	
-	_docks = (CCSprite*)[[CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_SPRITESHEET_1] rect:[FileCache get_cgrect_from_plist:TEX_BG_SPRITESHEET_1 idname:@"pier_top.png"]] add_to:_above_water_root z:2];
+	_docks = [CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_SPRITESHEET_1] rect:[FileCache get_cgrect_from_plist:TEX_BG_SPRITESHEET_1 idname:@"pier_top.png"]];
+	[[g get_anchor] addChild:_docks z:GameAnchorZ_BGSky_Docks];
+	[_above_water_elements addObject:_docks];
 	[_docks setScale:0.5];
-	[_docks set_pos:ccp(0,-g.HORIZON_HEIGHT-18)];
+	[_docks set_pos:ccp(0,0)];
 	[_docks set_anchor_pt:ccp(0,0)];
 	
-	[_bldg_1 setVisible:YES];
-	[_bldg_2 setVisible:YES];
-	[_bldg_3 setVisible:YES];
+	CCSprite *docks_front = [CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_SPRITESHEET_1] rect:[FileCache get_cgrect_from_plist:TEX_BG_SPRITESHEET_1 idname:@"pier_top_front_pillars.png"]];
+	[[g get_anchor] addChild:docks_front z:GameAnchorZ_BGSky_Docks_Pillars_Front];
+	[_above_water_elements addObject:docks_front];
+	[docks_front setScale:0.5];
+	[docks_front set_pos:ccp(0,0)];
+	[docks_front set_anchor_pt:ccp(0,0)];
 	
-	_surface_gradient = (CCSprite*)[[CCSprite spriteWithTexture:[Resource get_tex:TEX_TEST_BG_UNDERWATER_SURFACE_GRADIENT]] add_to:_below_water_root z:99];
-	[_surface_gradient setOpacity:0.65];
+	_surface_gradient = [CCSprite spriteWithTexture:[Resource get_tex:TEX_TEST_BG_UNDERWATER_SURFACE_GRADIENT]];
+	[[g get_anchor] addChild:_surface_gradient z:GameAnchorZ_BGSky_SurfaceGradient];
+	[_below_water_elements addObject:_surface_gradient];
+	[_surface_gradient setOpacity:1];
 	[_surface_gradient setTextureRect:CGRectMake(0, 0, game_screen().width, _surface_gradient.texture.pixelHeight)];
 	[_surface_gradient setAnchorPoint:ccp(0,0)];
-	[_surface_gradient setPosition:ccp(0,-g.HORIZON_HEIGHT)];
+	[_surface_gradient setPosition:ccp(0,0)];
 	[_surface_gradient setScaleY:1];
 	
-	_water_surface_ripples = [CCRenderTexture renderTextureWithWidth:game_screen().width height:600];
-	[_above_water_belowreflection setPosition:ccp(game_screen().width / 2, 600/2 - g.HORIZON_HEIGHT)];
+	int reflection_height = 600;
+	_water_surface_ripples = [CCRenderTexture renderTextureWithWidth:game_screen().width height:reflection_height];
+	[_above_water_belowreflection setPosition:ccp(game_screen().width / 2, reflection_height/2)];
 	[_water_surface_ripples clear:0 g:0 b:0 a:0];
 	
-	_above_water_belowreflection = [CCRenderTexture renderTextureWithWidth:game_screen().width height:600];
-	[_above_water_belowreflection setPosition:ccp(game_screen().width / 2, 600/2 - g.HORIZON_HEIGHT)];
-	[_below_water_root addChild:_above_water_belowreflection];
+	_above_water_belowreflection = [CCRenderTexture renderTextureWithWidth:game_screen().width height:reflection_height];
+	[_above_water_belowreflection setPosition:ccp(game_screen().width / 2, reflection_height/2)];
+	[_below_water_elements addObject:_above_water_belowreflection];
+	[[g get_anchor] addChild:_above_water_belowreflection z:GameAnchorZ_BGSky_SurfaceReflection];
 	_above_water_belowreflection.sprite.shader = [CCShader shaderNamed:SHADER_ABOVEWATER_AM_UP];
 	_above_water_belowreflection.sprite.shaderUniforms[@"testTime"] = [g get_tick_mod_pi];
 	_above_water_belowreflection.sprite.shaderUniforms[@"rippleTexture"] = _water_surface_ripples.sprite.texture;
 	
+	_above_water_belowreflection.sprite.blendMode = [CCBlendMode alphaMode];
 	
-	_water_lights = [NSMutableArray array];
-	for(int i = 0; i < 10; i++) {
-		CCSprite * _water_light;
-		_water_light = (CCSprite*)[[CCSprite spriteWithTexture:[Resource get_tex:TEX_WATER_SHINE]] add_to:g.get_bg_anchor z:0];
-		[_water_lights addObject: _water_light];
-		_water_light.position = ccp(float_random(-400, game_screen().width + 100), 0);
-		[_water_light set_scale: .5 + (float)i / 10];
-		[_water_light set_anchor_pt: ccp(0, 1)];
-	}
 	return self;
 }
 
 -(void)render_reflection:(GameEngineScene*)game {
-	[BGReflection reflection_render:_bldg_3 offset:ccp(0,-5)];
-	[BGReflection reflection_render:_bldg_2 offset:ccp(0,-3)];
-	[BGReflection reflection_render:_bldg_1 offset:ccp(0,-3)];
-	[BGReflection reflection_render:_docks offset:ccp(0,3)];
+	[BGReflection bgobj_reflection_render:_bldg_3 offset:ccp(0,5) g:game];
+	[BGReflection bgobj_reflection_render:_bldg_2 offset:ccp(0,0) g:game];
+	[BGReflection bgobj_reflection_render:_bldg_1 offset:ccp(0,0) g:game];
+	[BGReflection reflection_render:_docks offset:ccp(0,game.HORIZON_HEIGHT/2) g:game];
 }
 
 -(void)set_bgobj_positions:(GameEngineScene*)game {
-	HitRect _viewBox = [game get_viewbox];
-	_bldg_1.position = ccp(_bldg_1.position.x,clampf(((_viewBox.y1 + _viewBox.y2) / 2) * .1 - game.HORIZON_HEIGHT, -game.HORIZON_HEIGHT,0));
-	_bldg_2.position = ccp(_bldg_2.position.x,clampf(((_viewBox.y1 + _viewBox.y2) / 2) * .2 - game.HORIZON_HEIGHT, -game.HORIZON_HEIGHT,0));
-	_bldg_3.position = ccp(_bldg_3.position.x,clampf(((_viewBox.y1 + _viewBox.y2) / 2) * .25 - game.HORIZON_HEIGHT, -game.HORIZON_HEIGHT,0));
+	float camera_y = [game get_camera_y];
+	_bldg_1.position = ccp(_bldg_1.position.x,clampf(camera_y*.1, 0, game.HORIZON_HEIGHT));
+	_bldg_2.position = ccp(_bldg_2.position.x,clampf(camera_y*.2, 0, game.HORIZON_HEIGHT));
+	_bldg_3.position = ccp(_bldg_3.position.x,camera_y*.25);
 }
+
+-(void)above_water_root_set_visible:(BOOL)tar {
+	for(CCNode *itr in _above_water_elements) [itr setVisible:tar];
+ }
+-(void)below_water_root_set_visible:(BOOL)tar { for(CCNode *itr in _below_water_elements) [itr setVisible:tar]; }
 
 -(void)i_update:(GameEngineScene*)g {
 	_tick += dt_scale_get();
 	
 	if (g.get_camera_y < 0 && g.get_camera_y > -game_screen().height) {
-		[_above_water_root setVisible:NO];
-		[_below_water_root setVisible:YES];
 		[_water_surface_ripples clear:0 g:0 b:0 a:0];
 		[_water_surface_ripples begin];
 		CCSprite *proto = g.get_ripple_proto;
@@ -132,6 +140,7 @@
 		}
 		[_water_surface_ripples end];
 		
+		[self above_water_root_set_visible:YES];
 		[_above_water_belowreflection beginWithClear:0 g:0 b:0 a:0];
 		[BGReflection above_water_below_render:_sky_bg];
 		[BGReflection above_water_below_render:_bldg_3];
@@ -149,24 +158,15 @@
 			g.player.scaleY = player_scale_pre;
 		}
 		
-		for (SpiritBase *itr in g.get_spirit_manager.get_spirits) {
-			if (itr.position.y < 0 && itr.position.y > -500) {
-				CGPoint itr_pre = itr.position;
-				float itr_scale_pre = itr.scaleY;
-				itr.position = ccp(itr_pre.x,-itr_pre.y);
-				itr.scaleY = -itr_scale_pre;
-				[itr visit];
-				itr.position = itr_pre;
-				itr.scaleY = itr_scale_pre;
-			}
-		}
-		
 		[_above_water_belowreflection end];
 		_above_water_belowreflection.sprite.shaderUniforms[@"testTime"] = [g get_tick_mod_pi];
 		
+		[self above_water_root_set_visible:NO];
+		[self below_water_root_set_visible:YES];
+		
 	} else {
-		[_above_water_root setVisible:YES];
-		[_below_water_root setVisible:NO];
+		[self above_water_root_set_visible:YES];
+		[self below_water_root_set_visible:NO];
 	}
 	
 	
@@ -180,7 +180,7 @@
 
 	
 	// birds!
-	if(int_random(0, 40) == 0 && g.get_camera_y > 300) [self spawnBird_y:g.get_camera_y];
+	if(int_random(0, 40) == 0 && g.get_camera_y > 300) [self spawnBird_y:g.get_camera_y g:g];
 	NSMutableArray *birds_to_remove = [NSMutableArray array];
 	for (Bird *bird in _birds) {
 		[bird i_update:g];
@@ -191,19 +191,11 @@
 	}
 	[_birds removeObjectsInArray:birds_to_remove];
 	[birds_to_remove removeAllObjects];
-	
-	for (CCSprite *itr in _water_lights) {
-		if(itr.position.x > game_screen().width + 100)
-			itr.position = ccp(- 400, 0);
-		float new_x = itr.position.x + (sinf(_tick * itr.scale * .01) + sinf(_tick * itr.scale * .0002) + .05) * itr.scale * dt_scale_get() * .3;
-		[itr setPosition:ccp(new_x, -(itr.scaleX - 1) * g.get_camera_y * .8)];
-	}
-	
 }
 
--(Bird*)spawnBird_y:(float)y {
+-(Bird*)spawnBird_y:(float)y g:(GameEngineScene*)g {
 	Bird * _new_bird;
-	_new_bird = (Bird*)[[Bird cons] add_to:self z:3];
+	_new_bird = (Bird*)[[Bird cons] add_to:[g get_anchor] z:3];
 	[_birds addObject:_new_bird];
 	_new_bird.position = ccp(-70, y + float_random(300,-300));
 	return _new_bird;

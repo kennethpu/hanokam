@@ -14,9 +14,9 @@ void main(){
 	
 	vec4 textureColor = texture2D(cc_MainTexture, texCoord);
 	
-	gl_FragColor.r = textureColor.r * 1.0;
-	gl_FragColor.g = textureColor.g * 1.0;
-	gl_FragColor.b = textureColor.b * 1.0;
-	gl_FragColor.a = textureColor.a * alphaGradient * 0.8;
+	gl_FragColor.r = textureColor.r * 1.;
+	gl_FragColor.g = textureColor.g * 1.;
+	gl_FragColor.b = textureColor.b * 1.;
+	gl_FragColor.a = textureColor.a * (1.-alphaGradient) * 0.5;
 	
 }

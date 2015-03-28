@@ -36,8 +36,8 @@
 	return self;
 }
 
--(void)render_reflected:(CCSprite*)proto scymult:(float)scymult {
-	[self render:proto pos:_reflected_pos scymult:scymult];
+-(void)render_reflected:(CCSprite*)proto offset:(CGPoint)offset scymult:(float)scymult {
+	[self render:proto pos:CGPointAdd(_reflected_pos,offset) scymult:scymult];
 }
 -(void)render_default:(CCSprite*)proto offset:(CGPoint)offset scymult:(float)scymult {
 	[self render:proto pos:CGPointAdd(_default_pos, offset) scymult:scymult];
@@ -85,7 +85,7 @@
 	
 	// CAM
 	float _cam_y_lirp, _player_dive_bottom_y, _player_combat_top_y;
-	CCNode *_zoom_node, *_game_anchor, *_bg_anchor;
+	CCNode *_zoom_node, *_game_anchor;
 	float _zoom;
 	CGPoint _camera_center_point;
 	
@@ -136,28 +136,28 @@
 	dt_unset();
 	
 	_touch_tracking = [TouchTrackingLayer node];
-	[self addChild:_touch_tracking z:99];
+	[super addChild:_touch_tracking z:99];
 	
 	_shake_rumble_total_time = _shake_rumble_time = _shake_rumble_distance = 1;
 	_shake_rumble_slow_total_time = _shake_rumble_slow_time = _shake_rumble_slow_distance = 1;
 	
-	_zoom_node = [[CCNode node] add_to:self];
+	_zoom_node = [CCNode node];
+	[super addChild:_zoom_node];
 	[_zoom_node setPosition:game_screen_pct(.5, .5)];
 	
 	_game_anchor = [[CCNode node] add_to:_zoom_node];
 	
 	_particles = [ParticleSystem cons_anchor:_game_anchor];
 	
-	_player = (Player*)[[Player cons] add_to:_game_anchor z:10];
+	_player = (Player*)[[Player cons] add_to:_game_anchor z:GameAnchorZ_Player];
 	_player_state = PlayerState_WaveEnd;
 	
 	_ripples = [NSMutableArray array];
 	_ripple_proto = [CCSprite spriteWithTexture:[Resource get_tex:TEX_RIPPLE]];
 	_ripple_proto.shader = [ShaderManager get_shader:SHADER_RIPPLE_FX];
 	
-	_bg_anchor = [[CCNode node] add_to:_game_anchor z:0];
-	_bg_sky = (BGSky*)[[BGSky cons:self] add_to:_bg_anchor z:3];
-	_bg_water = (BGWater*)[[BGWater cons:self] add_to:_bg_anchor z:-10];
+	_bg_sky = [BGSky cons:self];
+	_bg_water = [BGWater cons:self];
 	_bg_elements = @[_bg_sky, _bg_water];
 	
 	_spirit_manager = [[[SpiritManager alloc] init] cons:self];
@@ -168,16 +168,16 @@
 	accel.updateInterval = 1.0f / 60.0f;
 	
 	_ui = [GameUI cons:self];
-	[self addChild:_ui z:2];
+	[super addChild:_ui z:2];
 	
 	[self update:0];
 	
 	return self;
 }
 
+-(void)addChild:(CCNode *)node { [NSException raise:@"Do not add children to GameEngineScene" format:@""]; }
 -(NSArray*)get_ripple_infos { return _ripples; }
 -(CCSprite*)get_ripple_proto { return _ripple_proto; }
--(CCNode*)get_bg_anchor { return _bg_anchor; }
 -(NSNumber*)get_tick_mod_pi { return @(fmodf(_tick * 0.01,M_PI * 2)); }
 -(BGSky*)get_bg_sky { return _bg_sky; }
 
@@ -203,11 +203,6 @@
 }
 
 static bool TEST_HAS_ACTIVATED_BOSS = false;
-/*
-1. all objects on same anchor
-2. player under water, under reflection
-3. player on dock behind front pillars
-*/
 -(void)update:(CCTime)delta {
 	dt_set(delta);
 	if (!TEST_HAS_ACTIVATED_BOSS && _player.position.y <= self.get_ground_depth + 50) {
@@ -272,6 +267,7 @@ static bool TEST_HAS_ACTIVATED_BOSS = false;
 	}
 	
 	[_spirit_manager i_update];
+	[_air_enemy_manager i_update:self];
 	[self update_ripples];
 	
 	_touch_tapped = _touch_released = false;

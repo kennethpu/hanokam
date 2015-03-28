@@ -7,6 +7,7 @@
 //
 
 #import "GameEngineScene.h" 
-@interface Bird : BGElement
+@interface Bird : CCSprite
 +(Bird*)cons;
+-(void)i_update:(GameEngineScene *)game;
 @end

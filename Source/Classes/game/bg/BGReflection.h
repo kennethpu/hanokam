@@ -8,9 +8,9 @@
 
 #import "GameEngineScene.h"
 
-@interface BGReflection : BGElement
-
-+(void)reflection_render:(CCNode*)tar;
-+(void)reflection_render:(CCNode*)tar offset:(CGPoint)offset;
+@interface BGReflection : NSObject
++(void)reflection_render:(CCNode*)tar g:(GameEngineScene*)g;
++(void)reflection_render:(CCNode*)tar offset:(CGPoint)offset g:(GameEngineScene*)g;
 +(void)above_water_below_render:(CCNode*)tar;
++(void)bgobj_reflection_render:(CCNode*)tar offset:(CGPoint)offset g:(GameEngineScene*)g;
 @end

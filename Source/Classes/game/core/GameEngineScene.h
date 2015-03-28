@@ -15,11 +15,26 @@ typedef enum _PlayerState {
 } PlayerState;
 
 typedef enum _GameAnchorZ {
-	GameAnchorZ_Enemies = 50
+	GameAnchorZ_BGSky_SurfaceReflection = 100,
+	GameAnchorZ_Enemies_Air = 81,
+	GameAnchorZ_BGSky_SurfaceGradient = 80,
+	GameAnchorZ_BGSky_Docks_Pillars_Front = 52,
+	GameAnchorZ_Player = 51,
+	GameAnchorZ_BGSky_Docks = 13,
+	GameAnchorZ_BGSky_Elements = 12,
+	GameAnchorZ_BGWater_Reflection = 11,
+	GameAnchorZ_BGSky_WaterLights = 10,
+	GameAnchorZ_Player_Underwater = 9,
+	GameAnchorZ_Enemies_Underwater = 8,
+	GameAnchorZ_BGWater_I1 = 7,
+	GameAnchorZ_BGSky_BackgroundElements = 6,
+	GameAnchorZ_BGSky_RepeatBG = 5,
+	GameAnchorZ_BGWater_Ground = 4,
+	GameAnchorZ_BGWater_RepeatBG = 3
 } GameAnchorZ;
 
 @interface RippleInfo : NSObject
--(void)render_reflected:(CCSprite*)proto scymult:(float)scymult;
+-(void)render_reflected:(CCSprite*)proto offset:(CGPoint)offset scymult:(float)scymult;
 -(void)render_default:(CCSprite*)proto offset:(CGPoint)offset scymult:(float)scymult;
 @end
 
@@ -59,12 +74,11 @@ typedef enum _GameAnchorZ {
 -(float) HORIZON_HEIGHT;
 
 -(NSNumber*)get_tick_mod_pi;
--(CCNode*)get_bg_anchor;
 -(NSArray*)get_ripple_infos;
 -(CCSprite*)get_ripple_proto;
 -(BGSky*)get_bg_sky;
 @end
 
-@interface BGElement : CCNode
+@interface BGElement : NSObject
 -(void)i_update:(GameEngineScene*)game;
 @end
