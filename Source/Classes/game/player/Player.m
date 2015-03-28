@@ -136,7 +136,7 @@
 				}
 				
 				if(_y > [g.get_spirit_manager dive_y] + 100) {
-					g._player_state = PlayerState_Return; // <--
+					g._player_state = PlayerState_DiveReturn; // <--
 				}
 				
 			} else {
@@ -144,7 +144,7 @@
 			}
 	
 		break;
-		case PlayerState_Return:
+		case PlayerState_DiveReturn:
 		
 			_x += clampf(((160 + _accelerometer_x * 320) - _x) * .08, -6, 6) * dt_scale_get();
 		
@@ -173,10 +173,10 @@
 				[g.get_spirit_manager reset_dive];
 				[g.get_spirit_manager kill_all_with_spirit_state_waiting];
 				
-				g._player_state = PlayerState_Combat; // <--
+				g._player_state = PlayerState_InAir; // <--
 			}
 		break;
-		case PlayerState_Combat:
+		case PlayerState_InAir:
 			
 			_x += clampf(((160 + _accelerometer_x * 320) - _x) * .07, - 7, 7) * dt_scale_get();
 			
@@ -274,11 +274,11 @@
 				[g.get_spirit_manager kill_all];
 				
 				_state_waveEnd_jump_back = false;
-				g._player_state = PlayerState_WaveEnd; // <--
+				g._player_state = PlayerState_OnGround; // <--
 			}
 			
 		break;
-		case PlayerState_WaveEnd:
+		case PlayerState_OnGround:
 			if(!_state_waveEnd_jump_back) {
 				[g set_zoom:g.zoom + (1.1 - g.zoom) * .2];
 				

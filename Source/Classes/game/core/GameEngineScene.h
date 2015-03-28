@@ -9,9 +9,9 @@
 
 typedef enum _PlayerState {
 	PlayerState_Dive = 0,
-	PlayerState_Return = 1,
-	PlayerState_Combat = 2,
-	PlayerState_WaveEnd = 3
+	PlayerState_DiveReturn = 1,
+	PlayerState_InAir = 2,
+	PlayerState_OnGround = 3
 } PlayerState;
 
 typedef enum _GameAnchorZ {

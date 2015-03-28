@@ -150,7 +150,7 @@
 	_particles = [ParticleSystem cons_anchor:_game_anchor];
 	
 	_player = (Player*)[[Player cons] add_to:_game_anchor z:GameAnchorZ_Player];
-	_player_state = PlayerState_WaveEnd;
+	_player_state = PlayerState_OnGround;
 	
 	_ripples = [NSMutableArray array];
 	_ripple_proto = [CCSprite spriteWithTexture:[Resource get_tex:TEX_RIPPLE]];
@@ -228,17 +228,17 @@ static bool TEST_HAS_ACTIVATED_BOSS = false;
 		case PlayerState_Dive:
 			if(self.touch_down == false) {
 				if(_player.position.y > _player_dive_bottom_y + 200)
-					_player_state = PlayerState_Return;
+					_player_state = PlayerState_DiveReturn;
 			}
 			
 			_player_dive_bottom_y = [self get_spirit_manager].dive_y - 200;
 			
 			_cam_y_lirp += (_player_dive_bottom_y - _cam_y_lirp) * .06 * dt_scale_get();
 		break;
-		case PlayerState_Return:
+		case PlayerState_DiveReturn:
 			_cam_y_lirp += (_player.position.y + 100 - _cam_y_lirp) * .1 * dt_scale_get();
 		break;
-		case PlayerState_Combat:
+		case PlayerState_InAir:
 			if(_player_combat_top_y < _player.position.y - 100)
 				_player_combat_top_y = _player.position.y - 100;
 			_player_combat_top_y += 3;
@@ -254,7 +254,7 @@ static bool TEST_HAS_ACTIVATED_BOSS = false;
 			if(_cam_y_lirp < 0 && _player._vy < 0) _cam_y_lirp = 0;
 			
 			break;
-		case PlayerState_WaveEnd:
+		case PlayerState_OnGround:
 			_player_combat_top_y = 0;
 			_cam_y_lirp += (150 - _cam_y_lirp) * .05 * dt_scale_get();
 		break;
