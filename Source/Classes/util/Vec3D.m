@@ -105,3 +105,14 @@ float vec_ang_deg_lim180(Vec3D dirvec, float offset) {
 	float ccwt = (vec_ang_rad(dirvec)+offset)*180.0 / M_PI;
 	return ccwt > 0 ? 180-ccwt : -(180-ABS(ccwt));
 }
+
+NSString* vec_to_s(Vec3D v) {
+	return [NSString stringWithFormat:@"<%f,%f,%f>",v.x,v.y,v.z];
+}
+
+CGPoint vec_to_cgpoint(Vec3D v) {
+	return ccp(v.x,v.y);
+}
+Vec3D cgpoint_to_vec(CGPoint pt) {
+	return vec_cons(pt.x, pt.y, 0);
+}

@@ -3,7 +3,7 @@
 @class GameEngineScene;
 
 @interface Player : CCSprite
-@property(readwrite, assign) float _vx, _vy, _accelerometer_x;
+@property(readwrite, assign) float _vx, _vy;
 @property(readwrite, assign) BOOL _falling;
 
 +(Player*)cons;

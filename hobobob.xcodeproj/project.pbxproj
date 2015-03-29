@@ -137,6 +137,10 @@
 		7E80EEC81AC7838400B5D312 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B0BF91A131E8E0057869B /* Common.m */; };
 		7E80EECA1AC7838500B5D312 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B0BF91A131E8E0057869B /* Common.m */; };
 		7E80EECB1AC7838500B5D312 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B0BF91A131E8E0057869B /* Common.m */; };
+		7E80EECE1AC7E46500B5D312 /* ControlManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E80EECD1AC7E46500B5D312 /* ControlManager.m */; };
+		7E80EECF1AC7E46500B5D312 /* ControlManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E80EECD1AC7E46500B5D312 /* ControlManager.m */; };
+		7E80EED01AC7E46500B5D312 /* ControlManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E80EECD1AC7E46500B5D312 /* ControlManager.m */; };
+		7E80EED11AC7E46500B5D312 /* ControlManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E80EECD1AC7E46500B5D312 /* ControlManager.m */; };
 		7E80FEA61AC23AF80048B7D4 /* water_shine.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E80FEA51AC23AF80048B7D4 /* water_shine.png */; };
 		7E80FEA71AC23AF80048B7D4 /* water_shine.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E80FEA51AC23AF80048B7D4 /* water_shine.png */; };
 		7E80FEA81AC23AF80048B7D4 /* water_shine.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E80FEA51AC23AF80048B7D4 /* water_shine.png */; };
@@ -266,7 +270,6 @@
 		7EADAC6E1AB655D8004902A9 /* bg_test_obj_cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EADAC601AB655D7004902A9 /* bg_test_obj_cloud.png */; };
 		7EADAC6F1AB655D8004902A9 /* bg_test_obj_cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EADAC601AB655D7004902A9 /* bg_test_obj_cloud.png */; };
 		7EADAC791AB67506004902A9 /* AccelerometerSimulation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EADAC781AB67506004902A9 /* AccelerometerSimulation.m */; };
-		7EADAC7D1AB67B6E004902A9 /* AccelerometerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EADAC7C1AB67B6E004902A9 /* AccelerometerManager.m */; };
 		7EBE56FA1AC3771F008AD888 /* abovewater_am_up.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 7EBE56F91AC3771F008AD888 /* abovewater_am_up.vsh */; };
 		7EBE56FD1AC3772C008AD888 /* abovewater_am_up.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 7EBE56FC1AC3772C008AD888 /* abovewater_am_up.fsh */; };
 		7EBE57021AC3F08F008AD888 /* TouchTrackingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBE57011AC3F08F008AD888 /* TouchTrackingLayer.m */; };
@@ -506,6 +509,8 @@
 		7E80EEAA1AC76AD500B5D312 /* hanoka v0.01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "hanoka v0.01.json"; sourceTree = "<group>"; };
 		7E80EEAB1AC76AD500B5D312 /* hanoka v0.01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hanoka v0.01.png"; sourceTree = "<group>"; };
 		7E80EEAC1AC76AD500B5D312 /* hanoka v0.01.scml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "hanoka v0.01.scml"; sourceTree = "<group>"; };
+		7E80EECC1AC7E46500B5D312 /* ControlManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlManager.h; sourceTree = "<group>"; };
+		7E80EECD1AC7E46500B5D312 /* ControlManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlManager.m; sourceTree = "<group>"; };
 		7E80FEA51AC23AF80048B7D4 /* water_shine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water_shine.png; sourceTree = "<group>"; };
 		7E90D1761AB635A200E06F92 /* bg_test_tile_sky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_test_tile_sky.png; sourceTree = "<group>"; };
 		7E90D1771AB635A200E06F92 /* bg_test_tile_water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_test_tile_water.png; sourceTree = "<group>"; };
@@ -569,8 +574,6 @@
 		7EADAC601AB655D7004902A9 /* bg_test_obj_cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_test_obj_cloud.png; sourceTree = "<group>"; };
 		7EADAC771AB67506004902A9 /* AccelerometerSimulation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccelerometerSimulation.h; sourceTree = "<group>"; };
 		7EADAC781AB67506004902A9 /* AccelerometerSimulation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerometerSimulation.m; sourceTree = "<group>"; };
-		7EADAC7B1AB67B6E004902A9 /* AccelerometerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccelerometerManager.h; sourceTree = "<group>"; };
-		7EADAC7C1AB67B6E004902A9 /* AccelerometerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerometerManager.m; sourceTree = "<group>"; };
 		7EBE56F91AC3771F008AD888 /* abovewater_am_up.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = abovewater_am_up.vsh; sourceTree = "<group>"; };
 		7EBE56FC1AC3772C008AD888 /* abovewater_am_up.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = abovewater_am_up.fsh; sourceTree = "<group>"; };
 		7EBE57001AC3F08F008AD888 /* TouchTrackingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchTrackingLayer.h; sourceTree = "<group>"; };
@@ -920,6 +923,8 @@
 		7E3B0BC81A131E8E0057869B /* core */ = {
 			isa = PBXGroup;
 			children = (
+				7E80EECC1AC7E46500B5D312 /* ControlManager.h */,
+				7E80EECD1AC7E46500B5D312 /* ControlManager.m */,
 				7E3B0BC91A131E8E0057869B /* GameEngineScene.h */,
 				7E3B0BCA1A131E8E0057869B /* GameEngineScene.m */,
 				7E3B0BCB1A131E8E0057869B /* GameObject.h */,
@@ -962,8 +967,6 @@
 				7E3B0C091A131E8E0057869B /* WebRequest.m */,
 				7EADAC771AB67506004902A9 /* AccelerometerSimulation.h */,
 				7EADAC781AB67506004902A9 /* AccelerometerSimulation.m */,
-				7EADAC7B1AB67B6E004902A9 /* AccelerometerManager.h */,
-				7EADAC7C1AB67B6E004902A9 /* AccelerometerManager.m */,
 				7E17794E1AB8152600E3986C /* SpriterData.h */,
 				7E17794F1AB8152600E3986C /* SpriterData.m */,
 				7E17796F1AB8289A00E3986C /* SpriterTypes.h */,
@@ -1701,6 +1704,7 @@
 				7E1D4B4D1AC64524002E22CC /* AirEnemyManager.m in Sources */,
 				7EF468BA1ABF78870041E55F /* ParticlePhysical.m in Sources */,
 				7EF468AF1ABF71E50041E55F /* RotateFadeOutParticle.m in Sources */,
+				7E80EED01AC7E46500B5D312 /* ControlManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1723,6 +1727,7 @@
 				7EA7AEB91ABFDD06001C9EFE /* Spirit_Fish_6.m in Sources */,
 				7A40360419DDEE84007B6E8F /* main.m in Sources */,
 				7EA7AE2D1ABFA984001C9EFE /* ShaderManager.m in Sources */,
+				7E80EED11AC7E46500B5D312 /* ControlManager.m in Sources */,
 				7EA7AEAD1ABFDD06001C9EFE /* Spirit_Fish_2.m in Sources */,
 				7EA7AEC41ABFDDFD001C9EFE /* Arrow.m in Sources */,
 				7EA7AEB31ABFDD06001C9EFE /* Spirit_Fish_4.m in Sources */,
@@ -1778,6 +1783,7 @@
 				7EA7AEC91ABFE12F001C9EFE /* GameUI.m in Sources */,
 				7E17796D1AB81EC300E3986C /* SpriterJSONParser.m in Sources */,
 				7EA7AEC31ABFDDFD001C9EFE /* Arrow.m in Sources */,
+				7E80EECF1AC7E46500B5D312 /* ControlManager.m in Sources */,
 				7EA7AEBB1ABFDD06001C9EFE /* SpiritBase.m in Sources */,
 				7E90D1931AB63DD800E06F92 /* BGWater.m in Sources */,
 				7EF468B91ABF78870041E55F /* ParticlePhysical.m in Sources */,
@@ -1799,6 +1805,7 @@
 				7EA7AEB41ABFDD06001C9EFE /* Spirit_Fish_5.m in Sources */,
 				7E1779501AB8152600E3986C /* SpriterData.m in Sources */,
 				7EA7AECD1ABFF929001C9EFE /* HealthBar.m in Sources */,
+				7E80EECE1AC7E46500B5D312 /* ControlManager.m in Sources */,
 				7E1B80711A189F450055E654 /* TouchButton.m in Sources */,
 				7EF468B81ABF78870041E55F /* ParticlePhysical.m in Sources */,
 				7EA7AEDF1AC0081E001C9EFE /* UIBossIntroParticle.m in Sources */,
@@ -1831,7 +1838,6 @@
 				7E3B0C1E1A131E8E0057869B /* GameMain.m in Sources */,
 				7E3B0C221A131E8E0057869B /* FileCache.m in Sources */,
 				7E3B0C211A131E8E0057869B /* DataStore.m in Sources */,
-				7EADAC7D1AB67B6E004902A9 /* AccelerometerManager.m in Sources */,
 				7E3B0C0F1A131E8E0057869B /* Player.m in Sources */,
 				7E3B0C251A131E8E0057869B /* PolyLib.m in Sources */,
 				7E90D18C1AB63DB700E06F92 /* BGSky.m in Sources */,

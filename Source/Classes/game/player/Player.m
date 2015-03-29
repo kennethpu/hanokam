@@ -13,6 +13,7 @@
 #import "ParticleBubble.h"
 
 #import "CCTexture_Private.h"
+#import "ControlManager.h"
 
 typedef enum _PlayerAirCombatMode {
 	PlayerAirCombatMode_InitialJumpOut,
@@ -25,12 +26,14 @@ typedef enum _PlayerAirCombatMode {
 @property(readwrite,assign) CGPoint _s_pos, _s_vel;
 @property(readwrite,assign) float _w_camera_center, _w_upwards_vel, _anim_ct;
 @property(readwrite,assign) PlayerAirCombatMode _current_mode;
+@property(readwrite,assign) BOOL _sword_out;
 @end
 
 @implementation PlayerAirCombatParams
 @synthesize _s_pos,_s_vel;
 @synthesize _w_camera_center, _w_upwards_vel, _anim_ct;
 @synthesize _current_mode;
+@synthesize _sword_out;
 -(void)set_player_s_pos:(GameEngineScene*)g {
 	g.player.position = CGPointAdd(_s_pos, ccp(g.get_viewbox.x1,g.get_viewbox.y1));
 }
@@ -40,11 +43,10 @@ typedef enum _PlayerAirCombatMode {
 @end
 
 @implementation Player {
-	CCAction *_anim_stand;
-	CCAction *_current_anim;
 	SpriterNode *_img;
 	
 	NSString *_current_playing;
+	NSString *_on_finish_play_anim;
 	
 	float _x_prev, _x_vel, _x_deck;
 	float _rotate_vel;
@@ -60,7 +62,7 @@ typedef enum _PlayerAirCombatMode {
 	
 	PlayerAirCombatParams *_air_params;
 }
-@synthesize _vx, _vy, _accelerometer_x;
+@synthesize _vx, _vy;
 @synthesize _falling;
 
 -(int)stat_damage { return 1; }
@@ -93,6 +95,11 @@ typedef enum _PlayerAirCombatMode {
 		[self setZOrder:GameAnchorZ_Player_Out];
 	}
 	
+	if (!_img.current_anim_repeating && _img.current_anim_finished && _on_finish_play_anim != NULL) {
+		[_img playAnim:_on_finish_play_anim repeat:YES];
+		_on_finish_play_anim = NULL;
+	}
+	
 	switch ([g get_player_state]) {
 		case PlayerState_Dive:
 			[self update_dive:g];
@@ -114,13 +121,22 @@ typedef enum _PlayerAirCombatMode {
 			[self update_air_to_ground_transition:g];
 		break;
 	}
+	[g.get_control_manager clear_proc_swipe];
+	[g.get_control_manager clear_proc_tap];
 }
 
 -(void)goto_anim:(NSString*)anim {
+	_on_finish_play_anim = NULL;
 	if(_current_playing != anim) {
 		_current_playing = anim;
 		[_img playAnim:anim repeat:YES];
 	}
+}
+
+-(void)play_anim:(NSString*)anim1 on_finish_anim:(NSString*)anim2 {
+	_current_playing = anim1;
+	[_img playAnim:anim1 repeat:NO];
+	_on_finish_play_anim = anim2;
 }
 
 -(void)prep_air_mode:(GameEngineScene*)g {
@@ -131,10 +147,11 @@ typedef enum _PlayerAirCombatMode {
 	_air_params._s_vel = ccp(0,0);
 	_air_params._current_mode = PlayerAirCombatMode_InitialJumpOut;
 	_air_params._anim_ct = 0;
+	_air_params._sword_out = NO;
 	_vy = 0;
 	_vx = 0;
-	if (_air_params._s_pos.y > 200) {
-		_air_params._w_upwards_vel += 2 * (_air_params._s_pos.y - 200)/200.0;
+	if (_air_params._s_pos.y > 250) {
+		_air_params._anim_ct = clampf((_air_params._s_pos.y - 250)/400.0,0,0.5);
 	}
 }
 
@@ -150,32 +167,46 @@ typedef enum _PlayerAirCombatMode {
 		break;
 		case PlayerAirCombatMode_Combat:;
 			_air_params._w_upwards_vel -= 0.15 * dt_scale_get();
+			if (g.get_control_manager.is_proc_swipe) {
+				[self play_anim:@"sword start" on_finish_anim:@"sword hold"];
+				_air_params._sword_out = YES;
+				_air_params._s_vel = vec_to_cgpoint(vec_scale([g.get_control_manager get_proc_swipe_dir], 15));
+			}
+			
+			if (!_air_params._sword_out && g.get_control_manager.is_proc_tap) {
+				[self play_anim:@"bow attack" on_finish_anim:@"in air"];
+				CGPoint tap = g.get_control_manager.get_proc_tap;
+				CGPoint delta = CGPointSub(tap, _air_params._s_pos);
+				[g add_player_projectile:[Arrow cons_pos:self.position dir:vec_cons_norm(delta.x, delta.y, 0)]];
+			}
+			
+			_air_params._s_pos = CGPointAdd(_air_params._s_pos, _air_params._s_vel);
 			
 		break;
 		case PlayerAirCombatMode_RescueBackToTop:;
-		
+			_air_params._sword_out = NO;
 		break;
 		case PlayerAirCombatMode_FallToGround:;
-		
+			_air_params._sword_out = NO;
 		break;
 	}
 	_air_params._s_pos = ccp(
-		clampf(_air_params._s_pos.x + clampf(((160 + _accelerometer_x * 320) - _air_params._s_pos.x) * .07, - 7, 7) * dt_scale_get(),0,game_screen().width),
+		clampf(_air_params._s_pos.x + clampf(((160 + g.get_control_manager.get_accel_x * 320) - _air_params._s_pos.x) * .07, - 7, 7) * dt_scale_get(),0,game_screen().width),
 		_air_params._s_pos.y
 	);
 	_air_params._w_camera_center += _air_params._w_upwards_vel * dt_scale_get();
 	[g center_camera_hei:_air_params._w_camera_center];
 	[_air_params set_player_s_pos:g];
-	if (g.player.position.y < 0) {
+	if (g.player.position.y < 0 && _air_params._current_mode != PlayerAirCombatMode_InitialJumpOut) {
 		g._player_state = PlayerState_AirToGroundTransition;
-		g.player._vy = _air_params._w_upwards_vel + _air_params._s_vel.y;
+		g.player._vy = clampf(_air_params._w_upwards_vel + _air_params._s_vel.y,-15,-5);
 		[g add_ripple:ccp(g.player.position.x,0)];
 	}
 }
 
 -(void)update_air_to_ground_transition:(GameEngineScene*)g {
 	g.player.position = ccp(
-		clampf(g.player.position.x + clampf(((160 + _accelerometer_x * 320) - _air_params._s_pos.x) * .07, - 7, 7) * dt_scale_get(), 0, game_screen().width),
+		clampf(g.player.position.x + clampf(((160 + g.get_control_manager.get_accel_x * 320) - _air_params._s_pos.x) * .07, - 7, 7) * dt_scale_get(), 0, game_screen().width),
 		g.player.position.y
 	);
 	if (g.player.position.y < 0) {
@@ -192,7 +223,7 @@ typedef enum _PlayerAirCombatMode {
 		
 	} else {
 		[self goto_anim:@"spin"];
-		g.player._vy -= 0.4 * dt_scale_get();
+		if (g.player.position.y > g.DOCK_HEIGHT) g.player._vy -= 0.4 * dt_scale_get();
 		g.player.position = CGPointAdd(g.player.position, ccp(0,g.player._vy*dt_scale_get()));
 		if (g.player._vy < 0 && g.player.position.y < g.DOCK_HEIGHT) {
 			g.player.position = ccp(g.player.position.x,g.DOCK_HEIGHT);
@@ -220,7 +251,7 @@ typedef enum _PlayerAirCombatMode {
 	float _rotation = self.rotation * .0174532925;
 	_aim_dir = [self angle_towards_x:g.touch_position.x y:g.touch_position.y + g.get_camera_y - game_screen().height / 2] * (180 / M_PI) - 90;
 
-    _x += clampf(((160 + _accelerometer_x * 320) - _x) * .1, - 7, 7) * dt_scale_get();
+    _x += clampf(((160 + g.get_control_manager.get_accel_x * 320) - _x) * .1, - 7, 7) * dt_scale_get();
     
     if(_x < game_screen().width / 2) {
         [_img set_scale_x:-0.25];
@@ -297,7 +328,7 @@ typedef enum _PlayerAirCombatMode {
 	float _rotation = self.rotation * .0174532925;
 	_aim_dir = [self angle_towards_x:g.touch_position.x y:g.touch_position.y + g.get_camera_y - game_screen().height / 2] * (180 / M_PI) - 90;
 
-	_x += clampf(((160 + _accelerometer_x * 320) - _x) * .08, -6, 6) * dt_scale_get();
+	_x += clampf(((160 + g.get_control_manager.get_accel_x * 320) - _x) * .08, -6, 6) * dt_scale_get();
 
 	if(_x < game_screen().width / 2) {
 		[_img set_scale_x: 0.25];
@@ -350,10 +381,10 @@ typedef enum _PlayerAirCombatMode {
 	if(!_state_waveEnd_jump_back) {
 		[g set_zoom:g.zoom + (1.1 - g.zoom) * .2];
 		
-		if(160 + _accelerometer_x * 320 < _x - 25) {
+		if(160 + g.get_control_manager.get_accel_x * 320 < _x - 25) {
 			[_img set_scale_x:-0.25];
 			_vx += (-3 - _vx) * .2 * dt_scale_get();
-		} else if(160 + _accelerometer_x * 320 > _x + 25) {
+		} else if(160 + g.get_control_manager.get_accel_x * 320 > _x + 25) {
 			[_img set_scale_x: 0.25];
 			_vx += (3 - _vx) * .2 * dt_scale_get();
 		} else {
@@ -381,7 +412,7 @@ typedef enum _PlayerAirCombatMode {
 			}
 		}
 	} else {
-		_x += clampf(((160 + _accelerometer_x * 320) - _x) * .07, - 7, 7) * dt_scale_get();
+		_x += clampf(((160 + g.get_control_manager.get_accel_x * 320) - _x) * .07, - 7, 7) * dt_scale_get();
 		
 		[g set_zoom:g.zoom + (1 - g.zoom) * .1];
 		_rotation += .08 * dt_scale_get() * signum(_img.scaleX);
@@ -421,14 +452,6 @@ typedef enum _PlayerAirCombatMode {
 
 -(BOOL)is_underwater:(GameEngineScene *)g {
 	return self.position.y < 0;
-}
-
--(void)run_anim:(CCAction*)tar {
-	if (_current_anim != tar) {
-		_current_anim = tar;
-		[_img stopAllActions];
-		[_img runAction:_current_anim];
-	}
 }
 
 -(HitRect)get_hit_rect {

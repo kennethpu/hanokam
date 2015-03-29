@@ -110,7 +110,10 @@
 }
 
 -(void)render_reflection:(GameEngineScene*)game {
-	[BGReflection bgobj_reflection_render:_bldg_3 offset:ccp(0,5) g:game];
+	float y = _bldg_3.position.y;
+	_bldg_3.position = ccp(_bldg_3.position.x,clampf(-y + 5 + game.HORIZON_HEIGHT,0,100));
+	[_bldg_3 visit];
+	_bldg_3.position = ccp(_bldg_3.position.x,y);
 	[BGReflection bgobj_reflection_render:_bldg_2 offset:ccp(0,0) g:game];
 	[BGReflection bgobj_reflection_render:_bldg_1 offset:ccp(0,0) g:game];
 	[BGReflection reflection_render:_docks offset:ccp(0,game.HORIZON_HEIGHT/2) g:game];

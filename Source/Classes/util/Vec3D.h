@@ -22,4 +22,7 @@ float vec_dot(Vec3D v1, Vec3D a);
 Vec3D vec_rotate_rad(Vec3D v, float rad);
 float vec_ang_rad(Vec3D v);
 float vec_ang_deg_lim180(Vec3D dirvec, float offset);
+NSString* vec_to_s(Vec3D v);
+CGPoint vec_to_cgpoint(Vec3D v);
+Vec3D cgpoint_to_vec(CGPoint pt);
 #endif

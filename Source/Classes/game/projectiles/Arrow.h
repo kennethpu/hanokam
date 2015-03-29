@@ -7,10 +7,15 @@
 //
 
 #import "cocos2d.h"
+#import "Particle.h"
+#import "Vec3D.h"
 
 @class GameEngineScene;
 
-@interface Arrow : CCSprite
-+(Arrow*)cons;
--(void)i_update:(GameEngineScene*)g;
+@interface PlayerProjectile : Particle
+-(HitRect)get_hit_rect;
+@end
+
+@interface Arrow : PlayerProjectile
++(Arrow*)cons_pos:(CGPoint)pos dir:(Vec3D)dir;
 @end

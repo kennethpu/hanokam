@@ -13,13 +13,14 @@
 #import "GameUI.h"
 #import "Particle.h"
 #import "TouchTrackingLayer.h"
-#import "AirEnemyManager.h" 
+#import "AirEnemyManager.h"
+#import "Arrow.h" 
 
 #import "CCTexture_Private.h"
 
 #import "AccelerometerSimulation.h" 
 
-#import "AccelerometerManager.h"
+#import "ControlManager.h"
 #import "Resource.h"
 
 @implementation RippleInfo {
@@ -72,7 +73,7 @@
 	CGPoint _touch_position;
 	BOOL _touch_down, _touch_tapped, _touch_released;
 	
-	AccelerometerManager *_accel;
+	ControlManager *_controls;
 	
 	// EFFECTS
 	float _shake_rumble_time, _shake_rumble_total_time, _shake_rumble_distance;
@@ -93,6 +94,7 @@
 	
 	// WORLD
 	Player *_player;
+	ParticleSystem *_player_projectiles;
 	
 	BGSky *_bg_sky;
 	BGWater *_bg_water;
@@ -117,8 +119,8 @@
 -(float)get_camera_y { return -_game_anchor.position.y; }
 -(SpiritManager*)get_spirit_manager{ return _spirit_manager; }
 -(AirEnemyManager*)get_air_enemy_manager { return _air_enemy_manager; }
+-(ControlManager*)get_control_manager { return _controls; }
 
-//@synthesize _water_num;
 @synthesize _player_state;
 -(PlayerState)get_player_state {
 	return _player_state;
@@ -134,7 +136,7 @@
 
 -(id)cons {
 	self.userInteractionEnabled = YES;
-	_accel = [AccelerometerManager cons];
+	_controls = [ControlManager cons];
 	dt_unset();
 	
 	_touch_tracking = [TouchTrackingLayer node];
@@ -150,6 +152,7 @@
 	_game_anchor = [[CCNode node] add_to:_zoom_node];
 	
 	_particles = [ParticleSystem cons_anchor:_game_anchor];
+	_player_projectiles = [ParticleSystem cons_anchor:_game_anchor];
 	
 	_player = (Player*)[[Player cons] add_to:_game_anchor z:GameAnchorZ_Player];
 	_player_state = PlayerState_OnGround;
@@ -177,6 +180,10 @@
 	return self;
 }
 
+-(void)add_player_projectile:(PlayerProjectile*)tar {
+	[_player_projectiles add_particle:tar];
+}
+
 -(void)addChild:(CCNode *)node { [NSException raise:@"Do not add children to GameEngineScene" format:@""]; }
 -(NSArray*)get_ripple_infos { return _ripples; }
 -(CCSprite*)get_ripple_proto { return _ripple_proto; }
@@ -202,7 +209,7 @@
 }
 
 -(void)accelerometer:(UIAccelerometer *)acel didAccelerate:(UIAcceleration *)aceler {
-	[_accel accel_report_x:aceler.x y:aceler.y z:aceler.z];
+	[_controls accel_report_x:aceler.x y:aceler.y z:aceler.z];
 }
 
 static bool TEST_HAS_ACTIVATED_BOSS = false;
@@ -222,9 +229,10 @@ static bool TEST_HAS_ACTIVATED_BOSS = false;
 		return;
 	}
 	
-	[_accel i_update:self];
+	[_controls i_update:self];
 	[_player update_game:self];
 	[_particles update_particles:self];
+	[_player_projectiles update_particles:self];
 	
 	// CAMERA
 	switch(_player_state) {
@@ -329,17 +337,20 @@ static bool TEST_HAS_ACTIVATED_BOSS = false;
 -(void)touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
 	_touch_tapped = _touch_down = true;
 	_touch_position = [touch locationInWorld];
-	[_touch_tracking touch_begin:[touch locationInWorld]];
+	[_touch_tracking touch_begin:_touch_position];
+	[_controls touch_begin:_touch_position];
 }
 -(void)touchMoved:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
 	_touch_position = [touch locationInWorld];
-	[_touch_tracking touch_move:[touch locationInWorld]];
+	[_touch_tracking touch_move:_touch_position];
+	[_controls touch_move:_touch_position];
 }
 -(void)touchEnded:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
 	_touch_released = true;
 	_touch_down = false;
 	_touch_position = [touch locationInWorld];
-	[_touch_tracking touch_end:[touch locationInWorld]];
+	[_touch_tracking touch_end:_touch_position];
+	[_controls touch_end:_touch_position];
 }
 
 -(void)shake_for:(float)ct distance:(float)distance{

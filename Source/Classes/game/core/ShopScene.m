@@ -1,7 +1,7 @@
 #import "ShopScene.h"
 #import "Common.h"
 
-#import "AccelerometerManager.h"
+#import "ControlManager.h"
 //#import "AccelerometerSimulation.h" 
 
 #import "Resource.h"
@@ -43,7 +43,6 @@
 	CGPoint _camera_center_point;
 	NSArray *_rows;
 	
-	AccelerometerManager *_accel;
 }
 
 @synthesize row_focussing;
@@ -89,7 +88,6 @@
 	*/
 
 	self.userInteractionEnabled = YES;
-	_accel = [AccelerometerManager cons];
 	
 	_game_anchor = [[CCNode node] add_to:self];
 	
@@ -130,7 +128,6 @@
 }
 
 -(void)accelerometer:(UIAccelerometer *)acel didAccelerate:(UIAcceleration *)aceler {
-	[_accel accel_report_x:aceler.x y:aceler.y z:aceler.z];
 }
 
 -(void)update:(CCTime)delta {

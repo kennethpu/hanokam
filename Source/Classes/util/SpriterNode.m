@@ -85,7 +85,13 @@
 		TGSpriterTimelineKey *keyframe_next = [timeline nextKeyForTime:_current_anim_time];
 		float t;
 		if (keyframe_current.startsAt > keyframe_next.startsAt) {
-			t = clampf((_current_anim_time-keyframe_current.startsAt)/(_anim_duration-keyframe_current.startsAt)  + keyframe_next.startsAt, 0, 1);
+			if (_repeat_anim) {
+				t = clampf((_current_anim_time-keyframe_current.startsAt)/(_anim_duration-keyframe_current.startsAt)  + keyframe_next.startsAt, 0, 1);
+			} else {
+				t = 0;
+				keyframe_next = keyframe_current;
+			}
+		
 		} else {
 			t = clampf((_current_anim_time-keyframe_current.startsAt)/(keyframe_next.startsAt-keyframe_current.startsAt),0,1);
 		}

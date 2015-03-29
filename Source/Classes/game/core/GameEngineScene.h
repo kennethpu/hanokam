@@ -1,11 +1,14 @@
 #import "cocos2d.h"
 #import "Common.h"
+
 @class GameObject;
 @class Particle;
 @class Player;
 @class SpiritManager;
 @class BGSky;
 @class AirEnemyManager;
+@class ControlManager;
+@class PlayerProjectile;
 
 typedef enum _PlayerState {
 	PlayerState_Dive = 0,
@@ -17,6 +20,7 @@ typedef enum _PlayerState {
 
 typedef enum _GameAnchorZ {
 	GameAnchorZ_BGSky_SurfaceReflection = 100,
+	GameAnchorZ_PlayerProjectiles = 82,
 	GameAnchorZ_Enemies_Air = 81,
 	GameAnchorZ_BGSky_SurfaceGradient = 80,
 	GameAnchorZ_Player_Out = 79,
@@ -26,7 +30,6 @@ typedef enum _GameAnchorZ {
 	GameAnchorZ_BGSky_Elements = 12,
 	GameAnchorZ_BGWater_Reflection = 11,
 	GameAnchorZ_BGSky_WaterLights = 10,
-	//GameAnchorZ_Player_Underwater = 9,
 	GameAnchorZ_Enemies_Underwater = 8,
 	GameAnchorZ_BGWater_I1 = 7,
 	GameAnchorZ_BGSky_BackgroundElements = 6,
@@ -42,7 +45,6 @@ typedef enum _GameAnchorZ {
 
 @interface GameEngineScene : CCScene <UIAccelerometerDelegate>
 @property(readwrite,assign) PlayerState _player_state;
-//@property(readwrite,assign) int _water_num;
 
 +(GameEngineScene*)cons;
 
@@ -53,7 +55,7 @@ typedef enum _GameAnchorZ {
 -(void)shake_slow_for:(float)ct distance:(float)distance;
 -(void)freeze_frame:(int)ct;
 
--(float) tick;
+-(float)tick;
 -(CGPoint)touch_position;
 -(BOOL)touch_down;
 -(BOOL)touch_tapped;
@@ -78,11 +80,15 @@ typedef enum _GameAnchorZ {
 -(float) HORIZON_HEIGHT;
 -(float) DOCK_HEIGHT;
 
+-(ControlManager*)get_control_manager;
+
 -(NSNumber*)get_tick_mod_pi;
 -(NSArray*)get_ripple_infos;
 -(CCSprite*)get_ripple_proto;
 -(BGSky*)get_bg_sky;
 -(float)get_cam_y_lirp_current;
+
+-(void)add_player_projectile:(PlayerProjectile*)tar;
 @end
 
 @interface BGElement : NSObject

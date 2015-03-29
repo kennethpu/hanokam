@@ -84,6 +84,8 @@
 	_ripple_texture = [CCRenderTexture renderTextureWithWidth:game_screen().width height:game.REFLECTION_HEIGHT];
 	[_ripple_texture clear:0 g:0 b:0 a:0];
 	_reflection_texture.sprite.shaderUniforms[@"rippleTexture"] = _ripple_texture.sprite.texture;
+	
+	[_reflection_texture.sprite setVisible:YES];
 }
 
 -(void)render_ripple_texture:(GameEngineScene*)game {
