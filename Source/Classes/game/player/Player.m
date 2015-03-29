@@ -14,6 +14,31 @@
 
 #import "CCTexture_Private.h"
 
+typedef enum _PlayerAirCombatMode {
+	PlayerAirCombatMode_InitialJumpOut,
+	PlayerAirCombatMode_Combat,
+	PlayerAirCombatMode_RescueBackToTop,
+	PlayerAirCombatMode_FallToGround
+} PlayerAirCombatMode;
+
+@interface PlayerAirCombatParams : NSObject
+@property(readwrite,assign) CGPoint _s_pos, _s_vel;
+@property(readwrite,assign) float _w_camera_center, _w_upwards_vel, _anim_ct;
+@property(readwrite,assign) PlayerAirCombatMode _current_mode;
+@end
+
+@implementation PlayerAirCombatParams
+@synthesize _s_pos,_s_vel;
+@synthesize _w_camera_center, _w_upwards_vel, _anim_ct;
+@synthesize _current_mode;
+-(void)set_player_s_pos:(GameEngineScene*)g {
+	g.player.position = CGPointAdd(_s_pos, ccp(g.get_viewbox.x1,g.get_viewbox.y1));
+}
+-(float)DEFAULT_HEIGHT {
+	return game_screen().height * 0.8;
+}
+@end
+
 @implementation Player {
 	CCAction *_anim_stand;
 	CCAction *_current_anim;
@@ -33,10 +58,7 @@
 	
 	int _birds_left;
 	
-	CCSprite *_bar1, *_bar2;
-	
-	NSMutableArray *_arrows;
-	
+	PlayerAirCombatParams *_air_params;
 }
 @synthesize _vx, _vy, _accelerometer_x;
 @synthesize _falling;
@@ -49,16 +71,7 @@
 -(id)init {
 	self = [super init];
 	
-	_arrows = [NSMutableArray array];
-	
-	_bar1 = (CCSprite*)[[CCSprite spriteWithTexture:[Resource get_tex:TEX_AIMING_BAR]] add_to:self z:0];
-	[_bar1 set_anchor_pt:ccp(0, 2)];
-	[_bar1 set_scale:0.2];
-	
-	_bar2 = (CCSprite*)[[CCSprite spriteWithTexture:[Resource get_tex:TEX_AIMING_BAR]] add_to:self z:0];
-	[_bar2 set_anchor_pt:ccp(0, -1)];
-	[_bar2 set_scale_x:0.2];
-	[_bar2 set_scale_y:-.2];
+	_air_params = [[PlayerAirCombatParams alloc] init];
 	
 	SpriterJSONParser *frame_data = [[[SpriterJSONParser alloc] init] parseFile:@"hanokav2.json"];
 	SpriterData *spriter_data = [SpriterData dataFromSpriteSheet:[Resource get_tex:TEX_SPRITER_CHAR_HANOKA_V2] frames:frame_data scml:@"hanokav2.scml"];
@@ -70,15 +83,15 @@
 	
 	_state_waveEnd_jump_back = false;
 	
-	_reload = 10;
-	[_bar1 setOpacity:0];
-	[_bar2 setOpacity:0];
-	
 	return self;
 }
 
 -(void)update_game:(GameEngineScene*)g {
-	[self setZOrder:self.position.x<0?GameAnchorZ_Player_Underwater:GameAnchorZ_Player];
+	if (g.get_player_state == PlayerState_OnGround && !_state_waveEnd_jump_back) {
+		[self setZOrder:GameAnchorZ_Player];
+	} else {
+		[self setZOrder:GameAnchorZ_Player_Out];
+	}
 	
 	switch ([g get_player_state]) {
 		case PlayerState_Dive:
@@ -97,143 +110,108 @@
 			[self update_on_ground:g];
 			
 		break;
+		case PlayerState_AirToGroundTransition:
+			[self update_air_to_ground_transition:g];
+		break;
+	}
+}
+
+-(void)goto_anim:(NSString*)anim {
+	if(_current_playing != anim) {
+		_current_playing = anim;
+		[_img playAnim:anim repeat:YES];
+	}
+}
+
+-(void)prep_air_mode:(GameEngineScene*)g {
+	g._player_state = PlayerState_InAir;
+	_air_params._w_camera_center = [g get_cam_y_lirp_current];
+	_air_params._w_upwards_vel = 6;
+	_air_params._s_pos = CGPointSub(g.player.position, ccp(g.get_viewbox.x1,g.get_viewbox.y1));
+	_air_params._s_vel = ccp(0,0);
+	_air_params._current_mode = PlayerAirCombatMode_InitialJumpOut;
+	_air_params._anim_ct = 0;
+	_vy = 0;
+	_vx = 0;
+	if (_air_params._s_pos.y > 200) {
+		_air_params._w_upwards_vel += 2 * (_air_params._s_pos.y - 200)/200.0;
 	}
 }
 
 -(void)update_in_air:(GameEngineScene*)g {
-	float _x = self.position.x;
-	float _y = self.position.y;
-	float _rotation = self.rotation * .0174532925;
-	_aim_dir = [self angle_towards_x:g.touch_position.x y:g.touch_position.y + g.get_camera_y - game_screen().height / 2] * (180 / M_PI) - 90;
-	
-	_x += clampf(((160 + _accelerometer_x * 320) - _x) * .07, - 7, 7) * dt_scale_get();
-	
-	if(_x < game_screen().width / 2) {
-		[_img set_scale_x: 0.25];
-	} else {
-		[_img set_scale_x:-0.25];
-	}
-	
-	if(g.get_spirit_manager.count_alive == 0 && _small_jump_back == false) {
-		[g set_zoom:g.zoom + (1.4 - g.zoom) * .05];
-	} else {
-		[g set_zoom:g.zoom + (1 - g.zoom) * .1];
-	}
-	_rotation = 0;
-	
-	_y += 5 * dt_scale_get();
-	if(_vy < 2 && _vy > -1.5) {
-		_vy -= 0.2 * dt_scale_get();
-	} else {
-		_vy -= 0.27 * dt_scale_get();
-	}
-	
-	if(g.get_spirit_manager.count_alive != 0 && _vy < -12)
-		_vy = -12;
-	
-	if (_salto > 1) {
-		_salto -= .1 * dt_scale_get();
-	} else if (_salto < -1) {
-		_salto += .1 * dt_scale_get();
-	}
-	
-	if (ABS(_salto > 1)) {
-		[self goto_anim:@"attack"];
-	} else {
-		[self goto_anim:@"in air"];
-	}
-	
-	_salto -= _salto * .06 * dt_scale_get();
-
-	_rotation += _salto;
-	
-	if(combat_step == 0 && self.position.y > 100) {
-		DO_FOR(5, [g.get_spirit_manager toss_spirit]);
-		combat_step ++;
-	}
-	
-	if(_y < g.get_camera_y - 400) {
-		
-		if(_birds_left > 0) {
-			_y = g.get_camera_y;
-			_birds_left --;
-		} else {
-			_falling = true;
-		}
-		
-		_falling = true;
-	}
-	
-	if(g.get_spirit_manager.count_alive != 0 && roundf(_salto) == 0) {
-		if(g.touch_down) {
-			if(_reload > 0) {
-				_reload -= .4;
+	switch (_air_params._current_mode) {
+		case PlayerAirCombatMode_InitialJumpOut:;
+			_air_params._anim_ct = clampf(_air_params._anim_ct + 0.025 * dt_scale_get(), 0, 1);
+			_air_params._s_pos = ccp(_air_params._s_pos.x,lerp(_air_params._s_pos.y, _air_params.DEFAULT_HEIGHT, _air_params._anim_ct));
+			if (_air_params._anim_ct >= 1) {
+				_air_params._current_mode = PlayerAirCombatMode_Combat;
 			}
+			[g set_zoom:drp(g.zoom, 1, 4)];
+		break;
+		case PlayerAirCombatMode_Combat:;
+			_air_params._w_upwards_vel -= 0.15 * dt_scale_get();
 			
-			if(_bar1.opacity < 1)
-				[_bar1 setOpacity:_bar1.opacity + .2];
-			[_bar2 setOpacity:_bar1.opacity];
-			
-			[_bar1 setRotation:_aim_dir + _reload * 5];
-			[_bar2 setRotation:_aim_dir - _reload * 5];
+		break;
+		case PlayerAirCombatMode_RescueBackToTop:;
+		
+		break;
+		case PlayerAirCombatMode_FallToGround:;
+		
+		break;
+	}
+	_air_params._s_pos = ccp(
+		clampf(_air_params._s_pos.x + clampf(((160 + _accelerometer_x * 320) - _air_params._s_pos.x) * .07, - 7, 7) * dt_scale_get(),0,game_screen().width),
+		_air_params._s_pos.y
+	);
+	_air_params._w_camera_center += _air_params._w_upwards_vel * dt_scale_get();
+	[g center_camera_hei:_air_params._w_camera_center];
+	[_air_params set_player_s_pos:g];
+	if (g.player.position.y < 0) {
+		g._player_state = PlayerState_AirToGroundTransition;
+		g.player._vy = _air_params._w_upwards_vel + _air_params._s_vel.y;
+		[g add_ripple:ccp(g.player.position.x,0)];
+	}
+}
+
+-(void)update_air_to_ground_transition:(GameEngineScene*)g {
+	g.player.position = ccp(
+		clampf(g.player.position.x + clampf(((160 + _accelerometer_x * 320) - _air_params._s_pos.x) * .07, - 7, 7) * dt_scale_get(), 0, game_screen().width),
+		g.player.position.y
+	);
+	if (g.player.position.y < 0) {
+		[self goto_anim:@"swim"];
+		g.player._vy += 0.4 * dt_scale_get();
+		g.player.position = CGPointAdd(g.player.position, ccp(0,g.player._vy*dt_scale_get()));
+		float _rotation = self.rotation * .0174532925;
+		_rotate_vel += (_x_vel / 9 - _rotate_vel) * .3 * dt_scale_get();
+		_rotation = clampf(M_PI -_vy, 0, M_PI) - _rotate_vel;
+		[self setRotation:_rotation * 57.2957795];
+		if (g.player.position.y > 0) {
+			[g add_ripple:ccp(g.player.position.x,0)];
 		}
 		
-		if(g.touch_released) {
-			[self shoot_arrow:g];
-		}
 	} else {
-		[_bar1 setOpacity:0];
-		[_bar2 setOpacity:_bar1.opacity];
-		_reload = 1;
-	}
-	
-	if (_vy < 0 && _y + _vy * dt_scale_get() < [g DOCK_HEIGHT]) {
-		_y = [g DOCK_HEIGHT];
-		_vy = 0;
-		_falling = false;
-		
-		if(_small_jump_back == false){
-			[g shake_slow_for: 60 distance: 15];
-			[g shake_for: 7 distance: 30];
+		[self goto_anim:@"spin"];
+		g.player._vy -= 0.4 * dt_scale_get();
+		g.player.position = CGPointAdd(g.player.position, ccp(0,g.player._vy*dt_scale_get()));
+		if (g.player._vy < 0 && g.player.position.y < g.DOCK_HEIGHT) {
+			g.player.position = ccp(g.player.position.x,g.DOCK_HEIGHT);
+			_vy = 0;
+			_falling = false;
+			_small_jump_back = false;
+			combat_step = 0;
+			_state_waveEnd_jump_back = false;
+			self.rotation = 0;
+			g._player_state = PlayerState_OnGround;
+			return;
 		}
 		
-		_small_jump_back = false;
-		combat_step = 0;
-		[g.get_spirit_manager kill_all];
-		
-		_state_waveEnd_jump_back = false;
-		g._player_state = PlayerState_OnGround; // <--
 	}
+	[g center_camera_hei:drp(g.camera_center_point.y, 2, 10)];
+
+	_x_vel = self.position.x - _x_prev;
+	_x_prev = self.position.x;
 	
-	if ([self is_underwater]) {
-		_x += _vx * dt_scale_get();
-		_y += _vy * dt_scale_get();
-	} else {
-		_x += _vx * dt_scale_get();
-		_y += _vy / 2 + (_vy * ABS(_vy) / 15) * dt_scale_get();
-	}
-	
-	_x_vel = _x - _x_prev;
-	_x_prev = _x;
-	[self setRotation:_rotation * 57.2957795];
-	
-	_x = clampf(_x, 0, game_screen().width);
-	_y = clampf(_y, g.get_ground_depth, INFINITY);
-	[self setPosition:ccp(_x,_y)];
-	
-	
-	/*
-	NSMutableArray *arrows_to_remove = [NSMutableArray array];
-	for (Arrow *arrow in _arrows) {
-		[arrow i_update:g];
-		if (arrow.position.x > game_screen().width + 100 || arrow.position.x < -100) {
-			[arrows_to_remove addObject:arrow];
-			[arrow removeFromParent];
-		}
-	}
-	[_arrows removeObjectsInArray:arrows_to_remove];
-	[arrows_to_remove removeAllObjects];
-	*/
 }
 
 -(void)update_dive:(GameEngineScene*)g {
@@ -250,7 +228,7 @@
         [_img set_scale_x: 0.25];
     }
     
-    if ([self is_underwater]) {
+    if ([self is_underwater:g]) {
         
         [g set_zoom: g.zoom + (1 - g.zoom) * .3];
         
@@ -298,7 +276,7 @@
         _vy += .2;
     }
 
-	if ([self is_underwater]) {
+	if ([self is_underwater:g]) {
 		_x += _vx * dt_scale_get();
 		_y += _vy * dt_scale_get();
 	} else {
@@ -332,7 +310,7 @@
 	_rotation = clampf(M_PI -_vy, 0, M_PI) + _rotate_vel;
 
 	_vy += (17 -_vy) * 0.01 * dt_scale_get();
-	if (![self is_underwater]) {
+	if (![self is_underwater:g]) {
 		[g add_ripple:CGPointAdd(self.position, ccp(0,-20))];
 		if(g.get_spirit_manager.dive_y < -200) {
 			_vy = 10;
@@ -346,9 +324,10 @@
 		[g.get_spirit_manager reset_dive];
 		[g.get_spirit_manager kill_all_with_spirit_state_waiting];
 		
-		g._player_state = PlayerState_InAir; // <--
+		//g._player_state = PlayerState_InAir; // <--
+		[self prep_air_mode:g];
 	}
-	if ([self is_underwater]) {
+	if ([self is_underwater:g]) {
 		_x += _vx * dt_scale_get();
 		_y += _vy * dt_scale_get();
 	} else {
@@ -421,7 +400,7 @@
 			[g add_ripple:self.position];
 		}
 	}
-	if ([self is_underwater]) {
+	if ([self is_underwater:g]) {
 		_x += _vx * dt_scale_get();
 		_y += _vy * dt_scale_get();
 	} else {
@@ -436,39 +415,11 @@
 	[self setPosition:ccp(_x,_y)];
 }
 
--(Arrow*)shoot_arrow:(GameEngineScene*)g {
-	Arrow *_new_arrow = (Arrow*)[[[[Arrow cons] add_to:g.get_anchor z:3]
-		set_pos:self.position]
-		set_rotation:_aim_dir + float_random(-_reload, _reload)];
-	
-	[_arrows addObject:_new_arrow];
-	
-	_reload = 10;
-	[_bar1 setOpacity:0];
-	[_bar2 setOpacity:0];
-	return _new_arrow;
-}
-
--(void)goto_anim:(NSString*)anim {
-	if(_current_playing != anim) {
-		_current_playing = anim;
-		[_img playAnim:anim repeat:YES];
-	}
-}
-
 -(float)angle_towards_x:(float)x y:(float)y {
 	return atan2f(x - self.position.x, y - self.position.y);
 }
 
--(void)melee_spirit {
-	_vy = 12;
-	_salto = M_PI * 2 * signum(float_random(-100, 30)) * signum(_img.scaleX);
-	_reload = 10;
-	[_bar1 setOpacity:0];
-	[_bar2 setOpacity:0];
-}
-
--(BOOL)is_underwater {
+-(BOOL)is_underwater:(GameEngineScene *)g {
 	return self.position.y < 0;
 }
 

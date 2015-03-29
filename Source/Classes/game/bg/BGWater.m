@@ -118,7 +118,7 @@
 	[_ground_fill setPosition:ccp(0, g.get_ground_depth - _ground.textureRect.size.height * _ground.anchorPoint.y)];
 	[_ground_fill setTextureRect:CGRectMake(0, 0, game_screen().width, game_screen().height)];
 	
-	if (g.get_camera_y > 0) {
+	if (![g.player is_underwater:g]) {
 		if ([g get_viewbox].y1 < g.HORIZON_HEIGHT && [g get_viewbox].y2 > -g.REFLECTION_HEIGHT) {
 			[self render_ripple_texture:g];
 			[self render_reflection_texture:g];

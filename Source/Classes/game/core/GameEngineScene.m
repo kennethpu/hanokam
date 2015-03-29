@@ -17,6 +17,8 @@
 
 #import "CCTexture_Private.h"
 
+#import "AccelerometerSimulation.h" 
+
 #import "AccelerometerManager.h"
 #import "Resource.h"
 
@@ -116,8 +118,7 @@
 -(SpiritManager*)get_spirit_manager{ return _spirit_manager; }
 -(AirEnemyManager*)get_air_enemy_manager { return _air_enemy_manager; }
 
-@synthesize _water_num;
-
+//@synthesize _water_num;
 @synthesize _player_state;
 -(PlayerState)get_player_state {
 	return _player_state;
@@ -181,6 +182,7 @@
 -(CCSprite*)get_ripple_proto { return _ripple_proto; }
 -(NSNumber*)get_tick_mod_pi { return @(fmodf(_tick * 0.01,M_PI * 2)); }
 -(BGSky*)get_bg_sky { return _bg_sky; }
+-(float)get_cam_y_lirp_current { return _cam_y_lirp; }
 
 -(void)add_ripple:(CGPoint)pos {
 	if ([_ripples count] > 6) return;
@@ -235,33 +237,28 @@ static bool TEST_HAS_ACTIVATED_BOSS = false;
 			_player_dive_bottom_y = [self get_spirit_manager].dive_y - 200;
 			
 			_cam_y_lirp += (_player_dive_bottom_y - _cam_y_lirp) * .06 * dt_scale_get();
+			[self center_camera_hei:_cam_y_lirp];
+			
 		break;
 		case PlayerState_DiveReturn:
 			_cam_y_lirp += (_player.position.y + 100 - _cam_y_lirp) * .1 * dt_scale_get();
+			[self center_camera_hei:_cam_y_lirp];
+			
 		break;
 		case PlayerState_InAir:
-			if(_player_combat_top_y < _player.position.y - 100)
-				_player_combat_top_y = _player.position.y - 100;
-			_player_combat_top_y += 3;
-			
-			if(self.get_spirit_manager.count_alive == 0){
-				_cam_y_lirp += (((_player.position.y - 100 < 2) ? 2 : _player.position.y - 100) - _cam_y_lirp) * .3 * dt_scale_get();
-			} else if(_player._falling) {
-				_cam_y_lirp += (((_player.position.y + 50 < 2) ? 2 : _player.position.y + 50) - _cam_y_lirp) * .2 * dt_scale_get();
-			} else {
-				_cam_y_lirp += (((_player_combat_top_y < 2) ? 2 : _player_combat_top_y) - _cam_y_lirp) * .15 * dt_scale_get();
-			}
-			
-			if(_cam_y_lirp < 0 && _player._vy < 0) _cam_y_lirp = 0;
-			
+			_cam_y_lirp = _camera_center_point.y;
 			break;
+		case PlayerState_AirToGroundTransition:
+			_cam_y_lirp = _camera_center_point.y;
+			break;
+			
 		case PlayerState_OnGround:
 			_player_combat_top_y = 0;
 			_cam_y_lirp += (150 - _cam_y_lirp) * .05 * dt_scale_get();
+			[self center_camera_hei:_cam_y_lirp];
+			
 		break;
 	}
-	
-	[self center_camera_hei:_cam_y_lirp];
 	
 	for (BGElement *itr in _bg_elements) {
 		[itr i_update:self];
@@ -359,6 +356,7 @@ static bool TEST_HAS_ACTIVATED_BOSS = false;
 	_freeze = ct;
 }
 -(HitRect)get_viewbox{return hitrect_cons_xy_widhei(_camera_center_point.x - game_screen().width / 2, _camera_center_point.y - game_screen().height / 2, game_screen().width, game_screen().height); }
+-(CGPoint)camera_center_point { return _camera_center_point; }
 -(CCNode*)get_anchor { return _game_anchor; }
 -(BOOL)fullScreenTouch { return YES; }
 @end

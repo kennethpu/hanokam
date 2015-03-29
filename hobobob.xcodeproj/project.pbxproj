@@ -134,6 +134,9 @@
 		7E80EEBF1AC76AD500B5D312 /* hanoka v0.01.scml in Resources */ = {isa = PBXBuildFile; fileRef = 7E80EEAC1AC76AD500B5D312 /* hanoka v0.01.scml */; };
 		7E80EEC01AC76AD500B5D312 /* hanoka v0.01.scml in Resources */ = {isa = PBXBuildFile; fileRef = 7E80EEAC1AC76AD500B5D312 /* hanoka v0.01.scml */; };
 		7E80EEC11AC76AD500B5D312 /* hanoka v0.01.scml in Resources */ = {isa = PBXBuildFile; fileRef = 7E80EEAC1AC76AD500B5D312 /* hanoka v0.01.scml */; };
+		7E80EEC81AC7838400B5D312 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B0BF91A131E8E0057869B /* Common.m */; };
+		7E80EECA1AC7838500B5D312 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B0BF91A131E8E0057869B /* Common.m */; };
+		7E80EECB1AC7838500B5D312 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B0BF91A131E8E0057869B /* Common.m */; };
 		7E80FEA61AC23AF80048B7D4 /* water_shine.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E80FEA51AC23AF80048B7D4 /* water_shine.png */; };
 		7E80FEA71AC23AF80048B7D4 /* water_shine.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E80FEA51AC23AF80048B7D4 /* water_shine.png */; };
 		7E80FEA81AC23AF80048B7D4 /* water_shine.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E80FEA51AC23AF80048B7D4 /* water_shine.png */; };
@@ -1690,6 +1693,7 @@
 			files = (
 				7EF468AB1ABF71E50041E55F /* Particle.m in Sources */,
 				7E90D18E1AB63DB700E06F92 /* BGSky.m in Sources */,
+				7E80EEC81AC7838400B5D312 /* Common.m in Sources */,
 				5B12102A197484DD004C1E1D /* hobobobActivity.java in Sources */,
 				7E1779521AB8152600E3986C /* SpriterData.m in Sources */,
 				7E2675A31AB69453002EF2EC /* Bird.m in Sources */,
@@ -1722,6 +1726,7 @@
 				7EA7AEAD1ABFDD06001C9EFE /* Spirit_Fish_2.m in Sources */,
 				7EA7AEC41ABFDDFD001C9EFE /* Arrow.m in Sources */,
 				7EA7AEB31ABFDD06001C9EFE /* Spirit_Fish_4.m in Sources */,
+				7E80EECA1AC7838500B5D312 /* Common.m in Sources */,
 				7E1779691AB81AF600E3986C /* SpriterXMLParser.m in Sources */,
 				7E90D18F1AB63DB700E06F92 /* BGSky.m in Sources */,
 				7EA7AEB01ABFDD06001C9EFE /* Spirit_Fish_3.m in Sources */,
@@ -1744,6 +1749,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E80EECB1AC7838500B5D312 /* Common.m in Sources */,
 				7E1779681AB81AF600E3986C /* SpriterXMLParser.m in Sources */,
 				7E1D4B4C1AC64524002E22CC /* AirEnemyManager.m in Sources */,
 				7EA7AEB21ABFDD06001C9EFE /* Spirit_Fish_4.m in Sources */,

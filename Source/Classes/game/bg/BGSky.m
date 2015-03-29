@@ -131,7 +131,7 @@
 -(void)i_update:(GameEngineScene*)g {
 	_tick += dt_scale_get();
 	
-	if (g.get_camera_y < 0 && g.get_camera_y > -game_screen().height) {
+	if ([g.player is_underwater:g] && g.get_camera_y > -game_screen().height) {
 		[_water_surface_ripples clear:0 g:0 b:0 a:0];
 		[_water_surface_ripples begin];
 		CCSprite *proto = g.get_ripple_proto;
@@ -160,6 +160,11 @@
 		
 		[_above_water_belowreflection end];
 		_above_water_belowreflection.sprite.shaderUniforms[@"testTime"] = [g get_tick_mod_pi];
+		
+		float view_top = g.get_viewbox.y2;
+		if (view_top > 0) {
+			_surface_gradient.scaleY = view_top/_surface_gradient.texture.pixelHeight;
+		}
 		
 		[self above_water_root_set_visible:NO];
 		[self below_water_root_set_visible:YES];

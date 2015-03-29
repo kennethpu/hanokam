@@ -8,9 +8,8 @@
 
 +(Player*)cons;
 -(void)update_game:(GameEngineScene*)g;
--(BOOL)is_underwater;
+-(BOOL)is_underwater:(GameEngineScene*)g;
 -(HitRect)get_hit_rect;
--(void)melee_spirit;
 
 -(int)stat_damage;
 @end
