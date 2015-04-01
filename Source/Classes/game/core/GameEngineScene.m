@@ -3,25 +3,20 @@
 #import "Common.h"
 #import "BGSky.h" 
 #import "BGWater.h"
-#import "BGReflection.h"
 #import "SpiritBase.h"
-#import "Spirit_Fish_1.h"
 #import "Particle.h"
-#import "ParticlePhysical.h"
-#import "RotateFadeOutParticle.h"
 #import "ShaderManager.h"
 #import "GameUI.h"
 #import "Particle.h"
 #import "TouchTrackingLayer.h"
 #import "AirEnemyManager.h"
-#import "Arrow.h" 
-
 #import "CCTexture_Private.h"
-
-#import "AccelerometerSimulation.h" 
-
 #import "ControlManager.h"
 #import "Resource.h"
+#import "Arrow.h"
+#import "GameMain.h"
+
+//#import "AccelerometerSimulation.h"
 
 @implementation RippleInfo {
 	float _ct;
@@ -108,6 +103,8 @@
 	GameUI *_ui;
 	
 	TouchTrackingLayer *_touch_tracking;
+	
+	CCDrawNode *_debug_draw;
 }
 
 -(Player*)player { return _player; }
@@ -174,6 +171,9 @@
 	
 	_ui = [GameUI cons:self];
 	[super addChild:_ui z:2];
+	
+	_debug_draw = [CCDrawNode node];
+	[[self get_anchor] addChild:_debug_draw z:GameAnchorZ_DebugDraw];
 	
 	[self update:0];
 	
@@ -278,6 +278,8 @@ static bool TEST_HAS_ACTIVATED_BOSS = false;
 	
 	_touch_tapped = _touch_released = false;
 	[_ui i_update:self];
+	
+	if (HMCFG_DRAW_HITBOXES) [self debug_draw_hitboxes];
 }
 
 -(void)update_shake {
@@ -370,6 +372,27 @@ static bool TEST_HAS_ACTIVATED_BOSS = false;
 -(CGPoint)camera_center_point { return _camera_center_point; }
 -(CCNode*)get_anchor { return _game_anchor; }
 -(BOOL)fullScreenTouch { return YES; }
+
+-(void)debug_draw_hitboxes {
+	[_debug_draw clear];
+	CCColor *player_color = [CCColor colorWithCcColor4f:ccc4f(0, 1, 0, 0.5)];
+	CCColor *enemy_color = [CCColor colorWithCcColor4f:ccc4f(1, 0, 0, 0.5)];
+	[self draw_hit_rect:_player.get_hit_rect color:player_color];
+	for (BaseAirEnemy *itr in _air_enemy_manager.get_enemies) {
+		[self draw_hit_rect:itr.get_hit_rect color:enemy_color];
+	}
+}
+
+static CGPoint *__dhrbuf;
+-(void)draw_hit_rect:(HitRect)hr color:(CCColor*)color {
+	if (__dhrbuf == NULL) __dhrbuf = malloc(sizeof(CGPoint)*4);
+	__dhrbuf[0] = ccp(hr.x1,hr.y1);
+	__dhrbuf[1] = ccp(hr.x1,hr.y2);
+	__dhrbuf[2] = ccp(hr.x2,hr.y2);
+	__dhrbuf[3] = ccp(hr.x2,hr.y1);
+	[_debug_draw drawPolyWithVerts:__dhrbuf count:4 fillColor:color borderWidth:0 borderColor:color];
+}
+
 @end
 
 @implementation BGElement

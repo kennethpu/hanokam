@@ -19,6 +19,7 @@ typedef enum _PlayerState {
 } PlayerState;
 
 typedef enum _GameAnchorZ {
+	GameAnchorZ_DebugDraw = 999,
 	GameAnchorZ_BGSky_SurfaceReflection = 100,
 	GameAnchorZ_PlayerProjectiles = 82,
 	GameAnchorZ_Enemies_Air = 81,

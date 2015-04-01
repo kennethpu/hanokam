@@ -17,7 +17,7 @@
 }
 -(BOOL)should_remove{ return YES; }
 -(void)do_remove{ }
--(HitRect)get_hitrect{ return hitrect_cons_xy_widhei(self.position.x, self.position.y, 0, 0); }
+-(HitRect)get_hit_rect{ return hitrect_cons_xy_widhei(self.position.x, self.position.y, 0, 0); }
 @end
 
 @interface TestAirEnemy : BaseAirEnemy
@@ -34,7 +34,7 @@
 	return self;
 }
 -(BOOL)should_remove{ return NO; }
--(HitRect)get_hitrect{ return hitrect_cons_xy_widhei(self.position.x, self.position.y, 0, 0); }
+-(HitRect)get_hit_rect{ return hitrect_cons_xy_widhei(self.position.x, self.position.y, 0, 0); }
 @end
 
 @implementation AirEnemyManager {
@@ -69,4 +69,9 @@
 	[[game get_anchor] addChild:enemy z:GameAnchorZ_Enemies_Air];
 	[_enemies addObject:enemy];
 }
+
+-(NSArray*)get_enemies {
+	return _enemies;
+}
+
 @end

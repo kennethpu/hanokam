@@ -114,6 +114,7 @@
 	_bldg_3.position = ccp(_bldg_3.position.x,clampf(-y + 5 + game.HORIZON_HEIGHT,0,100));
 	[_bldg_3 visit];
 	_bldg_3.position = ccp(_bldg_3.position.x,y);
+	
 	[BGReflection bgobj_reflection_render:_bldg_2 offset:ccp(0,0) g:game];
 	[BGReflection bgobj_reflection_render:_bldg_1 offset:ccp(0,0) g:game];
 	[BGReflection reflection_render:_docks offset:ccp(0,game.HORIZON_HEIGHT/2) g:game];
@@ -166,7 +167,7 @@
 		
 		float view_top = g.get_viewbox.y2;
 		if (view_top > 0) {
-			_surface_gradient.scaleY = view_top/_surface_gradient.texture.pixelHeight;
+			_surface_gradient.scaleY = view_top/_surface_gradient.texture.pixelHeight + 0.1;
 		}
 		
 		[self above_water_root_set_visible:NO];

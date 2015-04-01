@@ -48,8 +48,9 @@
 	_offset_underwater_element_2 = float_random(0, 2048);
 	_offset_underwater_element_3 = float_random(0, 2048);
 	
+	ccTexParams repeat_x_par = {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_CLAMP_TO_EDGE};
 	_top_fade = [CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_WATER_ELEMENT_FADE]];
-	[_top_fade.texture setTexParameters:&repeat_par];
+	[_top_fade.texture setTexParameters:&repeat_x_par];
 	[_top_fade setTextureRect:CGRectMake(0, 0, game_screen().width, _top_fade.texture.pixelHeight)];
 	[_top_fade setScaleY:-1 * 0.75];
 	[_top_fade setAnchorPoint:ccp(0,0)];
@@ -174,16 +175,23 @@
 		[_underwater_element_1 setVisible:NO];
 		[_underwater_element_2 setVisible:NO];
 		[_underwater_element_3 setVisible:NO];
+		[_ground setVisible:NO];
+		[_bottom_fade setVisible:NO];
+		[_ground_fill setVisible:NO];
+		
 	} else {
 		[self update_underwater_element:_underwater_element_1 g:g mult:1 offset:_offset_underwater_element_1];
 		[self update_underwater_element:_underwater_element_2 g:g mult:0.6 offset:_offset_underwater_element_2];
 		[self update_underwater_element:_underwater_element_3 g:g mult:0.4 offset:_offset_underwater_element_3];
+		
+		[_ground setVisible:YES];
+		[_bottom_fade setVisible:YES];
+		[_ground_fill setVisible:YES];
+		[_ground setPosition:ccp(0, g.get_ground_depth)];
+		[_bottom_fade setPosition:ccp(0,g.get_ground_depth-100)];
+		[_ground_fill setPosition:ccp(0, g.get_ground_depth - _ground.textureRect.size.height * _ground.anchorPoint.y)];
+		[_ground_fill setTextureRect:CGRectMake(0, 0, game_screen().width, game_screen().height)];
 	}
-	
-	[_ground setPosition:ccp(0, g.get_ground_depth)];
-	[_bottom_fade setPosition:ccp(0,g.get_ground_depth-100)];
-	[_ground_fill setPosition:ccp(0, g.get_ground_depth - _ground.textureRect.size.height * _ground.anchorPoint.y)];
-	[_ground_fill setTextureRect:CGRectMake(0, 0, game_screen().width, game_screen().height)];
 	
 	if (![g.player is_underwater:g]) {
 		if ([g get_viewbox].y1 < g.HORIZON_HEIGHT && [g get_viewbox].y2 > -g.REFLECTION_HEIGHT) {

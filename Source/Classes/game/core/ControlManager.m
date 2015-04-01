@@ -53,9 +53,9 @@
 	_avg_y -= _avg_y / avg_ct;
     _avg_y += (pt.y-_prev_touch.y) / avg_ct;
     
-    if(_touch_move_counter == 3) {
+    if(_touch_move_counter == 5) {
         float avg = _touch_dist_sum/_touch_move_counter;
-        if (avg > 6 && !_this_touch_has_procced_action) {
+        if (avg > 7 && !_this_touch_has_procced_action) {
 			_this_touch_has_procced_action = YES;
 			Vec3D dir = vec_cons_norm(_avg_x, _avg_y, 0);
 			float angle = rad_to_deg(vec_ang_rad(dir));
