@@ -7,6 +7,10 @@
 
 #define TEX_BLANK @"blank"
 
+#define TEX_BG_SPRITESHEET_1 @"bg_spritesheet_1"
+#define TEX_BG_UNDERWATER_SPRITESHEET @"underwater_spritesheet"
+#define TEX_BG_WATER_ELEMENT_FADE @"bg_water_element_fade"
+
 #define TEX_TEST_BG_TILE_SKY @"bg_test_tile_sky"
 #define TEX_TEST_BG_TILE_WATER @"bg_test_tile_water"
 #define TEX_TEST_BG_UNDERWATER_SURFACE_GRADIENT @"bg_underwater_surface_gradient"
@@ -15,8 +19,6 @@
 #define TEX_SPRITER_CHAR_HANOKA_V2 @"hanokav2"
 #define TEX_PARTICLES_SPRITESHEET @"particles_spritesheet"
 #define TEX_RIPPLE @"ripple"
-#define TEX_BG_SPRITESHEET_1 @"bg_spritesheet_1"
-#define TEX_KELP_SPRITESHEET @"kelp_spritesheet"
 #define TEX_HUD_SPRITESHEET @"hud_spritesheet"
 
 #define TEX_ENEMIES_SPRITESHEET @"enemies_spritesheet"

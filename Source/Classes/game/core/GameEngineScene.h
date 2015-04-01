@@ -35,7 +35,8 @@ typedef enum _GameAnchorZ {
 	GameAnchorZ_BGSky_BackgroundElements = 6,
 	GameAnchorZ_BGSky_RepeatBG = 5,
 	GameAnchorZ_BGWater_Ground = 4,
-	GameAnchorZ_BGWater_RepeatBG = 3
+	GameAnchorZ_BGWater_Elements = 3,
+	GameAnchorZ_BGWater_RepeatBG = 2
 } GameAnchorZ;
 
 @interface RippleInfo : NSObject

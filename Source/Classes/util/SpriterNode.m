@@ -73,7 +73,6 @@
 			_anim_finished = YES;
 		}
 	}
-	
 	[self update_timeline_keyframes];
 }
 

@@ -64,8 +64,11 @@ static NSSet* dont_load;
 		TEX_PARTICLE_BUBBLE: @"particle_bubble.png",
 		TEX_ARROW: @"arrow.png",
 		TEX_RIPPLE: @"ripple.png",
+		
 		TEX_BG_SPRITESHEET_1: @"bg_spritesheet_1.png",
-		TEX_KELP_SPRITESHEET: @"kelp_spritesheet.png",
+		TEX_BG_UNDERWATER_SPRITESHEET: @"underwater_spritesheet.png",
+		TEX_BG_WATER_ELEMENT_FADE: @"bg_water_element_fade.png",
+		
 		TEX_AIMING_BAR: @"aiming_bar.png",
 		TEX_WATER_SHINE: @"water_shine.png",
 		TEX_HUD_SPRITESHEET: @"hud_spritesheet.png",

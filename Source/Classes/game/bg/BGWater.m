@@ -21,7 +21,11 @@
 	CCSprite *_water_bg;
 	CCSprite *_ground, *_ground_fill;
 	CCSprite *_top_cliff;
-	CCSprite *_bg_2_ground,*_bg_3_ground;
+	CCSprite *_bg_2_ground,*_bg_3_ground; //shallow water elements connected to sky_bg elements
+	
+	CCSprite *_underwater_element_1, *_underwater_element_2, *_underwater_element_3;
+	float _offset_underwater_element_1, _offset_underwater_element_2, _offset_underwater_element_3;
+	CCSprite *_top_fade, *_bottom_fade;
 	
 	CCRenderTexture *_reflection_texture, *_ripple_texture;
 }
@@ -32,21 +36,44 @@
 	_water_bg = (CCSprite*)[[CCSprite node] add_to:[g get_anchor] z:GameAnchorZ_BGWater_RepeatBG];
 	[_water_bg setTexture:[Resource get_tex:TEX_TEST_BG_TILE_WATER]];
 	[_water_bg set_anchor_pt:ccp(0, 0)];
-	ccTexParams par = {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT};
-	[_water_bg.texture setTexParameters:&par];
+	ccTexParams repeat_par = {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT};
+	[_water_bg.texture setTexParameters:&repeat_par];
 	[_water_bg setPosition:ccp(0,0)];
 	[_water_bg setTextureRect:CGRectMake(0, 0, game_screen().width, game_screen().height)];
 	
+	_underwater_element_3 = [self cons_underwater_element:g rect:@"underwater_bg_3.png"];
+	_underwater_element_2 = [self cons_underwater_element:g rect:@"underwater_bg_2.png"];
+	_underwater_element_1 = [self cons_underwater_element:g rect:@"underwater_bg_1.png"];
+	_offset_underwater_element_1 = float_random(0, 2048);
+	_offset_underwater_element_2 = float_random(0, 2048);
+	_offset_underwater_element_3 = float_random(0, 2048);
+	
+	_top_fade = [CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_WATER_ELEMENT_FADE]];
+	[_top_fade.texture setTexParameters:&repeat_par];
+	[_top_fade setTextureRect:CGRectMake(0, 0, game_screen().width, _top_fade.texture.pixelHeight)];
+	[_top_fade setScaleY:-1 * 0.75];
+	[_top_fade setAnchorPoint:ccp(0,0)];
+	CGRect top_cliff_rect = [FileCache get_cgrect_from_plist:TEX_BG_SPRITESHEET_1 idname:@"pier_bottom_cliff.png"];
+	[_top_fade setPosition:ccp(0,-top_cliff_rect.size.height*0.5+150)];
+	[[g get_anchor] addChild:_top_fade z:GameAnchorZ_BGWater_Ground];
+	
+	_bottom_fade = [CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_WATER_ELEMENT_FADE]];
+	[_bottom_fade setTextureRect:CGRectMake(0, 0, game_screen().width, _bottom_fade.texture.pixelHeight)];
+	[_bottom_fade setAnchorPoint:ccp(0,0)];
+	[_bottom_fade setScaleY:0.75];
+	[[g get_anchor] addChild:_bottom_fade z:GameAnchorZ_BGWater_Ground];
+
+	
 	_ground = [CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_SPRITESHEET_1] rect:[FileCache get_cgrect_from_plist:TEX_BG_SPRITESHEET_1 idname:@"bg_lake_ground_1.png"]];
 	scale_to_fit_screen_x(_ground);
-	[_ground setAnchorPoint:ccp(0,0.2)];
+	[_ground setAnchorPoint:ccp(0,0.85)];
 	[_ground setPosition:ccp(0,0)];
-	[[g get_anchor] addChild:_ground z:GameAnchorZ_BGWater_Ground];
 	
 	_ground_fill = [CCSprite spriteWithTexture:[Resource get_tex:TEX_BLANK]];
-	[_ground_fill setColor:[CCColor colorWithCcColor3b:ccc3(1, 22, 45)]];
+	[_ground_fill setColor:[CCColor colorWithCcColor3b:ccc3(5, 44, 92)]];
 	[_ground_fill setAnchorPoint:ccp(0,1)];
 	[[g get_anchor] addChild:_ground_fill z:GameAnchorZ_BGWater_Ground];
+	[[g get_anchor] addChild:_ground z:GameAnchorZ_BGWater_Ground];
 	
 	[self initialize_reflection_and_ripples:g];
 	
@@ -72,6 +99,19 @@
 	[[g get_anchor] addChild:_top_cliff z:GameAnchorZ_BGWater_I1];
 	
 	return self;
+}
+
+-(CCSprite*)cons_underwater_element:(GameEngineScene*)g rect:(NSString*)rect  {
+	CCSprite *rtv = (CCSprite*)[[CCSprite node] add_to:[g get_anchor] z:GameAnchorZ_BGWater_Elements];
+	[rtv setTexture:[Resource get_tex:TEX_BG_UNDERWATER_SPRITESHEET]];
+	[rtv setTextureRect:[FileCache get_cgrect_from_plist:TEX_BG_UNDERWATER_SPRITESHEET idname:rect]];
+	[rtv set_anchor_pt:ccp(0,0)];
+	[rtv setPosition:ccp(0,0)];
+	scale_to_fit_screen_x(rtv);
+	rtv.scaleY = rtv.scaleX;
+	ccTexParams repeat_par = {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT};
+	[rtv.texture setTexParameters:&repeat_par];
+	return rtv;
 }
 
 -(void)initialize_reflection_and_ripples:(GameEngineScene*)game {
@@ -109,14 +149,39 @@
 	[_reflection_texture end];
 }
 
+-(void)update_underwater_element:(CCSprite*)element g:(GameEngineScene*)g mult:(float)mult offset:(float)offset {
+	[element setVisible:YES];
+	[element setPosition:ccp(0,g.get_viewbox.y1)];
+	
+	float posy = -g.get_camera_y * mult;
+	float m_ypos = ((int)(posy))%element.texture.pixelHeight + ((posy) - ((int)(posy)));
+	
+	[element setTextureRect:CGRectMake(
+		element.textureRect.origin.x,
+		m_ypos + offset,
+		element.textureRect.size.width,
+		element.textureRect.size.height
+	)];
+}
+
 -(void)i_update:(GameEngineScene*)g {
 	[_water_bg setPosition:ccp(0, g.get_camera_y - game_screen().height / 2)];
 	
 	_bg_2_ground.position = ccp(_bg_2_ground.position.x,clampf([g get_camera_y] * .2 + 5, 20,200));
 	_bg_3_ground.position = ccp(_bg_3_ground.position.x,[g get_camera_y]*.25 + 15);
 	
+	if (g.get_viewbox.y1 > -180) {
+		[_underwater_element_1 setVisible:NO];
+		[_underwater_element_2 setVisible:NO];
+		[_underwater_element_3 setVisible:NO];
+	} else {
+		[self update_underwater_element:_underwater_element_1 g:g mult:1 offset:_offset_underwater_element_1];
+		[self update_underwater_element:_underwater_element_2 g:g mult:0.6 offset:_offset_underwater_element_2];
+		[self update_underwater_element:_underwater_element_3 g:g mult:0.4 offset:_offset_underwater_element_3];
+	}
 	
 	[_ground setPosition:ccp(0, g.get_ground_depth)];
+	[_bottom_fade setPosition:ccp(0,g.get_ground_depth-100)];
 	[_ground_fill setPosition:ccp(0, g.get_ground_depth - _ground.textureRect.size.height * _ground.anchorPoint.y)];
 	[_ground_fill setTextureRect:CGRectMake(0, 0, game_screen().width, game_screen().height)];
 	
