@@ -76,6 +76,7 @@
 		7E17798D1AB9316500E3986C /* SpriterUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E17798C1AB9316500E3986C /* SpriterUtil.m */; };
 		7E1B806E1A189C330055E654 /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1B806D1A189C330055E654 /* MainMenuScene.m */; };
 		7E1B80711A189F450055E654 /* TouchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1B80701A189F450055E654 /* TouchButton.m */; };
+		7E1D0D181AD5E7A500CB7603 /* BasicAirEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1D0D171AD5E7A500CB7603 /* BasicAirEnemy.m */; };
 		7E1D4B4B1AC64524002E22CC /* AirEnemyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1D4B4A1AC64524002E22CC /* AirEnemyManager.m */; };
 		7E1D4B4C1AC64524002E22CC /* AirEnemyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1D4B4A1AC64524002E22CC /* AirEnemyManager.m */; };
 		7E1D4B4D1AC64524002E22CC /* AirEnemyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1D4B4A1AC64524002E22CC /* AirEnemyManager.m */; };
@@ -467,6 +468,8 @@
 		7E1B806D1A189C330055E654 /* MainMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuScene.m; sourceTree = "<group>"; };
 		7E1B806F1A189F450055E654 /* TouchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchButton.h; sourceTree = "<group>"; };
 		7E1B80701A189F450055E654 /* TouchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchButton.m; sourceTree = "<group>"; };
+		7E1D0D161AD5E7A500CB7603 /* BasicAirEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicAirEnemy.h; sourceTree = "<group>"; };
+		7E1D0D171AD5E7A500CB7603 /* BasicAirEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicAirEnemy.m; sourceTree = "<group>"; };
 		7E1D4B491AC64524002E22CC /* AirEnemyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirEnemyManager.h; sourceTree = "<group>"; };
 		7E1D4B4A1AC64524002E22CC /* AirEnemyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirEnemyManager.m; sourceTree = "<group>"; };
 		7E1D4B4F1AC64818002E22CC /* enemies_spritesheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = enemies_spritesheet.plist; sourceTree = "<group>"; };
@@ -887,6 +890,8 @@
 			children = (
 				7E1D4B491AC64524002E22CC /* AirEnemyManager.h */,
 				7E1D4B4A1AC64524002E22CC /* AirEnemyManager.m */,
+				7E1D0D161AD5E7A500CB7603 /* BasicAirEnemy.h */,
+				7E1D0D171AD5E7A500CB7603 /* BasicAirEnemy.m */,
 			);
 			path = airenemy;
 			sourceTree = "<group>";
@@ -1801,6 +1806,7 @@
 				7E3B0C271A131E8E0057869B /* Vec3D.m in Sources */,
 				7EA7AEAE1ABFDD06001C9EFE /* Spirit_Fish_3.m in Sources */,
 				7E3B0C0B1A131E8E0057869B /* GameObject.m in Sources */,
+				7E1D0D181AD5E7A500CB7603 /* BasicAirEnemy.m in Sources */,
 				7EA7AEC21ABFDDFD001C9EFE /* Arrow.m in Sources */,
 				7EA7AEB41ABFDD06001C9EFE /* Spirit_Fish_5.m in Sources */,
 				7E1779501AB8152600E3986C /* SpriterData.m in Sources */,

@@ -10,6 +10,8 @@
 #import "GameEngineScene.h"
 #import "Resource.h"
 #import "FileCache.h"
+#import "BasicAirEnemy.h"
+
 
 @implementation BaseAirEnemy
 -(void)i_update:(GameEngineScene*)game{
@@ -17,23 +19,6 @@
 }
 -(BOOL)should_remove{ return YES; }
 -(void)do_remove{ }
--(HitRect)get_hit_rect{ return hitrect_cons_xy_widhei(self.position.x, self.position.y, 0, 0); }
-@end
-
-@interface TestAirEnemy : BaseAirEnemy
-@end
-@implementation TestAirEnemy
-+(TestAirEnemy*)cons_pos:(CGPoint)pos {
-	return [[TestAirEnemy node] cons_pos:pos];
-}
--(TestAirEnemy*)cons_pos:(CGPoint)pos {
-	[self setPosition:pos];
-	[self setTexture:[Resource get_tex:TEX_ENEMIES_SPRITESHEET]];
-	[self setTextureRect:[FileCache get_cgrect_from_plist:TEX_ENEMIES_SPRITESHEET idname:@"spirit_fish_1.png"]];
-	[self setScale:0.25];
-	return self;
-}
--(BOOL)should_remove{ return NO; }
 -(HitRect)get_hit_rect{ return hitrect_cons_xy_widhei(self.position.x, self.position.y, 0, 0); }
 @end
 
@@ -46,12 +31,34 @@
 -(AirEnemyManager*)cons:(GameEngineScene*)game {
 	_enemies = [NSMutableArray array];
 
-	[self add_enemy:[TestAirEnemy cons_pos:ccp(50,50)] game:game];
-	[self add_enemy:[TestAirEnemy cons_pos:ccp(game_screen().width-50,-50)] game:game];
+	//[self add_enemy:[TestAirEnemy cons_pos:ccp(50,50)] game:game];
+	//[self add_enemy:[TestAirEnemy cons_pos:ccp(game_screen().width-50,-50)] game:game];
 	return self;
 }
 
+-(void)test_spawn_enemies:(GameEngineScene*)game {
+	if ([game get_player_state] == PlayerState_InAir) {
+		if (_enemies.count == 0) {
+			CGPoint start_pos = game_screen_pct(float_random(0.15, 0.85), 0);
+			start_pos.y -= 50;
+			
+			CGPoint end_pos;
+			if (float_random(0, 2) < 1) {
+				end_pos = game_screen_pct(0, float_random(0.15, 0.85));
+				end_pos.x -= 50;
+			} else {
+				end_pos = game_screen_pct(1, float_random(0.15, 0.85));
+				end_pos.x += 50;
+			}
+			
+			[self add_enemy:[BasicAirEnemy cons_g:game relstart:start_pos relend:end_pos] game:game];
+		}
+	}
+}
+
 -(void)i_update:(GameEngineScene*)game {
+	[self test_spawn_enemies:game];
+
 	NSMutableArray *do_remove = [NSMutableArray array];
 	for (int i = _enemies.count-1; i >= 0; i--) {
 		BaseAirEnemy *itr = [_enemies objectAtIndex:i];

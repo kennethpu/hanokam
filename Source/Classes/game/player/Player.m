@@ -195,7 +195,7 @@ typedef enum _PlayerAirCombatMode {
 						_air_params._s_vel.x,
 						MAX(_air_params._arrow_throwback_ct, _air_params._s_vel.y)
 					);
-					_air_params._arrow_throwback_ct -= 0.2;
+					_air_params._arrow_throwback_ct -= 0.1;
 				}
 			}
 			

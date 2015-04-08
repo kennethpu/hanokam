@@ -111,6 +111,7 @@ float cubic_angular_interp(float src, float dest, float c1, float c2, float t);
 CGPoint CGPointAdd(CGPoint a,CGPoint b);
 CGPoint CGPointSub(CGPoint a,CGPoint b);
 float CGPointDist(CGPoint a,CGPoint b);
+CGPoint CGPointMid(CGPoint a,CGPoint b);
 
 void dt_set(CCTime dt);
 void dt_unset();
