@@ -7,7 +7,6 @@
 //
 
 #import "BGSky.h"
-#import "Bird.h"
 #import "Common.h"
 #import "Resource.h"
 #import "CCTexture_Private.h"
@@ -19,8 +18,6 @@
 @implementation BGSky {
 	CCSprite *_sky_bg;
 	CCSprite *_docks,*_bldg_1, *_bldg_2, *_bldg_3;
-	float _tick;
-	NSMutableArray *_birds;
 	
 	CCSprite *_surface_gradient;
 	
@@ -35,9 +32,7 @@
 -(BGSky*)cons:(GameEngineScene *)g {
 	_above_water_elements = [NSMutableArray array];
 	_below_water_elements = [NSMutableArray array];
-
-	_birds = [NSMutableArray array];
-	_tick = 0;
+	
 	_sky_bg = [CCSprite node];
 	[[g get_anchor] addChild:_sky_bg z:GameAnchorZ_BGSky_RepeatBG];
 	[_above_water_elements addObject:_sky_bg];
@@ -131,9 +126,7 @@
  }
 -(void)below_water_root_set_visible:(BOOL)tar { for(CCNode *itr in _below_water_elements) [itr setVisible:tar]; }
 
--(void)i_update:(GameEngineScene*)g {
-	_tick += dt_scale_get();
-	
+-(void)i_update:(GameEngineScene*)g {	
 	if ([g.player is_underwater:g] && g.get_current_camera_center_y > -game_screen().height) {
 		[_water_surface_ripples clear:0 g:0 b:0 a:0];
 		[_water_surface_ripples begin];
@@ -185,28 +178,6 @@
 		MAX(0, [g get_viewbox].y2 + game_screen().height)
 	)];
 	[self set_bgobj_positions:g];
-
-	
-	// birds!
-	if(int_random(0, 40) == 0 && g.get_current_camera_center_y > 300) [self spawnBird_y:g.get_current_camera_center_y g:g];
-	NSMutableArray *birds_to_remove = [NSMutableArray array];
-	for (Bird *bird in _birds) {
-		[bird i_update:g];
-		if (bird.position.x > game_screen().width + 100) {
-			[birds_to_remove addObject:bird];
-			[bird removeFromParent];
-		}
-	}
-	[_birds removeObjectsInArray:birds_to_remove];
-	[birds_to_remove removeAllObjects];
-}
-
--(Bird*)spawnBird_y:(float)y g:(GameEngineScene*)g {
-	Bird * _new_bird;
-	_new_bird = (Bird*)[[Bird cons] add_to:[g get_anchor] z:3];
-	[_birds addObject:_new_bird];
-	_new_bird.position = ccp(-70, y + float_random(300,-300));
-	return _new_bird;
 }
 
 @end

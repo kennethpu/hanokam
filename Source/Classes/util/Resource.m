@@ -47,30 +47,18 @@ static NSSet* dont_load;
 		TEX_TEST_BG_TILE_SKY: @"bg_test_tile_sky.png",
 		TEX_TEST_BG_TILE_WATER: @"bg_test_tile_water.png",
 		TEX_TEST_BG_UNDERWATER_SURFACE_GRADIENT: @"bg_underwater_surface_gradient.png",
-		TEX_TEST_BG_OBJ_BIRD: @"bg_test_obj_bird.png",
-		TEX_TEST_BG_OBJ_CLOUD: @"bg_test_obj_cloud.png",
 		TEX_SH_BUTTON_MIDDLE: @"sh_button_middle.png",
 		TEX_SH_BUTTON_SIDE: @"sh_button_side.png",
 		TEX_TEST_SH_ITEM: @"sh_test_item.png",
-		TEX_TEST_BG_OBJ_CLOUD: @"bg_test_obj_cloud.png",
 		
 		TEX_SPRITER_CHAR_HANOKATEST: @"hanoka v0.01.png",
 		TEX_SPRITER_CHAR_HANOKA_V2: @"hanokav2.png",
-		
-		TEX_SPIRIT_FISH_1: @"spirit_fish_1.png",
-		TEX_SPIRIT_FISH_2: @"spirit_fish_2.png",
-		TEX_SPIRIT_FISH_3: @"spirit_fish_3.png",
-		TEX_PARTICLE_BLOOD_1: @"particle_blood_1.png",
-		TEX_PARTICLE_BUBBLE: @"particle_bubble.png",
-		TEX_ARROW: @"arrow.png",
 		TEX_RIPPLE: @"ripple.png",
 		
 		TEX_BG_SPRITESHEET_1: @"bg_spritesheet_1.png",
 		TEX_BG_UNDERWATER_SPRITESHEET: @"underwater_spritesheet.png",
 		TEX_BG_WATER_ELEMENT_FADE: @"bg_water_element_fade.png",
 		
-		TEX_AIMING_BAR: @"aiming_bar.png",
-		TEX_WATER_SHINE: @"water_shine.png",
 		TEX_HUD_SPRITESHEET: @"hud_spritesheet.png",
 		TEX_PARTICLES_SPRITESHEET: @"particles_spritesheet.png",
 		TEX_ENEMIES_SPRITESHEET: @"enemies_spritesheet.png"

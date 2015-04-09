@@ -28,15 +28,5 @@
 #define TEX_SH_BUTTON_SIDE @"sh_button_side"
 #define TEX_TEST_SH_ITEM @"sh_test_item"
 
-#define TEX_AIMING_BAR @"aiming_bar"
-#define TEX_PARTICLE_BLOOD_1 @"particle_blood_1"
-#define TEX_PARTICLE_BUBBLE @"particle_bubble"
-#define TEX_WATER_SHINE @"water_shine"
-#define TEX_ARROW @"arrow"
-#define TEX_TEST_BG_OBJ_BIRD @"bg_test_obj_bird"
-#define TEX_TEST_BG_OBJ_CLOUD @"bg_test_obj_cloud"
-#define TEX_SPIRIT_FISH_1 @"spirit_fish_1"
-#define TEX_SPIRIT_FISH_2 @"spirit_fish_2"
-#define TEX_SPIRIT_FISH_3 @"spirit_fish_3"
 
 @end
