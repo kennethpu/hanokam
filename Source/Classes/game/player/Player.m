@@ -8,11 +8,13 @@
 #import "SpriterJSONParser.h"
 #import "SpriterData.h"
 
-#import "Arrow.h"
+#import "PlayerProjectile.h"
 #import "ParticleBubble.h"
 
 #import "CCTexture_Private.h"
 #import "ControlManager.h"
+
+#import "AirEnemyManager.h"
 
 #import "PlayerAirCombatParams.h"
 #import "PlayerUnderwaterCombatParams.h"
@@ -332,6 +334,18 @@
 				}
 			}
 			
+			for (BaseAirEnemy *itr in g.get_air_enemy_manager.get_enemies) {
+				if (SAT_polyowners_intersect(self, itr)) {
+					_air_params._s_vel = ccp(_air_params._s_vel.x,7);
+					_air_params._w_upwards_vel = 7;
+					_air_params._arrow_throwback_ct = 2.0;
+					_air_params._sword_out = NO;
+					[self play_anim:@"in air" repeat:YES];
+					[itr hit_player_melee:g];
+					break;
+				}
+			}
+			
 			_s_pos = ccp(
 				_s_pos.x+_air_params._s_vel.x,
 				clampf(_s_pos.y+_air_params._s_vel.y,-INFINITY,_air_params.DEFAULT_HEIGHT)
@@ -352,6 +366,7 @@
 	
 	if (g.player.position.y < 0 && _air_params._current_mode != PlayerAirCombatMode_InitialJumpOut) {
 		[self prep_transition_air_to_land_mode:g];
+		[g.get_air_enemy_manager notify_enemies_leave:g];
 	}
 }
 
@@ -385,7 +400,11 @@
 	return self.position.y < 0;
 }
 
+-(CGPoint)get_size { return ccp(40,130); }
 -(HitRect)get_hit_rect {
-	return hitrect_cons_xy_widhei(self.position.x-6, self.position.y-12, 12, 24);
+	return satpolyowner_cons_hit_rect(self.position, self.get_size.x, self.get_size.y);
+}
+-(void)get_sat_poly:(SATPoly*)in_poly {
+	return satpolyowner_cons_sat_poly(in_poly, self.position, self.rotation, self.get_size.x, self.get_size.y, ccp(1,1));
 }
 @end

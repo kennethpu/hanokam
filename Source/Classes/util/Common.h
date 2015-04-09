@@ -1,6 +1,5 @@
 #ifndef COMMON_H
 #define COMMON_H
-#import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Vec3D.h"
 
@@ -171,5 +170,6 @@ float cubic_interp(float a, float b, float c1, float c2, float t);
 
 float signum(float value);
 float low_filter(float value, float min);
+Vec3D vec_from_ccrotation(float rotation);
 
 #endif

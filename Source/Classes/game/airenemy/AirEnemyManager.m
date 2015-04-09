@@ -20,6 +20,10 @@
 -(BOOL)should_remove{ return YES; }
 -(void)do_remove{ }
 -(HitRect)get_hit_rect{ return hitrect_cons_xy_widhei(self.position.x, self.position.y, 0, 0); }
+-(void)get_sat_poly:(SATPoly *)in_poly { }
+-(void)hit_projectile:(GameEngineScene*)g{}
+-(void)hit_player_melee:(GameEngineScene*)g{}
+-(void)notify_leave:(GameEngineScene*)g{}
 @end
 
 @implementation AirEnemyManager {
@@ -30,15 +34,12 @@
 }
 -(AirEnemyManager*)cons:(GameEngineScene*)game {
 	_enemies = [NSMutableArray array];
-
-	//[self add_enemy:[TestAirEnemy cons_pos:ccp(50,50)] game:game];
-	//[self add_enemy:[TestAirEnemy cons_pos:ccp(game_screen().width-50,-50)] game:game];
 	return self;
 }
 
 -(void)test_spawn_enemies:(GameEngineScene*)game {
 	if ([game get_player_state] == PlayerState_InAir) {
-		if (_enemies.count == 0) {
+		if (_enemies.count == 0 || float_random(0, 50) < 1) {
 			CGPoint start_pos = game_screen_pct(float_random(0.15, 0.85), 0);
 			start_pos.y -= 50;
 			
@@ -79,6 +80,11 @@
 
 -(NSArray*)get_enemies {
 	return _enemies;
+}
+-(void)notify_enemies_leave:(GameEngineScene*)g {
+	for (BaseAirEnemy *itr in _enemies) {
+		[itr notify_leave:g];
+	}
 }
 
 @end

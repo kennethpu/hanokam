@@ -41,4 +41,7 @@
     [_particles removeObjectsInArray:_to_remove];
 	[_to_remove removeAllObjects];
 }
+-(NSArray*)list {
+	return _particles;
+}
 @end

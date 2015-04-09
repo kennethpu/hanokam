@@ -208,9 +208,9 @@
 		7EA7AE951ABFDCD6001C9EFE /* SHItemRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE8B1ABFDCD6001C9EFE /* SHItemRow.m */; };
 		7EA7AE961ABFDCD6001C9EFE /* SHItemRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE8B1ABFDCD6001C9EFE /* SHItemRow.m */; };
 		7EA7AE971ABFDCD6001C9EFE /* SHItemRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE8B1ABFDCD6001C9EFE /* SHItemRow.m */; };
-		7EA7AEC21ABFDDFD001C9EFE /* Arrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEC11ABFDDFD001C9EFE /* Arrow.m */; };
-		7EA7AEC31ABFDDFD001C9EFE /* Arrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEC11ABFDDFD001C9EFE /* Arrow.m */; };
-		7EA7AEC41ABFDDFD001C9EFE /* Arrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEC11ABFDDFD001C9EFE /* Arrow.m */; };
+		7EA7AEC21ABFDDFD001C9EFE /* PlayerProjectile.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEC11ABFDDFD001C9EFE /* PlayerProjectile.m */; };
+		7EA7AEC31ABFDDFD001C9EFE /* PlayerProjectile.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEC11ABFDDFD001C9EFE /* PlayerProjectile.m */; };
+		7EA7AEC41ABFDDFD001C9EFE /* PlayerProjectile.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEC11ABFDDFD001C9EFE /* PlayerProjectile.m */; };
 		7EA7AEC81ABFE12F001C9EFE /* GameUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEC71ABFE12F001C9EFE /* GameUI.m */; };
 		7EA7AEC91ABFE12F001C9EFE /* GameUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEC71ABFE12F001C9EFE /* GameUI.m */; };
 		7EA7AECA1ABFE12F001C9EFE /* GameUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEC71ABFE12F001C9EFE /* GameUI.m */; };
@@ -503,8 +503,8 @@
 		7EA7AE891ABFDCD6001C9EFE /* SHItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHItem.m; sourceTree = "<group>"; };
 		7EA7AE8A1ABFDCD6001C9EFE /* SHItemRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHItemRow.h; sourceTree = "<group>"; };
 		7EA7AE8B1ABFDCD6001C9EFE /* SHItemRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHItemRow.m; sourceTree = "<group>"; };
-		7EA7AEC01ABFDDFD001C9EFE /* Arrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Arrow.h; path = projectiles/Arrow.h; sourceTree = "<group>"; };
-		7EA7AEC11ABFDDFD001C9EFE /* Arrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Arrow.m; path = projectiles/Arrow.m; sourceTree = "<group>"; };
+		7EA7AEC01ABFDDFD001C9EFE /* PlayerProjectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayerProjectile.h; path = projectiles/PlayerProjectile.h; sourceTree = "<group>"; };
+		7EA7AEC11ABFDDFD001C9EFE /* PlayerProjectile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayerProjectile.m; path = projectiles/PlayerProjectile.m; sourceTree = "<group>"; };
 		7EA7AEC61ABFE12F001C9EFE /* GameUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameUI.h; sourceTree = "<group>"; };
 		7EA7AEC71ABFE12F001C9EFE /* GameUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameUI.m; sourceTree = "<group>"; };
 		7EA7AECB1ABFF929001C9EFE /* HealthBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthBar.h; sourceTree = "<group>"; };
@@ -1086,8 +1086,8 @@
 		7EF468CF1ABFB4970041E55F /* projectiles */ = {
 			isa = PBXGroup;
 			children = (
-				7EA7AEC01ABFDDFD001C9EFE /* Arrow.h */,
-				7EA7AEC11ABFDDFD001C9EFE /* Arrow.m */,
+				7EA7AEC01ABFDDFD001C9EFE /* PlayerProjectile.h */,
+				7EA7AEC11ABFDDFD001C9EFE /* PlayerProjectile.m */,
 			);
 			name = projectiles;
 			sourceTree = "<group>";
@@ -1617,7 +1617,7 @@
 				7A40360419DDEE84007B6E8F /* main.m in Sources */,
 				7EA7AE2D1ABFA984001C9EFE /* ShaderManager.m in Sources */,
 				7E80EED11AC7E46500B5D312 /* ControlManager.m in Sources */,
-				7EA7AEC41ABFDDFD001C9EFE /* Arrow.m in Sources */,
+				7EA7AEC41ABFDDFD001C9EFE /* PlayerProjectile.m in Sources */,
 				7E80EECA1AC7838500B5D312 /* Common.m in Sources */,
 				7E1779691AB81AF600E3986C /* SpriterXMLParser.m in Sources */,
 				7E90D18F1AB63DB700E06F92 /* BGSky.m in Sources */,
@@ -1659,7 +1659,7 @@
 				7E1779721AB8289A00E3986C /* SpriterTypes.m in Sources */,
 				7EA7AEC91ABFE12F001C9EFE /* GameUI.m in Sources */,
 				7E17796D1AB81EC300E3986C /* SpriterJSONParser.m in Sources */,
-				7EA7AEC31ABFDDFD001C9EFE /* Arrow.m in Sources */,
+				7EA7AEC31ABFDDFD001C9EFE /* PlayerProjectile.m in Sources */,
 				7E80EECF1AC7E46500B5D312 /* ControlManager.m in Sources */,
 				7E90D1931AB63DD800E06F92 /* BGWater.m in Sources */,
 				7EF468B91ABF78870041E55F /* ParticlePhysical.m in Sources */,
@@ -1675,7 +1675,7 @@
 				7E3B0C271A131E8E0057869B /* Vec3D.m in Sources */,
 				7E3B0C0B1A131E8E0057869B /* GameObject.m in Sources */,
 				7E1D0D181AD5E7A500CB7603 /* BasicAirEnemy.m in Sources */,
-				7EA7AEC21ABFDDFD001C9EFE /* Arrow.m in Sources */,
+				7EA7AEC21ABFDDFD001C9EFE /* PlayerProjectile.m in Sources */,
 				7E1779501AB8152600E3986C /* SpriterData.m in Sources */,
 				7EA7AECD1ABFF929001C9EFE /* HealthBar.m in Sources */,
 				7E80EECE1AC7E46500B5D312 /* ControlManager.m in Sources */,

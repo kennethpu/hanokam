@@ -483,3 +483,7 @@ float signum(float value) {
 float low_filter(float value, float min) {
 	return ABS(value) < ABS(min) ? 0 : value;
 }
+
+Vec3D vec_from_ccrotation(float rotation) {
+	return vec_cons(cosf(deg_to_rad(-rotation)), sinf(deg_to_rad(-rotation)), 0);
+}

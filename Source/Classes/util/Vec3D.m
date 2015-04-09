@@ -116,3 +116,14 @@ CGPoint vec_to_cgpoint(Vec3D v) {
 Vec3D cgpoint_to_vec(CGPoint pt) {
 	return vec_cons(pt.x, pt.y, 0);
 }
+
+CGPoint vec_basis_transform_point(CGPoint pt, Vec3D a, float as, Vec3D b, float bs) {
+	vec_norm_m(&a);
+	vec_norm_m(&b);
+	vec_scale_m(&a, as);
+	vec_scale_m(&b, bs);
+	return ccp(
+		pt.x + a.x + b.x,
+		pt.y + a.y + b.y
+	);
+}

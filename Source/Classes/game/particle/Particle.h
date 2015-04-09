@@ -16,4 +16,5 @@
 +(ParticleSystem*)cons_anchor:(CCNode*)anchor;
 -(void)add_particle:(Particle*)p;
 -(void)update_particles:(id)parent;
+-(NSArray*)list;
 @end

@@ -12,7 +12,7 @@
 #import "CCTexture_Private.h"
 #import "ControlManager.h"
 #import "Resource.h"
-#import "Arrow.h"
+#import "PlayerProjectile.h"
 #import "GameMain.h"
 //#import "AccelerometerSimulation.h"
 
@@ -345,11 +345,29 @@
 
 -(void)debug_draw_hitboxes {
 	[_debug_draw clear];
-	CCColor *player_color = [CCColor colorWithCcColor4f:ccc4f(0, 1, 0, 0.5)];
-	CCColor *enemy_color = [CCColor colorWithCcColor4f:ccc4f(1, 0, 0, 0.5)];
+	CCColor *player_color = [CCColor colorWithCcColor4f:ccc4f(0, 1, 0, 0.25)];
+	CCColor *player_sat_color = [CCColor colorWithCcColor4f:ccc4f(0, 1, 0, 0.75)];
+	CCColor *enemy_color = [CCColor colorWithCcColor4f:ccc4f(1, 0, 0, 0.25)];
+	CCColor *enemy_sat_color = [CCColor colorWithCcColor4f:ccc4f(1, 0, 0, 0.75)];
+	CCColor *projectile_color = [CCColor colorWithCcColor4f:ccc4f(1, 1, 0, 0.25)];
+	CCColor *projectile_sat_color = [CCColor colorWithCcColor4f:ccc4f(1, 1, 0, 0.75)];
+	
+	SATPoly itr_poly;
+	
 	[self draw_hit_rect:_player.get_hit_rect color:player_color];
+	[_player get_sat_poly:&itr_poly];
+	[self draw_sat_poly:&itr_poly color:player_sat_color];
+	
 	for (BaseAirEnemy *itr in _air_enemy_manager.get_enemies) {
 		[self draw_hit_rect:itr.get_hit_rect color:enemy_color];
+		[itr get_sat_poly:&itr_poly];
+		[self draw_sat_poly:&itr_poly color:enemy_sat_color];
+	}
+	
+	for (PlayerProjectile *itr in _player_projectiles.list) {
+		[self draw_hit_rect:itr.get_hit_rect color:projectile_color];
+		[itr get_sat_poly:&itr_poly];
+		[self draw_sat_poly:&itr_poly color:projectile_sat_color];
 	}
 }
 
@@ -360,6 +378,14 @@ static CGPoint *__dhrbuf;
 	__dhrbuf[1] = ccp(hr.x1,hr.y2);
 	__dhrbuf[2] = ccp(hr.x2,hr.y2);
 	__dhrbuf[3] = ccp(hr.x2,hr.y1);
+	[_debug_draw drawPolyWithVerts:__dhrbuf count:4 fillColor:color borderWidth:0 borderColor:color];
+}
+-(void)draw_sat_poly:(SATPoly*)poly color:(CCColor*)color {
+	if (__dhrbuf == NULL) __dhrbuf = malloc(sizeof(CGPoint)*4);
+	__dhrbuf[0] = poly->pts[0];
+	__dhrbuf[1] = poly->pts[1];
+	__dhrbuf[2] = poly->pts[2];
+	__dhrbuf[3] = poly->pts[3];
 	[_debug_draw drawPolyWithVerts:__dhrbuf count:4 fillColor:color borderWidth:0 borderColor:color];
 }
 
