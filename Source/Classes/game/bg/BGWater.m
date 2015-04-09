@@ -154,7 +154,7 @@
 	[element setVisible:YES];
 	[element setPosition:ccp(0,g.get_viewbox.y1)];
 	
-	float posy = -g.get_camera_y * mult;
+	float posy = -g.get_current_camera_center_y * mult;
 	float m_ypos = ((int)(posy))%element.texture.pixelHeight + ((posy) - ((int)(posy)));
 	
 	[element setTextureRect:CGRectMake(
@@ -166,10 +166,10 @@
 }
 
 -(void)i_update:(GameEngineScene*)g {
-	[_water_bg setPosition:ccp(0, g.get_camera_y - game_screen().height / 2)];
+	[_water_bg setPosition:ccp(0, g.get_current_camera_center_y - game_screen().height / 2)];
 	
-	_bg_2_ground.position = ccp(_bg_2_ground.position.x,clampf([g get_camera_y] * .2 + 5, 20,200));
-	_bg_3_ground.position = ccp(_bg_3_ground.position.x,[g get_camera_y]*.25 + 15);
+	_bg_2_ground.position = ccp(_bg_2_ground.position.x,clampf(g.get_current_camera_center_y * .2 + 5, 20,200));
+	_bg_3_ground.position = ccp(_bg_3_ground.position.x,g.get_current_camera_center_y*.25 + 15);
 	
 	if (g.get_viewbox.y1 > -180) {
 		[_underwater_element_1 setVisible:NO];

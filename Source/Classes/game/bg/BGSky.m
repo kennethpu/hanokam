@@ -15,7 +15,6 @@
 #import "Player.h"
 #import "ShaderManager.h"
 #import "FileCache.h"
-#import "SpiritBase.h"
 
 @implementation BGSky {
 	CCSprite *_sky_bg;
@@ -121,7 +120,7 @@
 }
 
 -(void)set_bgobj_positions:(GameEngineScene*)game {
-	float camera_y = [game get_camera_y];
+	float camera_y = game.get_current_camera_center_y;
 	_bldg_1.position = ccp(_bldg_1.position.x,clampf(camera_y*.1, 0, game.HORIZON_HEIGHT));
 	_bldg_2.position = ccp(_bldg_2.position.x,clampf(camera_y*.2, 0, game.HORIZON_HEIGHT));
 	_bldg_3.position = ccp(_bldg_3.position.x,camera_y*.25);
@@ -135,7 +134,7 @@
 -(void)i_update:(GameEngineScene*)g {
 	_tick += dt_scale_get();
 	
-	if ([g.player is_underwater:g] && g.get_camera_y > -game_screen().height) {
+	if ([g.player is_underwater:g] && g.get_current_camera_center_y > -game_screen().height) {
 		[_water_surface_ripples clear:0 g:0 b:0 a:0];
 		[_water_surface_ripples begin];
 		CCSprite *proto = g.get_ripple_proto;
@@ -189,7 +188,7 @@
 
 	
 	// birds!
-	if(int_random(0, 40) == 0 && g.get_camera_y > 300) [self spawnBird_y:g.get_camera_y g:g];
+	if(int_random(0, 40) == 0 && g.get_current_camera_center_y > 300) [self spawnBird_y:g.get_current_camera_center_y g:g];
 	NSMutableArray *birds_to_remove = [NSMutableArray array];
 	for (Bird *bird in _birds) {
 		[bird i_update:g];

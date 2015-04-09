@@ -58,25 +58,21 @@ typedef enum _GameAnchorZ {
 -(void)freeze_frame:(int)ct;
 
 -(float)tick;
--(CGPoint)touch_position;
--(BOOL)touch_down;
--(BOOL)touch_tapped;
--(BOOL)touch_released;
--(float)get_camera_y;
--(void)center_camera_hei:(float)hei;
 
 -(PlayerState)get_player_state;
 -(HitRect)get_viewbox;
--(CGPoint)camera_center_point;
 -(CCNode*)get_anchor;
 -(SpiritManager*)get_spirit_manager;
 -(AirEnemyManager*)get_air_enemy_manager;
 
 -(void)add_ripple:(CGPoint)pos;
 -(float)get_ground_depth;
--(void)set_zoom:(float)val;
--(float)zoom;
--(float)player_combat_top_y;
+
+-(void)set_camera_height:(float)tar;
+-(void)set_zoom:(float)tar;
+-(float)get_zoom;
+-(void)imm_set_camera_hei:(float)hei;
+-(float)get_current_camera_center_y;
 
 -(float) REFLECTION_HEIGHT;
 -(float) HORIZON_HEIGHT;
@@ -88,7 +84,6 @@ typedef enum _GameAnchorZ {
 -(NSArray*)get_ripple_infos;
 -(CCSprite*)get_ripple_proto;
 -(BGSky*)get_bg_sky;
--(float)get_cam_y_lirp_current;
 
 -(void)add_player_projectile:(PlayerProjectile*)tar;
 @end

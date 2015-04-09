@@ -12,7 +12,6 @@
 		5B12102A197484DD004C1E1D /* hobobobActivity.java in Sources */ = {isa = PBXBuildFile; fileRef = 5B12101B19748413004C1E1D /* hobobobActivity.java */; };
 		5B121030197484FA004C1E1D /* hobobobActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B12102F197484FA004C1E1D /* hobobobActivity.m */; };
 		5B121038197487F2004C1E1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B737893E1807617C0076A88C /* AppDelegate.m */; };
-		5EBEBF721AC770CE001EF3F2 /* Spirit_Tail.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBEBF711AC770CE001EF3F2 /* Spirit_Tail.m */; };
 		7A40360419DDEE84007B6E8F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A40360319DDEE84007B6E8F /* main.m */; };
 		7A4036EB19DE3F8E007B6E8F /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8392007918EE8E3300B6C429 /* GLKit.framework */; };
 		7A4036EC19DE3F90007B6E8F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3117B978D7009739AE /* QuartzCore.framework */; };
@@ -77,6 +76,9 @@
 		7E1B806E1A189C330055E654 /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1B806D1A189C330055E654 /* MainMenuScene.m */; };
 		7E1B80711A189F450055E654 /* TouchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1B80701A189F450055E654 /* TouchButton.m */; };
 		7E1D0D181AD5E7A500CB7603 /* BasicAirEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1D0D171AD5E7A500CB7603 /* BasicAirEnemy.m */; };
+		7E1D0D1C1AD5F3FB00CB7603 /* PlayerAirCombatParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1D0D1B1AD5F3FB00CB7603 /* PlayerAirCombatParams.m */; };
+		7E1D0D1F1AD5F44900CB7603 /* PlayerUnderwaterCombatParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1D0D1E1AD5F44900CB7603 /* PlayerUnderwaterCombatParams.m */; };
+		7E1D0D221AD5F56C00CB7603 /* PlayerLandParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1D0D211AD5F56C00CB7603 /* PlayerLandParams.m */; };
 		7E1D4B4B1AC64524002E22CC /* AirEnemyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1D4B4A1AC64524002E22CC /* AirEnemyManager.m */; };
 		7E1D4B4C1AC64524002E22CC /* AirEnemyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1D4B4A1AC64524002E22CC /* AirEnemyManager.m */; };
 		7E1D4B4D1AC64524002E22CC /* AirEnemyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1D4B4A1AC64524002E22CC /* AirEnemyManager.m */; };
@@ -219,30 +221,6 @@
 		7EA7AE951ABFDCD6001C9EFE /* SHItemRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE8B1ABFDCD6001C9EFE /* SHItemRow.m */; };
 		7EA7AE961ABFDCD6001C9EFE /* SHItemRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE8B1ABFDCD6001C9EFE /* SHItemRow.m */; };
 		7EA7AE971ABFDCD6001C9EFE /* SHItemRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE8B1ABFDCD6001C9EFE /* SHItemRow.m */; };
-		7EA7AEA81ABFDD06001C9EFE /* Spirit_Fish_1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE991ABFDD06001C9EFE /* Spirit_Fish_1.m */; };
-		7EA7AEA91ABFDD06001C9EFE /* Spirit_Fish_1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE991ABFDD06001C9EFE /* Spirit_Fish_1.m */; };
-		7EA7AEAA1ABFDD06001C9EFE /* Spirit_Fish_1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE991ABFDD06001C9EFE /* Spirit_Fish_1.m */; };
-		7EA7AEAB1ABFDD06001C9EFE /* Spirit_Fish_2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE9B1ABFDD06001C9EFE /* Spirit_Fish_2.m */; };
-		7EA7AEAC1ABFDD06001C9EFE /* Spirit_Fish_2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE9B1ABFDD06001C9EFE /* Spirit_Fish_2.m */; };
-		7EA7AEAD1ABFDD06001C9EFE /* Spirit_Fish_2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE9B1ABFDD06001C9EFE /* Spirit_Fish_2.m */; };
-		7EA7AEAE1ABFDD06001C9EFE /* Spirit_Fish_3.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE9D1ABFDD06001C9EFE /* Spirit_Fish_3.m */; };
-		7EA7AEAF1ABFDD06001C9EFE /* Spirit_Fish_3.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE9D1ABFDD06001C9EFE /* Spirit_Fish_3.m */; };
-		7EA7AEB01ABFDD06001C9EFE /* Spirit_Fish_3.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE9D1ABFDD06001C9EFE /* Spirit_Fish_3.m */; };
-		7EA7AEB11ABFDD06001C9EFE /* Spirit_Fish_4.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE9F1ABFDD06001C9EFE /* Spirit_Fish_4.m */; };
-		7EA7AEB21ABFDD06001C9EFE /* Spirit_Fish_4.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE9F1ABFDD06001C9EFE /* Spirit_Fish_4.m */; };
-		7EA7AEB31ABFDD06001C9EFE /* Spirit_Fish_4.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AE9F1ABFDD06001C9EFE /* Spirit_Fish_4.m */; };
-		7EA7AEB41ABFDD06001C9EFE /* Spirit_Fish_5.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEA11ABFDD06001C9EFE /* Spirit_Fish_5.m */; };
-		7EA7AEB51ABFDD06001C9EFE /* Spirit_Fish_5.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEA11ABFDD06001C9EFE /* Spirit_Fish_5.m */; };
-		7EA7AEB61ABFDD06001C9EFE /* Spirit_Fish_5.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEA11ABFDD06001C9EFE /* Spirit_Fish_5.m */; };
-		7EA7AEB71ABFDD06001C9EFE /* Spirit_Fish_6.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEA31ABFDD06001C9EFE /* Spirit_Fish_6.m */; };
-		7EA7AEB81ABFDD06001C9EFE /* Spirit_Fish_6.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEA31ABFDD06001C9EFE /* Spirit_Fish_6.m */; };
-		7EA7AEB91ABFDD06001C9EFE /* Spirit_Fish_6.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEA31ABFDD06001C9EFE /* Spirit_Fish_6.m */; };
-		7EA7AEBA1ABFDD06001C9EFE /* SpiritBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEA51ABFDD06001C9EFE /* SpiritBase.m */; };
-		7EA7AEBB1ABFDD06001C9EFE /* SpiritBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEA51ABFDD06001C9EFE /* SpiritBase.m */; };
-		7EA7AEBC1ABFDD06001C9EFE /* SpiritBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEA51ABFDD06001C9EFE /* SpiritBase.m */; };
-		7EA7AEBD1ABFDD06001C9EFE /* SpiritManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEA71ABFDD06001C9EFE /* SpiritManager.m */; };
-		7EA7AEBE1ABFDD06001C9EFE /* SpiritManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEA71ABFDD06001C9EFE /* SpiritManager.m */; };
-		7EA7AEBF1ABFDD06001C9EFE /* SpiritManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEA71ABFDD06001C9EFE /* SpiritManager.m */; };
 		7EA7AEC21ABFDDFD001C9EFE /* Arrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEC11ABFDDFD001C9EFE /* Arrow.m */; };
 		7EA7AEC31ABFDDFD001C9EFE /* Arrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEC11ABFDDFD001C9EFE /* Arrow.m */; };
 		7EA7AEC41ABFDDFD001C9EFE /* Arrow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEC11ABFDDFD001C9EFE /* Arrow.m */; };
@@ -433,8 +411,6 @@
 		5B121033197485FE004C1E1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Platforms/Android/Info.plist; sourceTree = "<group>"; };
 		5B121034197485FE004C1E1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Platforms/iOS/Info.plist; sourceTree = "<group>"; };
 		5BA4619E1974C88900785744 /* AndroidManifest.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = AndroidManifest.xml; path = Platforms/Android/AndroidManifest.xml; sourceTree = "<group>"; };
-		5EBEBF701AC770CE001EF3F2 /* Spirit_Tail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spirit_Tail.h; sourceTree = "<group>"; };
-		5EBEBF711AC770CE001EF3F2 /* Spirit_Tail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spirit_Tail.m; sourceTree = "<group>"; };
 		7A4035FF19DDEE84007B6E8F /* hobobob Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hobobob Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A40360219DDEE84007B6E8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Platforms/Mac/Info.plist; sourceTree = "<group>"; };
 		7A40360319DDEE84007B6E8F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Source/Platforms/Mac/main.m; sourceTree = "<group>"; };
@@ -470,6 +446,12 @@
 		7E1B80701A189F450055E654 /* TouchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchButton.m; sourceTree = "<group>"; };
 		7E1D0D161AD5E7A500CB7603 /* BasicAirEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicAirEnemy.h; sourceTree = "<group>"; };
 		7E1D0D171AD5E7A500CB7603 /* BasicAirEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicAirEnemy.m; sourceTree = "<group>"; };
+		7E1D0D1A1AD5F3FB00CB7603 /* PlayerAirCombatParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerAirCombatParams.h; sourceTree = "<group>"; };
+		7E1D0D1B1AD5F3FB00CB7603 /* PlayerAirCombatParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerAirCombatParams.m; sourceTree = "<group>"; };
+		7E1D0D1D1AD5F44900CB7603 /* PlayerUnderwaterCombatParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerUnderwaterCombatParams.h; sourceTree = "<group>"; };
+		7E1D0D1E1AD5F44900CB7603 /* PlayerUnderwaterCombatParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerUnderwaterCombatParams.m; sourceTree = "<group>"; };
+		7E1D0D201AD5F56C00CB7603 /* PlayerLandParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerLandParams.h; sourceTree = "<group>"; };
+		7E1D0D211AD5F56C00CB7603 /* PlayerLandParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerLandParams.m; sourceTree = "<group>"; };
 		7E1D4B491AC64524002E22CC /* AirEnemyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirEnemyManager.h; sourceTree = "<group>"; };
 		7E1D4B4A1AC64524002E22CC /* AirEnemyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirEnemyManager.m; sourceTree = "<group>"; };
 		7E1D4B4F1AC64818002E22CC /* enemies_spritesheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = enemies_spritesheet.plist; sourceTree = "<group>"; };
@@ -546,22 +528,6 @@
 		7EA7AE891ABFDCD6001C9EFE /* SHItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHItem.m; sourceTree = "<group>"; };
 		7EA7AE8A1ABFDCD6001C9EFE /* SHItemRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHItemRow.h; sourceTree = "<group>"; };
 		7EA7AE8B1ABFDCD6001C9EFE /* SHItemRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHItemRow.m; sourceTree = "<group>"; };
-		7EA7AE981ABFDD06001C9EFE /* Spirit_Fish_1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Spirit_Fish_1.h; path = monster/Spirit_Fish_1.h; sourceTree = "<group>"; };
-		7EA7AE991ABFDD06001C9EFE /* Spirit_Fish_1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Spirit_Fish_1.m; path = monster/Spirit_Fish_1.m; sourceTree = "<group>"; };
-		7EA7AE9A1ABFDD06001C9EFE /* Spirit_Fish_2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Spirit_Fish_2.h; path = monster/Spirit_Fish_2.h; sourceTree = "<group>"; };
-		7EA7AE9B1ABFDD06001C9EFE /* Spirit_Fish_2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Spirit_Fish_2.m; path = monster/Spirit_Fish_2.m; sourceTree = "<group>"; };
-		7EA7AE9C1ABFDD06001C9EFE /* Spirit_Fish_3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Spirit_Fish_3.h; path = monster/Spirit_Fish_3.h; sourceTree = "<group>"; };
-		7EA7AE9D1ABFDD06001C9EFE /* Spirit_Fish_3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Spirit_Fish_3.m; path = monster/Spirit_Fish_3.m; sourceTree = "<group>"; };
-		7EA7AE9E1ABFDD06001C9EFE /* Spirit_Fish_4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Spirit_Fish_4.h; path = monster/Spirit_Fish_4.h; sourceTree = "<group>"; };
-		7EA7AE9F1ABFDD06001C9EFE /* Spirit_Fish_4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Spirit_Fish_4.m; path = monster/Spirit_Fish_4.m; sourceTree = "<group>"; };
-		7EA7AEA01ABFDD06001C9EFE /* Spirit_Fish_5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Spirit_Fish_5.h; path = monster/Spirit_Fish_5.h; sourceTree = "<group>"; };
-		7EA7AEA11ABFDD06001C9EFE /* Spirit_Fish_5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Spirit_Fish_5.m; path = monster/Spirit_Fish_5.m; sourceTree = "<group>"; };
-		7EA7AEA21ABFDD06001C9EFE /* Spirit_Fish_6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Spirit_Fish_6.h; path = monster/Spirit_Fish_6.h; sourceTree = "<group>"; };
-		7EA7AEA31ABFDD06001C9EFE /* Spirit_Fish_6.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Spirit_Fish_6.m; path = monster/Spirit_Fish_6.m; sourceTree = "<group>"; };
-		7EA7AEA41ABFDD06001C9EFE /* SpiritBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpiritBase.h; path = monster/SpiritBase.h; sourceTree = "<group>"; };
-		7EA7AEA51ABFDD06001C9EFE /* SpiritBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpiritBase.m; path = monster/SpiritBase.m; sourceTree = "<group>"; };
-		7EA7AEA61ABFDD06001C9EFE /* SpiritManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpiritManager.h; path = monster/SpiritManager.h; sourceTree = "<group>"; };
-		7EA7AEA71ABFDD06001C9EFE /* SpiritManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpiritManager.m; path = monster/SpiritManager.m; sourceTree = "<group>"; };
 		7EA7AEC01ABFDDFD001C9EFE /* Arrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Arrow.h; path = projectiles/Arrow.h; sourceTree = "<group>"; };
 		7EA7AEC11ABFDDFD001C9EFE /* Arrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Arrow.m; path = projectiles/Arrow.m; sourceTree = "<group>"; };
 		7EA7AEC61ABFE12F001C9EFE /* GameUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameUI.h; sourceTree = "<group>"; };
@@ -852,24 +818,6 @@
 		7E1460DE1ABA41A40044B31F /* monster */ = {
 			isa = PBXGroup;
 			children = (
-				7EA7AE981ABFDD06001C9EFE /* Spirit_Fish_1.h */,
-				7EA7AE991ABFDD06001C9EFE /* Spirit_Fish_1.m */,
-				7EA7AE9A1ABFDD06001C9EFE /* Spirit_Fish_2.h */,
-				7EA7AE9B1ABFDD06001C9EFE /* Spirit_Fish_2.m */,
-				7EA7AE9C1ABFDD06001C9EFE /* Spirit_Fish_3.h */,
-				7EA7AE9D1ABFDD06001C9EFE /* Spirit_Fish_3.m */,
-				7EA7AE9E1ABFDD06001C9EFE /* Spirit_Fish_4.h */,
-				7EA7AE9F1ABFDD06001C9EFE /* Spirit_Fish_4.m */,
-				7EA7AEA01ABFDD06001C9EFE /* Spirit_Fish_5.h */,
-				7EA7AEA11ABFDD06001C9EFE /* Spirit_Fish_5.m */,
-				7EA7AEA21ABFDD06001C9EFE /* Spirit_Fish_6.h */,
-				7EA7AEA31ABFDD06001C9EFE /* Spirit_Fish_6.m */,
-				7EA7AEA41ABFDD06001C9EFE /* SpiritBase.h */,
-				7EA7AEA51ABFDD06001C9EFE /* SpiritBase.m */,
-				7EA7AEA61ABFDD06001C9EFE /* SpiritManager.h */,
-				7EA7AEA71ABFDD06001C9EFE /* SpiritManager.m */,
-				5EBEBF701AC770CE001EF3F2 /* Spirit_Tail.h */,
-				5EBEBF711AC770CE001EF3F2 /* Spirit_Tail.m */,
 			);
 			name = monster;
 			sourceTree = "<group>";
@@ -945,6 +893,12 @@
 			children = (
 				7E3B0BD41A131E8E0057869B /* Player.h */,
 				7E3B0BD51A131E8E0057869B /* Player.m */,
+				7E1D0D1A1AD5F3FB00CB7603 /* PlayerAirCombatParams.h */,
+				7E1D0D1B1AD5F3FB00CB7603 /* PlayerAirCombatParams.m */,
+				7E1D0D1D1AD5F44900CB7603 /* PlayerUnderwaterCombatParams.h */,
+				7E1D0D1E1AD5F44900CB7603 /* PlayerUnderwaterCombatParams.m */,
+				7E1D0D201AD5F56C00CB7603 /* PlayerLandParams.h */,
+				7E1D0D211AD5F56C00CB7603 /* PlayerLandParams.m */,
 			);
 			path = player;
 			sourceTree = "<group>";
@@ -1719,33 +1673,25 @@
 			files = (
 				7EA7AE911ABFDCD6001C9EFE /* SHButton.m in Sources */,
 				7E2675A21AB69452002EF2EC /* Bird.m in Sources */,
-				7EA7AEAA1ABFDD06001C9EFE /* Spirit_Fish_1.m in Sources */,
 				7EA7AE971ABFDCD6001C9EFE /* SHItemRow.m in Sources */,
 				7E17796E1AB81EC300E3986C /* SpriterJSONParser.m in Sources */,
 				7E08F3FD1AC0D2970023D757 /* ParticleLiquid.m in Sources */,
 				7EA7AECF1ABFF929001C9EFE /* HealthBar.m in Sources */,
-				7EA7AEBC1ABFDD06001C9EFE /* SpiritBase.m in Sources */,
 				7EF468BB1ABF78870041E55F /* ParticlePhysical.m in Sources */,
 				7E90D1951AB63DD800E06F92 /* BGWater.m in Sources */,
-				7EA7AEBF1ABFDD06001C9EFE /* SpiritManager.m in Sources */,
 				7E08F4021AC0D4580023D757 /* ParticleBubble.m in Sources */,
-				7EA7AEB91ABFDD06001C9EFE /* Spirit_Fish_6.m in Sources */,
 				7A40360419DDEE84007B6E8F /* main.m in Sources */,
 				7EA7AE2D1ABFA984001C9EFE /* ShaderManager.m in Sources */,
 				7E80EED11AC7E46500B5D312 /* ControlManager.m in Sources */,
-				7EA7AEAD1ABFDD06001C9EFE /* Spirit_Fish_2.m in Sources */,
 				7EA7AEC41ABFDDFD001C9EFE /* Arrow.m in Sources */,
-				7EA7AEB31ABFDD06001C9EFE /* Spirit_Fish_4.m in Sources */,
 				7E80EECA1AC7838500B5D312 /* Common.m in Sources */,
 				7E1779691AB81AF600E3986C /* SpriterXMLParser.m in Sources */,
 				7E90D18F1AB63DB700E06F92 /* BGSky.m in Sources */,
-				7EA7AEB01ABFDD06001C9EFE /* Spirit_Fish_3.m in Sources */,
 				7E1D4B4E1AC64524002E22CC /* AirEnemyManager.m in Sources */,
 				7A59498E19E3941300F65F90 /* AppDelegate.m in Sources */,
 				7E1779731AB8289A00E3986C /* SpriterTypes.m in Sources */,
 				7EF468AC1ABF71E50041E55F /* Particle.m in Sources */,
 				7EF468B01ABF71E50041E55F /* RotateFadeOutParticle.m in Sources */,
-				7EA7AEB61ABFDD06001C9EFE /* Spirit_Fish_5.m in Sources */,
 				7EA7AE941ABFDCD6001C9EFE /* SHItem.m in Sources */,
 				7EA7AE8E1ABFDCD6001C9EFE /* SHBackground.m in Sources */,
 				7E1779531AB8152600E3986C /* SpriterData.m in Sources */,
@@ -1762,13 +1708,8 @@
 				7E80EECB1AC7838500B5D312 /* Common.m in Sources */,
 				7E1779681AB81AF600E3986C /* SpriterXMLParser.m in Sources */,
 				7E1D4B4C1AC64524002E22CC /* AirEnemyManager.m in Sources */,
-				7EA7AEB21ABFDD06001C9EFE /* Spirit_Fish_4.m in Sources */,
 				7E90D18D1AB63DB700E06F92 /* BGSky.m in Sources */,
-				7EA7AEB81ABFDD06001C9EFE /* Spirit_Fish_6.m in Sources */,
 				7EA7AE8D1ABFDCD6001C9EFE /* SHBackground.m in Sources */,
-				7EA7AEAF1ABFDD06001C9EFE /* Spirit_Fish_3.m in Sources */,
-				7EA7AEAC1ABFDD06001C9EFE /* Spirit_Fish_2.m in Sources */,
-				7EA7AEB51ABFDD06001C9EFE /* Spirit_Fish_5.m in Sources */,
 				7EA7AE931ABFDCD6001C9EFE /* SHItem.m in Sources */,
 				7EA7AE2C1ABFA984001C9EFE /* ShaderManager.m in Sources */,
 				5B121030197484FA004C1E1D /* hobobobActivity.m in Sources */,
@@ -1780,16 +1721,13 @@
 				7E2675A11AB69451002EF2EC /* Bird.m in Sources */,
 				7EA7AE901ABFDCD6001C9EFE /* SHButton.m in Sources */,
 				7EA7AEE01AC0081E001C9EFE /* UIBossIntroParticle.m in Sources */,
-				7EA7AEBE1ABFDD06001C9EFE /* SpiritManager.m in Sources */,
 				7E08F4011AC0D4580023D757 /* ParticleBubble.m in Sources */,
 				7EF468AE1ABF71E50041E55F /* RotateFadeOutParticle.m in Sources */,
 				7E1779721AB8289A00E3986C /* SpriterTypes.m in Sources */,
-				7EA7AEA91ABFDD06001C9EFE /* Spirit_Fish_1.m in Sources */,
 				7EA7AEC91ABFE12F001C9EFE /* GameUI.m in Sources */,
 				7E17796D1AB81EC300E3986C /* SpriterJSONParser.m in Sources */,
 				7EA7AEC31ABFDDFD001C9EFE /* Arrow.m in Sources */,
 				7E80EECF1AC7E46500B5D312 /* ControlManager.m in Sources */,
-				7EA7AEBB1ABFDD06001C9EFE /* SpiritBase.m in Sources */,
 				7E90D1931AB63DD800E06F92 /* BGWater.m in Sources */,
 				7EF468B91ABF78870041E55F /* ParticlePhysical.m in Sources */,
 				7EA7AE961ABFDCD6001C9EFE /* SHItemRow.m in Sources */,
@@ -1801,25 +1739,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E1779671AB81AF600E3986C /* SpriterXMLParser.m in Sources */,
-				7EA7AEB11ABFDD06001C9EFE /* Spirit_Fish_4.m in Sources */,
 				7E26759F1AB69451002EF2EC /* Bird.m in Sources */,
 				7E3B0C271A131E8E0057869B /* Vec3D.m in Sources */,
-				7EA7AEAE1ABFDD06001C9EFE /* Spirit_Fish_3.m in Sources */,
 				7E3B0C0B1A131E8E0057869B /* GameObject.m in Sources */,
 				7E1D0D181AD5E7A500CB7603 /* BasicAirEnemy.m in Sources */,
 				7EA7AEC21ABFDDFD001C9EFE /* Arrow.m in Sources */,
-				7EA7AEB41ABFDD06001C9EFE /* Spirit_Fish_5.m in Sources */,
 				7E1779501AB8152600E3986C /* SpriterData.m in Sources */,
 				7EA7AECD1ABFF929001C9EFE /* HealthBar.m in Sources */,
 				7E80EECE1AC7E46500B5D312 /* ControlManager.m in Sources */,
 				7E1B80711A189F450055E654 /* TouchButton.m in Sources */,
+				7E1D0D1F1AD5F44900CB7603 /* PlayerUnderwaterCombatParams.m in Sources */,
 				7EF468B81ABF78870041E55F /* ParticlePhysical.m in Sources */,
+				7E1D0D221AD5F56C00CB7603 /* PlayerLandParams.m in Sources */,
 				7EA7AEDF1AC0081E001C9EFE /* UIBossIntroParticle.m in Sources */,
-				7EA7AEBA1ABFDD06001C9EFE /* SpiritBase.m in Sources */,
 				7EA7AE951ABFDCD6001C9EFE /* SHItemRow.m in Sources */,
 				7E1D4B4B1AC64524002E22CC /* AirEnemyManager.m in Sources */,
 				7E1B806E1A189C330055E654 /* MainMenuScene.m in Sources */,
-				7EA7AEAB1ABFDD06001C9EFE /* Spirit_Fish_2.m in Sources */,
 				7E1779711AB8289A00E3986C /* SpriterTypes.m in Sources */,
 				7E1779761AB8C88B00E3986C /* SpriterNode.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
@@ -1833,13 +1768,11 @@
 				7EF468A91ABF71E50041E55F /* Particle.m in Sources */,
 				7E17798D1AB9316500E3986C /* SpriterUtil.m in Sources */,
 				7E08F4001AC0D4580023D757 /* ParticleBubble.m in Sources */,
-				7EA7AEB71ABFDD06001C9EFE /* Spirit_Fish_6.m in Sources */,
 				7EA7AE921ABFDCD6001C9EFE /* SHItem.m in Sources */,
 				7E3B0C261A131E8E0057869B /* Resource.m in Sources */,
 				7E31E4BF1AB8BD13004DAC8E /* ShopScene.m in Sources */,
 				7EA7AE8C1ABFDCD6001C9EFE /* SHBackground.m in Sources */,
 				7E90D1921AB63DD800E06F92 /* BGWater.m in Sources */,
-				7EA7AEBD1ABFDD06001C9EFE /* SpiritManager.m in Sources */,
 				7E17796C1AB81EC300E3986C /* SpriterJSONParser.m in Sources */,
 				7E3B0C1E1A131E8E0057869B /* GameMain.m in Sources */,
 				7E3B0C221A131E8E0057869B /* FileCache.m in Sources */,
@@ -1848,13 +1781,12 @@
 				7E3B0C251A131E8E0057869B /* PolyLib.m in Sources */,
 				7E90D18C1AB63DB700E06F92 /* BGSky.m in Sources */,
 				7ED9B6351ABBD76D0043567C /* BGReflection.m in Sources */,
-				7EA7AEA81ABFDD06001C9EFE /* Spirit_Fish_1.m in Sources */,
 				7EBE57021AC3F08F008AD888 /* TouchTrackingLayer.m in Sources */,
-				5EBEBF721AC770CE001EF3F2 /* Spirit_Tail.m in Sources */,
 				7EADAC791AB67506004902A9 /* AccelerometerSimulation.m in Sources */,
 				7E3B0C1F1A131E8E0057869B /* BatchDraw.m in Sources */,
 				7E3B0C281A131E8E0057869B /* WebRequest.m in Sources */,
 				7EA7AEC81ABFE12F001C9EFE /* GameUI.m in Sources */,
+				7E1D0D1C1AD5F3FB00CB7603 /* PlayerAirCombatParams.m in Sources */,
 				7E08F3FB1AC0D2970023D757 /* ParticleLiquid.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -479,3 +479,7 @@ float cubic_interp(float a, float b, float c1, float c2, float t) {
 float signum(float value) {
 	return (value < 0) ? -1 : (value > 0) ? 1 : 0;
 }
+
+float low_filter(float value, float min) {
+	return ABS(value) < ABS(min) ? 0 : value;
+}

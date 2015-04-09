@@ -3,7 +3,6 @@
 #import "FileCache.h"
 #import "Common.h"
 #import "GameEngineScene.h"
-#import "SpiritBase.h"
 #import "HealthBar.h"
 #import "Particle.h"
 #import "UIBossIntroParticle.h"
@@ -144,6 +143,7 @@ typedef enum _GameUIBossIntroMode {
 }
 
 -(void)update_enemy_health_bars:(GameEngineScene*)game {
+	/*
 	NSMutableSet *active_enemy_objhash = _enemy_health_bars.keySet;
 	for (SpiritBase *itr_enemy in game.get_spirit_manager.get_spirits) {
 		if (![itr_enemy has_health_bar]) continue;
@@ -164,6 +164,7 @@ typedef enum _GameUIBossIntroMode {
 		[self removeChild:itr_healthbar];
 		[_enemy_health_bars removeObjectForKey:itr_hash];
 	}
+	*/
 }
 
 @end

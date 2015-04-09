@@ -105,6 +105,10 @@
 	return _proc_tap_pt;
 }
 
+-(BOOL)is_touch_down {
+	return _is_touch_down;
+}
+
 -(void)i_update:(GameEngineScene*)game {}
 
 @end

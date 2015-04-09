@@ -28,4 +28,6 @@
 -(void)clear_proc_tap;
 -(CGPoint)get_proc_tap;
 
+-(BOOL)is_touch_down;
+
 @end

@@ -170,5 +170,6 @@ CGPoint bezier_point_for_t(CGPoint p0, CGPoint p1, CGPoint p2, CGPoint p3, float
 float cubic_interp(float a, float b, float c1, float c2, float t);
 
 float signum(float value);
+float low_filter(float value, float min);
 
 #endif

@@ -3,7 +3,6 @@
 #import "Common.h"
 #import "BGSky.h" 
 #import "BGWater.h"
-#import "SpiritBase.h"
 #import "Particle.h"
 #import "ShaderManager.h"
 #import "GameUI.h"
@@ -15,7 +14,6 @@
 #import "Resource.h"
 #import "Arrow.h"
 #import "GameMain.h"
-
 //#import "AccelerometerSimulation.h"
 
 @implementation RippleInfo {
@@ -61,13 +59,8 @@
 @end
 
 @implementation GameEngineScene {
-
 	// UTILS
 	float _tick;
-	
-	CGPoint _touch_position;
-	BOOL _touch_down, _touch_tapped, _touch_released;
-	
 	ControlManager *_controls;
 	
 	// EFFECTS
@@ -75,16 +68,16 @@
 	float _shake_rumble_slow_time, _shake_rumble_slow_total_time, _shake_rumble_slow_distance;
 	float _freeze;
 	
-	
 	ParticleSystem *_particles;
 	
 	CCSprite *_ripple_proto;
 	NSMutableArray *_ripples;
 	
 	// CAM
-	float _cam_y_lirp, _player_dive_bottom_y, _player_combat_top_y;
 	CCNode *_zoom_node, *_game_anchor;
-	float _zoom;
+	
+	float _current_zoom;
+	float _current_camera_center_y;
 	CGPoint _camera_center_point;
 	
 	// WORLD
@@ -109,11 +102,6 @@
 
 -(Player*)player { return _player; }
 -(float)tick { return _tick; }
--(CGPoint)touch_position { return _touch_position; }
--(BOOL)touch_down { return _touch_down; }
--(BOOL)touch_tapped { return _touch_tapped; }
--(BOOL)touch_released { return _touch_released; }
--(float)get_camera_y { return -_game_anchor.position.y; }
 -(SpiritManager*)get_spirit_manager{ return _spirit_manager; }
 -(AirEnemyManager*)get_air_enemy_manager { return _air_enemy_manager; }
 -(ControlManager*)get_control_manager { return _controls; }
@@ -151,8 +139,10 @@
 	_particles = [ParticleSystem cons_anchor:_game_anchor];
 	_player_projectiles = [ParticleSystem cons_anchor:_game_anchor];
 	
-	_player = (Player*)[[Player cons] add_to:_game_anchor z:GameAnchorZ_Player];
+	[self reset_camera];
+	_player = (Player*)[[Player cons_g:self] add_to:_game_anchor z:GameAnchorZ_Player];
 	_player_state = PlayerState_OnGround;
+	
 	
 	_ripples = [NSMutableArray array];
 	_ripple_proto = [CCSprite spriteWithTexture:[Resource get_tex:TEX_RIPPLE]];
@@ -162,7 +152,6 @@
 	_bg_water = [BGWater cons:self];
 	_bg_elements = @[_bg_sky, _bg_water];
 	
-	_spirit_manager = [[[SpiritManager alloc] init] cons:self];
 	_air_enemy_manager = [AirEnemyManager cons:self];
 	
 	UIAccelerometer *accel = [UIAccelerometer sharedAccelerometer];
@@ -180,6 +169,11 @@
 	return self;
 }
 
+-(void)reset_camera {
+	_current_camera_center_y = 0;
+	_current_zoom = 1;
+}
+
 -(void)add_player_projectile:(PlayerProjectile*)tar {
 	[_player_projectiles add_particle:tar];
 }
@@ -189,7 +183,6 @@
 -(CCSprite*)get_ripple_proto { return _ripple_proto; }
 -(NSNumber*)get_tick_mod_pi { return @(fmodf(_tick * 0.01,M_PI * 2)); }
 -(BGSky*)get_bg_sky { return _bg_sky; }
--(float)get_cam_y_lirp_current { return _cam_y_lirp; }
 
 -(void)add_ripple:(CGPoint)pos {
 	if ([_ripples count] > 6) return;
@@ -212,17 +205,16 @@
 	[_controls accel_report_x:aceler.x y:aceler.y z:aceler.z];
 }
 
-static bool TEST_HAS_ACTIVATED_BOSS = false;
+//static bool TEST_HAS_ACTIVATED_BOSS = false;
 -(void)update:(CCTime)delta {
 	dt_set(delta);
+	/*
 	if (!TEST_HAS_ACTIVATED_BOSS && _player.position.y <= self.get_ground_depth + 50) {
 		TEST_HAS_ACTIVATED_BOSS = YES;
 		[_ui start_boss:@"Big Bad Boss" sub:@"This guy mad."];
 	}
-	
-	_tick += dt_scale_get();
-	
-	[self update_shake];
+	*/
+	_tick += dt_scale_get(); 
 	
 	if(_freeze > 0) {
 		_freeze -= dt_scale_get();
@@ -230,89 +222,22 @@ static bool TEST_HAS_ACTIVATED_BOSS = false;
 	}
 	
 	[_controls i_update:self];
-	[_player update_game:self];
+	[_player i_update:self];
+	[self update_camera];
 	[_particles update_particles:self];
 	[_player_projectiles update_particles:self];
-	
-	// CAMERA
-	switch(_player_state) {
-		case PlayerState_Dive:
-			if(self.touch_down == false) {
-				if(_player.position.y > _player_dive_bottom_y + 200)
-					_player_state = PlayerState_DiveReturn;
-			}
-			
-			_player_dive_bottom_y = [self get_spirit_manager].dive_y - 200;
-			
-			_cam_y_lirp += (_player_dive_bottom_y - _cam_y_lirp) * .06 * dt_scale_get();
-			[self center_camera_hei:_cam_y_lirp];
-			
-		break;
-		case PlayerState_DiveReturn:
-			_cam_y_lirp += (_player.position.y + 100 - _cam_y_lirp) * .1 * dt_scale_get();
-			[self center_camera_hei:_cam_y_lirp];
-			
-		break;
-		case PlayerState_InAir:
-			_cam_y_lirp = _camera_center_point.y;
-			break;
-		case PlayerState_AirToGroundTransition:
-			_cam_y_lirp = _camera_center_point.y;
-			break;
-			
-		case PlayerState_OnGround:
-			_player_combat_top_y = 0;
-			_cam_y_lirp += (150 - _cam_y_lirp) * .05 * dt_scale_get();
-			[self center_camera_hei:_cam_y_lirp];
-			
-		break;
-	}
 	
 	for (BGElement *itr in _bg_elements) {
 		[itr i_update:self];
 	}
 	
-	[_spirit_manager i_update];
 	[_air_enemy_manager i_update:self];
 	[self update_ripples];
 	
-	_touch_tapped = _touch_released = false;
 	[_ui i_update:self];
 	
 	if (HMCFG_DRAW_HITBOXES) [self debug_draw_hitboxes];
 }
-
--(void)update_shake {
-	[_zoom_node setPosition:game_screen_pct(.5, .5)];
-
-	if(_shake_rumble_time > 0)
-		_shake_rumble_time -= dt_scale_get();
-	else
-		_shake_rumble_time = 0;
-	
-	float _rumble_dist = _shake_rumble_distance * (_shake_rumble_time / _shake_rumble_total_time);
-	
-	[_zoom_node setPosition:CGPointAdd(_zoom_node.position, ccp(sinf(_tick * 1.2) * _rumble_dist, cosf(_tick * 1.2) * _rumble_dist))];
-	
-	
-	if(_shake_rumble_slow_time > 0)
-		_shake_rumble_slow_time -= dt_scale_get();
-	else
-		_shake_rumble_slow_time = 0;
-	
-	float _rumble_slow_dist = _shake_rumble_slow_distance * (_shake_rumble_slow_time / _shake_rumble_slow_total_time);
-	
-	[_zoom_node setPosition:CGPointAdd(_zoom_node.position, ccp(sinf(_tick / 3) * _rumble_slow_dist / 2, cosf(_tick / 3) * _rumble_slow_dist))];
-}
-
--(void)set_zoom:(float)val {
-	[_zoom_node setScale:clampf(val, 1, INFINITY)];
-	_zoom = val;
-}
-
--(float)player_combat_top_y { return _player_combat_top_y; }
-
--(float)zoom {return _zoom;}
 
 -(float)get_ground_depth {
 	return -2000;
@@ -322,7 +247,17 @@ static bool TEST_HAS_ACTIVATED_BOSS = false;
 	[_particles add_particle:p];
 }
 
--(void)center_camera_hei:(float)hei {
+-(void)set_camera_height:(float)tar { _current_camera_center_y = tar; }
+-(void)set_zoom:(float)tar { _current_zoom = tar; }
+-(float)get_zoom { return _current_zoom; }
+-(float)get_current_camera_center_y { return _current_camera_center_y; }
+
+-(void)imm_set_zoom:(float)val {
+	[_zoom_node setScale:clampf(val, 1, INFINITY)];
+}
+
+-(void)imm_set_camera_hei:(float)hei {
+	_current_camera_center_y = hei;
 	CGPoint pt = ccp(game_screen().width / 2, hei);
 	_camera_center_point = pt;
 	CGSize s = [CCDirector sharedDirector].viewSize;
@@ -337,22 +272,19 @@ static bool TEST_HAS_ACTIVATED_BOSS = false;
 }
 
 -(void)touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
-	_touch_tapped = _touch_down = true;
-	_touch_position = [touch locationInWorld];
-	[_touch_tracking touch_begin:_touch_position];
-	[_controls touch_begin:_touch_position];
+	CGPoint touch_position = [touch locationInWorld];
+	[_touch_tracking touch_begin:touch_position];
+	[_controls touch_begin:touch_position];
 }
 -(void)touchMoved:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
-	_touch_position = [touch locationInWorld];
-	[_touch_tracking touch_move:_touch_position];
-	[_controls touch_move:_touch_position];
+	CGPoint touch_position = [touch locationInWorld];
+	[_touch_tracking touch_move:touch_position];
+	[_controls touch_move:touch_position];
 }
 -(void)touchEnded:(CCTouch *)touch withEvent:(CCTouchEvent *)event {
-	_touch_released = true;
-	_touch_down = false;
-	_touch_position = [touch locationInWorld];
-	[_touch_tracking touch_end:_touch_position];
-	[_controls touch_end:_touch_position];
+	CGPoint touch_position = [touch locationInWorld];
+	[_touch_tracking touch_end:touch_position];
+	[_controls touch_end:touch_position];
 }
 
 -(void)shake_for:(float)ct distance:(float)distance{
@@ -365,11 +297,49 @@ static bool TEST_HAS_ACTIVATED_BOSS = false;
 	_shake_rumble_slow_distance = distance;
 }
 
+-(CGPoint)get_zoom_node_pos {
+	CGPoint center = game_screen_pct(.5, .5);
+	CGSize screen = game_screen();
+	screen.width *= _current_zoom;
+	screen.height *= _current_zoom;
+	CGPoint delta_max = ccp(
+		(screen.width - game_screen().width)/2,
+		(screen.height - game_screen().height)/2
+	);
+	
+	HitRect view = [self get_viewbox];
+	CGPoint screen_center = CGPointMid(ccp(view.x1,view.y1), ccp(view.x2,view.y2));
+	CGPoint player_offset = CGPointSub(screen_center,_player.position);
+	
+	return CGPointAdd(center, ccp(
+		clampf(player_offset.x, -delta_max.x, delta_max.x),
+		clampf(player_offset.y, -delta_max.y, delta_max.y)
+	));
+}
+
+-(void)update_camera {
+	[self imm_set_zoom:_current_zoom];
+	[self imm_set_camera_hei:_current_camera_center_y];
+	
+	[_zoom_node setPosition:[self get_zoom_node_pos]];
+	if(_shake_rumble_time > 0)
+		_shake_rumble_time -= dt_scale_get();
+	else
+		_shake_rumble_time = 0;
+	float _rumble_dist = _shake_rumble_distance * (_shake_rumble_time / _shake_rumble_total_time);
+	[_zoom_node setPosition:CGPointAdd(_zoom_node.position, ccp(sinf(_tick * 1.2) * _rumble_dist, cosf(_tick * 1.2) * _rumble_dist))];
+	if(_shake_rumble_slow_time > 0)
+		_shake_rumble_slow_time -= dt_scale_get();
+	else
+		_shake_rumble_slow_time = 0;
+	float _rumble_slow_dist = _shake_rumble_slow_distance * (_shake_rumble_slow_time / _shake_rumble_slow_total_time);
+	[_zoom_node setPosition:CGPointAdd(_zoom_node.position, ccp(sinf(_tick / 3) * _rumble_slow_dist / 2, cosf(_tick / 3) * _rumble_slow_dist))];
+}
+
 -(void)freeze_frame:(int)ct{
 	_freeze = ct;
 }
 -(HitRect)get_viewbox{return hitrect_cons_xy_widhei(_camera_center_point.x - game_screen().width / 2, _camera_center_point.y - game_screen().height / 2, game_screen().width, game_screen().height); }
--(CGPoint)camera_center_point { return _camera_center_point; }
 -(CCNode*)get_anchor { return _game_anchor; }
 -(BOOL)fullScreenTouch { return YES; }
 
