@@ -7,6 +7,12 @@
 #import "Resource.h"
 #import "ShaderManager.h"
 
+/*
+TODO --
+dive lock y downwards no return
+air phase after fall off pull back + health
+*/
+
 @implementation GameMain
 +(CCScene*)main; {
 	[Resource load_all];
