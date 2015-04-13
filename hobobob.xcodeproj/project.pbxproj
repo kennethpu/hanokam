@@ -237,6 +237,18 @@
 		7EBE57061AC3F162008AD888 /* particles_spritesheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EBE57031AC3F162008AD888 /* particles_spritesheet.plist */; };
 		7EBE57071AC3F162008AD888 /* particles_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EBE57041AC3F162008AD888 /* particles_spritesheet.png */; };
 		7EBE57081AC3F162008AD888 /* particles_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EBE57041AC3F162008AD888 /* particles_spritesheet.png */; };
+		7EC87F631ADB48DA002F50CB /* oldman_ss.json in Resources */ = {isa = PBXBuildFile; fileRef = 7EC87F611ADB48DA002F50CB /* oldman_ss.json */; };
+		7EC87F641ADB48DA002F50CB /* oldman_ss.json in Resources */ = {isa = PBXBuildFile; fileRef = 7EC87F611ADB48DA002F50CB /* oldman_ss.json */; };
+		7EC87F651ADB48DA002F50CB /* oldman_ss.json in Resources */ = {isa = PBXBuildFile; fileRef = 7EC87F611ADB48DA002F50CB /* oldman_ss.json */; };
+		7EC87F661ADB48DA002F50CB /* oldman_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EC87F621ADB48DA002F50CB /* oldman_ss.png */; };
+		7EC87F671ADB48DA002F50CB /* oldman_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EC87F621ADB48DA002F50CB /* oldman_ss.png */; };
+		7EC87F681ADB48DA002F50CB /* oldman_ss.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EC87F621ADB48DA002F50CB /* oldman_ss.png */; };
+		7EC87F6D1ADB4976002F50CB /* BGCharacterOldMan.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC87F6C1ADB4976002F50CB /* BGCharacterOldMan.m */; };
+		7EC87F6E1ADB4976002F50CB /* BGCharacterOldMan.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC87F6C1ADB4976002F50CB /* BGCharacterOldMan.m */; };
+		7EC87F6F1ADB4976002F50CB /* BGCharacterOldMan.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EC87F6C1ADB4976002F50CB /* BGCharacterOldMan.m */; };
+		7EC87F711ADB4B71002F50CB /* oldman.scml in Resources */ = {isa = PBXBuildFile; fileRef = 7EC87F701ADB4B71002F50CB /* oldman.scml */; };
+		7EC87F721ADB4B71002F50CB /* oldman.scml in Resources */ = {isa = PBXBuildFile; fileRef = 7EC87F701ADB4B71002F50CB /* oldman.scml */; };
+		7EC87F731ADB4B71002F50CB /* oldman.scml in Resources */ = {isa = PBXBuildFile; fileRef = 7EC87F701ADB4B71002F50CB /* oldman.scml */; };
 		7ED9B6351ABBD76D0043567C /* BGReflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9B6341ABBD76D0043567C /* BGReflection.m */; };
 		7EF468A91ABF71E50041E55F /* Particle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF468A61ABF71E50041E55F /* Particle.m */; };
 		7EF468AA1ABF71E50041E55F /* Particle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF468A61ABF71E50041E55F /* Particle.m */; };
@@ -522,6 +534,11 @@
 		7EBE57011AC3F08F008AD888 /* TouchTrackingLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchTrackingLayer.m; sourceTree = "<group>"; };
 		7EBE57031AC3F162008AD888 /* particles_spritesheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = particles_spritesheet.plist; sourceTree = "<group>"; };
 		7EBE57041AC3F162008AD888 /* particles_spritesheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = particles_spritesheet.png; sourceTree = "<group>"; };
+		7EC87F611ADB48DA002F50CB /* oldman_ss.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = oldman_ss.json; sourceTree = "<group>"; };
+		7EC87F621ADB48DA002F50CB /* oldman_ss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oldman_ss.png; sourceTree = "<group>"; };
+		7EC87F6B1ADB4976002F50CB /* BGCharacterOldMan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGCharacterOldMan.h; sourceTree = "<group>"; };
+		7EC87F6C1ADB4976002F50CB /* BGCharacterOldMan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGCharacterOldMan.m; sourceTree = "<group>"; };
+		7EC87F701ADB4B71002F50CB /* oldman.scml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = oldman.scml; sourceTree = "<group>"; };
 		7ED9B6331ABBD76D0043567C /* BGReflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGReflection.h; sourceTree = "<group>"; };
 		7ED9B6341ABBD76D0043567C /* BGReflection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGReflection.m; sourceTree = "<group>"; };
 		7EF468A51ABF71E50041E55F /* Particle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Particle.h; sourceTree = "<group>"; };
@@ -933,6 +950,7 @@
 		7E3B0C2B1A131F400057869B /* character */ = {
 			isa = PBXGroup;
 			children = (
+				7EC87F601ADB48DA002F50CB /* oldman */,
 				7E80EEA51AC76AD500B5D312 /* hanokav2.json */,
 				7E80EEA61AC76AD500B5D312 /* hanokav2.plist */,
 				7E80EEA71AC76AD500B5D312 /* hanokav2.png */,
@@ -970,6 +988,7 @@
 		7E90D1891AB63DB700E06F92 /* bg */ = {
 			isa = PBXGroup;
 			children = (
+				7EC87F6A1ADB4955002F50CB /* elements */,
 				7E90D18A1AB63DB700E06F92 /* BGSky.h */,
 				7E90D18B1AB63DB700E06F92 /* BGSky.m */,
 				7E90D1901AB63DD800E06F92 /* BGWater.h */,
@@ -1062,6 +1081,25 @@
 				7EA7AED61AC006A1001C9EFE /* hud_spritesheet.png */,
 			);
 			path = hud;
+			sourceTree = "<group>";
+		};
+		7EC87F601ADB48DA002F50CB /* oldman */ = {
+			isa = PBXGroup;
+			children = (
+				7EC87F701ADB4B71002F50CB /* oldman.scml */,
+				7EC87F611ADB48DA002F50CB /* oldman_ss.json */,
+				7EC87F621ADB48DA002F50CB /* oldman_ss.png */,
+			);
+			path = oldman;
+			sourceTree = "<group>";
+		};
+		7EC87F6A1ADB4955002F50CB /* elements */ = {
+			isa = PBXGroup;
+			children = (
+				7EC87F6B1ADB4976002F50CB /* BGCharacterOldMan.h */,
+				7EC87F6C1ADB4976002F50CB /* BGCharacterOldMan.m */,
+			);
+			path = elements;
 			sourceTree = "<group>";
 		};
 		7EF468A41ABF71E50041E55F /* particle */ = {
@@ -1387,6 +1425,7 @@
 				7EA7AE531ABFB844001C9EFE /* ripple.png in Resources */,
 				7EA7AE4A1ABFB7FC001C9EFE /* ripple_effect.vsh in Resources */,
 				7E80EEBB1AC76AD500B5D312 /* hanoka v0.01.json in Resources */,
+				7EC87F681ADB48DA002F50CB /* oldman_ss.png in Resources */,
 				7EBE57061AC3F162008AD888 /* particles_spritesheet.plist in Resources */,
 				7A4036FB19DE401F007B6E8F /* iPhone-old.png in Resources */,
 				7E80EEB21AC76AD500B5D312 /* hanokav2.plist in Resources */,
@@ -1405,7 +1444,9 @@
 				7EA7AE471ABFB7FC001C9EFE /* ripple_effect.fsh in Resources */,
 				7EA7AED91AC006A1001C9EFE /* hud_spritesheet.plist in Resources */,
 				7A40370019DE401F007B6E8F /* Settings@2x.png in Resources */,
+				7EC87F651ADB48DA002F50CB /* oldman_ss.json in Resources */,
 				7E5AB3BC1ACBDDD7000C0AAD /* bg_water_element_fade.png in Resources */,
+				7EC87F731ADB4B71002F50CB /* oldman.scml in Resources */,
 				7EA7AE651ABFB85D001C9EFE /* sh_test_item.png in Resources */,
 				7EA7AE6A1ABFB931001C9EFE /* bg_spritesheet_1.plist in Resources */,
 				7EA7AE411ABFB7FC001C9EFE /* reflection_am_down.fsh in Resources */,
@@ -1430,6 +1471,7 @@
 				7E80EEBA1AC76AD500B5D312 /* hanoka v0.01.json in Resources */,
 				7E4DB5191ABFBCA700FCDB20 /* spirit_fish_3.png in Resources */,
 				7E80EEAE1AC76AD500B5D312 /* hanokav2.json in Resources */,
+				7EC87F721ADB4B71002F50CB /* oldman.scml in Resources */,
 				7E80EEC01AC76AD500B5D312 /* hanoka v0.01.scml in Resources */,
 				7EA7AE611ABFB85D001C9EFE /* sh_button_side.png in Resources */,
 				927F61AE196C771E000F43EF /* Default@2x.png in Resources */,
@@ -1442,6 +1484,7 @@
 				7EF468DE1ABFBB400041E55F /* spirit_fish_2.png in Resources */,
 				927F61AF196C771E000F43EF /* iPad@2x.png in Resources */,
 				927F61B0196C771E000F43EF /* iPad.png in Resources */,
+				7EC87F641ADB48DA002F50CB /* oldman_ss.json in Resources */,
 				7EA7AE691ABFB931001C9EFE /* bg_spritesheet_1.plist in Resources */,
 				927F61B1196C771E000F43EF /* iPad-old@2x.png in Resources */,
 				927F61B2196C771E000F43EF /* iPhone-old@2x.png in Resources */,
@@ -1456,6 +1499,7 @@
 				7E80EEBD1AC76AD500B5D312 /* hanoka v0.01.png in Resources */,
 				7E5AB3B31ACBDBDA000C0AAD /* underwater_spritesheet.plist in Resources */,
 				927F61B6196C771E000F43EF /* iPhone-old.png in Resources */,
+				7EC87F671ADB48DA002F50CB /* oldman_ss.png in Resources */,
 				927F61B7196C771E000F43EF /* iPhone.png in Resources */,
 				7E1D4B551AC64818002E22CC /* enemies_spritesheet.png in Resources */,
 				927F61B8196C771E000F43EF /* Default-568h@2x.png in Resources */,
@@ -1494,15 +1538,18 @@
 				7EA7AE511ABFB844001C9EFE /* ripple.png in Resources */,
 				7EBE56FD1AC3772C008AD888 /* abovewater_am_up.fsh in Resources */,
 				7EA7AE5D1ABFB85D001C9EFE /* sh_button_middle.png in Resources */,
+				7EC87F631ADB48DA002F50CB /* oldman_ss.json in Resources */,
 				B7378978180762440076A88C /* Default@2x.png in Resources */,
 				7EA7AE3F1ABFB7FC001C9EFE /* reflection_am_down.fsh in Resources */,
 				B71F5914188484E7003F4D28 /* iPad@2x.png in Resources */,
 				B71F5913188484E7003F4D28 /* iPad.png in Resources */,
 				7EA7AE681ABFB931001C9EFE /* bg_spritesheet_1.plist in Resources */,
+				7EC87F711ADB4B71002F50CB /* oldman.scml in Resources */,
 				7E80EEBC1AC76AD500B5D312 /* hanoka v0.01.png in Resources */,
 				B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */,
 				7EBE56FA1AC3771F008AD888 /* abovewater_am_up.vsh in Resources */,
 				B71F5916188484E7003F4D28 /* iPhone-old@2x.png in Resources */,
+				7EC87F661ADB48DA002F50CB /* oldman_ss.png in Resources */,
 				7EBE57071AC3F162008AD888 /* particles_spritesheet.png in Resources */,
 				7E80EEB91AC76AD500B5D312 /* hanoka v0.01.json in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
@@ -1632,6 +1679,7 @@
 				7EA7AEE11AC0081E001C9EFE /* UIBossIntroParticle.m in Sources */,
 				7E1779781AB8C88B00E3986C /* SpriterNode.m in Sources */,
 				7EA7AECA1ABFE12F001C9EFE /* GameUI.m in Sources */,
+				7EC87F6F1ADB4976002F50CB /* BGCharacterOldMan.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1650,6 +1698,7 @@
 				7E1779771AB8C88B00E3986C /* SpriterNode.m in Sources */,
 				7E1779511AB8152600E3986C /* SpriterData.m in Sources */,
 				7EA7AECE1ABFF929001C9EFE /* HealthBar.m in Sources */,
+				7EC87F6E1ADB4976002F50CB /* BGCharacterOldMan.m in Sources */,
 				7EF468AA1ABF71E50041E55F /* Particle.m in Sources */,
 				7E08F3FC1AC0D2970023D757 /* ParticleLiquid.m in Sources */,
 				7EA7AE901ABFDCD6001C9EFE /* SHButton.m in Sources */,
@@ -1684,6 +1733,7 @@
 				7EF468B81ABF78870041E55F /* ParticlePhysical.m in Sources */,
 				7E1D0D221AD5F56C00CB7603 /* PlayerLandParams.m in Sources */,
 				7EA7AEDF1AC0081E001C9EFE /* UIBossIntroParticle.m in Sources */,
+				7EC87F6D1ADB4976002F50CB /* BGCharacterOldMan.m in Sources */,
 				7EA7AE951ABFDCD6001C9EFE /* SHItemRow.m in Sources */,
 				7E1D4B4B1AC64524002E22CC /* AirEnemyManager.m in Sources */,
 				7E1B806E1A189C330055E654 /* MainMenuScene.m in Sources */,

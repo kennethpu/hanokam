@@ -22,7 +22,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{0, 0}, {17, 512}}</string>
+			<string>{{19, 0}, {17, 512}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -44,7 +44,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{19, 0}, {17, 512}}</string>
+			<string>{{0, 0}, {17, 512}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -110,7 +110,7 @@
 			<key>spriteTrimmed</key>
 			<false/>
 			<key>textureRect</key>
-			<string>{{828, 170}, {46, 58}}</string>
+			<string>{{435, 454}, {46, 58}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -133,6 +133,50 @@
 			<true/>
 			<key>textureRect</key>
 			<string>{{38, 0}, {788, 242}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>thought_cloud_0.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 2}, {395, 210}}</string>
+			<key>spriteOffset</key>
+			<string>{-2, -1}</string>
+			<key>spriteSize</key>
+			<string>{395, 210}</string>
+			<key>spriteSourceSize</key>
+			<string>{399, 212}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{38, 244}, {395, 210}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>thought_cloud_1.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {395, 208}}</string>
+			<key>spriteOffset</key>
+			<string>{-2, 2}</string>
+			<key>spriteSize</key>
+			<string>{395, 208}</string>
+			<key>spriteSourceSize</key>
+			<string>{399, 212}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{435, 244}, {395, 208}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>

@@ -487,3 +487,11 @@ float low_filter(float value, float min) {
 Vec3D vec_from_ccrotation(float rotation) {
 	return vec_cons(cosf(deg_to_rad(-rotation)), sinf(deg_to_rad(-rotation)), 0);
 }
+
+CCSprite* flipper_cons_for(CCSprite* obj, float scx, float scy) {
+	CCSprite *flipper = [CCSprite node];
+	[flipper setScaleX:scx];
+	[flipper setScaleY:scy];
+	[flipper addChild:obj];
+	return flipper;
+}

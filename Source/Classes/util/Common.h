@@ -172,4 +172,6 @@ float signum(float value);
 float low_filter(float value, float min);
 Vec3D vec_from_ccrotation(float rotation);
 
+CCSprite* flipper_cons_for(CCSprite* obj, float scx, float scy);
+
 #endif

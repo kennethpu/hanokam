@@ -51,8 +51,9 @@ static NSSet* dont_load;
 		TEX_SH_BUTTON_SIDE: @"sh_button_side.png",
 		TEX_TEST_SH_ITEM: @"sh_test_item.png",
 		
-		TEX_SPRITER_CHAR_HANOKATEST: @"hanoka v0.01.png",
 		TEX_SPRITER_CHAR_HANOKA_V2: @"hanokav2.png",
+		
+		TEX_SPRITER_CHAR_OLDMAN: @"oldman_ss.png",
 		TEX_RIPPLE: @"ripple.png",
 		
 		TEX_BG_SPRITESHEET_1: @"bg_spritesheet_1.png",
