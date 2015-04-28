@@ -125,12 +125,14 @@
 			timelineKey.folder = [[object.properties objectForKey:@"folder"] intValue];
 			timelineKey.file = [[object.properties objectForKey:@"file"] intValue];
 			timelineKey.position = ccp([[object.properties objectForKey:@"x"] doubleValue], [[object.properties objectForKey:@"y"] doubleValue]);
+			
 			if ([object.properties objectForKey:@"pivot_x"]) {
 				timelineKey.anchorPoint = ccp([[object.properties objectForKey:@"pivot_x"] doubleValue],
 											  [[object.properties objectForKey:@"pivot_y"] doubleValue]);
 			} else {
 				timelineKey.anchorPoint = ccp(0,1);
 			}
+			
 			if ([object.properties objectForKey:@"scale_x"]) {
 				timelineKey.scaleX = [[object.properties objectForKey:@"scale_x"] doubleValue];
 			} else {
@@ -149,6 +151,12 @@
 				timelineKey.spin = [[key.properties objectForKey:@"spin"] intValue];
 			} else {
 				timelineKey.spin = 1;
+			}
+			
+			if ([object.properties objectForKey:@"a"]) {
+				timelineKey.alpha = [[object.properties objectForKey:@"a"] doubleValue];
+			} else {
+				timelineKey.alpha = 1;
 			}
 			
 			[timeline addKeyFrame:timelineKey];

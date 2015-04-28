@@ -34,6 +34,7 @@
     int spin_;
     double scaleX_;
     double scaleY_;
+	double alpha_;
 }
 @property int file;
 @property int folder;
@@ -44,6 +45,7 @@
 @property int spin;
 @property double scaleX;
 @property double scaleY;
+@property double alpha;
 +(id) spriterTimelineKey;
 @end
 
@@ -58,6 +60,7 @@
 -(TGSpriterTimelineKey*)keyForTime:(float)val;
 -(TGSpriterTimelineKey*)nextKeyForTime:(float)val;
 -(int)indexOfKeyForTime:(float)val;
+-(int)indexOfNextKeyForTime:(float)val;
 @end
 
 @interface TGSpriterAnimation : NSObject

@@ -16,12 +16,16 @@
 #import "FileCache.h"
 
 #import "BGCharacterOldMan.h"
+#import "BGCharacterVillagerFishWoman.h"
+
+#import "BGCharacterTest.h"
 
 @implementation BGSky {
 	CCSprite *_sky_bg;
-	CCSprite *_docks,*_bldg_1, *_bldg_2, *_bldg_3;
+	CCSprite *_docks,*_bldg_1, *_bldg_2, *_bldg_3, *_bldg_4;
 	
 	BGCharacterOldMan *_old_man;
+	BGCharacterVillagerFishWoman *_fish_woman;
 	
 	CCSprite *_surface_gradient;
 	
@@ -44,6 +48,14 @@
 	[_sky_bg set_anchor_pt:ccp(0,0)];
 	ccTexParams par = {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT};
 	[_sky_bg.texture setTexParameters:&par];
+	
+	_bldg_4 = [CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_SPRITESHEET_1] rect:[FileCache get_cgrect_from_plist:TEX_BG_SPRITESHEET_1 idname:@"bg_4.png"]];
+	[[g get_anchor] addChild:_bldg_4 z:GameAnchorZ_BGSky_BackgroundElements-1];
+	[_above_water_elements addObject:_bldg_4];
+	[_bldg_4 set_scale:0.5];
+	scale_to_fit_screen_x(_bldg_4);
+	[_bldg_4 set_pos:ccp(game_screen().width,0)];
+	[_bldg_4 set_anchor_pt:ccp(1,0)];
 	
 	_bldg_3 = [CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_SPRITESHEET_1] rect:[FileCache get_cgrect_from_plist:TEX_BG_SPRITESHEET_1 idname:@"bg_3.png"]];
 	[[g get_anchor] addChild:_bldg_3 z:GameAnchorZ_BGSky_BackgroundElements];
@@ -75,6 +87,11 @@
 	[_docks setScale:0.5];
 	[_docks set_pos:ccp(0,0)];
 	[_docks set_anchor_pt:ccp(0,0)];
+	
+	_fish_woman = [BGCharacterVillagerFishWoman cons_pos:pct_of_obj(_docks, 0.75, 0.55)];
+	[_docks addChild:_fish_woman];
+	
+	//[_docks addChild:[BGCharacterTest cons_pos:pct_of_obj(_docks, 0.25, -0.75)]];
 	
 	CCSprite *docks_front = [CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_SPRITESHEET_1] rect:[FileCache get_cgrect_from_plist:TEX_BG_SPRITESHEET_1 idname:@"pier_top_front_pillars.png"]];
 	[[g get_anchor] addChild:docks_front z:GameAnchorZ_BGSky_Docks_Pillars_Front];
@@ -126,6 +143,7 @@
 	_bldg_1.position = ccp(_bldg_1.position.x,clampf(camera_y*.1, 0, game.HORIZON_HEIGHT));
 	_bldg_2.position = ccp(_bldg_2.position.x,clampf(camera_y*.2, 0, game.HORIZON_HEIGHT));
 	_bldg_3.position = ccp(_bldg_3.position.x,camera_y*.25);
+	_bldg_4.position = ccp(_bldg_4.position.x,clampf(camera_y*.35,-INFINITY,0));
 }
 
 -(void)above_water_root_set_visible:(BOOL)tar {
@@ -178,6 +196,7 @@
 	}
 	
 	[_old_man i_update:g];
+	[_fish_woman i_update:g];
 	
 	
 	[_sky_bg setTextureRect:CGRectMake(

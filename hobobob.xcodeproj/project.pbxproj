@@ -53,6 +53,19 @@
 		7E08F4001AC0D4580023D757 /* ParticleBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E08F3FF1AC0D4580023D757 /* ParticleBubble.m */; };
 		7E08F4011AC0D4580023D757 /* ParticleBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E08F3FF1AC0D4580023D757 /* ParticleBubble.m */; };
 		7E08F4021AC0D4580023D757 /* ParticleBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E08F3FF1AC0D4580023D757 /* ParticleBubble.m */; };
+		7E0F575D1AEF69A800C9CC3E /* enemy_puffer.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E0F575A1AEF69A800C9CC3E /* enemy_puffer.json */; };
+		7E0F575E1AEF69A800C9CC3E /* enemy_puffer.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E0F575A1AEF69A800C9CC3E /* enemy_puffer.json */; };
+		7E0F575F1AEF69A800C9CC3E /* enemy_puffer.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E0F575A1AEF69A800C9CC3E /* enemy_puffer.json */; };
+		7E0F57601AEF69A800C9CC3E /* enemy_puffer.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E0F575B1AEF69A800C9CC3E /* enemy_puffer.png */; };
+		7E0F57611AEF69A800C9CC3E /* enemy_puffer.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E0F575B1AEF69A800C9CC3E /* enemy_puffer.png */; };
+		7E0F57621AEF69A800C9CC3E /* enemy_puffer.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E0F575B1AEF69A800C9CC3E /* enemy_puffer.png */; };
+		7E0F57681AEF69DF00C9CC3E /* enemy_puffer.scml in Resources */ = {isa = PBXBuildFile; fileRef = 7E0F57671AEF69DF00C9CC3E /* enemy_puffer.scml */; };
+		7E0F57691AEF69DF00C9CC3E /* enemy_puffer.scml in Resources */ = {isa = PBXBuildFile; fileRef = 7E0F57671AEF69DF00C9CC3E /* enemy_puffer.scml */; };
+		7E0F576A1AEF69DF00C9CC3E /* enemy_puffer.scml in Resources */ = {isa = PBXBuildFile; fileRef = 7E0F57671AEF69DF00C9CC3E /* enemy_puffer.scml */; };
+		7E0F576D1AEF7F8E00C9CC3E /* BGCharacterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0F576C1AEF7F8E00C9CC3E /* BGCharacterTest.m */; };
+		7E0F576E1AEF7F8E00C9CC3E /* BGCharacterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0F576C1AEF7F8E00C9CC3E /* BGCharacterTest.m */; };
+		7E0F576F1AEF7F8E00C9CC3E /* BGCharacterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0F576C1AEF7F8E00C9CC3E /* BGCharacterTest.m */; };
+		7E0F57701AEF7F8E00C9CC3E /* BGCharacterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0F576C1AEF7F8E00C9CC3E /* BGCharacterTest.m */; };
 		7E1779501AB8152600E3986C /* SpriterData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E17794F1AB8152600E3986C /* SpriterData.m */; };
 		7E1779511AB8152600E3986C /* SpriterData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E17794F1AB8152600E3986C /* SpriterData.m */; };
 		7E1779521AB8152600E3986C /* SpriterData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E17794F1AB8152600E3986C /* SpriterData.m */; };
@@ -79,6 +92,10 @@
 		7E1954951AED61B900D84658 /* villager_fishwoman.scml in Resources */ = {isa = PBXBuildFile; fileRef = 7E19548E1AED61B900D84658 /* villager_fishwoman.scml */; };
 		7E1954961AED61B900D84658 /* villager_fishwoman.scml in Resources */ = {isa = PBXBuildFile; fileRef = 7E19548E1AED61B900D84658 /* villager_fishwoman.scml */; };
 		7E1954971AED61B900D84658 /* villager_fishwoman.scml in Resources */ = {isa = PBXBuildFile; fileRef = 7E19548E1AED61B900D84658 /* villager_fishwoman.scml */; };
+		7E19549B1AEF52A200D84658 /* BGCharacterVillagerFishWoman.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E19549A1AEF52A200D84658 /* BGCharacterVillagerFishWoman.m */; };
+		7E19549C1AEF52A200D84658 /* BGCharacterVillagerFishWoman.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E19549A1AEF52A200D84658 /* BGCharacterVillagerFishWoman.m */; };
+		7E19549D1AEF52A200D84658 /* BGCharacterVillagerFishWoman.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E19549A1AEF52A200D84658 /* BGCharacterVillagerFishWoman.m */; };
+		7E19549E1AEF52A200D84658 /* BGCharacterVillagerFishWoman.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E19549A1AEF52A200D84658 /* BGCharacterVillagerFishWoman.m */; };
 		7E1B806E1A189C330055E654 /* MainMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1B806D1A189C330055E654 /* MainMenuScene.m */; };
 		7E1B80711A189F450055E654 /* TouchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1B80701A189F450055E654 /* TouchButton.m */; };
 		7E1D0D181AD5E7A500CB7603 /* BasicAirEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1D0D171AD5E7A500CB7603 /* BasicAirEnemy.m */; };
@@ -426,6 +443,11 @@
 		7E08F3FA1AC0D2970023D757 /* ParticleLiquid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticleLiquid.m; sourceTree = "<group>"; };
 		7E08F3FE1AC0D4580023D757 /* ParticleBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleBubble.h; sourceTree = "<group>"; };
 		7E08F3FF1AC0D4580023D757 /* ParticleBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticleBubble.m; sourceTree = "<group>"; };
+		7E0F575A1AEF69A800C9CC3E /* enemy_puffer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = enemy_puffer.json; sourceTree = "<group>"; };
+		7E0F575B1AEF69A800C9CC3E /* enemy_puffer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy_puffer.png; sourceTree = "<group>"; };
+		7E0F57671AEF69DF00C9CC3E /* enemy_puffer.scml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = enemy_puffer.scml; sourceTree = "<group>"; };
+		7E0F576B1AEF7F8E00C9CC3E /* BGCharacterTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGCharacterTest.h; sourceTree = "<group>"; };
+		7E0F576C1AEF7F8E00C9CC3E /* BGCharacterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGCharacterTest.m; sourceTree = "<group>"; };
 		7E17794E1AB8152600E3986C /* SpriterData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriterData.h; sourceTree = "<group>"; };
 		7E17794F1AB8152600E3986C /* SpriterData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriterData.m; sourceTree = "<group>"; };
 		7E1779651AB81AF600E3986C /* SpriterXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriterXMLParser.h; sourceTree = "<group>"; };
@@ -441,6 +463,8 @@
 		7E19548C1AED61B900D84658 /* villager_fishwoman.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = villager_fishwoman.json; sourceTree = "<group>"; };
 		7E19548D1AED61B900D84658 /* villager_fishwoman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = villager_fishwoman.png; sourceTree = "<group>"; };
 		7E19548E1AED61B900D84658 /* villager_fishwoman.scml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = villager_fishwoman.scml; sourceTree = "<group>"; };
+		7E1954991AEF52A200D84658 /* BGCharacterVillagerFishWoman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGCharacterVillagerFishWoman.h; sourceTree = "<group>"; };
+		7E19549A1AEF52A200D84658 /* BGCharacterVillagerFishWoman.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGCharacterVillagerFishWoman.m; sourceTree = "<group>"; };
 		7E1B806C1A189C330055E654 /* MainMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuScene.h; sourceTree = "<group>"; };
 		7E1B806D1A189C330055E654 /* MainMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuScene.m; sourceTree = "<group>"; };
 		7E1B806F1A189F450055E654 /* TouchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchButton.h; sourceTree = "<group>"; };
@@ -814,6 +838,16 @@
 			name = Mac;
 			sourceTree = "<group>";
 		};
+		7E0F57591AEF69A800C9CC3E /* enemy_puffer */ = {
+			isa = PBXGroup;
+			children = (
+				7E0F57671AEF69DF00C9CC3E /* enemy_puffer.scml */,
+				7E0F575A1AEF69A800C9CC3E /* enemy_puffer.json */,
+				7E0F575B1AEF69A800C9CC3E /* enemy_puffer.png */,
+			);
+			path = enemy_puffer;
+			sourceTree = "<group>";
+		};
 		7E1460DE1ABA41A40044B31F /* monster */ = {
 			isa = PBXGroup;
 			children = (
@@ -1050,6 +1084,7 @@
 		7EA7AE541ABFB851001C9EFE /* monster */ = {
 			isa = PBXGroup;
 			children = (
+				7E0F57591AEF69A800C9CC3E /* enemy_puffer */,
 				7E1D4B4F1AC64818002E22CC /* enemies_spritesheet.plist */,
 				7E1D4B501AC64818002E22CC /* enemies_spritesheet.png */,
 				7EA7AE551ABFB851001C9EFE /* spirit_fish_1.png */,
@@ -1121,6 +1156,10 @@
 			children = (
 				7EC87F6B1ADB4976002F50CB /* BGCharacterOldMan.h */,
 				7EC87F6C1ADB4976002F50CB /* BGCharacterOldMan.m */,
+				7E1954991AEF52A200D84658 /* BGCharacterVillagerFishWoman.h */,
+				7E19549A1AEF52A200D84658 /* BGCharacterVillagerFishWoman.m */,
+				7E0F576B1AEF7F8E00C9CC3E /* BGCharacterTest.h */,
+				7E0F576C1AEF7F8E00C9CC3E /* BGCharacterTest.m */,
 			);
 			path = elements;
 			sourceTree = "<group>";
@@ -1429,6 +1468,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A4036F719DE401F007B6E8F /* iPad-old.png in Resources */,
+				7E0F57621AEF69A800C9CC3E /* enemy_puffer.png in Resources */,
 				7E80EEC11AC76AD500B5D312 /* hanoka v0.01.scml in Resources */,
 				7E80EEB81AC76AD500B5D312 /* hanokav2.scml in Resources */,
 				7E90D17A1AB635A200E06F92 /* bg_test_tile_sky.png in Resources */,
@@ -1458,6 +1498,7 @@
 				7E1D4B531AC64818002E22CC /* enemies_spritesheet.plist in Resources */,
 				7A4036FD19DE401F007B6E8F /* iPhone.png in Resources */,
 				7E32CADF1AC3650600461F53 /* bg_underwater_surface_gradient.png in Resources */,
+				7E0F575F1AEF69A800C9CC3E /* enemy_puffer.json in Resources */,
 				7E5AB3B71ACBDBDA000C0AAD /* underwater_spritesheet.png in Resources */,
 				7A59498B19E38E4A00F65F90 /* MainMenu.xib in Resources */,
 				7A4036FE19DE401F007B6E8F /* iPhone@2x.png in Resources */,
@@ -1469,6 +1510,7 @@
 				7EA7AE471ABFB7FC001C9EFE /* ripple_effect.fsh in Resources */,
 				7EA7AED91AC006A1001C9EFE /* hud_spritesheet.plist in Resources */,
 				7A40370019DE401F007B6E8F /* Settings@2x.png in Resources */,
+				7E0F576A1AEF69DF00C9CC3E /* enemy_puffer.scml in Resources */,
 				7EC87F651ADB48DA002F50CB /* oldman_ss.json in Resources */,
 				7E5AB3BC1ACBDDD7000C0AAD /* bg_water_element_fade.png in Resources */,
 				7EC87F731ADB4B71002F50CB /* oldman.scml in Resources */,
@@ -1497,11 +1539,13 @@
 				7E80EEBA1AC76AD500B5D312 /* hanoka v0.01.json in Resources */,
 				7E4DB5191ABFBCA700FCDB20 /* spirit_fish_3.png in Resources */,
 				7E1954901AED61B900D84658 /* villager_fishwoman.json in Resources */,
+				7E0F575E1AEF69A800C9CC3E /* enemy_puffer.json in Resources */,
 				7E80EEAE1AC76AD500B5D312 /* hanokav2.json in Resources */,
 				7EC87F721ADB4B71002F50CB /* oldman.scml in Resources */,
 				7E80EEC01AC76AD500B5D312 /* hanoka v0.01.scml in Resources */,
 				7EA7AE611ABFB85D001C9EFE /* sh_button_side.png in Resources */,
 				927F61AE196C771E000F43EF /* Default@2x.png in Resources */,
+				7E0F57691AEF69DF00C9CC3E /* enemy_puffer.scml in Resources */,
 				7E90D17C1AB635A200E06F92 /* bg_test_tile_water.png in Resources */,
 				7EA7AE401ABFB7FC001C9EFE /* reflection_am_down.fsh in Resources */,
 				7EA7AE521ABFB844001C9EFE /* ripple.png in Resources */,
@@ -1545,6 +1589,7 @@
 				7E80EEB11AC76AD500B5D312 /* hanokav2.plist in Resources */,
 				927F61BA196C771E000F43EF /* Default.png in Resources */,
 				7E5AB3B61ACBDBDA000C0AAD /* underwater_spritesheet.png in Resources */,
+				7E0F57611AEF69A800C9CC3E /* enemy_puffer.png in Resources */,
 				927F61BB196C771E000F43EF /* iPad-old.png in Resources */,
 				7EF468B41ABF78480041E55F /* particle_blood_1.png in Resources */,
 				7EF468CD1ABFB4300041E55F /* arrow.png in Resources */,
@@ -1567,6 +1612,8 @@
 				7E90D17B1AB635A200E06F92 /* bg_test_tile_water.png in Resources */,
 				7EA7AE511ABFB844001C9EFE /* ripple.png in Resources */,
 				7EBE56FD1AC3772C008AD888 /* abovewater_am_up.fsh in Resources */,
+				7E0F57601AEF69A800C9CC3E /* enemy_puffer.png in Resources */,
+				7E0F575D1AEF69A800C9CC3E /* enemy_puffer.json in Resources */,
 				7EA7AE5D1ABFB85D001C9EFE /* sh_button_middle.png in Resources */,
 				7EC87F631ADB48DA002F50CB /* oldman_ss.json in Resources */,
 				B7378978180762440076A88C /* Default@2x.png in Resources */,
@@ -1605,6 +1652,7 @@
 				7E80EEB61AC76AD500B5D312 /* hanokav2.scml in Resources */,
 				7E1954921AED61B900D84658 /* villager_fishwoman.png in Resources */,
 				7EF468DD1ABFBB400041E55F /* spirit_fish_2.png in Resources */,
+				7E0F57681AEF69DF00C9CC3E /* enemy_puffer.scml in Resources */,
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
 				7EA7AEDA1AC006A1001C9EFE /* hud_spritesheet.png in Resources */,
 				7EA7AED71AC006A1001C9EFE /* hud_spritesheet.plist in Resources */,
@@ -1673,10 +1721,12 @@
 				7E80EEC81AC7838400B5D312 /* Common.m in Sources */,
 				5B12102A197484DD004C1E1D /* hobobobActivity.java in Sources */,
 				7E1779521AB8152600E3986C /* SpriterData.m in Sources */,
+				7E19549D1AEF52A200D84658 /* BGCharacterVillagerFishWoman.m in Sources */,
 				7E90D1941AB63DD800E06F92 /* BGWater.m in Sources */,
 				7E1D4B4D1AC64524002E22CC /* AirEnemyManager.m in Sources */,
 				7EF468BA1ABF78870041E55F /* ParticlePhysical.m in Sources */,
 				7EF468AF1ABF71E50041E55F /* RotateFadeOutParticle.m in Sources */,
+				7E0F576F1AEF7F8E00C9CC3E /* BGCharacterTest.m in Sources */,
 				7E80EED01AC7E46500B5D312 /* ControlManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1692,8 +1742,10 @@
 				7EA7AECF1ABFF929001C9EFE /* HealthBar.m in Sources */,
 				7EF468BB1ABF78870041E55F /* ParticlePhysical.m in Sources */,
 				7E90D1951AB63DD800E06F92 /* BGWater.m in Sources */,
+				7E0F57701AEF7F8E00C9CC3E /* BGCharacterTest.m in Sources */,
 				7E08F4021AC0D4580023D757 /* ParticleBubble.m in Sources */,
 				7A40360419DDEE84007B6E8F /* main.m in Sources */,
+				7E19549E1AEF52A200D84658 /* BGCharacterVillagerFishWoman.m in Sources */,
 				7EA7AE2D1ABFA984001C9EFE /* ShaderManager.m in Sources */,
 				7E80EED11AC7E46500B5D312 /* ControlManager.m in Sources */,
 				7EA7AEC41ABFDDFD001C9EFE /* PlayerProjectile.m in Sources */,
@@ -1721,6 +1773,7 @@
 			files = (
 				7E80EECB1AC7838500B5D312 /* Common.m in Sources */,
 				7E1779681AB81AF600E3986C /* SpriterXMLParser.m in Sources */,
+				7E0F576E1AEF7F8E00C9CC3E /* BGCharacterTest.m in Sources */,
 				7E1D4B4C1AC64524002E22CC /* AirEnemyManager.m in Sources */,
 				7E90D18D1AB63DB700E06F92 /* BGSky.m in Sources */,
 				7EA7AE8D1ABFDCD6001C9EFE /* SHBackground.m in Sources */,
@@ -1739,6 +1792,7 @@
 				7EF468AE1ABF71E50041E55F /* RotateFadeOutParticle.m in Sources */,
 				7E1779721AB8289A00E3986C /* SpriterTypes.m in Sources */,
 				7EA7AEC91ABFE12F001C9EFE /* GameUI.m in Sources */,
+				7E19549C1AEF52A200D84658 /* BGCharacterVillagerFishWoman.m in Sources */,
 				7E17796D1AB81EC300E3986C /* SpriterJSONParser.m in Sources */,
 				7EA7AEC31ABFDDFD001C9EFE /* PlayerProjectile.m in Sources */,
 				7E80EECF1AC7E46500B5D312 /* ControlManager.m in Sources */,
@@ -1790,6 +1844,7 @@
 				7E17796C1AB81EC300E3986C /* SpriterJSONParser.m in Sources */,
 				7E3B0C1E1A131E8E0057869B /* GameMain.m in Sources */,
 				7E3B0C221A131E8E0057869B /* FileCache.m in Sources */,
+				7E19549B1AEF52A200D84658 /* BGCharacterVillagerFishWoman.m in Sources */,
 				7E3B0C211A131E8E0057869B /* DataStore.m in Sources */,
 				7E3B0C0F1A131E8E0057869B /* Player.m in Sources */,
 				7E3B0C251A131E8E0057869B /* PolyLib.m in Sources */,
@@ -1797,6 +1852,7 @@
 				7ED9B6351ABBD76D0043567C /* BGReflection.m in Sources */,
 				7EBE57021AC3F08F008AD888 /* TouchTrackingLayer.m in Sources */,
 				7EADAC791AB67506004902A9 /* AccelerometerSimulation.m in Sources */,
+				7E0F576D1AEF7F8E00C9CC3E /* BGCharacterTest.m in Sources */,
 				7E3B0C1F1A131E8E0057869B /* BatchDraw.m in Sources */,
 				7E3B0C281A131E8E0057869B /* WebRequest.m in Sources */,
 				7EA7AEC81ABFE12F001C9EFE /* GameUI.m in Sources */,

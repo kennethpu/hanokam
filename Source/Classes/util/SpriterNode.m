@@ -76,33 +76,41 @@
 	[self update_timeline_keyframes];
 }
 
+float get_t_for_keyframes(TGSpriterTimelineKey *keyframe_current, TGSpriterTimelineKey *keyframe_next, float _current_anim_time, float _anim_duration, bool _repeat_anim) {
+	float t;
+	if (keyframe_current.startsAt > keyframe_next.startsAt) {
+		if (_repeat_anim) {
+			t = clampf((_current_anim_time-keyframe_current.startsAt)/(_anim_duration-keyframe_current.startsAt)  + keyframe_next.startsAt, 0, 1);
+		} else {
+			t = 0;
+			keyframe_next = keyframe_current;
+		}
+
+	} else {
+		t = clampf((_current_anim_time-keyframe_current.startsAt)/(keyframe_next.startsAt-keyframe_current.startsAt),0,1);
+	}
+	return t;
+}
+
 -(void)update_timeline_keyframes {
 	for (NSNumber *itr in _bones) {
 		CCNode_Bone *itr_bone = _bones[itr];
 		TGSpriterTimeline *timeline = [[_data anim_of_name:_current_anim_name] timeline_key_of_id:itr_bone._timeline_id];
 		TGSpriterTimelineKey *keyframe_current = [timeline keyForTime:_current_anim_time];
 		TGSpriterTimelineKey *keyframe_next = [timeline nextKeyForTime:_current_anim_time];
-		float t;
-		if (keyframe_current.startsAt > keyframe_next.startsAt) {
-			if (_repeat_anim) {
-				t = clampf((_current_anim_time-keyframe_current.startsAt)/(_anim_duration-keyframe_current.startsAt)  + keyframe_next.startsAt, 0, 1);
-			} else {
-				t = 0;
-				keyframe_next = keyframe_current;
-			}
 		
-		} else {
-			t = clampf((_current_anim_time-keyframe_current.startsAt)/(keyframe_next.startsAt-keyframe_current.startsAt),0,1);
-		}
+		float t = get_t_for_keyframes(keyframe_current, keyframe_next, _current_anim_time, _anim_duration, _repeat_anim);
 		
 		[self interpolate:itr_bone from:keyframe_current to:keyframe_next t:t cp1:ccp(0.25,0) cp2:ccp(0.75, 1)];
 	}
 	for (NSNumber *itr in _objs) {
 		CCSprite_Object *itr_obj = _objs[itr];
 		TGSpriterTimeline *timeline = [[_data anim_of_name:_current_anim_name] timeline_key_of_id:itr_obj._timeline_id];
+		
 		TGSpriterTimelineKey *keyframe_current = [timeline keyForTime:_current_anim_time];
 		TGSpriterTimelineKey *keyframe_next = [timeline nextKeyForTime:_current_anim_time];
-		float t = clampf((_current_anim_time-keyframe_current.startsAt)/(keyframe_next.startsAt-keyframe_current.startsAt),0,1);
+		
+		float t = get_t_for_keyframes(keyframe_current, keyframe_next, _current_anim_time, _anim_duration, _repeat_anim);
 		[self interpolate:itr_obj from:keyframe_current to:keyframe_next t:t cp1:ccp(0.25,0) cp2:ccp(0.75, 1)];
 		
 		TGSpriterFile *file = [_data file_for_folderid:keyframe_current.folder fileid:keyframe_current.file];
@@ -120,6 +128,7 @@
 	node.rotation = scubic_angular_interp(from.rotation, to.rotation, cubic_c1, cubic_c2, t);
 	node.scaleX = scubic_interp(from.scaleX, to.scaleX, cubic_c1, cubic_c2, t);
 	node.scaleY = scubic_interp(from.scaleY, to.scaleY, cubic_c1, cubic_c2, t);
+	node.opacity = scubic_interp(from.alpha, to.alpha, cubic_c1, cubic_c2, t);
 	node.anchorPoint = ccp(scubic_interp(from.anchorPoint.x, to.anchorPoint.x, cubic_c1, cubic_c2, t),scubic_interp(from.anchorPoint.y, to.anchorPoint.y, cubic_c1, cubic_c2, t));
 }
 
