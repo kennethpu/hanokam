@@ -337,7 +337,7 @@
 			for (BaseAirEnemy *itr in g.get_air_enemy_manager.get_enemies) {
 				if (SAT_polyowners_intersect(self, itr)) {
 					_air_params._s_vel = ccp(_air_params._s_vel.x,7);
-					_air_params._w_upwards_vel = 7;
+					_air_params._w_upwards_vel = 4;
 					_air_params._arrow_throwback_ct = 2.0;
 					_air_params._sword_out = NO;
 					[self play_anim:@"in air" repeat:YES];

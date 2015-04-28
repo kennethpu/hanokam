@@ -144,8 +144,8 @@
 	float camera_y = game.get_current_camera_center_y;
 	_bldg_1.position = ccp(_bldg_1.position.x,clampf(camera_y*.1, 0, game.HORIZON_HEIGHT));
 	_bldg_2.position = ccp(_bldg_2.position.x,clampf(camera_y*.2, 0, game.HORIZON_HEIGHT));
-	_bldg_3.position = ccp(_bldg_3.position.x,camera_y*.25);
-	_bldg_4.position = ccp(_bldg_4.position.x,clampf(camera_y*.35,-INFINITY,0));
+	_bldg_3.position = ccp(_bldg_3.position.x,camera_y*.24);
+	_bldg_4.position = ccp(_bldg_4.position.x,camera_y*.27);
 }
 
 -(void)above_water_root_set_visible:(BOOL)tar {
