@@ -73,6 +73,16 @@ Note 1:
 -For this implementation, changing of parent-child hierarchy within a bone is not supported.
 **/
 -(int)indexOfKeyForTime:(float)val {
+	if (keys_.count > 0) { //no keyframe in first frame case
+		TGSpriterTimelineKey *min_keyframe = keys_[0];
+		for (int i = 1; i < keys_.count; i++) {
+			TGSpriterTimelineKey *itr = keys_[i];
+			if (itr.startsAt < min_keyframe.startsAt) min_keyframe = itr;
+		}
+		if (val < min_keyframe.startsAt) {
+			return keys_.count-1;
+		}
+	}
 	int rtv = 0;
 	for (int i = 0; i < keys_.count; i++) {
 		TGSpriterTimelineKey *keyframe = keys_[i];
@@ -85,17 +95,6 @@ Note 1:
 	return rtv;
 }
 -(int)indexOfNextKeyForTime:(float)val {
-	/*
-	double cur_startsat = [self keyForTime:val].startsAt;
-	int index_of_key_for_time = [self indexOfKeyForTime:val];
-	int rtv = 1;
-	while (rtv < keys_.count) {
-		int check_target = (index_of_key_for_time+rtv)%keys_.count;
-		TGSpriterTimelineKey *check_target_key = keys_[check_target];
-		if (check_target_key.startsAt != cur_startsat) return rtv;
-		rtv++;
-	}
-	*/
 	return ([self indexOfKeyForTime:val]+1)%keys_.count;
 }
 -(TGSpriterTimelineKey*)keyForTime:(float)val {

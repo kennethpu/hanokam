@@ -26,7 +26,6 @@
 	NSString *_current_anim_name;
 	
 	float _current_anim_time;
-	int _mainline_key_index;
 	int _anim_duration;
 	BOOL _repeat_anim;
 	BOOL _anim_finished;
@@ -52,7 +51,6 @@
 		NSLog(@"does not contain animation %@",anim_name);
 		return;
 	}
-	_mainline_key_index = 0;
 	_current_anim_time = 0;
 	_current_anim_name = anim_name;
 	_anim_duration = [_data anim_of_name:anim_name]._duration;
@@ -73,6 +71,7 @@
 			_anim_finished = YES;
 		}
 	}
+	[self update_mainline_keyframes];
 	[self update_timeline_keyframes];
 }
 
@@ -134,7 +133,13 @@ float get_t_for_keyframes(TGSpriterTimelineKey *keyframe_current, TGSpriterTimel
 
 -(void)update_mainline_keyframes {
 	TGSpriterAnimation *anim = [_data anim_of_name:_current_anim_name];
-	TGSpriterMainlineKey *mainline_key = [anim nth_mainline_key:_mainline_key_index];
+	TGSpriterMainlineKey *mainline_key;
+	for (int i = 0; i < [anim._mainline_keys count]; i++) {
+		if ([anim nth_mainline_key:i]._start_time > _current_anim_time) {
+			break;
+		}
+		mainline_key = [anim nth_mainline_key:i];
+	}
 	[self make_bone_hierarchy:mainline_key];
 	[self attach_objects_to_bone_hierarchy:mainline_key];
 	[self set_z_indexes:_root_bone];
