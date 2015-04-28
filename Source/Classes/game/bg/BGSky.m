@@ -26,6 +26,7 @@
 	
 	BGCharacterOldMan *_old_man;
 	BGCharacterVillagerFishWoman *_fish_woman;
+	BGCharacterTest *_test_character;
 	
 	CCSprite *_surface_gradient;
 	
@@ -91,7 +92,8 @@
 	_fish_woman = [BGCharacterVillagerFishWoman cons_pos:pct_of_obj(_docks, 0.75, 0.55)];
 	[_docks addChild:_fish_woman];
 	
-	[_docks addChild:[BGCharacterTest cons_pos:pct_of_obj(_docks, 0.25, -0.75)]];
+	_test_character = [BGCharacterTest cons_pos:pct_of_obj(_docks, 0.25, 3.75)];
+	[_docks addChild:_test_character];
 	
 	CCSprite *docks_front = [CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_SPRITESHEET_1] rect:[FileCache get_cgrect_from_plist:TEX_BG_SPRITESHEET_1 idname:@"pier_top_front_pillars.png"]];
 	[[g get_anchor] addChild:docks_front z:GameAnchorZ_BGSky_Docks_Pillars_Front];
@@ -197,7 +199,7 @@
 	
 	[_old_man i_update:g];
 	[_fish_woman i_update:g];
-	
+	[_test_character i_update:g];
 	
 	[_sky_bg setTextureRect:CGRectMake(
 		0,

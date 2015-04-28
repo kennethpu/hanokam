@@ -256,6 +256,15 @@
 		7EA7AEE01AC0081E001C9EFE /* UIBossIntroParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEDE1AC0081E001C9EFE /* UIBossIntroParticle.m */; };
 		7EA7AEE11AC0081E001C9EFE /* UIBossIntroParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEDE1AC0081E001C9EFE /* UIBossIntroParticle.m */; };
 		7EADAC791AB67506004902A9 /* AccelerometerSimulation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EADAC781AB67506004902A9 /* AccelerometerSimulation.m */; };
+		7EB712DA1AF01F19000EFE44 /* spriter_test.json in Resources */ = {isa = PBXBuildFile; fileRef = 7EB712D71AF01F19000EFE44 /* spriter_test.json */; };
+		7EB712DB1AF01F19000EFE44 /* spriter_test.json in Resources */ = {isa = PBXBuildFile; fileRef = 7EB712D71AF01F19000EFE44 /* spriter_test.json */; };
+		7EB712DC1AF01F19000EFE44 /* spriter_test.json in Resources */ = {isa = PBXBuildFile; fileRef = 7EB712D71AF01F19000EFE44 /* spriter_test.json */; };
+		7EB712DD1AF01F19000EFE44 /* spriter_test.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB712D81AF01F19000EFE44 /* spriter_test.png */; };
+		7EB712DE1AF01F19000EFE44 /* spriter_test.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB712D81AF01F19000EFE44 /* spriter_test.png */; };
+		7EB712DF1AF01F19000EFE44 /* spriter_test.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB712D81AF01F19000EFE44 /* spriter_test.png */; };
+		7EB712E01AF01F19000EFE44 /* spriter_test.scml in Resources */ = {isa = PBXBuildFile; fileRef = 7EB712D91AF01F19000EFE44 /* spriter_test.scml */; };
+		7EB712E11AF01F19000EFE44 /* spriter_test.scml in Resources */ = {isa = PBXBuildFile; fileRef = 7EB712D91AF01F19000EFE44 /* spriter_test.scml */; };
+		7EB712E21AF01F19000EFE44 /* spriter_test.scml in Resources */ = {isa = PBXBuildFile; fileRef = 7EB712D91AF01F19000EFE44 /* spriter_test.scml */; };
 		7EBE56FA1AC3771F008AD888 /* abovewater_am_up.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 7EBE56F91AC3771F008AD888 /* abovewater_am_up.vsh */; };
 		7EBE56FD1AC3772C008AD888 /* abovewater_am_up.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 7EBE56FC1AC3772C008AD888 /* abovewater_am_up.fsh */; };
 		7EBE57021AC3F08F008AD888 /* TouchTrackingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBE57011AC3F08F008AD888 /* TouchTrackingLayer.m */; };
@@ -564,6 +573,9 @@
 		7EA7AEDE1AC0081E001C9EFE /* UIBossIntroParticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBossIntroParticle.m; sourceTree = "<group>"; };
 		7EADAC771AB67506004902A9 /* AccelerometerSimulation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccelerometerSimulation.h; sourceTree = "<group>"; };
 		7EADAC781AB67506004902A9 /* AccelerometerSimulation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerometerSimulation.m; sourceTree = "<group>"; };
+		7EB712D71AF01F19000EFE44 /* spriter_test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = spriter_test.json; sourceTree = "<group>"; };
+		7EB712D81AF01F19000EFE44 /* spriter_test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spriter_test.png; sourceTree = "<group>"; };
+		7EB712D91AF01F19000EFE44 /* spriter_test.scml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = spriter_test.scml; sourceTree = "<group>"; };
 		7EBE56F91AC3771F008AD888 /* abovewater_am_up.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = abovewater_am_up.vsh; sourceTree = "<group>"; };
 		7EBE56FC1AC3772C008AD888 /* abovewater_am_up.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = abovewater_am_up.fsh; sourceTree = "<group>"; };
 		7EBE57001AC3F08F008AD888 /* TouchTrackingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchTrackingLayer.h; sourceTree = "<group>"; };
@@ -992,6 +1004,7 @@
 		7E3B0C291A131F400057869B /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				7EB712D61AF01F19000EFE44 /* test */,
 				7EA7AED41AC006A1001C9EFE /* hud */,
 				7EA7AE591ABFB85D001C9EFE /* shop_menu */,
 				7EA7AE541ABFB851001C9EFE /* monster */,
@@ -1139,6 +1152,16 @@
 				7EA7AED61AC006A1001C9EFE /* hud_spritesheet.png */,
 			);
 			path = hud;
+			sourceTree = "<group>";
+		};
+		7EB712D61AF01F19000EFE44 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				7EB712D71AF01F19000EFE44 /* spriter_test.json */,
+				7EB712D81AF01F19000EFE44 /* spriter_test.png */,
+				7EB712D91AF01F19000EFE44 /* spriter_test.scml */,
+			);
+			path = test;
 			sourceTree = "<group>";
 		};
 		7EC87F601ADB48DA002F50CB /* oldman */ = {
@@ -1472,6 +1495,7 @@
 				7E80EEC11AC76AD500B5D312 /* hanoka v0.01.scml in Resources */,
 				7E80EEB81AC76AD500B5D312 /* hanokav2.scml in Resources */,
 				7E90D17A1AB635A200E06F92 /* bg_test_tile_sky.png in Resources */,
+				7EB712DC1AF01F19000EFE44 /* spriter_test.json in Resources */,
 				7E90D17D1AB635A200E06F92 /* bg_test_tile_water.png in Resources */,
 				7A4036F819DE401F007B6E8F /* iPad-old@2x.png in Resources */,
 				7EA7AEDC1AC006A1001C9EFE /* hud_spritesheet.png in Resources */,
@@ -1489,6 +1513,7 @@
 				7EA7AE531ABFB844001C9EFE /* ripple.png in Resources */,
 				7EA7AE4A1ABFB7FC001C9EFE /* ripple_effect.vsh in Resources */,
 				7E80EEBB1AC76AD500B5D312 /* hanoka v0.01.json in Resources */,
+				7EB712E21AF01F19000EFE44 /* spriter_test.scml in Resources */,
 				7EC87F681ADB48DA002F50CB /* oldman_ss.png in Resources */,
 				7EBE57061AC3F162008AD888 /* particles_spritesheet.plist in Resources */,
 				7A4036FB19DE401F007B6E8F /* iPhone-old.png in Resources */,
@@ -1519,6 +1544,7 @@
 				7EA7AE411ABFB7FC001C9EFE /* reflection_am_down.fsh in Resources */,
 				7E5AB3B41ACBDBDA000C0AAD /* underwater_spritesheet.plist in Resources */,
 				7A40370119DE401F007B6E8F /* Default-568h@2x.png in Resources */,
+				7EB712DF1AF01F19000EFE44 /* spriter_test.png in Resources */,
 				7E4DB51A1ABFBCA700FCDB20 /* spirit_fish_3.png in Resources */,
 				7A40370219DE401F007B6E8F /* Default-Landscape~ipad.png in Resources */,
 				7E1954941AED61B900D84658 /* villager_fishwoman.png in Resources */,
@@ -1562,6 +1588,7 @@
 				927F61B2196C771E000F43EF /* iPhone-old@2x.png in Resources */,
 				7EA7AE6C1ABFB931001C9EFE /* bg_spritesheet_1.png in Resources */,
 				7EA7AE4F1ABFB844001C9EFE /* blank.png in Resources */,
+				7EB712DE1AF01F19000EFE44 /* spriter_test.png in Resources */,
 				7E08F3F21AC0C0810023D757 /* aiming_bar.png in Resources */,
 				927F61B4196C771E000F43EF /* Settings@2x.png in Resources */,
 				927F61B5196C771E000F43EF /* Default-Landscape~ipad.png in Resources */,
@@ -1587,7 +1614,9 @@
 				7EA7AED81AC006A1001C9EFE /* hud_spritesheet.plist in Resources */,
 				7EA7AE431ABFB7FC001C9EFE /* reflection_am_down.vsh in Resources */,
 				7E80EEB11AC76AD500B5D312 /* hanokav2.plist in Resources */,
+				7EB712DB1AF01F19000EFE44 /* spriter_test.json in Resources */,
 				927F61BA196C771E000F43EF /* Default.png in Resources */,
+				7EB712E11AF01F19000EFE44 /* spriter_test.scml in Resources */,
 				7E5AB3B61ACBDBDA000C0AAD /* underwater_spritesheet.png in Resources */,
 				7E0F57611AEF69A800C9CC3E /* enemy_puffer.png in Resources */,
 				927F61BB196C771E000F43EF /* iPad-old.png in Resources */,
@@ -1622,6 +1651,7 @@
 				B71F5913188484E7003F4D28 /* iPad.png in Resources */,
 				7EA7AE681ABFB931001C9EFE /* bg_spritesheet_1.plist in Resources */,
 				7EC87F711ADB4B71002F50CB /* oldman.scml in Resources */,
+				7EB712E01AF01F19000EFE44 /* spriter_test.scml in Resources */,
 				7E80EEBC1AC76AD500B5D312 /* hanoka v0.01.png in Resources */,
 				B71F5912188484E7003F4D28 /* iPad-old@2x.png in Resources */,
 				7EBE56FA1AC3771F008AD888 /* abovewater_am_up.vsh in Resources */,
@@ -1657,9 +1687,11 @@
 				7EA7AEDA1AC006A1001C9EFE /* hud_spritesheet.png in Resources */,
 				7EA7AED71AC006A1001C9EFE /* hud_spritesheet.plist in Resources */,
 				B71F5918188484E7003F4D28 /* iPhone@2x.png in Resources */,
+				7EB712DA1AF01F19000EFE44 /* spriter_test.json in Resources */,
 				B7378977180762440076A88C /* Default.png in Resources */,
 				7E80EEBF1AC76AD500B5D312 /* hanoka v0.01.scml in Resources */,
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,
+				7EB712DD1AF01F19000EFE44 /* spriter_test.png in Resources */,
 				7E80EEAD1AC76AD500B5D312 /* hanokav2.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

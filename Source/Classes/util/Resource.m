@@ -58,6 +58,8 @@ static NSSet* dont_load;
 		
 		TEX_SPRITER_ENEMY_PUFFER: @"enemy_puffer.png",
 		
+		TEX_SPRITER_TEST: @"spriter_test.png",
+		
 		TEX_RIPPLE: @"ripple.png",
 		
 		TEX_BG_SPRITESHEET_1: @"bg_spritesheet_1.png",

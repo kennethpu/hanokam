@@ -21,6 +21,10 @@
 	SpriterData *_data;
 	NSMutableDictionary *_bones;
 	NSMutableDictionary *_objs;
+	
+	NSMutableDictionary *_unused_bones;
+	NSMutableDictionary *_unused_objs;
+	
 	CCNode_Bone *_root_bone;
 	
 	NSString *_current_anim_name;
@@ -42,6 +46,9 @@
 	_bones = [NSMutableDictionary dictionary];
 	_objs = [NSMutableDictionary dictionary];
 	_root_bone = NULL;
+	
+	_unused_bones = [NSMutableDictionary dictionary];
+	_unused_objs = [NSMutableDictionary dictionary];
 	
 	return self;
 }
@@ -115,7 +122,6 @@ float get_t_for_keyframes(TGSpriterTimelineKey *keyframe_current, TGSpriterTimel
 		TGSpriterFile *file = [_data file_for_folderid:keyframe_current.folder fileid:keyframe_current.file];
 		itr_obj.texture = [_data texture];
 		itr_obj.textureRect = file._rect;
-		itr_obj.anchorPoint = file._pivot;
 	}
 }
 
@@ -168,7 +174,14 @@ float get_t_for_keyframes(TGSpriterTimelineKey *keyframe_current, TGSpriterTimel
 		TGSpriterObjectRef *bone_ref = [mainline_key nth_bone_ref:i];
 		NSNumber *bone_ref_id = [NSNumber numberWithInt:bone_ref._id];
 		if (![_bones objectForKey:bone_ref_id]) {
-			_bones[bone_ref_id] = [CCNode_Bone node];
+			if ([_unused_bones objectForKey:bone_ref_id] == NULL) {
+				_bones[bone_ref_id] = [CCNode_Bone node];
+				
+			} else {
+				_bones[bone_ref_id] = _unused_bones[bone_ref_id];
+				[_unused_bones removeObjectForKey:bone_ref_id];
+			}
+			
 		} else {
 			[unadded_bones removeObject:bone_ref_id];
 		}
@@ -196,6 +209,7 @@ float get_t_for_keyframes(TGSpriterTimelineKey *keyframe_current, TGSpriterTimel
 		CCNode_Bone *itr_bone = _bones[itr];
 		[itr_bone removeFromParent];
 		[_bones removeObjectForKey:itr];
+		_unused_bones[itr] = itr_bone;
 	}
 }
 
@@ -205,7 +219,12 @@ float get_t_for_keyframes(TGSpriterTimelineKey *keyframe_current, TGSpriterTimel
 		TGSpriterObjectRef *obj_ref = [mainline_key nth_object_ref:i];
 		NSNumber *obj_ref_id = [NSNumber numberWithInt:obj_ref._id];
 		if (![_objs objectForKey:obj_ref_id]) {
-			_objs[obj_ref_id] = [CCSprite_Object node];
+			if ([_unused_objs objectForKey:obj_ref_id] == NULL) {
+				_objs[obj_ref_id] = [CCSprite_Object node];
+			} else {
+				_objs[obj_ref_id] = _unused_objs[obj_ref_id];
+				[_unused_objs removeObjectForKey:obj_ref_id];
+			}
 		} else {
 			[unadded_objects removeObject:obj_ref_id];
 		}
@@ -222,6 +241,7 @@ float get_t_for_keyframes(TGSpriterTimelineKey *keyframe_current, TGSpriterTimel
 		CCSprite_Object *itr_objs = _objs[itr];
 		[itr_objs removeFromParent];
 		[_objs removeObjectForKey:itr];
+		_unused_objs[itr] = itr_objs;
 	}
 }
 

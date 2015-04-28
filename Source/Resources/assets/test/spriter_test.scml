@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r4.1">
+    <atlas>
+        <i name="spriter_test.json"/>
+    </atlas>
+    <folder id="0" name="&lt;spriter_test.json&gt;" atlas="0">
+        <file id="0" name="test-a.png" width="234" height="224" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="test-c.png" width="352" height="337" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="test-b.png" width="172" height="165" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="entity_000">
+        <obj_info name="bone_000" type="bone" w="181.003" h="10"/>
+        <obj_info name="bone_001" type="bone" w="137.004" h="10"/>
+        <obj_info name="bone_002" type="bone" w="103.019" h="10"/>
+        <animation id="0" name="Test" length="500" interval="100">
+            <mainline>
+                <key id="0">
+                    <bone_ref id="0" timeline="0" key="0"/>
+                    <bone_ref id="1" parent="0" timeline="2" key="0"/>
+                    <bone_ref id="2" parent="1" timeline="4" key="0"/>
+                    <object_ref id="0" parent="0" timeline="1" key="1" z_index="0"/>
+                    <object_ref id="1" parent="1" timeline="3" key="0" z_index="1"/>
+                    <object_ref id="2" parent="2" timeline="5" key="0" z_index="2"/>
+                </key>
+                <key id="1" time="250">
+                    <bone_ref id="0" timeline="0" key="1"/>
+                    <bone_ref id="1" parent="0" timeline="2" key="1"/>
+                    <bone_ref id="2" parent="1" timeline="4" key="1"/>
+                    <object_ref id="0" parent="0" timeline="1" key="3" z_index="0"/>
+                    <object_ref id="1" parent="1" timeline="3" key="1" z_index="1"/>
+                    <object_ref id="2" parent="2" timeline="5" key="1" z_index="2"/>
+                </key>
+            </mainline>
+            <timeline id="0" obj="0" name="bone_000" object_type="bone">
+                <key id="0" spin="0">
+                    <bone x="-218.84058" y="-6.898551" angle="90.316548"/>
+                </key>
+                <key id="1" time="250" spin="0">
+                    <bone x="-218.84058" y="-6.898551" angle="90.316548"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="test-a">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="37.363189" y="-1.892695" pivot_x="0.51148" pivot_y="0.501666" angle="269.683452"/>
+                </key>
+                <key id="1" spin="0">
+                    <object folder="0" file="0" x="149.64965" y="117.175007" pivot_x="0" pivot_y="1" angle="269.683452"/>
+                </key>
+                <key id="2" time="250" spin="0">
+                    <object folder="0" file="0" x="149.64965" y="117.175007" pivot_x="0" pivot_y="1" angle="269.683452"/>
+                </key>
+                <key id="3" time="250" spin="0">
+                    <object folder="0" file="0" x="37.363189" y="-1.892695" pivot_x="0.51148" pivot_y="0.501666" angle="269.683452"/>
+                </key>
+            </timeline>
+            <timeline id="2" obj="1" name="bone_001" object_type="bone">
+                <key id="0">
+                    <bone x="-42.993819" y="1.23755" angle="180.101662"/>
+                </key>
+                <key id="1" time="250" spin="-1">
+                    <bone x="-42.993819" y="1.23755" angle="213.839956"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="test-b">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-15.605424" y="-82.888303" angle="89.58179"/>
+                </key>
+                <key id="1" time="250" spin="0">
+                    <object folder="0" file="2" x="-15.605424" y="-82.888303" angle="89.58179"/>
+                </key>
+            </timeline>
+            <timeline id="4" obj="2" name="bone_002" object_type="bone">
+                <key id="0">
+                    <bone x="132.003783" y="0.036495" angle="0.69419"/>
+                </key>
+                <key id="1" time="250" spin="-1">
+                    <bone x="132.003783" y="0.036495" angle="49.960386"/>
+                </key>
+            </timeline>
+            <timeline id="5" name="test-c">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-30.71092" y="-173.344609" pivot_x="-0.010449" pivot_y="0.997359" angle="88.8876"/>
+                </key>
+                <key id="1" time="250" spin="0">
+                    <object folder="0" file="1" x="-30.71092" y="-173.344609" pivot_x="-0.010449" pivot_y="0.997359" angle="88.8876"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

@@ -3,6 +3,7 @@
 #import "FileCache.h"
 #import "GameEngineScene.h"
 #import "Common.h"
+#import "ControlManager.h"
 
 #import "SpriterNode.h"
 #import "SpriterJSONParser.h"
@@ -24,8 +25,7 @@
 Requirements:
 1. All bones are children of a central "parent" bone.
 2. All images have a bone parent.
-3. Keep the image pivot at the default value (or somewhere close to it). (You can temporarily change it, but please change it back before saving and exporting).
-4. Do not change the parent of a bone or image within an animation.
+3. Do not change the parent of a bone or image within an animation.
 
 Try to avoid:
 1. Rotating images (rotate the parent bone instead).
@@ -37,7 +37,6 @@ Remember:
 
 /*
 todo:
---spriternode pivot x,y problem (?)
 --spriternode reduce allocations
 */
 -(BGCharacterTest*)cons_pos:(CGPoint)pos {
@@ -51,11 +50,35 @@ todo:
 	[self play_anim:@"Die" repeat:YES];
 	[self addChild:_img];
 	
+	
+	/*
+	SpriterJSONParser *frame_data = [[[SpriterJSONParser alloc] init] parseFile:@"spriter_test.json"];
+	SpriterData *spriter_data = [SpriterData dataFromSpriteSheet:[Resource get_tex:TEX_SPRITER_TEST] frames:frame_data scml:@"spriter_test.scml"];
+	_img = [SpriterNode nodeFromData:spriter_data];
+	[self play_anim:@"Test" repeat:YES];
+	[self addChild:_img];
+	*/
 	return self;
 }
 
+static int _test = 0;
+static bool _last_touch_down = NO;
 -(void)i_update:(GameEngineScene*)g {
-
+	if (_last_touch_down == NO && [g.get_control_manager is_touch_down]) {
+		_test = (_test+1)%5;
+		if (_test == 0) {
+			[self play_anim:@"Die" repeat:YES];
+		} else if (_test == 1) {
+			[self play_anim:@"Idle" repeat:YES];
+		} else if (_test == 2) {
+			[self play_anim:@"Attack" repeat:YES];
+		} else if (_test == 3) {
+			[self play_anim:@"Follow" repeat:YES];
+		} else {
+			[self play_anim:@"Hurt Sword" repeat:YES];
+		}
+	}
+	_last_touch_down = [g.get_control_manager is_touch_down];
 }
 
 -(void)play_anim:(NSString*)anim repeat:(BOOL)repeat {
