@@ -24,10 +24,7 @@
 	[self setPosition:pos];
 	
 	[self setScale:0.45];
-	
-	SpriterJSONParser *frame_data = [[[SpriterJSONParser alloc] init] parseFile:@"villager_fishwoman.json"];
-	SpriterData *spriter_data = [SpriterData dataFromSpriteSheet:[Resource get_tex:TEX_SPRITER_CHAR_VILLAGER_FISHWOMAN] frames:frame_data scml:@"villager_fishwoman.scml"];
-	_img = [SpriterNode nodeFromData:spriter_data];
+	_img = [SpriterNode nodeFromData:[FileCache spriter_scml_data_from_file:@"villager_fishwoman.scml" json:@"villager_fishwoman.json" texture:[Resource get_tex:TEX_SPRITER_CHAR_VILLAGER_FISHWOMAN]]];
 	[self play_anim:@"Idle" repeat:YES];
 	[self addChild:_img];
 	

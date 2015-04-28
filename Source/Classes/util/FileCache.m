@@ -1,6 +1,9 @@
 #import "FileCache.h"
 #import "Resource.h"
 
+#import "SpriterJSONParser.h"
+#import "SpriterData.h"
+
 #define PLIST @"plist"
 
 @implementation FileCache
@@ -38,6 +41,30 @@ static NSMutableDictionary* files;
 	NSDictionary *sto_dict = [files objectForKey:file];
 	CGRect rtv = [(NSValue*)[sto_dict objectForKey:idname] CGRectValue];
 	return rtv;
+}
+
+static NSMutableDictionary *_spriter_json_files;
++(SpriterJSONParser*)spriter_json_from_file:(NSString*)file {
+	if (_spriter_json_files == NULL) _spriter_json_files = [NSMutableDictionary dictionary];
+	if (![_spriter_json_files objectForKey:file]) {
+		_spriter_json_files[file] = [[[SpriterJSONParser alloc] init] parseFile:file];
+	}
+	return _spriter_json_files[file];
+}
+
+NSString* hash_for_scmldata(NSString *file, NSString *json, CCTexture *texture) {
+	return [NSString stringWithFormat:@"%@_%@_%@",file,json,texture];
+}
+
+static NSMutableDictionary *_spriter_scml_data_files;
++(SpriterData*)spriter_scml_data_from_file:(NSString*)file json:(NSString*)json texture:(CCTexture*)texture {
+	if (_spriter_scml_data_files == NULL) _spriter_scml_data_files = [NSMutableDictionary dictionary];
+	NSString *hash = hash_for_scmldata(file, json, texture);
+	if (![_spriter_scml_data_files objectForKey:hash]) {
+		SpriterJSONParser *json_data = [self spriter_json_from_file:json];
+		_spriter_scml_data_files[hash] = [SpriterData dataFromSpriteSheet:texture frames:json_data scml:file];
+	}
+	return _spriter_scml_data_files[hash];
 }
 
 @end

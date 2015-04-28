@@ -44,12 +44,9 @@ todo:
 	
 	[self setScale:0.45];
 	
-	SpriterJSONParser *frame_data = [[[SpriterJSONParser alloc] init] parseFile:@"enemy_puffer.json"];
-	SpriterData *spriter_data = [SpriterData dataFromSpriteSheet:[Resource get_tex:TEX_SPRITER_ENEMY_PUFFER] frames:frame_data scml:@"enemy_puffer.scml"];
-	_img = [SpriterNode nodeFromData:spriter_data];
+	_img = [SpriterNode nodeFromData:[FileCache spriter_scml_data_from_file:@"enemy_puffer.scml" json:@"enemy_puffer.json" texture:[Resource get_tex:TEX_SPRITER_ENEMY_PUFFER]]];
 	[self play_anim:@"Die" repeat:YES];
 	[self addChild:_img];
-	
 	
 	/*
 	SpriterJSONParser *frame_data = [[[SpriterJSONParser alloc] init] parseFile:@"spriter_test.json"];

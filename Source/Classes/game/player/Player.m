@@ -41,9 +41,7 @@
 	_underwater_params = [[PlayerUnderwaterCombatParams alloc] init];
 	_land_params = [[PlayerLandParams alloc] init];
 	
-	SpriterJSONParser *frame_data = [[[SpriterJSONParser alloc] init] parseFile:@"hanokav2.json"];
-	SpriterData *spriter_data = [SpriterData dataFromSpriteSheet:[Resource get_tex:TEX_SPRITER_CHAR_HANOKA_V2] frames:frame_data scml:@"hanokav2.scml"];
-	_img = [SpriterNode nodeFromData:spriter_data];
+	_img = [SpriterNode nodeFromData:[FileCache spriter_scml_data_from_file:@"hanokav2.scml" json:@"hanokav2.json" texture:[Resource get_tex:TEX_SPRITER_CHAR_HANOKA_V2]]];
 	[self play_anim:@"idle" repeat:YES];
 	[self addChild:_img z:1];
 	

@@ -24,10 +24,7 @@
 	
 	[self setScale:0.45];
 	[self setScaleX:self.scale*-1];
-	
-	SpriterJSONParser *frame_data = [[[SpriterJSONParser alloc] init] parseFile:@"oldman_ss.json"];
-	SpriterData *spriter_data = [SpriterData dataFromSpriteSheet:[Resource get_tex:TEX_SPRITER_CHAR_OLDMAN] frames:frame_data scml:@"oldman.scml"];
-	_img = [SpriterNode nodeFromData:spriter_data];
+	_img = [SpriterNode nodeFromData:[FileCache spriter_scml_data_from_file:@"oldman.scml" json:@"oldman_ss.json" texture:[Resource get_tex:TEX_SPRITER_CHAR_OLDMAN]]];
 	[self play_anim:@"idle" repeat:YES];
 	[self addChild:_img];
 	

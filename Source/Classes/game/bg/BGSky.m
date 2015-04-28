@@ -51,7 +51,7 @@
 	[_sky_bg.texture setTexParameters:&par];
 	
 	_bldg_4 = [CCSprite spriteWithTexture:[Resource get_tex:TEX_BG_SPRITESHEET_1] rect:[FileCache get_cgrect_from_plist:TEX_BG_SPRITESHEET_1 idname:@"bg_4.png"]];
-	[[g get_anchor] addChild:_bldg_4 z:GameAnchorZ_BGSky_BackgroundElements-1];
+	[[g get_anchor] addChild:_bldg_4 z:GameAnchorZ_BGSky_BackgroundElements];
 	[_above_water_elements addObject:_bldg_4];
 	[_bldg_4 set_scale:0.5];
 	scale_to_fit_screen_x(_bldg_4);
@@ -130,7 +130,14 @@
 }
 
 -(void)render_reflection:(GameEngineScene*)game {
-	float y = _bldg_3.position.y;
+	float y;
+	
+	y = _bldg_4.position.y;
+	_bldg_4.position = ccp(_bldg_4.position.x,clampf(-y + 30 + game.HORIZON_HEIGHT,0,100));
+	[_bldg_4 visit];
+	_bldg_4.position = ccp(_bldg_4.position.x,y);
+	
+	y = _bldg_3.position.y;
 	_bldg_3.position = ccp(_bldg_3.position.x,clampf(-y + 5 + game.HORIZON_HEIGHT,0,100));
 	[_bldg_3 visit];
 	_bldg_3.position = ccp(_bldg_3.position.x,y);
@@ -166,6 +173,7 @@
 		[self above_water_root_set_visible:YES];
 		[_above_water_belowreflection beginWithClear:0 g:0 b:0 a:0];
 		[BGReflection above_water_below_render:_sky_bg];
+		[BGReflection above_water_below_render:_bldg_4];
 		[BGReflection above_water_below_render:_bldg_3];
 		[BGReflection above_water_below_render:_bldg_2];
 		[BGReflection above_water_below_render:_bldg_1];
