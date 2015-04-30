@@ -9,7 +9,6 @@
 #import "SpriterData.h"
 
 #import "PlayerProjectile.h"
-#import "ParticleBubble.h"
 
 #import "CCTexture_Private.h"
 #import "ControlManager.h"
@@ -19,6 +18,10 @@
 #import "PlayerAirCombatParams.h"
 #import "PlayerUnderwaterCombatParams.h"
 #import "PlayerLandParams.h"
+
+#import "GameUI.h"
+
+#import "ChainedMovementParticle.h"
 
 @implementation Player {
 	SpriterNode *_img;
@@ -31,6 +34,11 @@
 	PlayerLandParams *_land_params;
 	
 	CGPoint _s_pos;
+	
+	float _current_health;
+	int _max_health;
+	
+	ChainedMovementParticle *_rescue_anim;
 }
 
 +(Player*)cons_g:(GameEngineScene*)g {
@@ -49,11 +57,22 @@
 	
 	[_img set_scale:0.25];
 	
+	_max_health = 3;
+	_current_health = _max_health;
+	
 	return self;
 }
 
+-(void)set_health:(float)val { _current_health = val; }
+-(void)add_health:(float)val g:(GameEngineScene*)g {
+	_current_health += val;
+	[g.get_ui pulse_heart_lastfill];
+}
+-(int)get_max_health { return _max_health; }
+-(float)get_current_health { return _current_health; }
+
 -(void)i_update:(GameEngineScene*)g {
-	if (g.get_player_state == PlayerState_OnGround) {
+	if (g.get_player_state == PlayerState_OnGround && _land_params._current_mode == PlayerLandMode_OnDock) {
 		[self setZOrder:GameAnchorZ_Player];
 	} else {
 		[self setZOrder:GameAnchorZ_Player_Out];
@@ -149,12 +168,6 @@
 	[self read_s_pos:g];
 }
 
--(void)prep_transition_air_to_land_mode:(GameEngineScene*)g {
-	g._player_state = PlayerState_AirToGroundTransition;
-	_land_params._vel = ccp(0,clampf(_air_params._w_upwards_vel + _air_params._s_vel.y,-15,-5));
-	[g add_ripple:ccp(g.player.position.x,0)];
-}
-
 -(void)prep_transition_air_to_land_finish_mode:(GameEngineScene*)g {
 	g.player.position = ccp(g.player.position.x,g.DOCK_HEIGHT);
 	self.rotation = 0;
@@ -172,6 +185,13 @@
 		case PlayerLandMode_OnDock:;
 			[g set_zoom:drp(g.get_zoom,1,20)];
 			[g set_camera_height:drp(g.get_current_camera_center_y,150,20)];
+			if (g.player.get_current_health < g.player.get_max_health) {
+				_land_params._health_restore_ct += dt_scale_get();
+				if (_land_params._health_restore_ct > 15) {
+					_land_params._health_restore_ct = 0;
+					[g.player add_health:0.25 g:g];
+				}
+			}
 			if (g.get_control_manager.is_touch_down) {
 				[self play_anim:@"prep dive" repeat:NO];
 				_land_params._prep_dive_hold_ct += dt_scale_get();
@@ -223,6 +243,7 @@
 				[g add_ripple:ccp(g.player.position.x,0)];
 			}
 		break;
+		default:;
 	}
 }
 
@@ -252,15 +273,15 @@
 					_underwater_params._vy = MAX(_underwater_params._vy-0.2*dt_scale_get(), -7);
 				}
 				_underwater_params._tar_camera_offset = _underwater_params.DEFAULT_OFFSET;
-				[g set_camera_height:self.position.y + _underwater_params._tar_camera_offset + _underwater_params._remainder_camera_offset];
+				[g set_camera_height:MIN(self.position.y + _underwater_params._tar_camera_offset + _underwater_params._remainder_camera_offset, g.get_current_camera_center_y)];
 				_underwater_params._remainder_camera_offset = drp(_underwater_params._remainder_camera_offset, 0, 20);
 				
 			} else {
 				_underwater_params._vy = MIN(_underwater_params._vy+0.2*dt_scale_get(), 7);
 				_underwater_params._remainder_camera_offset = - ((self.position.y + _underwater_params._tar_camera_offset)-g.get_current_camera_center_y);
-				if (g.player.position.y > g.get_viewbox.y2) {
-					[self prep_dive_to_dive_return_mode:g];
-				}
+			}
+			if (g.player.position.y > g.get_viewbox.y2) {
+				[self prep_dive_to_dive_return_mode:g];
 			}
 			[self read_s_pos:g];
 		break;
@@ -276,8 +297,6 @@
 	[self update_accel_x_position:g];
 	_underwater_params._tar_camera_offset = drp(_underwater_params._tar_camera_offset, 0, 10);
 	_underwater_params._remainder_camera_offset = drp(_underwater_params._remainder_camera_offset, 0, 10);
-	[g set_camera_height:self.position.y + _underwater_params._tar_camera_offset + _underwater_params._remainder_camera_offset];
-	[g set_zoom:drp(g.get_zoom,1.5,20)];
 	_underwater_params._vy = MIN(_underwater_params._vy+0.6*dt_scale_get(), 14);
 	self.position = ccp(self.position.x,self.position.y + _underwater_params._vy * dt_scale_get());
 	
@@ -289,6 +308,8 @@
 		[g add_ripple:ccp(g.player.position.x,0)];
 	}
 	[self read_s_pos:g];
+	[g set_camera_height:self.position.y + _underwater_params._tar_camera_offset + _underwater_params._remainder_camera_offset];
+	[g set_zoom:drp(g.get_zoom,1.5,20)];
 }
 
 -(void)update_in_air:(GameEngineScene*)g {
@@ -334,6 +355,13 @@
 			
 			for (BaseAirEnemy *itr in g.get_air_enemy_manager.get_enemies) {
 				if (SAT_polyowners_intersect(self, itr)) {
+					
+					if (!_air_params._sword_out) {
+						[g.player add_health:-0.5 g:g];
+						[g.get_ui flash_red];
+						[g shake_for:10 distance:5];
+					}
+				
 					_air_params._s_vel = ccp(_air_params._s_vel.x,7);
 					_air_params._w_upwards_vel = 4;
 					_air_params._arrow_throwback_ct = 2.0;
@@ -346,56 +374,137 @@
 			
 			_s_pos = ccp(
 				_s_pos.x+_air_params._s_vel.x,
-				clampf(_s_pos.y+_air_params._s_vel.y,-INFINITY,_air_params.DEFAULT_HEIGHT)
+				clampf(_s_pos.y+_air_params._s_vel.y*dt_scale_get(),-INFINITY,_air_params.DEFAULT_HEIGHT)
 			);
+			
+			if (_s_pos.y < -50) {
+				[g.player add_health:-0.25 g:g];
+				[g.get_ui flash_red];
+				[g shake_for:10 distance:5];
+				_air_params._w_upwards_vel = 0;
+				_air_params._s_vel = CGPointZero;
+				_air_params._sword_out = NO;
+				_air_params._arrow_throwback_ct = 2.0;
+				_air_params._current_mode = PlayerAirCombatMode_RescueBackToTop;
+				[self play_anim:@"in air" repeat:YES];
+				
+				if (g.player.get_current_health > 0) {
+					_rescue_anim = [ChainedMovementParticle cons];
+					[_rescue_anim setTexture:[Resource get_tex:TEX_PARTICLES_SPRITESHEET]];
+					[_rescue_anim setTextureRect:[FileCache get_cgrect_from_plist:TEX_PARTICLES_SPRITESHEET idname:@"grey_particle"]];
+					(int_random(0, 2) < 1)?[_rescue_anim add_waypoint:game_screen_pct(0, float_random(0.5, 0.8)) speed:1]:[_rescue_anim add_waypoint:game_screen_pct(1, float_random(0.5, 0.8)) speed:1];
+					[_rescue_anim add_playerx_waypoint:-40 speed:0.025];
+					[_rescue_anim add_playerx_waypoint:_air_params.DEFAULT_HEIGHT speed:0.01];
+					(int_random(0, 2) < 1)?[_rescue_anim add_waypoint:game_screen_pct(1, 1.5) speed:0.025]:[_rescue_anim add_waypoint:game_screen_pct(0, 1.5) speed:0.025];
+					[_rescue_anim set_relative];
+					[g add_particle:_rescue_anim];
+				}
+			}
+			
 			
 		break;
 		case PlayerAirCombatMode_RescueBackToTop:;
-			_air_params._sword_out = NO;
+			if (_rescue_anim != NULL) {
+				if (_rescue_anim.waypoints_left == 2) {
+					if (_air_params.__rescue_last_waypoint_ct == 3) [g shake_for:5 distance:1];
+					_s_pos = ccp(_s_pos.x,_rescue_anim.position.y-g.get_viewbox.y1-10);
+				} else if (_rescue_anim.waypoints_left < 2) {
+					_rescue_anim = NULL;
+					[g shake_for:5 distance:1];
+					_air_params._current_mode = PlayerAirCombatMode_Combat;
+				}
+				_air_params.__rescue_last_waypoint_ct = _rescue_anim.waypoints_left;
+			}
 		break;
 		case PlayerAirCombatMode_FallToGround:;
-			_air_params._sword_out = NO;
+			[g.get_ui fadeout:YES];
+			[self play_anim:@"fall" repeat:YES];
+			_air_params._s_vel = ccp(_air_params._s_vel.x,_air_params._s_vel.y - 0.4 * dt_scale_get());
+			_air_params._w_upwards_vel = 0;
+			_s_pos = ccp(
+				_s_pos.x,
+				_s_pos.y+_air_params._s_vel.y*dt_scale_get()
+			);
+			
+			if (g.get_ui.is_faded_out) {
+				[g.get_air_enemy_manager remove_all_enemies:g];
+				[self prep_transition_air_to_land_mode:g];
+				return;
+			}
 		break;
 	}
+	
+	if (g.player.get_current_health <= 0 && _air_params._current_mode != PlayerAirCombatMode_FallToGround) {
+		_air_params._current_mode = PlayerAirCombatMode_FallToGround;
+	}
+	
 	[self update_accel_x_position:g];
 	_air_params._w_camera_center += _air_params._w_upwards_vel * dt_scale_get();
 	[g set_camera_height:_air_params._w_camera_center];
 	[self apply_s_pos:g];
-	
-	if (g.player.position.y < 0 && _air_params._current_mode != PlayerAirCombatMode_InitialJumpOut) {
-		[self prep_transition_air_to_land_mode:g];
-		[g.get_air_enemy_manager notify_enemies_leave:g];
-	}
+}
+
+-(void)prep_transition_air_to_land_mode:(GameEngineScene*)g {
+	g._player_state = PlayerState_AirToGroundTransition;
+	[g.player set_health:0];
+	[g.player add_health:0.25 g:g];
+	[g imm_set_camera_hei:0];
+	g.player.position = ccp(g.player.position.x,300);
+	_land_params._vel = ccp(0,0);
+	_land_params._current_mode = PlayerLandMode_AirToGround_FadeIn;
 }
 
 -(void)update_air_to_ground_transition:(GameEngineScene*)g {
 	CGPoint last_pos = self.position;
 	[self update_accel_x_position:g];
-	if (g.player.position.y < 0) {
-		[self play_anim:@"swim" repeat:YES];
-		_land_params._vel = ccp(_land_params._vel.x,_land_params._vel.y + 0.4 * dt_scale_get());
-		g.player.position = CGPointAdd(g.player.position, ccp(0,_land_params._vel.y*dt_scale_get()));
-		if (g.player.position.y > 0) {
-			[g add_ripple:ccp(g.player.position.x,0)];
-		}
-		[g set_camera_height:drp(g.get_current_camera_center_y,-50,20)];
-		float tar_rotation = vec_ang_deg_lim180(vec_cons(self.position.x - last_pos.x,self.position.y - last_pos.y, 0),90);
-		self.rotation += shortest_angle(self.rotation, tar_rotation) * 0.25;
+	[g set_zoom:drp(g.get_zoom,1.2,20)];
+	switch (_land_params._current_mode) {
+		case PlayerLandMode_AirToGround_FadeIn:;
+			[g.get_ui fadeout:NO];
+			if (g.get_ui.is_faded_in) _land_params._current_mode = PlayerLandMode_AirToGround_FallToWater;
+			
+		case PlayerLandMode_AirToGround_FallToWater:;
+			[self play_anim:@"fall" repeat:YES];
+			_land_params._vel = ccp(_land_params._vel.x,_land_params._vel.y - 0.3 * dt_scale_get());
+			g.player.position = CGPointAdd(g.player.position, ccp(0,_land_params._vel.y*dt_scale_get()));
+			[g set_camera_height:drp(g.get_current_camera_center_y,0,20)];
+			if (g.player.position.y < 0) {
+				_land_params._current_mode = PlayerLandMode_AirToGround_WaterDiveUp;
+				[g add_ripple:ccp(g.player.position.x,0)];
+				[g shake_slow_for:100 distance:10];
+			}
+			
+		break;
+		case PlayerLandMode_AirToGround_WaterDiveUp:;
+			[self play_anim:@"swim" repeat:YES];
+			_land_params._vel = ccp(_land_params._vel.x,_land_params._vel.y + 0.4 * dt_scale_get());
+			g.player.position = CGPointAdd(g.player.position, ccp(0,_land_params._vel.y*dt_scale_get()));
+			if (g.player.position.y > 0) {
+				[g add_ripple:ccp(g.player.position.x,0)];
+				_land_params._current_mode = PlayerLandMode_AirToGround_FlipToDock;
+			}
+			[g set_camera_height:drp(g.get_current_camera_center_y,-50,20)];
+			float tar_rotation = vec_ang_deg_lim180(vec_cons(self.position.x - last_pos.x,self.position.y - last_pos.y, 0),90);
+			self.rotation += shortest_angle(self.rotation, tar_rotation) * 0.25;
 		
-	} else {
-		[self play_anim:@"spin" repeat:YES];
-		if (g.player.position.y > g.DOCK_HEIGHT) _land_params._vel = ccp(_land_params._vel.x,_land_params._vel.y - 0.4 * dt_scale_get());
-		g.player.position = CGPointAdd(g.player.position, ccp(0,_land_params._vel.y*dt_scale_get()));
-		if (_land_params._vel.y < 0 && g.player.position.y < g.DOCK_HEIGHT) {
-			[self prep_transition_air_to_land_finish_mode:g];
-			return;
-		}
-		[g set_camera_height:drp(g.get_current_camera_center_y,30,20)];
+		break;
+		case PlayerLandMode_AirToGround_FlipToDock:;
+			[self play_anim:@"spin" repeat:YES];
+			_land_params._vel = ccp(_land_params._vel.x,_land_params._vel.y - 0.4 * dt_scale_get());
+			g.player.position = CGPointAdd(g.player.position, ccp(0,_land_params._vel.y*dt_scale_get()));
+			if (_land_params._vel.y < 0 && g.player.position.y < g.DOCK_HEIGHT) {
+				[self prep_transition_air_to_land_finish_mode:g];
+				return;
+			}
+			[g set_camera_height:drp(g.get_current_camera_center_y,30,20)];
+			
+		break;
+		default:;
 	}
 }
 
 -(BOOL)is_underwater:(GameEngineScene *)g {
-	return self.position.y < 0;
+	return self.position.y < 0 && g._player_state != PlayerState_InAir;
 }
 
 -(CGPoint)get_size { return ccp(40,130); }

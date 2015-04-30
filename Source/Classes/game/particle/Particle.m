@@ -6,6 +6,7 @@
 -(void)i_update:(id)g {}
 -(BOOL)should_remove { return YES; }
 -(int)get_render_ord { return 0; }
+-(void)do_remove{}
 @end
 
 @implementation ParticleSystem {
@@ -34,6 +35,7 @@
     for (Particle *i in _particles) {
         [i i_update:parent];
         if ([i should_remove]) {
+			[i do_remove];
 			[_game_anchor removeChild:i cleanup:YES];
             [_to_remove addObject:i];
         }

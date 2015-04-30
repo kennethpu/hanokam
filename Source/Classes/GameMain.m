@@ -9,8 +9,10 @@
 
 /*
 TODO --
-dive lock y downwards no return
-air phase after fall off pull back + health
+damage recoil player anim
+enemies use spriter anims, pooled
+
+ground mode, hold to completing circle ui jump
 */
 
 @implementation GameMain

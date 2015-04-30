@@ -16,7 +16,6 @@
 @implementation BasicAirEnemy {
 	CGPoint _rel_start,_rel_end;
 	float _anim_t;
-	BOOL _notify_leave;
 }
 @synthesize _rel_pos;
 +(BasicAirEnemy*)cons_g:(GameEngineScene*)g relstart:(CGPoint)relstart relend:(CGPoint)relend {
@@ -28,7 +27,6 @@
 	_rel_pos = _rel_start;
 	[self update_rel_pos:g];
 	_anim_t = 0;
-	_notify_leave = NO;
 	[self setTexture:[Resource get_tex:TEX_ENEMIES_SPRITESHEET]];
 	[self setTextureRect:[FileCache get_cgrect_from_plist:TEX_ENEMIES_SPRITESHEET idname:@"spirit_fish_1.png"]];
 	[self setScale:0.25];
@@ -41,11 +39,7 @@
 }
 
 -(void)i_update:(GameEngineScene *)game {
-	if (_notify_leave) {
-		_anim_t += 0.05 * dt_scale_get();
-	} else {
-		_anim_t += 0.004 * dt_scale_get();
-	}
+	_anim_t += 0.004 * dt_scale_get();
 	
 	CGPoint bez_ctrl1 = ccp(_rel_start.x,_rel_end.y + 100);
 	CGPoint bez_ctrl2 = CGPointMid(bez_ctrl1, _rel_end);
@@ -67,12 +61,5 @@
 
 -(void)hit_projectile:(GameEngineScene*)g { _anim_t = 1; }
 -(void)hit_player_melee:(GameEngineScene*)g { _anim_t = 1; }
-
--(void)notify_leave:(GameEngineScene *)g {
-	_rel_start = _rel_pos;
-	_rel_end = ccp(_rel_end.x,_rel_start.y);
-	_notify_leave = YES;
-	_anim_t = 0;
-}
 
 @end

@@ -10,7 +10,7 @@
 
 @implementation PlayerLandParams
 @synthesize _vel;
-@synthesize _move_hold_ct, _prep_dive_hold_ct;
+@synthesize _move_hold_ct, _prep_dive_hold_ct, _health_restore_ct;
 @synthesize _current_mode;
 -(float)MOVE_CUTOFF_VAL { return 0.3; }
 -(float)MOVE_HOLD_TIME { return 2.0; }

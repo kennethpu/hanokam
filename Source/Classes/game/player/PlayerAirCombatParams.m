@@ -15,6 +15,7 @@
 @synthesize _current_mode;
 @synthesize _sword_out;
 @synthesize _arrow_throwback_ct;
+@synthesize  __rescue_last_waypoint_ct;
 -(float)DEFAULT_HEIGHT {
 	return game_screen().height * 0.8;
 }

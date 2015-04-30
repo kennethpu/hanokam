@@ -9,6 +9,7 @@
 @class AirEnemyManager;
 @class ControlManager;
 @class PlayerProjectile;
+@class GameUI;
 
 typedef enum _PlayerState {
 	PlayerState_Dive = 0,
@@ -64,6 +65,7 @@ typedef enum _GameAnchorZ {
 -(CCNode*)get_anchor;
 -(SpiritManager*)get_spirit_manager;
 -(AirEnemyManager*)get_air_enemy_manager;
+-(GameUI*)get_ui;
 
 -(void)add_ripple:(CGPoint)pos;
 -(float)get_ground_depth;

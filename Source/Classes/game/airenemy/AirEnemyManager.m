@@ -18,12 +18,11 @@
 	[self setZOrder:self.position.y<0?GameAnchorZ_Enemies_Underwater:GameAnchorZ_Enemies_Air];
 }
 -(BOOL)should_remove{ return YES; }
--(void)do_remove{ }
+-(void)do_remove:(GameEngineScene *)g{ }
 -(HitRect)get_hit_rect{ return hitrect_cons_xy_widhei(self.position.x, self.position.y, 0, 0); }
 -(void)get_sat_poly:(SATPoly *)in_poly { }
 -(void)hit_projectile:(GameEngineScene*)g{}
 -(void)hit_player_melee:(GameEngineScene*)g{}
--(void)notify_leave:(GameEngineScene*)g{}
 @end
 
 @implementation AirEnemyManager {
@@ -65,7 +64,7 @@
 		BaseAirEnemy *itr = [_enemies objectAtIndex:i];
 		[itr i_update:game];
 		if ([itr should_remove]) {
-			[itr do_remove];
+			[itr do_remove:game];
 			[[game get_anchor] removeChild:itr];
 			[do_remove addObject:itr];
 		}
@@ -81,10 +80,8 @@
 -(NSArray*)get_enemies {
 	return _enemies;
 }
--(void)notify_enemies_leave:(GameEngineScene*)g {
-	for (BaseAirEnemy *itr in _enemies) {
-		[itr notify_leave:g];
-	}
+-(void)remove_all_enemies:(GameEngineScene*)g {
+	for (BaseAirEnemy *itr in _enemies) [[g get_anchor] removeChild:itr];
+	[_enemies removeAllObjects];
 }
-
 @end

@@ -105,6 +105,7 @@
 -(SpiritManager*)get_spirit_manager{ return _spirit_manager; }
 -(AirEnemyManager*)get_air_enemy_manager { return _air_enemy_manager; }
 -(ControlManager*)get_control_manager { return _controls; }
+-(GameUI*)get_ui{ return _ui; }
 
 @synthesize _player_state;
 -(PlayerState)get_player_state {

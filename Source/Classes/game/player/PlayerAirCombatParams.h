@@ -23,5 +23,7 @@ typedef enum _PlayerAirCombatMode {
 @property(readwrite,assign) BOOL _sword_out;
 @property(readwrite,assign) float _arrow_throwback_ct;
 
+@property(readwrite,assign) int __rescue_last_waypoint_ct;
+
 -(float)DEFAULT_HEIGHT;
 @end

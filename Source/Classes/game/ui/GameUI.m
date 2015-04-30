@@ -7,6 +7,7 @@
 #import "Particle.h"
 #import "UIBossIntroParticle.h"
 #import "Player.h"
+#import "PlayerUIHealthIndicator.h"
 
 typedef enum _GameUIBossIntroMode {
 	GameUIBossIntroMode_None,
@@ -27,6 +28,12 @@ typedef enum _GameUIBossIntroMode {
 	CCSprite *_depth_bar_fill;
 	
 	CCSprite *_depth_bar_icon_player, *_depth_bar_icon_boss;
+	
+	PlayerUIHealthIndicator *_player_health_ui;
+	
+	CCNode *_red_flash_overlay;
+	CCNode *_black_fadeout_overlay;
+	float _tar_black_fadeout_overlay_alpha;
 }
 
 +(GameUI*)cons:(GameEngineScene*)game {
@@ -35,6 +42,16 @@ typedef enum _GameUIBossIntroMode {
 
 -(GameUI*)cons:(GameEngineScene*)game {
 	[self setAnchorPoint:ccp(0,0)];
+	
+	_red_flash_overlay = [CCNodeColor nodeWithColor:[CCColor redColor]];
+	[_red_flash_overlay setOpacity:0];
+	[self addChild:_red_flash_overlay];
+	
+	_black_fadeout_overlay = [CCNodeColor nodeWithColor:[CCColor blackColor]];
+	_tar_black_fadeout_overlay_alpha = 0;
+	[_black_fadeout_overlay setOpacity:_tar_black_fadeout_overlay_alpha];
+	[self addChild:_black_fadeout_overlay];
+	
 	_enemy_health_bars = [NSMutableDictionary dictionary];
 	
 	_boss_health_bar = [HealthBar cons_size:CGSizeMake(game_screen().width-10, 15) anchor:ccp(0,0)];
@@ -47,8 +64,8 @@ typedef enum _GameUIBossIntroMode {
 	_current_boss_mode = GameUIBossIntroMode_None;
 	
 	_depth_bar_back = [CCSprite spriteWithTexture:[Resource get_tex:TEX_HUD_SPRITESHEET] rect:[FileCache get_cgrect_from_plist:TEX_HUD_SPRITESHEET idname:@"hudicon_depthbar_back.png"]];
-	[_depth_bar_back setAnchorPoint:ccp(0,1)];
-	[_depth_bar_back setPosition:game_screen_anchor_offset(ScreenAnchor_TL, ccp(10,-40))];
+	[_depth_bar_back setAnchorPoint:ccp(0,0.5)];
+	[_depth_bar_back setPosition:game_screen_anchor_offset(ScreenAnchor_ML, ccp(10,0))];
 	[_depth_bar_back setScale:0.85];
 	[self addChild:_depth_bar_back];
 	
@@ -73,6 +90,11 @@ typedef enum _GameUIBossIntroMode {
 							   rect:[FileCache get_cgrect_from_plist:TEX_HUD_SPRITESHEET idname:@"hudicon_skull.png"]] set_scale:3] set_pos:ccp(250,45)]
 	];
 	[_depth_bar_back addChild:_depth_bar_icon_boss];
+	
+	CGRect heart_size = [FileCache get_cgrect_from_plist:TEX_HUD_SPRITESHEET idname:@"heart_fill.png"];
+	_player_health_ui = [PlayerUIHealthIndicator cons:game];
+	[_player_health_ui setPosition:game_screen_anchor_offset(ScreenAnchor_TL, ccp((heart_size.size.width*0.5 + 3),-(heart_size.size.height*0.5 + 3)))];
+	[self addChild:_player_health_ui];
 	
 	
 	return self;
@@ -104,10 +126,31 @@ typedef enum _GameUIBossIntroMode {
 	[_boss_health_label setString:title];
 }
 
+-(void)flash_red {
+	[_red_flash_overlay setOpacity:0.5];
+}
+
+-(void)fadeout:(BOOL)tar {
+	_tar_black_fadeout_overlay_alpha = tar?1:0;
+}
+-(BOOL)is_faded_out {
+	return _black_fadeout_overlay.opacity >= 1;
+}
+-(BOOL)is_faded_in {
+	return _black_fadeout_overlay.opacity <= 0;
+}
+-(void)pulse_heart_lastfill {
+	[_player_health_ui pulse_heart_lastfill];
+}
+
 -(void)i_update:(GameEngineScene*)game {
 	[self update_enemy_health_bars:game];
 	[self update_boss_ui:game];
+	[_player_health_ui i_update:game];
 	[_particles update_particles:self];
+	[_red_flash_overlay setOpacity:MAX(0,_red_flash_overlay.opacity-0.025*dt_scale_get())];
+	[_black_fadeout_overlay setOpacity:(_tar_black_fadeout_overlay_alpha>0.5)?MIN(1,_black_fadeout_overlay.opacity+0.01*dt_scale_get()):MAX(0,_black_fadeout_overlay.opacity-0.01*dt_scale_get())];
+	
 	if ([game get_player_state] == PlayerState_Dive) {
 		[_depth_bar_back setVisible:YES];
 		float hei_from_top = [self depth_bar_from_top_fill_pct:game.player.position.y/game.get_ground_depth];
