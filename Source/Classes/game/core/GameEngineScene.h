@@ -10,6 +10,7 @@
 @class ControlManager;
 @class PlayerProjectile;
 @class GameUI;
+@class SpriterNodeCache;
 
 typedef enum _PlayerState {
 	PlayerState_Dive = 0,
@@ -88,6 +89,8 @@ typedef enum _GameAnchorZ {
 -(BGSky*)get_bg_sky;
 
 -(void)add_player_projectile:(PlayerProjectile*)tar;
+
+-(SpriterNodeCache*)get_spriter_node_cache;
 @end
 
 @interface BGElement : NSObject

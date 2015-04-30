@@ -9,10 +9,9 @@
 
 /*
 TODO --
-damage recoil player anim
-enemies use spriter anims, pooled
-
+spriter export or perf check
 ground mode, hold to completing circle ui jump
+after sword enemy invuln time
 */
 
 @implementation GameMain

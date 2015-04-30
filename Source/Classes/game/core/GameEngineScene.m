@@ -14,6 +14,7 @@
 #import "Resource.h"
 #import "PlayerProjectile.h"
 #import "GameMain.h"
+#import "SpriterNodeCache.h"
 //#import "AccelerometerSimulation.h"
 
 @implementation RippleInfo {
@@ -95,6 +96,8 @@
 	CCLabelTTF *_water_text;
 	GameUI *_ui;
 	
+	SpriterNodeCache *_spriter_node_cache;
+	
 	TouchTrackingLayer *_touch_tracking;
 	
 	CCDrawNode *_debug_draw;
@@ -106,6 +109,7 @@
 -(AirEnemyManager*)get_air_enemy_manager { return _air_enemy_manager; }
 -(ControlManager*)get_control_manager { return _controls; }
 -(GameUI*)get_ui{ return _ui; }
+-(SpriterNodeCache*)get_spriter_node_cache { return _spriter_node_cache; }
 
 @synthesize _player_state;
 -(PlayerState)get_player_state {
@@ -124,6 +128,9 @@
 	self.userInteractionEnabled = YES;
 	_controls = [ControlManager cons];
 	dt_unset();
+	
+	_spriter_node_cache = [SpriterNodeCache cons];
+	[_spriter_node_cache precache];
 	
 	_touch_tracking = [TouchTrackingLayer node];
 	[super addChild:_touch_tracking z:99];

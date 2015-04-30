@@ -19,6 +19,7 @@
 -(void)get_sat_poly:(SATPoly *)in_poly;
 -(void)hit_projectile:(GameEngineScene*)g;
 -(void)hit_player_melee:(GameEngineScene*)g;
+-(BOOL)is_alive;
 @end
 
 @interface AirEnemyManager : NSObject

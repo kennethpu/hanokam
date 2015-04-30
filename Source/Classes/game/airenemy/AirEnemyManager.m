@@ -23,6 +23,7 @@
 -(void)get_sat_poly:(SATPoly *)in_poly { }
 -(void)hit_projectile:(GameEngineScene*)g{}
 -(void)hit_player_melee:(GameEngineScene*)g{}
+-(BOOL)is_alive{ return YES; }
 @end
 
 @implementation AirEnemyManager {
@@ -81,7 +82,10 @@
 	return _enemies;
 }
 -(void)remove_all_enemies:(GameEngineScene*)g {
-	for (BaseAirEnemy *itr in _enemies) [[g get_anchor] removeChild:itr];
+	for (BaseAirEnemy *itr in _enemies) {
+		[itr do_remove:g];
+		[[g get_anchor] removeChild:itr];
+	}
 	[_enemies removeAllObjects];
 }
 @end

@@ -354,19 +354,22 @@
 			}
 			
 			for (BaseAirEnemy *itr in g.get_air_enemy_manager.get_enemies) {
-				if (SAT_polyowners_intersect(self, itr)) {
+				if (itr.is_alive && SAT_polyowners_intersect(self, itr)) {
 					
 					if (!_air_params._sword_out) {
 						[g.player add_health:-0.5 g:g];
 						[g.get_ui flash_red];
-						[g shake_for:10 distance:5];
+						[self play_anim:@"hurt air" on_finish_anim:@"in air"];
+					} else {
+						[self play_anim:@"spin" on_finish_anim:@"in air"];
 					}
+					[g shake_for:10 distance:5];
 				
 					_air_params._s_vel = ccp(_air_params._s_vel.x,7);
 					_air_params._w_upwards_vel = 4;
 					_air_params._arrow_throwback_ct = 2.0;
 					_air_params._sword_out = NO;
-					[self play_anim:@"in air" repeat:YES];
+					
 					[itr hit_player_melee:g];
 					break;
 				}

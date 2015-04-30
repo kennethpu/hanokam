@@ -33,6 +33,8 @@
 	int _anim_duration;
 	BOOL _repeat_anim;
 	BOOL _anim_finished;
+	
+	NSString *_on_finish_play_anim, *_current_playing;
 }
 
 -(BOOL)current_anim_repeating { return _repeat_anim; }
@@ -51,6 +53,20 @@
 	_unused_objs = [NSMutableDictionary dictionary];
 	
 	return self;
+}
+
+-(void)p_play_anim:(NSString*)anim repeat:(BOOL)repeat {
+	_on_finish_play_anim = NULL;
+	if(_current_playing != anim) {
+		_current_playing = anim;
+		[self playAnim:anim repeat:repeat];
+	}
+}
+
+-(void)p_play_anim:(NSString*)anim1 on_finish_anim:(NSString*)anim2 {
+	_current_playing = anim1;
+	[self playAnim:anim1 repeat:NO];
+	_on_finish_play_anim = anim2;
 }
 
 -(void)playAnim:(NSString *)anim_name repeat:(BOOL)repeat {

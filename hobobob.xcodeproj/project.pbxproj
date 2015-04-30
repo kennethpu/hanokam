@@ -258,6 +258,7 @@
 		7EB712E21AF01F19000EFE44 /* spriter_test.scml in Resources */ = {isa = PBXBuildFile; fileRef = 7EB712D91AF01F19000EFE44 /* spriter_test.scml */; };
 		7EBDB7F01AF1CFB700009908 /* PlayerUIHealthIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBDB7EF1AF1CFB700009908 /* PlayerUIHealthIndicator.m */; };
 		7EBDB7F91AF20D6F00009908 /* ChainedMovementParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBDB7F81AF20D6F00009908 /* ChainedMovementParticle.m */; };
+		7EBDB7FC1AF2483400009908 /* SpriterNodeCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBDB7FB1AF2483400009908 /* SpriterNodeCache.m */; };
 		7EBE56FA1AC3771F008AD888 /* abovewater_am_up.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 7EBE56F91AC3771F008AD888 /* abovewater_am_up.vsh */; };
 		7EBE56FD1AC3772C008AD888 /* abovewater_am_up.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 7EBE56FC1AC3772C008AD888 /* abovewater_am_up.fsh */; };
 		7EBE57021AC3F08F008AD888 /* TouchTrackingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EBE57011AC3F08F008AD888 /* TouchTrackingLayer.m */; };
@@ -564,6 +565,8 @@
 		7EBDB7EF1AF1CFB700009908 /* PlayerUIHealthIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerUIHealthIndicator.m; sourceTree = "<group>"; };
 		7EBDB7F71AF20D6F00009908 /* ChainedMovementParticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChainedMovementParticle.h; sourceTree = "<group>"; };
 		7EBDB7F81AF20D6F00009908 /* ChainedMovementParticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChainedMovementParticle.m; sourceTree = "<group>"; };
+		7EBDB7FA1AF2483400009908 /* SpriterNodeCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriterNodeCache.h; sourceTree = "<group>"; };
+		7EBDB7FB1AF2483400009908 /* SpriterNodeCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriterNodeCache.m; sourceTree = "<group>"; };
 		7EBE56F91AC3771F008AD888 /* abovewater_am_up.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = abovewater_am_up.vsh; sourceTree = "<group>"; };
 		7EBE56FC1AC3772C008AD888 /* abovewater_am_up.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = abovewater_am_up.fsh; sourceTree = "<group>"; };
 		7EBE57001AC3F08F008AD888 /* TouchTrackingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchTrackingLayer.h; sourceTree = "<group>"; };
@@ -983,6 +986,8 @@
 				7EA7AE2A1ABFA984001C9EFE /* ShaderManager.m */,
 				7EBE57001AC3F08F008AD888 /* TouchTrackingLayer.h */,
 				7EBE57011AC3F08F008AD888 /* TouchTrackingLayer.m */,
+				7EBDB7FA1AF2483400009908 /* SpriterNodeCache.h */,
+				7EBDB7FB1AF2483400009908 /* SpriterNodeCache.m */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -1831,6 +1836,7 @@
 				7EBDB7F01AF1CFB700009908 /* PlayerUIHealthIndicator.m in Sources */,
 				7EBDB7F91AF20D6F00009908 /* ChainedMovementParticle.m in Sources */,
 				7E1779761AB8C88B00E3986C /* SpriterNode.m in Sources */,
+				7EBDB7FC1AF2483400009908 /* SpriterNodeCache.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
 				7EF468AD1ABF71E50041E55F /* RotateFadeOutParticle.m in Sources */,
 				7E3B0C0A1A131E8E0057869B /* GameEngineScene.m in Sources */,
