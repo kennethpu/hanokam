@@ -3,6 +3,11 @@
 #import "cocos2d.h"
 #import "Vec3D.h"
 
+@interface CCSprite_Animated : CCSprite
+@property(readwrite,strong) CCAction *_current_anim;
+-(void)update_playAnim:(CCAction*)anim;
+@end
+
 @interface CCNode (helpers)
 -(CCNode*)set_pos:(CGPoint)pt;
 -(CCNode*)set_scale:(float)scale;

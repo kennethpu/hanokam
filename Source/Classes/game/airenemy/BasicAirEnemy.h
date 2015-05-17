@@ -9,6 +9,8 @@
 #import "AirEnemyManager.h"
 
 @interface BasicAirEnemy : BaseAirEnemy
-+(BasicAirEnemy*)cons_g:(GameEngineScene*)g relstart:(CGPoint)relstart relend:(CGPoint)relend;
+-(BasicAirEnemy*)cons_g:(GameEngineScene*)g relstart:(CGPoint)relstart relend:(CGPoint)relend;
+-(void)update_alive:(GameEngineScene*)g;
+-(void)update_death:(GameEngineScene*)g;
 @property(readwrite,assign) CGPoint _rel_pos;
 @end

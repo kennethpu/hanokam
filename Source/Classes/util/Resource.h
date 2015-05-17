@@ -20,7 +20,7 @@
 #define TEX_SPRITER_CHAR_OLDMAN @"oldman_ss"
 #define TEX_SPRITER_CHAR_VILLAGER_FISHWOMAN @"villager_fishwoman"
 
-#define TEX_SPRITER_ENEMY_PUFFER @"enemy_puffer"
+#define TEX_ENEMY_PUFFER @"puffer_enemy_ss"
 #define TEX_SPRITER_TEST @"spriter_test"
 
 #define TEX_PARTICLES_SPRITESHEET @"particles_spritesheet"

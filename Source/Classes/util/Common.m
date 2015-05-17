@@ -9,6 +9,18 @@
 #import "FileCache.h"
 #import "DataStore.h"
 
+@implementation CCSprite_Animated
+@synthesize _current_anim;
+-(void)update_playAnim:(CCAction*)anim {
+	if (anim != _current_anim) {
+		[self stopAllActions];
+		[self runAction:anim];
+	}
+	_current_anim = anim;
+}
+
+@end
+
 @implementation CallBack
 	@synthesize selector;
 	@synthesize target;

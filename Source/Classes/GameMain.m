@@ -9,7 +9,6 @@
 
 /*
 TODO --
-spriter export or perf check
 ground mode, hold to completing circle ui jump
 after sword enemy invuln time
 */

@@ -12,9 +12,6 @@
 #import "GameEngineScene.h"
 #import "Common.h"
 #import "Vec3D.h"
-#import "SpriterNodeCache.h"
-
-#import "SpriterNode.h"
 
 //TODO -- change to pufferenemy
 @implementation BasicAirEnemy {
@@ -24,13 +21,9 @@
 	BOOL _is_dead;
 	float _pause_ct;
 	float _death_anim_ct;
-	
-	SpriterNode *_img;
 }
 @synthesize _rel_pos;
-+(BasicAirEnemy*)cons_g:(GameEngineScene*)g relstart:(CGPoint)relstart relend:(CGPoint)relend {
-	return [[BasicAirEnemy node] cons_g:g relstart:relstart relend:relend];
-}
+
 -(BasicAirEnemy*)cons_g:(GameEngineScene*)g relstart:(CGPoint)relstart relend:(CGPoint)relend  {
 	_rel_start = relstart;
 	_rel_end = relend;
@@ -40,20 +33,6 @@
 	_death_anim_ct = 0;
 	_pause_ct = 0;
 	_is_dead = NO;
-	
-	/*
-	_img = [SpriterNode nodeFromData:[FileCache spriter_scml_data_from_file:@"enemy_puffer.scml" json:@"enemy_puffer.json" texture:[Resource get_tex:TEX_SPRITER_ENEMY_PUFFER]]];
-	*/
-	_img = [g.get_spriter_node_cache depool_node_for_scml:@"enemy_puffer.scml" json:@"enemy_puffer.json" texture:TEX_SPRITER_ENEMY_PUFFER];
-	[self addChild:_img];
-	[_img p_play_anim:@"Idle" repeat:YES];
-	
-	
-	//[self setTexture:[Resource get_tex:TEX_ENEMIES_SPRITESHEET]];
-	//[self setTextureRect:[FileCache get_cgrect_from_plist:TEX_ENEMIES_SPRITESHEET idname:@"spirit_fish_1.png"]];
-	[self setScale:0.25 * 0.85];
-	
-	
 	return self;
 }
 
@@ -73,28 +52,19 @@
 		self.rotation = vec_ang_deg_lim180(dir,90);
 		_rel_pos = next_rel_pos;
 		[self update_rel_pos:game];
+		[self update_alive:game];
 	} else {
-		[_img p_play_anim:@"Die" repeat:NO];
 		_death_anim_ct -= dt_scale_get();
 		[self update_rel_pos:game];
+		[self update_death:game];
 	}
 }
 
--(BOOL)should_remove{ return _is_dead && _death_anim_ct <= 0; }
--(void)do_remove:(GameEngineScene *)g {
-	[self removeChild:_img];
-	[g.get_spriter_node_cache repool_node:_img scml:@"enemy_puffer.scml" json:@"enemy_puffer.json" texture:TEX_SPRITER_ENEMY_PUFFER];
-	_img = NULL;
-}
+-(void)update_alive:(GameEngineScene*)g{}
+-(void)update_death:(GameEngineScene*)g{}
 
--(HitRect)get_hit_rect {
-	CGRect rect = [FileCache get_cgrect_from_plist:TEX_ENEMIES_SPRITESHEET idname:@"spirit_fish_1.png"];
-	return satpolyowner_cons_hit_rect(self.position, rect.size.width, rect.size.height);
-}
--(void)get_sat_poly:(SATPoly*)in_poly {
-	CGRect rect = [FileCache get_cgrect_from_plist:TEX_ENEMIES_SPRITESHEET idname:@"spirit_fish_1.png"];
-	return satpolyowner_cons_sat_poly(in_poly, self.position, self.rotation, rect.size.width, rect.size.height, ccp(0.5,0.9));
-}
+-(BOOL)should_remove{ return _is_dead && _death_anim_ct <= 0; }
+-(void)do_remove:(GameEngineScene *)g {}
 
 -(void)hit_projectile:(GameEngineScene*)g { _is_dead = YES; _death_anim_ct = 50; }
 -(void)hit_player_melee:(GameEngineScene*)g { _is_dead = YES; _death_anim_ct = 50; }
