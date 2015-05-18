@@ -27,8 +27,6 @@
 #define TEX_RIPPLE @"ripple"
 #define TEX_HUD_SPRITESHEET @"hud_spritesheet"
 
-#define TEX_ENEMIES_SPRITESHEET @"enemies_spritesheet"
-
 //todo -- move below to spritesheets
 #define TEX_SH_BUTTON_MIDDLE @"sh_button_middle"
 #define TEX_SH_BUTTON_SIDE @"sh_button_side"

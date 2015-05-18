@@ -45,12 +45,12 @@ todo:
 	
 	[self setScale:1];
 	
-	/*
-	_img = [SpriterNode nodeFromData:[FileCache spriter_scml_data_from_file:@"enemy_puffer.scml" json:@"enemy_puffer.json" texture:[Resource get_tex:TEX_SPRITER_ENEMY_PUFFER]]];
+	_img = [SpriterNode nodeFromData:[FileCache spriter_scml_data_from_file:@"spriter_test.scml" json:@"spriter_test.json" texture:[Resource get_tex:TEX_SPRITER_TEST]]];
 	[self play_anim:@"Die" repeat:YES];
 	[self addChild:_img];
-	*/
 	
+	
+	/*
 	_spr_img = [CCSprite node];
 	[self addChild:_spr_img];
 	
@@ -60,7 +60,7 @@ todo:
 	);
 	CCAction *anim = animaction_cons(anim_strs, 0.055, TEX_ENEMY_PUFFER);
 	[_spr_img runAction:anim];
-	
+	*/
 	//animaction_cons(@[], 0.1, TEX_ENEMY_PUFFER);
 	
 	

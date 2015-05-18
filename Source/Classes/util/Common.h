@@ -3,6 +3,10 @@
 #import "cocos2d.h"
 #import "Vec3D.h"
 
+@interface NSString (md5)
+-(long)md5;
+@end
+
 @interface CCSprite_Animated : CCSprite
 @property(readwrite,strong) CCAction *_current_anim;
 -(void)update_playAnim:(CCAction*)anim;

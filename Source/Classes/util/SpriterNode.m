@@ -35,6 +35,8 @@
 	BOOL _anim_finished;
 	
 	NSString *_on_finish_play_anim, *_current_playing;
+	
+	long _last_bone_structure_hash;
 }
 
 -(BOOL)current_anim_repeating { return _repeat_anim; }
@@ -123,7 +125,7 @@ float get_t_for_keyframes(TGSpriterTimelineKey *keyframe_current, TGSpriterTimel
 		
 		float t = get_t_for_keyframes(keyframe_current, keyframe_next, _current_anim_time, _anim_duration, _repeat_anim);
 		
-		[self interpolate:itr_bone from:keyframe_current to:keyframe_next t:t cp1:ccp(0.25,0) cp2:ccp(0.75, 1)];
+		[self interpolate:itr_bone from:keyframe_current to:keyframe_next t:t];
 	}
 	for (NSNumber *itr in _objs) {
 		CCSprite_Object *itr_obj = _objs[itr];
@@ -133,7 +135,7 @@ float get_t_for_keyframes(TGSpriterTimelineKey *keyframe_current, TGSpriterTimel
 		TGSpriterTimelineKey *keyframe_next = [timeline nextKeyForTime:_current_anim_time];
 		
 		float t = get_t_for_keyframes(keyframe_current, keyframe_next, _current_anim_time, _anim_duration, _repeat_anim);
-		[self interpolate:itr_obj from:keyframe_current to:keyframe_next t:t cp1:ccp(0.25,0) cp2:ccp(0.75, 1)];
+		[self interpolate:itr_obj from:keyframe_current to:keyframe_next t:t];
 		
 		TGSpriterFile *file = [_data file_for_folderid:keyframe_current.folder fileid:keyframe_current.file];
 		itr_obj.texture = [_data texture];
@@ -141,16 +143,13 @@ float get_t_for_keyframes(TGSpriterTimelineKey *keyframe_current, TGSpriterTimel
 	}
 }
 
--(void)interpolate:(CCNode*)node from:(TGSpriterTimelineKey*)from to:(TGSpriterTimelineKey*)to t:(float)t cp1:(CGPoint)cp1 cp2:(CGPoint)cp2 {
-	float cubic_c1 = 0;
-	float cubic_c2 = 1;
-
-	node.position = ccp(scubic_interp(from.position.x, to.position.x, cubic_c1, cubic_c2, t),scubic_interp(from.position.y, to.position.y, cubic_c1, cubic_c2, t));
-	node.rotation = scubic_angular_interp(from.rotation, to.rotation, cubic_c1, cubic_c2, t);
-	node.scaleX = scubic_interp(from.scaleX, to.scaleX, cubic_c1, cubic_c2, t);
-	node.scaleY = scubic_interp(from.scaleY, to.scaleY, cubic_c1, cubic_c2, t);
-	node.opacity = scubic_interp(from.alpha, to.alpha, cubic_c1, cubic_c2, t);
-	node.anchorPoint = ccp(scubic_interp(from.anchorPoint.x, to.anchorPoint.x, cubic_c1, cubic_c2, t),scubic_interp(from.anchorPoint.y, to.anchorPoint.y, cubic_c1, cubic_c2, t));
+-(void)interpolate:(CCNode*)node from:(TGSpriterTimelineKey*)from to:(TGSpriterTimelineKey*)to t:(float)t{
+	node.position = ccp(scubic_interp(from.position.x, to.position.x, t),scubic_interp(from.position.y, to.position.y, t));
+	node.rotation = scubic_angular_interp(from.rotation, to.rotation, t);
+	node.scaleX = scubic_interp(from.scaleX, to.scaleX, t);
+	node.scaleY = scubic_interp(from.scaleY, to.scaleY, t);
+	node.opacity = scubic_interp(from.alpha, to.alpha, t);
+	node.anchorPoint = ccp(scubic_interp(from.anchorPoint.x, to.anchorPoint.x, t),scubic_interp(from.anchorPoint.y, to.anchorPoint.y, t));
 }
 
 -(void)update_mainline_keyframes {
@@ -162,9 +161,14 @@ float get_t_for_keyframes(TGSpriterTimelineKey *keyframe_current, TGSpriterTimel
 		}
 		mainline_key = [anim nth_mainline_key:i];
 	}
-	[self make_bone_hierarchy:mainline_key];
-	[self attach_objects_to_bone_hierarchy:mainline_key];
-	[self set_z_indexes:_root_bone];
+	
+	if (_last_bone_structure_hash != mainline_key._hash) {
+		[self make_bone_hierarchy:mainline_key];
+		[self attach_objects_to_bone_hierarchy:mainline_key];
+		[self set_z_indexes:_root_bone];
+		
+		_last_bone_structure_hash = mainline_key._hash;
+	}
 }
 
 -(int)set_z_indexes:(CCNode*)itr {

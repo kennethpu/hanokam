@@ -8,6 +8,16 @@
 #import "Resource.h"
 #import "FileCache.h"
 #import "DataStore.h"
+#import <CommonCrypto/CommonDigest.h>
+
+@implementation NSString (md5)
+-(long)md5 {
+    const char* cStr = [self UTF8String];
+    unsigned char result[16];
+    CC_MD5(cStr, strlen(cStr), result);
+    return *((long*)result);
+}
+@end
 
 @implementation CCSprite_Animated
 @synthesize _current_anim;
