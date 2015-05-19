@@ -115,7 +115,7 @@
 		
 	}
 	mainlineKey._hash = [[NSString stringWithString:hash] md5];
-	mainlineKey._hashtest = [NSString stringWithString:hash];
+	//mainlineKey._hashtest = [NSString stringWithString:hash];
 	mainlineKey._start_time = [[itr_key.properties objectForKey:@"time"] intValue];
 	[spriterAnimation._mainline_keys addObject:mainlineKey];
 }
