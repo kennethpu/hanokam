@@ -107,6 +107,7 @@
 		7E32CADD1AC3650600461F53 /* bg_underwater_surface_gradient.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E32CADC1AC3650600461F53 /* bg_underwater_surface_gradient.png */; };
 		7E32CADE1AC3650600461F53 /* bg_underwater_surface_gradient.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E32CADC1AC3650600461F53 /* bg_underwater_surface_gradient.png */; };
 		7E32CADF1AC3650600461F53 /* bg_underwater_surface_gradient.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E32CADC1AC3650600461F53 /* bg_underwater_surface_gradient.png */; };
+		7E3300531B0F092300E95DE2 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E3300521B0F092300E95DE2 /* CoreMotion.framework */; };
 		7E3B0C0A1A131E8E0057869B /* GameEngineScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B0BCA1A131E8E0057869B /* GameEngineScene.m */; };
 		7E3B0C0B1A131E8E0057869B /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B0BCC1A131E8E0057869B /* GameObject.m */; };
 		7E3B0C0F1A131E8E0057869B /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B0BD51A131E8E0057869B /* Player.m */; };
@@ -478,6 +479,7 @@
 		7E31E4BD1AB8BD13004DAC8E /* ShopScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopScene.h; sourceTree = "<group>"; };
 		7E31E4BE1AB8BD13004DAC8E /* ShopScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopScene.m; sourceTree = "<group>"; };
 		7E32CADC1AC3650600461F53 /* bg_underwater_surface_gradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_underwater_surface_gradient.png; sourceTree = "<group>"; };
+		7E3300521B0F092300E95DE2 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		7E3B0BC91A131E8E0057869B /* GameEngineScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameEngineScene.h; sourceTree = "<group>"; };
 		7E3B0BCA1A131E8E0057869B /* GameEngineScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameEngineScene.m; sourceTree = "<group>"; };
 		7E3B0BCB1A131E8E0057869B /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
@@ -669,6 +671,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E3300531B0F092300E95DE2 /* CoreMotion.framework in Frameworks */,
 				7A97911819E631CD001FFC4D /* libcocos2d.a in Frameworks */,
 				8392007A18EE8E3300B6C429 /* GLKit.framework in Frameworks */,
 				B77F1B3217B978D7009739AE /* QuartzCore.framework in Frameworks */,
@@ -1268,6 +1271,7 @@
 		B77F1B3017B978D7009739AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7E3300521B0F092300E95DE2 /* CoreMotion.framework */,
 				7A59493C19E37FB200F65F90 /* libz.dylib */,
 				7A59493A19E37F9300F65F90 /* OpenGL.framework */,
 				7A4036F419DE3FA8007B6E8F /* AppKit.framework */,
@@ -2253,7 +2257,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = hobobob;
-				PROVISIONING_PROFILE = "ed19c733-5b5d-4a11-a880-6f65028dcc13";
+				PROVISIONING_PROFILE = "4379f21b-4f2a-4ee1-bcb5-d6f5289f0ee2";
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
@@ -2286,7 +2290,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = hobobob;
-				PROVISIONING_PROFILE = "ed19c733-5b5d-4a11-a880-6f65028dcc13";
+				PROVISIONING_PROFILE = "4379f21b-4f2a-4ee1-bcb5-d6f5289f0ee2";
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/Bridging-Header.h";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

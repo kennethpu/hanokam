@@ -15,6 +15,7 @@
 #import "PlayerProjectile.h"
 #import "GameMain.h"
 #import "SpriterNodeCache.h"
+#import <CoreMotion/CoreMotion.h>
 //#import "AccelerometerSimulation.h"
 
 @implementation RippleInfo {
@@ -97,10 +98,10 @@
 	GameUI *_ui;
 	
 	SpriterNodeCache *_spriter_node_cache;
-	
 	TouchTrackingLayer *_touch_tracking;
-	
 	CCDrawNode *_debug_draw;
+	
+	CMMotionManager *_motion_manager;
 }
 
 -(Player*)player { return _player; }
@@ -162,9 +163,14 @@
 	
 	_air_enemy_manager = [AirEnemyManager cons:self];
 	
+	/*
 	UIAccelerometer *accel = [UIAccelerometer sharedAccelerometer];
 	accel.delegate = self;
 	accel.updateInterval = 1.0f / 60.0f;
+	*/
+	_motion_manager = [[CMMotionManager alloc] init];
+	_motion_manager.deviceMotionUpdateInterval = 1.0/60.0;
+	if ([_motion_manager isDeviceMotionAvailable]) [_motion_manager startDeviceMotionUpdates];
 	
 	_ui = [GameUI cons:self];
 	[super addChild:_ui z:2];
@@ -210,7 +216,7 @@
 }
 
 -(void)accelerometer:(UIAccelerometer *)acel didAccelerate:(UIAcceleration *)aceler {
-	[_controls accel_report_x:aceler.x y:aceler.y z:aceler.z];
+	//[_controls accel_report_x:aceler.x y:aceler.y z:aceler.z];
 }
 
 //static bool TEST_HAS_ACTIVATED_BOSS = false;
@@ -228,6 +234,8 @@
 		_freeze -= dt_scale_get();
 		return;
 	}
+	
+	NSLog(@"x:%.2f    y:%.2f    z:%.2f",_motion_manager.deviceMotion.attitude.roll,_motion_manager.deviceMotion.attitude.pitch,_motion_manager.deviceMotion.attitude.yaw);
 	
 	[_controls i_update:self];
 	[_player i_update:self];
