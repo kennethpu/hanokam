@@ -19,6 +19,8 @@
 
 @interface TGSpriterMainlineKey : NSObject
 @property(readwrite,assign) int _start_time;
+@property(readwrite,assign) long _hash;
+//@property(readwrite,strong) NSString *_hashtest;
 @property(readwrite,strong) NSMutableArray *_bone_refs, *_object_refs;
 -(TGSpriterObjectRef*)nth_bone_ref:(int)i;
 -(TGSpriterObjectRef*)nth_object_ref:(int)i;

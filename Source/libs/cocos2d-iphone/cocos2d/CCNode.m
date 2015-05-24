@@ -1104,7 +1104,7 @@ CGAffineTransformMakeRigid(CGPoint translate, CGFloat radians)
 -(CCAction*) runAction:(CCAction*) action
 {
 	NSAssert( action != nil, @"Argument must be non-nil");
-
+	
 	[_actionManager addAction:action target:self paused:!self.runningInActiveScene];
 	return action;
 }

@@ -56,7 +56,7 @@ static NSSet* dont_load;
 		TEX_SPRITER_CHAR_OLDMAN: @"oldman_ss.png",
 		TEX_SPRITER_CHAR_VILLAGER_FISHWOMAN: @"villager_fishwoman.png",
 		
-		TEX_SPRITER_ENEMY_PUFFER: @"enemy_puffer.png",
+		TEX_ENEMY_PUFFER: @"puffer_enemy_ss.png",
 		
 		TEX_SPRITER_TEST: @"spriter_test.png",
 		
@@ -68,7 +68,6 @@ static NSSet* dont_load;
 		
 		TEX_HUD_SPRITESHEET: @"hud_spritesheet.png",
 		TEX_PARTICLES_SPRITESHEET: @"particles_spritesheet.png",
-		TEX_ENEMIES_SPRITESHEET: @"enemies_spritesheet.png"
 	};
 	
 	dont_load = _NSSET(

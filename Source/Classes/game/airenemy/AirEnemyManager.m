@@ -10,7 +10,7 @@
 #import "GameEngineScene.h"
 #import "Resource.h"
 #import "FileCache.h"
-#import "BasicAirEnemy.h"
+#import "PufferBasicAirEnemy.h"
 
 
 @implementation BaseAirEnemy
@@ -52,7 +52,8 @@
 				end_pos.x += 50;
 			}
 			
-			[self add_enemy:[BasicAirEnemy cons_g:game relstart:start_pos relend:end_pos] game:game];
+			
+			[self add_enemy:[PufferBasicAirEnemy cons_g:game relstart:start_pos relend:end_pos] game:game];
 		}
 	}
 }

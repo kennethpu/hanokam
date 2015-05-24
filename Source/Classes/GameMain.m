@@ -6,16 +6,20 @@
 
 #import "Resource.h"
 #import "ShaderManager.h"
+#import "SpriterUtil.h"
 
 /*
 TODO --
-spriter export or perf check
 ground mode, hold to completing circle ui jump
 after sword enemy invuln time
+
+PERF --
+make TGSpriter classes structs instead
 */
 
 @implementation GameMain
 +(CCScene*)main; {
+	calc_table_scubic_point_for_t();
 	[Resource load_all];
 	[ShaderManager load_all];
 	[DataStore cons];

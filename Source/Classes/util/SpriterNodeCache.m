@@ -23,7 +23,7 @@ NSString* hash_for(NSString* scml, NSString *json, NSString *texture) {
 }
 
 -(void)precache {
-	DO_FOR(6, [self add_to_cache_scml:@"enemy_puffer.scml" json:@"enemy_puffer.json" texture:TEX_SPRITER_ENEMY_PUFFER]);
+	//DO_FOR(6, [self add_to_cache_scml:@"enemy_puffer.scml" json:@"enemy_puffer.json" texture:TEX_SPRITER_ENEMY_PUFFER]);
 }
 
 static int _test_ct = 0;

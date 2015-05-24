@@ -1,6 +1,7 @@
 #import "SpriterData.h"
 #import "SpriterXMLParser.h"
 #import "SpriterTypes.h"
+#import "Common.h"
 
 @implementation SpriterData {
 	NSMutableDictionary *_folders;
@@ -90,6 +91,8 @@
 -(void)handle_mainline_key:(TGSpriterAnimation*)spriterAnimation itr:(TGSpriterConfigNode*)itr_key {
 	TGSpriterMainlineKey *mainlineKey = [[TGSpriterMainlineKey alloc] init];
 	
+	NSMutableString *hash = [NSMutableString stringWithString:@"-"];
+	
 	for (TGSpriterConfigNode *itr_key_child in itr_key.children) {
 		TGSpriterObjectRef *objectRef = [[TGSpriterObjectRef alloc] init];
 		objectRef._id = [[itr_key_child.properties objectForKey:@"id"] intValue];
@@ -102,13 +105,17 @@
 		
 		if ([[itr_key_child name] isEqualToString:@"bone_ref"]) {
 			[mainlineKey._bone_refs addObject:objectRef];
+			[hash appendString:strf("(b_%d-%d)",objectRef._id,objectRef._parent_bone_id)];
 			
 		} else if ([[itr_key_child name] isEqualToString:@"object_ref"]) {
 			objectRef._zindex = [[itr_key_child.properties objectForKey:@"id"] intValue];
 			[mainlineKey._object_refs addObject:objectRef];
+			[hash appendString:strf("(o_%d)",objectRef._parent_bone_id)];
 		}
 		
 	}
+	mainlineKey._hash = [[NSString stringWithString:hash] md5];
+	//mainlineKey._hashtest = [NSString stringWithString:hash];
 	mainlineKey._start_time = [[itr_key.properties objectForKey:@"time"] intValue];
 	[spriterAnimation._mainline_keys addObject:mainlineKey];
 }

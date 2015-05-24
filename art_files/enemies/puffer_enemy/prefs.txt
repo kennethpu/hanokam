@@ -1,0 +1,2 @@
+interval: 55ms
+width/height: 50%

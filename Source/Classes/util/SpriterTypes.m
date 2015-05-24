@@ -41,6 +41,8 @@
 @implementation TGSpriterMainlineKey
 @synthesize _bone_refs, _object_refs;
 @synthesize _start_time;
+@synthesize _hash;
+//@synthesize _hashtest;
 -(id) init {
     self = [super init];
 	_bone_refs = [NSMutableArray array];
