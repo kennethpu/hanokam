@@ -16,7 +16,6 @@
 #import "GameMain.h"
 #import "SpriterNodeCache.h"
 #import <CoreMotion/CoreMotion.h>
-//#import "AccelerometerSimulation.h"
 
 @implementation RippleInfo {
 	float _ct;
@@ -163,14 +162,9 @@
 	
 	_air_enemy_manager = [AirEnemyManager cons:self];
 	
-	/*
-	UIAccelerometer *accel = [UIAccelerometer sharedAccelerometer];
-	accel.delegate = self;
-	accel.updateInterval = 1.0f / 60.0f;
-	*/
 	_motion_manager = [[CMMotionManager alloc] init];
-	_motion_manager.deviceMotionUpdateInterval = 1.0/60.0;
-	if ([_motion_manager isDeviceMotionAvailable]) [_motion_manager startDeviceMotionUpdates];
+	_motion_manager.accelerometerUpdateInterval = 1.0/60.0;
+	[_motion_manager startAccelerometerUpdates];
 	
 	_ui = [GameUI cons:self];
 	[super addChild:_ui z:2];
@@ -215,10 +209,6 @@
 	[_ripples removeObjectsInArray:to_remove];
 }
 
--(void)accelerometer:(UIAccelerometer *)acel didAccelerate:(UIAcceleration *)aceler {
-	//[_controls accel_report_x:aceler.x y:aceler.y z:aceler.z];
-}
-
 //static bool TEST_HAS_ACTIVATED_BOSS = false;
 -(void)update:(CCTime)delta {
 	dt_set(delta);
@@ -228,6 +218,9 @@
 		[_ui start_boss:@"Big Bad Boss" sub:@"This guy mad."];
 	}
 	*/
+	
+	[_controls accel_report_x:_motion_manager.accelerometerData.acceleration.x y:0 z:0];
+	
 	_tick += dt_scale_get(); 
 	
 	if(_freeze > 0) {
@@ -235,7 +228,6 @@
 		return;
 	}
 	
-	NSLog(@"x:%.2f    y:%.2f    z:%.2f",_motion_manager.deviceMotion.attitude.roll,_motion_manager.deviceMotion.attitude.pitch,_motion_manager.deviceMotion.attitude.yaw);
 	
 	[_controls i_update:self];
 	[_player i_update:self];

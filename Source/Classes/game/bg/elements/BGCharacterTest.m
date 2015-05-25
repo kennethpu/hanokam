@@ -45,10 +45,11 @@ todo:
 	
 	[self setScale:1];
 	
+	/*
 	_img = [SpriterNode nodeFromData:[FileCache spriter_scml_data_from_file:@"spriter_test.scml" json:@"spriter_test.json" texture:[Resource get_tex:TEX_SPRITER_TEST]]];
 	[self play_anim:@"Die" repeat:YES];
 	[self addChild:_img];
-	
+	*/
 	
 	/*
 	_spr_img = [CCSprite node];

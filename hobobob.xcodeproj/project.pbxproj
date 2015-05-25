@@ -236,7 +236,6 @@
 		7EA7AEDF1AC0081E001C9EFE /* UIBossIntroParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEDE1AC0081E001C9EFE /* UIBossIntroParticle.m */; };
 		7EA7AEE01AC0081E001C9EFE /* UIBossIntroParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEDE1AC0081E001C9EFE /* UIBossIntroParticle.m */; };
 		7EA7AEE11AC0081E001C9EFE /* UIBossIntroParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEDE1AC0081E001C9EFE /* UIBossIntroParticle.m */; };
-		7EADAC791AB67506004902A9 /* AccelerometerSimulation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EADAC781AB67506004902A9 /* AccelerometerSimulation.m */; };
 		7EB712DA1AF01F19000EFE44 /* spriter_test.json in Resources */ = {isa = PBXBuildFile; fileRef = 7EB712D71AF01F19000EFE44 /* spriter_test.json */; };
 		7EB712DB1AF01F19000EFE44 /* spriter_test.json in Resources */ = {isa = PBXBuildFile; fileRef = 7EB712D71AF01F19000EFE44 /* spriter_test.json */; };
 		7EB712DC1AF01F19000EFE44 /* spriter_test.json in Resources */ = {isa = PBXBuildFile; fileRef = 7EB712D71AF01F19000EFE44 /* spriter_test.json */; };
@@ -541,8 +540,6 @@
 		7EA7AED61AC006A1001C9EFE /* hud_spritesheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hud_spritesheet.png; sourceTree = "<group>"; };
 		7EA7AEDD1AC0081E001C9EFE /* UIBossIntroParticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBossIntroParticle.h; sourceTree = "<group>"; };
 		7EA7AEDE1AC0081E001C9EFE /* UIBossIntroParticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBossIntroParticle.m; sourceTree = "<group>"; };
-		7EADAC771AB67506004902A9 /* AccelerometerSimulation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccelerometerSimulation.h; sourceTree = "<group>"; };
-		7EADAC781AB67506004902A9 /* AccelerometerSimulation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerometerSimulation.m; sourceTree = "<group>"; };
 		7EB712D71AF01F19000EFE44 /* spriter_test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = spriter_test.json; sourceTree = "<group>"; };
 		7EB712D81AF01F19000EFE44 /* spriter_test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spriter_test.png; sourceTree = "<group>"; };
 		7EB712D91AF01F19000EFE44 /* spriter_test.scml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = spriter_test.scml; sourceTree = "<group>"; };
@@ -954,8 +951,6 @@
 				7E3B0C071A131E8E0057869B /* Vec3D.m */,
 				7E3B0C081A131E8E0057869B /* WebRequest.h */,
 				7E3B0C091A131E8E0057869B /* WebRequest.m */,
-				7EADAC771AB67506004902A9 /* AccelerometerSimulation.h */,
-				7EADAC781AB67506004902A9 /* AccelerometerSimulation.m */,
 				7E17794E1AB8152600E3986C /* SpriterData.h */,
 				7E17794F1AB8152600E3986C /* SpriterData.m */,
 				7E17796F1AB8289A00E3986C /* SpriterTypes.h */,
@@ -1830,7 +1825,6 @@
 				7E90D18C1AB63DB700E06F92 /* BGSky.m in Sources */,
 				7ED9B6351ABBD76D0043567C /* BGReflection.m in Sources */,
 				7EBE57021AC3F08F008AD888 /* TouchTrackingLayer.m in Sources */,
-				7EADAC791AB67506004902A9 /* AccelerometerSimulation.m in Sources */,
 				7E0F576D1AEF7F8E00C9CC3E /* BGCharacterTest.m in Sources */,
 				7E3B0C1F1A131E8E0057869B /* BatchDraw.m in Sources */,
 				7E3B0C281A131E8E0057869B /* WebRequest.m in Sources */,
@@ -2199,8 +2193,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Pingyang He (PFZ438YWUJ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pingyang He (PFZ438YWUJ)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2221,7 +2215,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = hobobob;
-				PROVISIONING_PROFILE = "4379f21b-4f2a-4ee1-bcb5-d6f5289f0ee2";
+				PROVISIONING_PROFILE = "28e088c6-d37f-4910-93f7-f9410d0a954b";
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
@@ -2234,8 +2228,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Pingyang He (PFZ438YWUJ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Pingyang He (PFZ438YWUJ)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Source/Prefix.pch;
@@ -2254,7 +2248,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = hobobob;
-				PROVISIONING_PROFILE = "4379f21b-4f2a-4ee1-bcb5-d6f5289f0ee2";
+				PROVISIONING_PROFILE = "28e088c6-d37f-4910-93f7-f9410d0a954b";
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/Bridging-Header.h";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
