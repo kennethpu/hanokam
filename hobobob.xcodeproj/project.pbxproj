@@ -236,6 +236,12 @@
 		7EA7AEDF1AC0081E001C9EFE /* UIBossIntroParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEDE1AC0081E001C9EFE /* UIBossIntroParticle.m */; };
 		7EA7AEE01AC0081E001C9EFE /* UIBossIntroParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEDE1AC0081E001C9EFE /* UIBossIntroParticle.m */; };
 		7EA7AEE11AC0081E001C9EFE /* UIBossIntroParticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA7AEDE1AC0081E001C9EFE /* UIBossIntroParticle.m */; };
+		7EB0575B1B12B15700800A5E /* sky_spritesheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EB057591B12B15700800A5E /* sky_spritesheet.plist */; };
+		7EB0575C1B12B15700800A5E /* sky_spritesheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EB057591B12B15700800A5E /* sky_spritesheet.plist */; };
+		7EB0575D1B12B15700800A5E /* sky_spritesheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EB057591B12B15700800A5E /* sky_spritesheet.plist */; };
+		7EB0575E1B12B15700800A5E /* sky_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB0575A1B12B15700800A5E /* sky_spritesheet.png */; };
+		7EB0575F1B12B15700800A5E /* sky_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB0575A1B12B15700800A5E /* sky_spritesheet.png */; };
+		7EB057601B12B15700800A5E /* sky_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB0575A1B12B15700800A5E /* sky_spritesheet.png */; };
 		7EB712DA1AF01F19000EFE44 /* spriter_test.json in Resources */ = {isa = PBXBuildFile; fileRef = 7EB712D71AF01F19000EFE44 /* spriter_test.json */; };
 		7EB712DB1AF01F19000EFE44 /* spriter_test.json in Resources */ = {isa = PBXBuildFile; fileRef = 7EB712D71AF01F19000EFE44 /* spriter_test.json */; };
 		7EB712DC1AF01F19000EFE44 /* spriter_test.json in Resources */ = {isa = PBXBuildFile; fileRef = 7EB712D71AF01F19000EFE44 /* spriter_test.json */; };
@@ -540,6 +546,8 @@
 		7EA7AED61AC006A1001C9EFE /* hud_spritesheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hud_spritesheet.png; sourceTree = "<group>"; };
 		7EA7AEDD1AC0081E001C9EFE /* UIBossIntroParticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBossIntroParticle.h; sourceTree = "<group>"; };
 		7EA7AEDE1AC0081E001C9EFE /* UIBossIntroParticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBossIntroParticle.m; sourceTree = "<group>"; };
+		7EB057591B12B15700800A5E /* sky_spritesheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sky_spritesheet.plist; sourceTree = "<group>"; };
+		7EB0575A1B12B15700800A5E /* sky_spritesheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sky_spritesheet.png; sourceTree = "<group>"; };
 		7EB712D71AF01F19000EFE44 /* spriter_test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = spriter_test.json; sourceTree = "<group>"; };
 		7EB712D81AF01F19000EFE44 /* spriter_test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spriter_test.png; sourceTree = "<group>"; };
 		7EB712D91AF01F19000EFE44 /* spriter_test.scml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = spriter_test.scml; sourceTree = "<group>"; };
@@ -1005,6 +1013,8 @@
 		7E3B0C4F1A134D3D0057869B /* background */ = {
 			isa = PBXGroup;
 			children = (
+				7EB057591B12B15700800A5E /* sky_spritesheet.plist */,
+				7EB0575A1B12B15700800A5E /* sky_spritesheet.png */,
 				7E5AB3B91ACBDDD7000C0AAD /* bg_water_element_fade.png */,
 				7E5AB3B01ACBDBDA000C0AAD /* underwater_spritesheet.plist */,
 				7E5AB3B11ACBDBDA000C0AAD /* underwater_spritesheet.png */,
@@ -1489,12 +1499,14 @@
 				7A59498B19E38E4A00F65F90 /* MainMenu.xib in Resources */,
 				7A4036FE19DE401F007B6E8F /* iPhone@2x.png in Resources */,
 				7A4036FF19DE401F007B6E8F /* Settings.png in Resources */,
+				7EB057601B12B15700800A5E /* sky_spritesheet.png in Resources */,
 				7E1954971AED61B900D84658 /* villager_fishwoman.scml in Resources */,
 				7EA7AED31AC003F4001C9EFE /* 5ceta_mono.ttf in Resources */,
 				7E80EEAF1AC76AD500B5D312 /* hanokav2.json in Resources */,
 				7EBE57081AC3F162008AD888 /* particles_spritesheet.png in Resources */,
 				7EA7AE471ABFB7FC001C9EFE /* ripple_effect.fsh in Resources */,
 				7EA7AED91AC006A1001C9EFE /* hud_spritesheet.plist in Resources */,
+				7EB0575D1B12B15700800A5E /* sky_spritesheet.plist in Resources */,
 				7A40370019DE401F007B6E8F /* Settings@2x.png in Resources */,
 				7EC87F651ADB48DA002F50CB /* oldman_ss.json in Resources */,
 				7E5AB3BC1ACBDDD7000C0AAD /* bg_water_element_fade.png in Resources */,
@@ -1531,6 +1543,7 @@
 				7EA7AE401ABFB7FC001C9EFE /* reflection_am_down.fsh in Resources */,
 				7EA7AE521ABFB844001C9EFE /* ripple.png in Resources */,
 				7E80EEB41AC76AD500B5D312 /* hanokav2.png in Resources */,
+				7EB0575C1B12B15700800A5E /* sky_spritesheet.plist in Resources */,
 				7EA7AE5E1ABFB85D001C9EFE /* sh_button_middle.png in Resources */,
 				7E90D1791AB635A200E06F92 /* bg_test_tile_sky.png in Resources */,
 				927F61AF196C771E000F43EF /* iPad@2x.png in Resources */,
@@ -1554,6 +1567,7 @@
 				7EC87F671ADB48DA002F50CB /* oldman_ss.png in Resources */,
 				927F61B7196C771E000F43EF /* iPhone.png in Resources */,
 				7E4E0E5F1B09418900A822F1 /* puffer_enemy_ss.plist in Resources */,
+				7EB0575F1B12B15700800A5E /* sky_spritesheet.png in Resources */,
 				7E1954961AED61B900D84658 /* villager_fishwoman.scml in Resources */,
 				927F61B8196C771E000F43EF /* Default-568h@2x.png in Resources */,
 				7EA7AE461ABFB7FC001C9EFE /* ripple_effect.fsh in Resources */,
@@ -1625,6 +1639,7 @@
 				7E80EEB01AC76AD500B5D312 /* hanokav2.plist in Resources */,
 				7E80EEB61AC76AD500B5D312 /* hanokav2.scml in Resources */,
 				7E1954921AED61B900D84658 /* villager_fishwoman.png in Resources */,
+				7EB0575E1B12B15700800A5E /* sky_spritesheet.png in Resources */,
 				7E4E0E611B09418900A822F1 /* puffer_enemy_ss.png in Resources */,
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
 				7EA7AEDA1AC006A1001C9EFE /* hud_spritesheet.png in Resources */,
@@ -1635,6 +1650,7 @@
 				B7378977180762440076A88C /* Default.png in Resources */,
 				7E80EEBF1AC76AD500B5D312 /* hanoka v0.01.scml in Resources */,
 				B71F5911188484E7003F4D28 /* iPad-old.png in Resources */,
+				7EB0575B1B12B15700800A5E /* sky_spritesheet.plist in Resources */,
 				7EB712DD1AF01F19000EFE44 /* spriter_test.png in Resources */,
 				7E80EEAD1AC76AD500B5D312 /* hanokav2.json in Resources */,
 			);

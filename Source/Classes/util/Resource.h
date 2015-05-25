@@ -9,6 +9,7 @@
 
 #define TEX_BG_SPRITESHEET_1 @"bg_spritesheet_1"
 #define TEX_BG_UNDERWATER_SPRITESHEET @"underwater_spritesheet"
+#define TEX_BG_SKY_SPRITESHEET @"sky_spritesheet"
 #define TEX_BG_WATER_ELEMENT_FADE @"bg_water_element_fade"
 
 #define TEX_TEST_BG_TILE_SKY @"bg_test_tile_sky"

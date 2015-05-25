@@ -32,7 +32,6 @@
 
 -(void)accel_report_x:(float)x y:(float)y z:(float)z {
 	_accel_x = x;
-	NSLog(@"%f",x);
 }
 
 -(void)touch_begin:(CGPoint)pt {
