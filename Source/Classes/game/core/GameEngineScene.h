@@ -5,7 +5,7 @@
 @class Particle;
 @class Player;
 @class SpiritManager;
-@class BGSky;
+@class BGVillage;
 @class AirEnemyManager;
 @class ControlManager;
 @class PlayerProjectile;
@@ -29,17 +29,23 @@ typedef enum _GameAnchorZ {
 	GameAnchorZ_Player_Out = 79,
 	GameAnchorZ_BGSky_Docks_Pillars_Front = 52,
 	GameAnchorZ_Player = 51,
+	
+	GameAnchorZ_BGSky_Sky_SideCliffs = 40,
+	
 	GameAnchorZ_BGSky_Docks = 13,
 	GameAnchorZ_BGSky_Elements = 12,
 	GameAnchorZ_BGWater_Reflection = 11,
-	GameAnchorZ_BGSky_WaterLights = 10,
 	GameAnchorZ_Enemies_Underwater = 8,
 	GameAnchorZ_BGWater_I1 = 7,
 	GameAnchorZ_BGSky_BackgroundElements = 6,
-	GameAnchorZ_BGSky_RepeatBG = 5,
-	GameAnchorZ_BGWater_Ground = 4,
-	GameAnchorZ_BGWater_Elements = 3,
-	GameAnchorZ_BGWater_RepeatBG = 2
+	
+	GameAnchorZ_BGSky_Sky_Islands = 4,
+	GameAnchorZ_BGSky_Sky_Arcs = 3,
+	
+	GameAnchorZ_BGSky_RepeatBG = -10,
+	GameAnchorZ_BGWater_Ground = -11,
+	GameAnchorZ_BGWater_Elements = -12,
+	GameAnchorZ_BGWater_RepeatBG = -13
 } GameAnchorZ;
 
 @interface RippleInfo : NSObject
@@ -86,7 +92,7 @@ typedef enum _GameAnchorZ {
 -(NSNumber*)get_tick_mod_pi;
 -(NSArray*)get_ripple_infos;
 -(CCSprite*)get_ripple_proto;
--(BGSky*)get_bg_sky;
+-(BGVillage*)get_bg_village;
 
 -(void)add_player_projectile:(PlayerProjectile*)tar;
 

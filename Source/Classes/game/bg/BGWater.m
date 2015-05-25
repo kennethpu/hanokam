@@ -14,7 +14,7 @@
 #import "GameEngineScene.h"
 #import "Player.h"
 #import "ShaderManager.h"
-#import "BGSky.h"
+#import "BGVillage.h"
 #import "BGReflection.h"
 
 @implementation BGWater {
@@ -142,12 +142,15 @@
 -(void)render_reflection_texture:(GameEngineScene*)game {
 	[_reflection_texture clear:0 g:0 b:0 a:0];
 	[_reflection_texture begin];
-	[game.get_bg_sky render_reflection:game];
+	[game.get_bg_village render_reflection:game offset:_reflection_texture.position];
 	
-	if (game.player.position.y > -10) {
-		[BGReflection reflection_render:game.player offset:ccp(0,game.HORIZON_HEIGHT/2) g:game];
-	}	
+	if (game.player.position.y > -10 && [game get_player_state] != PlayerState_InAir) {
+		[BGReflection reflection_render:game.player offset:ccp(0,game.HORIZON_HEIGHT/2 - _reflection_texture.position.y) g:game];
+	}
 	[_reflection_texture end];
+	
+	float camera_y = game.get_current_camera_center_y;
+	[_reflection_texture setPosition:ccp(_reflection_texture.position.x, clampf(camera_y*.24-25,0,game.HORIZON_HEIGHT))];
 }
 
 -(void)update_underwater_element:(CCSprite*)element g:(GameEngineScene*)g mult:(float)mult offset:(float)offset {

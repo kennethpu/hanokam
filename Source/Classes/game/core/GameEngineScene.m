@@ -1,8 +1,9 @@
 #import "GameEngineScene.h"
 #import "Player.h"
 #import "Common.h"
-#import "BGSky.h" 
+#import "BGVillage.h"
 #import "BGWater.h"
+#import "BGSky.h"
 #import "Particle.h"
 #import "ShaderManager.h"
 #import "GameUI.h"
@@ -85,8 +86,9 @@
 	Player *_player;
 	ParticleSystem *_player_projectiles;
 	
-	BGSky *_bg_sky;
+	BGVillage *_bg_village;
 	BGWater *_bg_water;
+	BGSky *_bg_sky;
 	NSArray *_bg_elements;
 	
 	SpiritManager *_spirit_manager;
@@ -156,9 +158,10 @@
 	_ripple_proto = [CCSprite spriteWithTexture:[Resource get_tex:TEX_RIPPLE]];
 	_ripple_proto.shader = [ShaderManager get_shader:SHADER_RIPPLE_FX];
 	
-	_bg_sky = [BGSky cons:self];
+	_bg_village = [BGVillage cons:self];
 	_bg_water = [BGWater cons:self];
-	_bg_elements = @[_bg_sky, _bg_water];
+	_bg_sky = [BGSky cons:self];
+	_bg_elements = @[_bg_village, _bg_water, _bg_sky];
 	
 	_air_enemy_manager = [AirEnemyManager cons:self];
 	
@@ -190,7 +193,7 @@
 -(NSArray*)get_ripple_infos { return _ripples; }
 -(CCSprite*)get_ripple_proto { return _ripple_proto; }
 -(NSNumber*)get_tick_mod_pi { return @(fmodf(_tick * 0.01,M_PI * 2)); }
--(BGSky*)get_bg_sky { return _bg_sky; }
+-(BGVillage*)get_bg_village { return _bg_village; }
 
 -(void)add_ripple:(CGPoint)pos {
 	if ([_ripples count] > 6) return;

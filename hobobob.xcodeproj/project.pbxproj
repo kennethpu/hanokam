@@ -159,10 +159,10 @@
 		7E90D17B1AB635A200E06F92 /* bg_test_tile_water.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E90D1771AB635A200E06F92 /* bg_test_tile_water.png */; };
 		7E90D17C1AB635A200E06F92 /* bg_test_tile_water.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E90D1771AB635A200E06F92 /* bg_test_tile_water.png */; };
 		7E90D17D1AB635A200E06F92 /* bg_test_tile_water.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E90D1771AB635A200E06F92 /* bg_test_tile_water.png */; };
-		7E90D18C1AB63DB700E06F92 /* BGSky.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E90D18B1AB63DB700E06F92 /* BGSky.m */; };
-		7E90D18D1AB63DB700E06F92 /* BGSky.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E90D18B1AB63DB700E06F92 /* BGSky.m */; };
-		7E90D18E1AB63DB700E06F92 /* BGSky.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E90D18B1AB63DB700E06F92 /* BGSky.m */; };
-		7E90D18F1AB63DB700E06F92 /* BGSky.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E90D18B1AB63DB700E06F92 /* BGSky.m */; };
+		7E90D18C1AB63DB700E06F92 /* BGVillage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E90D18B1AB63DB700E06F92 /* BGVillage.m */; };
+		7E90D18D1AB63DB700E06F92 /* BGVillage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E90D18B1AB63DB700E06F92 /* BGVillage.m */; };
+		7E90D18E1AB63DB700E06F92 /* BGVillage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E90D18B1AB63DB700E06F92 /* BGVillage.m */; };
+		7E90D18F1AB63DB700E06F92 /* BGVillage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E90D18B1AB63DB700E06F92 /* BGVillage.m */; };
 		7E90D1921AB63DD800E06F92 /* BGWater.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E90D1911AB63DD800E06F92 /* BGWater.m */; };
 		7E90D1931AB63DD800E06F92 /* BGWater.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E90D1911AB63DD800E06F92 /* BGWater.m */; };
 		7E90D1941AB63DD800E06F92 /* BGWater.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E90D1911AB63DD800E06F92 /* BGWater.m */; };
@@ -242,6 +242,10 @@
 		7EB0575E1B12B15700800A5E /* sky_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB0575A1B12B15700800A5E /* sky_spritesheet.png */; };
 		7EB0575F1B12B15700800A5E /* sky_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB0575A1B12B15700800A5E /* sky_spritesheet.png */; };
 		7EB057601B12B15700800A5E /* sky_spritesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EB0575A1B12B15700800A5E /* sky_spritesheet.png */; };
+		7EB057631B12B63200800A5E /* BGSky.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB057621B12B63200800A5E /* BGSky.m */; };
+		7EB057641B12B63200800A5E /* BGSky.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB057621B12B63200800A5E /* BGSky.m */; };
+		7EB057651B12B63200800A5E /* BGSky.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB057621B12B63200800A5E /* BGSky.m */; };
+		7EB057661B12B63200800A5E /* BGSky.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EB057621B12B63200800A5E /* BGSky.m */; };
 		7EB712DA1AF01F19000EFE44 /* spriter_test.json in Resources */ = {isa = PBXBuildFile; fileRef = 7EB712D71AF01F19000EFE44 /* spriter_test.json */; };
 		7EB712DB1AF01F19000EFE44 /* spriter_test.json in Resources */ = {isa = PBXBuildFile; fileRef = 7EB712D71AF01F19000EFE44 /* spriter_test.json */; };
 		7EB712DC1AF01F19000EFE44 /* spriter_test.json in Resources */ = {isa = PBXBuildFile; fileRef = 7EB712D71AF01F19000EFE44 /* spriter_test.json */; };
@@ -510,8 +514,8 @@
 		7E80EECD1AC7E46500B5D312 /* ControlManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlManager.m; sourceTree = "<group>"; };
 		7E90D1761AB635A200E06F92 /* bg_test_tile_sky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_test_tile_sky.png; sourceTree = "<group>"; };
 		7E90D1771AB635A200E06F92 /* bg_test_tile_water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_test_tile_water.png; sourceTree = "<group>"; };
-		7E90D18A1AB63DB700E06F92 /* BGSky.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGSky.h; sourceTree = "<group>"; };
-		7E90D18B1AB63DB700E06F92 /* BGSky.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGSky.m; sourceTree = "<group>"; };
+		7E90D18A1AB63DB700E06F92 /* BGVillage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGVillage.h; sourceTree = "<group>"; };
+		7E90D18B1AB63DB700E06F92 /* BGVillage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGVillage.m; sourceTree = "<group>"; };
 		7E90D1901AB63DD800E06F92 /* BGWater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGWater.h; sourceTree = "<group>"; };
 		7E90D1911AB63DD800E06F92 /* BGWater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGWater.m; sourceTree = "<group>"; };
 		7EA7AE291ABFA984001C9EFE /* ShaderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderManager.h; sourceTree = "<group>"; };
@@ -548,6 +552,8 @@
 		7EA7AEDE1AC0081E001C9EFE /* UIBossIntroParticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBossIntroParticle.m; sourceTree = "<group>"; };
 		7EB057591B12B15700800A5E /* sky_spritesheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sky_spritesheet.plist; sourceTree = "<group>"; };
 		7EB0575A1B12B15700800A5E /* sky_spritesheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sky_spritesheet.png; sourceTree = "<group>"; };
+		7EB057611B12B63200800A5E /* BGSky.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGSky.h; sourceTree = "<group>"; };
+		7EB057621B12B63200800A5E /* BGSky.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGSky.m; sourceTree = "<group>"; };
 		7EB712D71AF01F19000EFE44 /* spriter_test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = spriter_test.json; sourceTree = "<group>"; };
 		7EB712D81AF01F19000EFE44 /* spriter_test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spriter_test.png; sourceTree = "<group>"; };
 		7EB712D91AF01F19000EFE44 /* spriter_test.scml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = spriter_test.scml; sourceTree = "<group>"; };
@@ -1041,12 +1047,14 @@
 			isa = PBXGroup;
 			children = (
 				7EC87F6A1ADB4955002F50CB /* elements */,
-				7E90D18A1AB63DB700E06F92 /* BGSky.h */,
-				7E90D18B1AB63DB700E06F92 /* BGSky.m */,
+				7E90D18A1AB63DB700E06F92 /* BGVillage.h */,
+				7E90D18B1AB63DB700E06F92 /* BGVillage.m */,
 				7E90D1901AB63DD800E06F92 /* BGWater.h */,
 				7E90D1911AB63DD800E06F92 /* BGWater.m */,
 				7ED9B6331ABBD76D0043567C /* BGReflection.h */,
 				7ED9B6341ABBD76D0043567C /* BGReflection.m */,
+				7EB057611B12B63200800A5E /* BGSky.h */,
+				7EB057621B12B63200800A5E /* BGSky.m */,
 			);
 			name = bg;
 			path = game/bg;
@@ -1710,9 +1718,10 @@
 			files = (
 				7E4E0E691B094D0E00A822F1 /* PufferBasicAirEnemy.m in Sources */,
 				7EF468AB1ABF71E50041E55F /* Particle.m in Sources */,
-				7E90D18E1AB63DB700E06F92 /* BGSky.m in Sources */,
+				7E90D18E1AB63DB700E06F92 /* BGVillage.m in Sources */,
 				7E80EEC81AC7838400B5D312 /* Common.m in Sources */,
 				5B12102A197484DD004C1E1D /* hobobobActivity.java in Sources */,
+				7EB057651B12B63200800A5E /* BGSky.m in Sources */,
 				7E1779521AB8152600E3986C /* SpriterData.m in Sources */,
 				7E19549D1AEF52A200D84658 /* BGCharacterVillagerFishWoman.m in Sources */,
 				7E90D1941AB63DD800E06F92 /* BGWater.m in Sources */,
@@ -1741,10 +1750,11 @@
 				7EA7AEC41ABFDDFD001C9EFE /* PlayerProjectile.m in Sources */,
 				7E80EECA1AC7838500B5D312 /* Common.m in Sources */,
 				7E1779691AB81AF600E3986C /* SpriterXMLParser.m in Sources */,
-				7E90D18F1AB63DB700E06F92 /* BGSky.m in Sources */,
+				7E90D18F1AB63DB700E06F92 /* BGVillage.m in Sources */,
 				7E1D4B4E1AC64524002E22CC /* AirEnemyManager.m in Sources */,
 				7A59498E19E3941300F65F90 /* AppDelegate.m in Sources */,
 				7E1779731AB8289A00E3986C /* SpriterTypes.m in Sources */,
+				7EB057661B12B63200800A5E /* BGSky.m in Sources */,
 				7EF468AC1ABF71E50041E55F /* Particle.m in Sources */,
 				7EF468B01ABF71E50041E55F /* RotateFadeOutParticle.m in Sources */,
 				7EA7AE941ABFDCD6001C9EFE /* SHItem.m in Sources */,
@@ -1765,8 +1775,9 @@
 				7E1779681AB81AF600E3986C /* SpriterXMLParser.m in Sources */,
 				7E0F576E1AEF7F8E00C9CC3E /* BGCharacterTest.m in Sources */,
 				7E1D4B4C1AC64524002E22CC /* AirEnemyManager.m in Sources */,
-				7E90D18D1AB63DB700E06F92 /* BGSky.m in Sources */,
+				7E90D18D1AB63DB700E06F92 /* BGVillage.m in Sources */,
 				7EA7AE8D1ABFDCD6001C9EFE /* SHBackground.m in Sources */,
+				7EB057641B12B63200800A5E /* BGSky.m in Sources */,
 				7E4E0E681B094D0E00A822F1 /* PufferBasicAirEnemy.m in Sources */,
 				7EA7AE931ABFDCD6001C9EFE /* SHItem.m in Sources */,
 				7EA7AE2C1ABFA984001C9EFE /* ShaderManager.m in Sources */,
@@ -1818,6 +1829,7 @@
 				B73789871807631A0076A88C /* main.m in Sources */,
 				7EF468AD1ABF71E50041E55F /* RotateFadeOutParticle.m in Sources */,
 				7E3B0C0A1A131E8E0057869B /* GameEngineScene.m in Sources */,
+				7EB057631B12B63200800A5E /* BGSky.m in Sources */,
 				7E3B0C201A131E8E0057869B /* Common.m in Sources */,
 				7E3B0C231A131E8E0057869B /* GEventDispatcher.m in Sources */,
 				7EA7AE2B1ABFA984001C9EFE /* ShaderManager.m in Sources */,
@@ -1838,7 +1850,7 @@
 				7E3B0C211A131E8E0057869B /* DataStore.m in Sources */,
 				7E3B0C0F1A131E8E0057869B /* Player.m in Sources */,
 				7E3B0C251A131E8E0057869B /* PolyLib.m in Sources */,
-				7E90D18C1AB63DB700E06F92 /* BGSky.m in Sources */,
+				7E90D18C1AB63DB700E06F92 /* BGVillage.m in Sources */,
 				7ED9B6351ABBD76D0043567C /* BGReflection.m in Sources */,
 				7EBE57021AC3F08F008AD888 /* TouchTrackingLayer.m in Sources */,
 				7E0F576D1AEF7F8E00C9CC3E /* BGCharacterTest.m in Sources */,

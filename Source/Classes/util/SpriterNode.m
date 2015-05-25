@@ -78,7 +78,7 @@
 	}
 	_current_anim_time = 0;
 	_current_anim_name = anim_name;
-	_anim_duration = [_data anim_of_name:anim_name]._duration;
+	_anim_duration = (int)[_data anim_of_name:anim_name]._duration;
 	_repeat_anim = repeat;
 	_anim_finished = NO;
 	
@@ -150,6 +150,7 @@ float get_t_for_keyframes(TGSpriterTimelineKey *keyframe_current, TGSpriterTimel
 	node.scaleY = scubic_interp(from.scaleY, to.scaleY, t);
 	node.opacity = scubic_interp(from.alpha, to.alpha, t);
 	node.anchorPoint = ccp(scubic_interp(from.anchorPoint.x, to.anchorPoint.x, t),scubic_interp(from.anchorPoint.y, to.anchorPoint.y, t));
+
 }
 
 -(void)update_mainline_keyframes {

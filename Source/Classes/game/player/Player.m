@@ -350,6 +350,7 @@
 						MAX(_air_params._arrow_throwback_ct, _air_params._s_vel.y)
 					);
 					_air_params._arrow_throwback_ct -= 0.1;
+					_air_params._w_upwards_vel = MAX(1,_air_params._w_upwards_vel);
 				}
 			}
 			

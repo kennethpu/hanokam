@@ -39,7 +39,9 @@ void calc_table_scubic_point_for_t() {
 }
 
 float get_table_scubic_point_for_t(double t) {
-	return _table_scubic_point_for_t[(int)(t*TABLE_SCUBIC_SIZE)];
+	int tar = t*TABLE_SCUBIC_SIZE;
+	if (tar >= TABLE_SCUBIC_SIZE) tar = TABLE_SCUBIC_SIZE-1;
+	return _table_scubic_point_for_t[tar];
 }
 
 CGPoint sbezier_point_for_t(CGPoint p0, CGPoint p1, CGPoint p2, CGPoint p3, float t) {

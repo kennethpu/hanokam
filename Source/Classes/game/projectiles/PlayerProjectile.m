@@ -73,7 +73,7 @@
 		if ([[g class] isSubclassOfClass:[GameEngineScene class]]) {
 			GameEngineScene *game = (GameEngineScene*)g;
 			for (BaseAirEnemy *itr in game.get_air_enemy_manager.get_enemies) {
-				if (SAT_polyowners_intersect(self, itr)) {
+				if (itr.is_alive && SAT_polyowners_intersect(self, itr)) {
 					_ct = 0;
 					[itr hit_projectile:g];
 				}
